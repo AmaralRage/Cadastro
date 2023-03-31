@@ -5,30 +5,12 @@ require_once("inc/init.php");
 //require UI configuration (nav, ribbon, etc.)
 require_once("inc/config.ui.php");
 
-$condicaoAcessarOK = true;
-$condicaoGravarOK = true;
-$condicaoExcluirOK = true;
-
-if ($condicaoAcessarOK == false) {
-    unset($_SESSION['login']);
-    header("Location:login.php");
-}
-
-$esconderBtnExcluir = "";
-if ($condicaoExcluirOK === false) {
-    $esconderBtnExcluir = "none";
-}
-$esconderBtnGravar = "";
-if ($condicaoGravarOK === false) {
-    $esconderBtnGravar = "none";
-}
-
 /* ---------------- PHP Custom Scripts ---------
 
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Cargo";
+$page_title = "Funcionario";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -40,8 +22,6 @@ include("inc/header.php");
 
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
-$page_nav["cadastro"]["sub"]["cargo"]["active"] = true;
-
 include("inc/nav.php");
 ?>
 <!-- ==========================CONTENT STARTS HERE ========================== -->
@@ -50,7 +30,6 @@ include("inc/nav.php");
     <?php
     //configure ribbon (breadcrumbs) array("name"=>"url"), leave url empty if no url
     //$breadcrumbs["New Crumb"] => "http://url.com"
-    $breadcrumbs["Cadastro"] = "";
     include("inc/ribbon.php");
     ?>
 
@@ -63,11 +42,11 @@ include("inc/nav.php");
                     <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false" style="">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
-                            <h2>Cargo</h2>
+                            <h2>Usuário</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">
-                                <form class="smart-form client-form" id="formCliente" method="post" enctype="multipart/form-data">
+                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">
                                     <div class="panel-group smart-accordion-default" id="accordion">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -82,34 +61,76 @@ include("inc/nav.php");
                                             <div id="collapseCadastro" class="panel-collapse collapse in">
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
-                                                        <input id="verificaRecuperacao" name="verificaRecuperacao" type="text" readonly class="hidden" value="">
                                                         <div class="row">
-
-                                                            <section class="col col-1 col-auto">
+                                                            <section class="col col-1">
                                                                 <label class="label">Código</label>
                                                                 <label class="input">
-                                                                    <input id="codigo" name="codigo" type="text" readonly class="readonly" value="" autocomplete="off">
+                                                                    <input id="codigo" name="codigo" type="text" class="readonly" readonly>
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-6 col-auto">
+                                                            <section class="col col-2">
+                                                                <label class="label">&nbsp;</label>
+                                                                <label id="labelAtivo" class="checkbox ">
+                                                                    <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
+                                                                    Ativo
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col col-2">
                                                                 <label class="label">Nome</label>
-                                                                <label class="input">
-                                                                    <input id="nome" maxlength="255" name="nome" class="required" value="" autocomplete="off">
+                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
+                                                                    <input id="nome" maxlength="255" name="nome" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
-
-                                                            <section class="col col-2 col-auto">
-                                                                <label class="label">cpf</label>
+                                                            <!-- <section class="col col-2">
+                                                                <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <input id="cpf" name="cpf" class="required" autocomplete="new-password" type="text">
+                                                                    <input id="rg" maxlength="20" name="rg" type="text" class="required" value="">
+                                                                </label>
+                                                            </section> -->
+                                                            <section class="col col-2">
+                                                                <label class="label">CPF</label>
+                                                                <label class="input">
+                                                                    <input id="cpf" maxlength="20" name="senha" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
-
+                                                            <section class="col col-2">
+                                                                <label class="label">Gênero</label>
+                                                                <label class="input">
+                                                                    <input id="genero" maxlength="20" name="genero" type="text" class="required" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Data Nascimento</label>
+                                                                <label class="input">
+                                                                    <i class="icon-append fa fa-calendar"></i>
+                                                                    <input id="dataNascimento" name="dataNascimento" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-1">
+                                                                <label class="label">Idade</label>
+                                                                <label class="input">
+                                                                    <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <!-- <section class="col col-1">
+                                                            <label for="cor">Cor Favorita</label>
+                                                            <br>
+                                                            <input type='color' id='CorFavorita' name='cor'>
+                                                            </section> -->
+                                                            <section class="col col-4 col-auto">
+                                                                <label class="label " for="Cargo">Cargo</label>
+                                                                <label class="input">
+                                                                    <input type="text" class="required" id="Cargo">
+                                                                </label>
+                                                            </section>
                                                             <section class="col col-2 col-auto">
-                                                                <label class="label">Ativo</label>
+                                                                <label class="label">Possui filhos ?</label>
                                                                 <label class="select">
-                                                                    <select id="ativo" name="ativo" class="required">
-
+                                                                    <select id="PossuiFilhos" name="PossuiFilhos">
                                                                         <option value="1">Sim</option>
                                                                         <option value="0">Não</option>
                                                                     </select><i></i>
@@ -117,28 +138,13 @@ include("inc/nav.php");
                                                             </section>
 
                                                         </div>
-                                                        <div class="row">
-                                                           
-                                                        <section class="col col-2">
-                                                                <label class="label">Data Nascimento</label>
-                                                                <label class="input">
-                                                                    <input id="dataNascimento" name="dataNascimento" autocomplete="off" type="text" data-dateformat="dd/mm/yy" class="datepicker required" style="text-align: center" value="" data-mask="99/99/9999" data-mask-placeholder="-" autocomplete="off">
-                                                                </label>
-                                                            </section>
-
-
-
-                                                        </div>
-
-
                                                     </fieldset>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <footer>
-                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir" style="display:<?php echo $esconderBtnExcluir ?>">
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
                                             <span class="fa fa-trash"></span>
                                         </button>
                                         <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
@@ -154,10 +160,10 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar" style="display:<?php echo $esconderBtnGravar ?>">
+                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
                                             <span class="fa fa-floppy-o"></span>
                                         </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo" style="display:<?php echo $esconderBtnGravar ?>">
+                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
                                             <span class="fa fa-file-o"></span>
                                         </button>
                                         <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
@@ -192,8 +198,7 @@ include("inc/footer.php");
 include("inc/scripts.php");
 ?>
 
-<script src="<?php echo ASSETS_URL; ?>/js/business_Funcionario.js" type="text/javascript"></script>
-
+<script src="<?php echo ASSETS_URL; ?>/js/businessFuncionario.js" type="text/javascript"></script>
 
 <!-- PAGE RELATED PLUGIN(S) 
 <script src="..."></script>-->
@@ -214,27 +219,32 @@ include("inc/scripts.php");
 <!--<script src="<?php echo ASSETS_URL; ?>/js/plugin/fullcalendar/locale-all.js"></script>-->
 
 
-<!-- Validador de CPF -->
-<script src="js/plugin/cpfcnpj/jquery.cpfcnpj.js"></script>
-
-
 <!-- Form to json -->
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/form2js.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/jquery.toObject.js"></script>
 
 
-
-
-
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
+
+        carregaPagina();
+
+        $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+            _title: function(title) {
+                if (!this.options.title) {
+                    title.html("&#160;");
+                } else {
+                    title.html(this.options.title);
+                }
+            }
+        }));
 
         $('#dlgSimpleExcluir').dialog({
             autoOpen: false,
             width: 400,
             resizable: false,
             modal: true,
-            title: "Atenção",
+            title: "<div class='widget-header'><h4><i class='fa fa-warning'></i> Atenção</h4></div>",
             buttons: [{
                 html: "Excluir registro",
                 "class": "btn btn-success",
@@ -251,15 +261,18 @@ include("inc/scripts.php");
             }]
         });
 
-
         $("#btnExcluir").on("click", function() {
-            var id = $("#codigo").val();
+            var id = +$("#codigo").val();
 
-            if (id === 0) {
-                smartAlert("Atenção", "Selecione um registro para excluir !", "error");
-                $("#nome").focus();
-                return;
+            if (id !== 0) {
+                $('#dlgSimpleExcluir').dialog('open');
             }
+        });
+
+        $("#btnGravar").on("click", function() {
+            var id = +$("#codigo").val();
+
+            gravar()
 
             if (id !== 0) {
                 $('#dlgSimpleExcluir').dialog('open');
@@ -270,22 +283,24 @@ include("inc/scripts.php");
             novo();
         });
 
-        $("#btnGravar").on("click", function() {
-                gravar();
+        $("#dataNascimento").on("change", function() {
+            var data = $("#dataNascimento").val();
+            validaData(data);
+        });
+        
+        $("#cpf").on("change", function() {
+            var data = $("#cpf").val();
+            validarCPF();
         });
 
         $("#btnVoltar").on("click", function() {
             voltar();
         });
-        // $("#cboNumero").on("change", function() {
-        //     verificaCBO();
-        // });
 
-        $("#cpf").mask("999.999.999-99");
-
-        carregaPagina();
-
+        $("#cpf").mask('999.999.999-99');
     });
+
+
 
     function carregaPagina() {
         var urlx = window.document.URL.toString();
@@ -295,7 +310,7 @@ include("inc/scripts.php");
             var idx = id.split("=");
             var idd = idx[1];
             if (idd !== "") {
-                recuperaCargo(idd,
+                recupera(idd,
                     function(data) {
                         if (data.indexOf('failed') > -1) {
                             return;
@@ -307,19 +322,25 @@ include("inc/scripts.php");
                             piece = out.split("^");
 
                             // Atributos de vale transporte unitário que serão recuperados: 
-                            var codigo = +piece[0];
-                            var ativo = +piece[1];
+                            var id = piece[0];
+                            var ativo = piece[1];
                             var nome = piece[2];
                             var cpf = piece[3];
                             var dataNascimento = piece[4];
+                            var genero = piece[5];
+                            var PossuiFilhos = piece[6];
+                            var Cargo = piece[7];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
-                            $("#codigo").val(codigo);
-                            $("#ativo").val(ativo);
-                            $("#nome").val(nome);
+                            $("#codigo").val(id);
                             $("#cpf").val(cpf);
+                            $("#nome").val(nome);
                             $("#dataNascimento").val(dataNascimento);
-                            $("#verificaRecuperacao").val(1);
+                            $("#genero").val(genero);
+                            $("#PossuiFilhos").val(PossuiFilhos);
+                            $("#Cargo").val(Cargo);
+
+
 
                             return;
 
@@ -327,78 +348,121 @@ include("inc/scripts.php");
                     }
                 );
             }
-
         }
+        $("#nome").focus();
 
     }
 
+
     function novo() {
-        $(location).attr('href', 'cadastroFuncionario.php');
+        $(location).attr('href', 'usuarioCadastro.php');
     }
 
     function voltar() {
-        $(location).attr('href', 'cadastroFiltro.php');
+        $(location).attr('href', 'usuarioFiltro.php');
     }
 
     function excluir() {
-        var id = $("#codigo").val();
+        var id = +$("#codigo").val();
 
         if (id === 0) {
             smartAlert("Atenção", "Selecione um registro para excluir!", "error");
             return;
         }
-        excluirCargo(id,
-            function(data) {
-                if (data.indexOf('failed') > -1) {
-                    var piece = data.split("#");
-                    var mensagem = piece[1];
 
-                    if (mensagem !== "") {
-                        smartAlert("Atenção", mensagem, "error");
-                    } else {
-                        smartAlert("Atenção", "Operação não realizada - entre em contato com a GIR!", "error");
-                    }
-                    voltar();
-                } else {
-                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
-                    voltar();
-                }
-            }
-        );
+        excluirUsuario(id);
     }
 
-    // function verificaDescricaoExistente() {
-    //     var descricao = $("#descricao").val();
-    //     verificaDescricao(descricao,
-    //         function(data) {
-    //             if (data.indexOf('failed') > -1) {
-    //                 smartAlert("Atenção", "Já existe um cargo com essa descrição no Sistema!", "error");
-    //                 $("#descricao").focus();
-    //                 return false;
-    //             } else {
-    //                 gravar();
-    //                 return true;
-    //             }
-    //         }
-
-    //     );
+    // function idade(dia, mes, ano) {
+    // return new Date().getFullYear() - ano;
     // }
 
+    // idade(11, 12, 1980); //  33
+    // idade(15, 2, 2011);  // 2
+    // idade(5, 31, 1993);  // 20
+
+    // function getAge(dateString) {
+    //     const today = new Date();
+    //     const birthDate = new Date(dateString);
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     const m = today.getMonth() - birthDate.getMonth();
+
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //         age--;
+    //     }
+
+    //     return age;
+    // }
+
+    //CONTINUAR A PARTIR DAQUI
+
+    function validaData(data) {
+        var data = document.getElementById("dataNascimento").value; // pega o valor do input
+        data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
+        var data_array = data.split("-"); // quebra a data em array
+
+        // para o IE onde será inserido no formato dd/MM/yyyy
+        if (data_array[0].length != 4) {
+            data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
+        }
+
+        // compara as datas e calcula a idade
+        var hoje = new Date();
+        var nasc = new Date(data);
+        var idade = hoje.getFullYear() - nasc.getFullYear();
+        var m = hoje.getMonth() - nasc.getMonth();
+        if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+
+        if (idade <= 14) {
+            smartAlert("Atenção", "Informe a data correta", "error");
+            $("#idade").val(idade)
+            $("#btnGravar").prop('disabled', false);
+            return false;
+
+        }
+
+        if (idade >= 18 && idade <= 95) {
+            smartAlert("Atenção", "A Data está Correta !", "success");
+            $("#idade").val(idade)
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        if (hoje)
+            //se for maior que 60 não vai acontecer nada!
+            return false;
+
+    }
+
+    function validarCPF() {
+        var id = +($("#codigo").val());
+        var cpf = $("#cpf").val();
+    
+        validaCPF(id, cpf);
+    }
+
+    
+
+
     function gravar() {
-
-        //Botão que desabilita a gravação até que ocorra uma mensagem de erro ou sucesso.
-        $("#btnGravar").prop('disabled', true);
-
-        // Variáveis que vão ser gravadas no banco:
-        var id = +$("#codigo").val();
-        var ativo = +$("#ativo").val();
+        var id = +($("#codigo").val());
+        var ativo = 0;
+        if ($("#ativo").is(':checked')) {
+            ativo = 1;
+        }
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
+        var genero = $("#genero").val();
+        var Cargo = $("#Cargo").val();
+        var PossuiFilhos = $("#PossuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
 
-        // Mensagens de aviso caso o usuário deixe de digitar algum campo obrigatório:
         if (!nome) {
-            smartAlert("Atenção", "Informe o seu Nome", "error");
+            smartAlert("Atenção", "Informe o nome", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        if (!genero) {
+            smartAlert("Atenção", "Informe seu genero", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
@@ -410,62 +474,15 @@ include("inc/scripts.php");
         }
 
         if (!dataNascimento) {
-            smartAlert("Atenção", "Informe a Data de Nascimento", "error");
+            smartAlert("Atenção", "Informe a data correta", "error");
             $("#btnGravar").prop('disabled', false);
             return;
+            $dataNascimento = '1988-12-20';
+            $date = new DateTime($dataNascimento);
+            $interval = $date > diff(new DateTime(date('Y-m-d')));
+            $interval > format('%Y anos');
         }
 
-        
-
-        gravaFuncionario(id, ativo, nome, cpf, dataNascimento,
-            function(data) {
-                if (data.indexOf('sucess') < 0) {
-                    var piece = data.split("#");
-                    var mensagem = piece[1];
-                    if (mensagem !== "") {
-                        smartAlert("Atenção", mensagem, "error");
-                        return;
-                    } else {
-                        smartAlert("Atenção", "Operação não realizada - entre em contato com a GIR!", "error");
-                        return;
-                    }
-
-                } else {
-                    //Verifica se a função de recuperar os campos foi executada.
-                    var verificaRecuperacao = +$("#verificaRecuperacao").val();
-                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
-
-                    if (verificaRecuperacao === 1) {
-                        voltar();
-                    } else {
-                        novo();
-                    }
-                }
-            }
-        );
+        gravaFuncionario(id, ativo, nome, cpf, genero, Cargo, PossuiFilhos, dataNascimento);
     }
-
-    // function verificaCBO() {
-    //     var texto = document.getElementById("cboNumero").value;
-    //     for (letra of texto) {
-
-    //         letraspermitidas = "12345678 90 -"
-    //         var ok = false;
-    //         for (letra2 of letraspermitidas) {
-
-    //             if (letra == letra2) {
-
-    //                 ok = true;
-    //             }
-    //         }
-    //         if (!ok) {
-    //             //                    alert("Não digite caracteres que não sejam letras ou espaços");
-    //             smartAlert("Erro", "Não digite caracteres que não sejam números ou '-'", "error");
-    //             // document.getElementById("entrada").value="";
-    //             $("#cboNumero").val("");
-    //             return;
-
-    //         }
-    //     }
-    // };
 </script>

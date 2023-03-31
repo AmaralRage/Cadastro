@@ -6,35 +6,61 @@ include "js/repositorio.php";
         <table id="tableSearchResult" class="table table-bordered table-striped table-condensed table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th class="text-left" style="min-width:30px;">Login</th>
-                    <th class="text-left" style="min-width:30px;">Funcionário</th>
+                    <th class="text-left" style="min-width:30px;">Nome</th>
+                    <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
+                    <th class="text-left" style="min-width:35px;">CPF</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $nomeFiltro = "";
-                $where = "WHERE (0 = 0)";
+                $where = " WHERE (0 = 0)";
 
-                $nomeFiltro = "";
-                if ($_GET["nomeFiltro"] != "") {
-                    $nomeFiltro = $_GET["nomeFiltro"];
-                    $where = $where . " AND (USU.[login] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
-                }
+            //alterar nomes SELECT
+            
+                    $cpf = "";
+                    if ($_POST["cpf"] != "") {
+                        $cpf = $_POST["cpf"];
+                        $where = $where . " AND (cpf = '$cpf')";
+                    }
+                    $ativo = "";
+                    if ($_POST["ativo"] != "") {
+                        $ativo = $_POST["ativo"];
+                        $where = $where . " AND (ativo = $ativo)";
 
-                $sql = " SELECT USU.codigo,USU.[login],USU.ativo,F.nome AS nomeFuncionario FROM Ntl.usuario USU 
-                           LEFT JOIN Ntl.funcionario F ON F.codigo = USU.funcionario ";
-                $where = $where . " AND USU.tipoUsuario = 'C' ";
+                        //$where = $where . " AND ";
+                    }
+                    $nomeFiltro = "";
+                    if ($_POST["nomeFiltro"] != "") {
+                        $nomeFiltro = $_POST["nomeFiltro"];
+                        $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
+                    }
+                    $dataNascimento = "";
+                    if ($_POST["dataNascimento"] != "") {
+                        $dataNascimento = $_POST["dataNascimento"];
+                        $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
+                    }
+
+                $sql = " SELECT cpf, dataNascimento, id, ativo, nome FROM dbo.funcionarios";
+                $where = $where;
 
                 $sql = $sql . $where;
                 $reposit = new reposit();
                 $result = $reposit->RunQuery($sql);
 
                 foreach($result as $row) {
-                    $id = (int) $row['codigo'];
-                    $login = $row['login'];
-                    $ativo = (int) $row['ativo'];
-                    $funcionario = $row['nomeFuncionario'];
+                    $id = (int) $row['id'];
+                     $ativo = (int) $row['ativo'];
+                    $nome = $row['nome'];
+                    $dataNascimento = $row['dataNascimento'];
+                    if ($dataNascimento) {
+                        $dataNascimento = explode(" ", $dataNascimento);
+                        $data = explode("-", $dataNascimento[0]);
+                        $data = ($data[2]. "/". $data[1]. "/". $data[0]);
+                    }
+                    
+                    $cpf = $row['cpf'];
                     $descricaoAtivo = "";
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
@@ -43,8 +69,9 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="usuarioCadastro.php?id=' . $id . '">' . $login . '</a></td>';
-                    echo '<td class="text-left">' . $funcionario . '</td>';
+                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
+                    echo '<td class="text-left">' . $data . '</td>';
+                    echo '<td class="text-left">' . $cpf . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

@@ -5,26 +5,6 @@ require_once("inc/init.php");
 //require UI configuration (nav, ribbon, etc.)
 require_once("inc/config.ui.php");
 
-//colocar o tratamento de permissão sempre abaixo de require_once("inc/config.ui.php");
-$condicaoAcessarOK = (in_array('USUARIO_ACESSAR', $arrayPermissao, true));
-$condicaoGravarOK = (in_array('USUARIO_GRAVAR', $arrayPermissao, true));
-$condicaoExcluirOK = (in_array('USUARIO_EXCLUIR', $arrayPermissao, true));
-
-if ($condicaoAcessarOK == false) {
-    unset($_SESSION['login']);
-    header("Location:login.php");
-}
-
-$esconderBtnGravar = "";
-if ($condicaoGravarOK === false) {
-    $esconderBtnGravar = "none";
-}
-
-$esconderBtnExcluir = "";
-if ($condicaoExcluirOK === false) {
-    $esconderBtnExcluir = "none";
-}
-
 /* ---------------- PHP Custom Scripts ---------
 
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
@@ -42,17 +22,14 @@ include("inc/header.php");
 
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
-$page_nav["configuracao"]["sub"]["usuarios"]["active"] = true;
-
 include("inc/nav.php");
 ?>
 <!-- ==========================CONTENT STARTS HERE ========================== -->
 <!-- MAIN PANEL -->
 <div id="main" role="main">
     <?php
-//configure ribbon (breadcrumbs) array("name"=>"url"), leave url empty if no url
-//$breadcrumbs["New Crumb"] => "http://url.com"
-    $breadcrumbs["Configurações"] = "";
+    //configure ribbon (breadcrumbs) array("name"=>"url"), leave url empty if no url
+    //$breadcrumbs["New Crumb"] => "http://url.com"
     include("inc/ribbon.php");
     ?>
 
@@ -62,14 +39,14 @@ include("inc/nav.php");
         <section id="widget-grid" class="">
             <div class="row">
                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable centerBox">
-                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false" style="">
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
                             <h2>Usuário</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">
-                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">    
+                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">
                                     <div class="panel-group smart-accordion-default" id="accordion">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -92,12 +69,14 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">&nbsp;</label>
-                                                                <label id="labelAtivo" class="checkbox ">
-                                                                    <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
-                                                                    Ativo 
-                                                                </label>                                                                                    
-                                                            </section>                                                                                                                                            
+                                                                <label class="label" for="ativo">Ativo</label>
+                                                                <label class="select">
+                                                                    <select id="ativo" name="ativo">
+                                                                        <option></option>
+                                                                        <option value="1" selected>Sim</option>
+                                                                        <option value="0">Não</option>
+                                                                    </select><i></i>
+                                                            </section>
                                                         </div>
                                                         <div class="row">
                                                         </div>
@@ -131,7 +110,7 @@ include("inc/nav.php");
                                                                         FROM Ntl.funcionario 
                                                                         WHERE ativo = 1 AND dataDemissaoFuncionario IS NULL order by nome";
                                                                         $result = $reposit->RunQuery($sql);
-                                                                        foreach($result as $row) {
+                                                                        foreach ($result as $row) {
                                                                             $id = $row['codigo'];
                                                                             $descricao = $row['nome'];
                                                                             echo '<option value=' . $id . '>' . $descricao . '</option>';
@@ -144,24 +123,22 @@ include("inc/nav.php");
                                                                 <label class="label">Restaurar senha</label>
                                                                 <label class="select">
                                                                     <select id="restaurarSenha" name="restaurarSenha">
-                                                                        <option value="1" >Sim</option> 
-                                                                        <option value="0">Não</option> 
-                                                                    </select><i></i> 
-                                                                </label> 
-                                                            </section> 
+                                                                        <option value="1">Sim</option>
+                                                                        <option value="0">Não</option>
+                                                                    </select><i></i>
+                                                                </label>
+                                                            </section>
                                                         </div>
                                                     </fieldset>
-                                                </div>                                                        
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <footer>
-                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir" style="display:<?php echo $esconderBtnExcluir ?>">
-                                            <span class="fa fa-trash" ></span>
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                            <span class="fa fa-trash"></span>
                                         </button>
-                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" 
-                                             tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" 
-                                             style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
                                             <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
                                                 <span id="ui-id-2" class="ui-dialog-title">
                                                 </span>
@@ -174,20 +151,20 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar" style="display:<?php echo $esconderBtnGravar ?>">
-                                            <span class="fa fa-floppy-o" ></span>
+                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                            <span class="fa fa-floppy-o"></span>
                                         </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo" style="display:<?php echo $esconderBtnGravar ?>">
-                                            <span class="fa fa-file-o" ></span>
+                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                            <span class="fa fa-file-o"></span>
                                         </button>
                                         <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                            <span class="fa fa-backward " ></span>
+                                            <span class="fa fa-backward "></span>
                                         </button>
                                     </footer>
-                                </form>                                            
+                                </form>
                             </div>
-                        </div>                                
-                    </div>                                
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -212,7 +189,7 @@ include("inc/footer.php");
 include("inc/scripts.php");
 ?>
 
-<script src="<?php echo ASSETS_URL; ?>/js/businessUsuario.js" type="text/javascript"></script> 
+<script src="<?php echo ASSETS_URL; ?>/js/businessFuncionario.js" type="text/javascript"></script>
 
 <!-- PAGE RELATED PLUGIN(S) 
 <script src="..."></script>-->
@@ -239,119 +216,16 @@ include("inc/scripts.php");
 
 
 <script language="JavaScript" type="text/javascript">
-    $(document).ready(function () {
-        jQuery.validator.addMethod(
-                "senhaRequerida",
-                function (value, element, params) {
-                    var senha = $("#senha").val();
-                    var codigo = +$("#codigo").val();
-                    var senhaConfirma = $("#senhaConfirma").val();
-
-                    if (codigo === 0) {
-                        if (senha === "") {
-                            return false;
-                        }
-                    } else {
-                        if ((senha === "") & (senhaConfirma !== "")) {
-                            return false;
-                        }
-                    }
-
-                    return true;
-                }, ''
-                );
-
-        jQuery.validator.addMethod(
-                "confirmaSenhaRequerida",
-                function (value, element, params) {
-                    var senha = $("#senha").val();
-                    var senhaConfirma = $("#senhaConfirma").val();
-                    var codigo = +$("#codigo").val();
-
-                    if (codigo === 0) {
-                        if (senhaConfirma === "") {
-                            return false;
-                        }
-                    } else {
-                        if ((senha !== "") & (senhaConfirma === "")) {
-                            return false;
-                        }
-                    }
-
-                    return true;
-                }, ''
-                );
-
-        jQuery.validator.addMethod(
-                "confirmaSenhaequalto",
-                function (value, element, params) {
-                    var senha = $("#senha").val();
-                    var senhaConfirma = $("#senhaConfirma").val();
-
-                    if ((senha !== "") | (senhaConfirma !== "")) {
-                        if (senha !== senhaConfirma) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }, ''
-                );
-
-        $('#formUsuario').validate({
-            // Rules for form validation
-            rules: {
-                'login': {
-                    required: true,
-                    maxlength: 35
-                },
-                'senha': {
-                    senhaRequerida: true,
-                    minlength: 7,
-                    maxlength: 20
-                },
-                'senhaConfirma': {
-                    confirmaSenhaRequerida: true,
-                    confirmaSenhaequalto: true
-                }
-            },
-
-
-            // Messages for form validation
-            messages: {
-                'login': {
-                    required: 'Informe o Login.',
-                    maxlength: 'Digite no máximo de 35 caracteres.',
-                    minlength: 'Digite no mínimo 7 caracteres'
-                },
-                'senha': {
-                    maxlength: 'Digite no máximo de 20 caracteres.',
-                    minlength: 'Digite no mínimo 7 caracteres',
-                    senharequerida: 'Informe a senha.'
-                },
-                'senhaConfirma': {
-                    confirmacaosenharequerida: 'Informe a senha mais uma vez.',
-                    confirmacaosenhaequalto: 'Informe a mesma senha digitada no campo senha.'
-                }
-            },
-
-            // Do not change code below
-            errorPlacement: function (error, element) {
-                error.insertAfter(element.parent());
-                //$("#accordionCadastro").click();
-                $("#accordionCadastro").removeClass("collapsed");
-            },
-            highlight: function (element) {
-                //$(element).parent().addClass('error');
-            },
-            unhighlight: function (element) {
-                //$(element).parent().removeClass('error');
-            }
+     $(document).ready(function() {
+        $("#cpf").mask('999.999.999-99', {
+            reverse: true
         });
+
 
         carregaPagina();
 
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
-            _title: function (title) {
+            _title: function(title) {
                 if (!this.options.title) {
                     title.html("&#160;");
                 } else {
@@ -367,22 +241,22 @@ include("inc/scripts.php");
             modal: true,
             title: "<div class='widget-header'><h4><i class='fa fa-warning'></i> Atenção</h4></div>",
             buttons: [{
-                    html: "Excluir registro",
-                    "class": "btn btn-success",
-                    click: function () {
-                        $(this).dialog("close");
-                        excluir();
-                    }
-                }, {
-                    html: "<i class='fa fa-times'></i>&nbsp; Cancelar",
-                    "class": "btn btn-default",
-                    click: function () {
-                        $(this).dialog("close");
-                    }
-                }]
+                html: "Excluir registro",
+                "class": "btn btn-success",
+                click: function() {
+                    $(this).dialog("close");
+                    excluir();
+                }
+            }, {
+                html: "<i class='fa fa-times'></i>&nbsp; Cancelar",
+                "class": "btn btn-default",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]
         });
 
-        $("#btnExcluir").on("click", function () {
+        $("#btnExcluir").on("click", function() {
             var id = +$("#codigo").val();
 
             if (id === 0) {
@@ -396,14 +270,124 @@ include("inc/scripts.php");
             }
         });
 
-        $("#btnNovo").on("click", function () {
+        $("#btnNovo").on("click", function() {
             novo();
         });
 
-        $("#btnVoltar").on("click", function () {
+        $("#btnVoltar").on("click", function() {
             voltar();
         });
     });
+    jQuery.validator.addMethod(
+        "senhaRequerida",
+        function(value, element, params) {
+            var senha = $("#senha").val();
+            var codigo = +$("#codigo").val();
+            var senhaConfirma = $("#senhaConfirma").val();
+
+            if (codigo === 0) {
+                if (senha === "") {
+                    return false;
+                }
+            } else {
+                if ((senha === "") & (senhaConfirma !== "")) {
+                    return false;
+                }
+            }
+
+            return true;
+        }, ''
+    );
+
+    jQuery.validator.addMethod(
+        "confirmaSenhaRequerida",
+        function(value, element, params) {
+            var senha = $("#senha").val();
+            var senhaConfirma = $("#senhaConfirma").val();
+            var codigo = +$("#codigo").val();
+
+            if (codigo === 0) {
+                if (senhaConfirma === "") {
+                    return false;
+                }
+            } else {
+                if ((senha !== "") & (senhaConfirma === "")) {
+                    return false;
+                }
+            }
+
+            return true;
+        }, ''
+    );
+
+    jQuery.validator.addMethod(
+        "confirmaSenhaequalto",
+        function(value, element, params) {
+            var senha = $("#senha").val();
+            var senhaConfirma = $("#senhaConfirma").val();
+
+            if ((senha !== "") | (senhaConfirma !== "")) {
+                if (senha !== senhaConfirma) {
+                    return false;
+                }
+            }
+            return true;
+        }, ''
+    );
+
+    $('#formUsuario').validate({
+        // Rules for form validation
+        rules: {
+            'login': {
+                required: true,
+                maxlength: 35
+            },
+            'senha': {
+                senhaRequerida: true,
+                minlength: 7,
+                maxlength: 20
+            },
+            'senhaConfirma': {
+                confirmaSenhaRequerida: true,
+                confirmaSenhaequalto: true
+            }
+        },
+
+
+        // Messages for form validation
+        messages: {
+            'login': {
+                required: 'Informe o Login.',
+                maxlength: 'Digite no máximo de 35 caracteres.',
+                minlength: 'Digite no mínimo 7 caracteres'
+            },
+            'senha': {
+                maxlength: 'Digite no máximo de 20 caracteres.',
+                minlength: 'Digite no mínimo 7 caracteres',
+                senharequerida: 'Informe a senha.'
+            },
+            'senhaConfirma': {
+                confirmacaosenharequerida: 'Informe a senha mais uma vez.',
+                confirmacaosenhaequalto: 'Informe a mesma senha digitada no campo senha.'
+            }
+        },
+
+        // Do not change code below
+        errorPlacement: function(error, element) {
+            error.insertAfter(element.parent());
+            //$("#accordionCadastro").click();
+            $("#accordionCadastro").removeClass("collapsed");
+        },
+        highlight: function(element) {
+            //$(element).parent().addClass('error');
+        },
+        unhighlight: function(element) {
+            //$(element).parent().removeClass('error');
+        }
+    });
+
+
+   
 
     function carregaPagina() {
         var urlx = window.document.URL.toString();
@@ -413,19 +397,19 @@ include("inc/scripts.php");
             var idx = id.split("=");
             var idd = idx[1];
             if (idd !== "") {
-                recuperaUsuario(idd);
+                recupera(idd);
             }
         }
         $("#nome").focus();
 
     }
-    
+
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
     }
 
     function voltar() {
-        $(location).attr('href', 'usuarioFiltro.php');
+        $(location).attr('href', 'funcionarioCadastro.php');
     }
 
     function excluir() {
@@ -501,7 +485,6 @@ include("inc/scripts.php");
                 }
             }
         }
-        gravaUsuario(id, ativo, login, senha, senhaConfirma, tipoUsuario,funcionario,restaurarSenha);
+        gravaUsuario(id, ativo, login, senha, senhaConfirma, tipoUsuario, funcionario, restaurarSenha);
     }
 </script>
-

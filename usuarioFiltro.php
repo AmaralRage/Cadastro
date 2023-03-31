@@ -6,18 +6,7 @@ require_once("inc/init.php");
 require_once("inc/config.ui.php");
 
 //colocar o tratamento de permissão sempre abaixo de require_once("inc/config.ui.php");
-$condicaoAcessarOK = (in_array('USUARIO_ACESSAR', $arrayPermissao, true));
-$condicaoGravarOK = (in_array('USUARIO_GRAVAR', $arrayPermissao, true));
 
-if ($condicaoAcessarOK == false) {
-    unset($_SESSION['login']);
-    header("Location:login.php");
-}
-
-$esconderBtnGravar = "";
-if ($condicaoGravarOK === false) {
-    $esconderBtnGravar = "none";
-}
 
 /* ---------------- PHP Custom Scripts ---------
 
@@ -57,7 +46,7 @@ include("inc/nav.php");
         <section id="widget-grid" class="">
             <div class="row">
                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable centerBox">
-                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false" style="">
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
                             <h2>Usuário</h2>
@@ -80,39 +69,68 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                            <section class="col col-6">
+                                                            <section class="col col-2">
                                                                 <label class="label">Nome</label>
                                                                 <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                    <input id="nome" maxlength="50" name="nome" type="text" value="">
+                                                                    <input id="nome" maxlength="50" name="nome" type="text" value="" placeholder="Nome">
                                                                 </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">CPF</label>
+                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
+                                                                    <input id="cpf" maxlength="50" name="nome" type="text" value="" placeholder="XXX.XXX.XXX-XX">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Data Inicio</label>
+                                                                <label class="input">
+                                                                    <i class="icon-append fa fa-calendar"></i>
+                                                                    <input id="dataFim" name="dataFim" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Data Termino</label>
+                                                                <label class="input">
+                                                                    <i class="icon-append fa fa-calendar"></i>
+                                                                    <input id="dataFim" name="dataFim" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label" for="ativo">Ativo</label>
+                                                                <label class="select">
+                                                                    <select id="ativo" name="ativo">
+                                                                        <option></option>
+                                                                        <option value="1" selected>Sim</option>
+                                                                        <option value="0">Não</option>
+                                                                    </select><i></i>
                                                             </section>
                                                         </div>
                                                     </fieldset>
                                                 </div>
-                                                <footer>
-                                                    <button id="btnSearch" type="button" class="btn btn-primary pull-right" title="Buscar">
-                                                        <span class="fa fa-search"></span>
-                                                    </button>
-                                                    <?php if ($condicaoGravarOK) { ?>
-                                                        <button id="btnNovo" type="button" class="btn btn-primary pull-left" title="Novo">
-                                                            <span class="fa fa-file"></span>
-                                                        </button>
-                                                    <?php } ?>
-                                                </footer>
                                             </div>
+                                            <footer>
+                                                <button id="btnSearch" type="button" class="btn btn-primary pull-right" title="Buscar">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                                    <button id="btnNovo" type="button" class="btn btn-primary pull-left" title="Novo">
+                                                        <span class="fa fa-file"></span>
+                                                    </button>
+                                            </footer>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div id="resultadoBusca"></div>
-                        </div>
+                        <div id="resultadoBusca"></div>
                     </div>
-                </article>
             </div>
-        </section>
-        <!-- end widget grid -->
+            </article>
     </div>
-    <!-- END MAIN CONTENT -->
+    </section>
+
+    <?php if ($condicaoGravarOK) {} ?>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
 </div>
 <!-- END MAIN PANEL -->
 
@@ -156,13 +174,20 @@ include("inc/scripts.php");
         $('#btnNovo').on("click", function() {
             novo();
         });
+        //   $("#cpf").mask('999.999.999-99');
     });
 
     function listarFiltro() {
         var nome = $('#nome').val();
- 
+        var cpf = $('#cpf').val();
+        var dataNascimento = $('#dataNascimento').val();
+        var ativo = $('#ativo').val();
+
         $('#resultadoBusca').load('usuarioFiltroListagem.php?', {
-            nomeFiltro: nome
+            nomeFiltro: nome,
+            cpf: cpf,
+            dataNascimento: dataNascimento,
+            ativo: ativo
         });
     }
 

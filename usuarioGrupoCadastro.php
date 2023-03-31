@@ -262,7 +262,7 @@ include("inc/scripts.php");
                             var ativo = piece[2];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
-                            $("#codigo").val(codigo);
+                            $("#id").val(codigo);
                             $("#descricao").val(descricao);
                             $("#ativo").val(ativo);
 
