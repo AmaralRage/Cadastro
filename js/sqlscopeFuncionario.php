@@ -26,6 +26,9 @@ if ($funcao == 'validaCPF') {
 if ($funcao == 'VerificaCPF') {
     call_user_func($funcao);
 }
+if ($funcao == 'VerificaRG') {
+    call_user_func($funcao);
+}
 
 if ($funcao == 'gravarNovaSenha') {
     call_user_func($funcao);
@@ -51,8 +54,8 @@ function grava()
     }
 
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $cpf = "'" . $cpf . "'";
+    $cpf =  "'" .$_POST['cpf'] . "'";
+    $rg = "'" . $_POST['rg'] . "'";
     $nome = "'" . $nome . "'";
 
     $genero = $_POST['genero'];
@@ -60,7 +63,7 @@ function grava()
     $Cargo = "'". $Cargo. "'";
     $PossuiFilhos = $_POST['PossuiFilhos'];
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
-    $sql = "dbo.funcionarios_Atualiza " . $id . "," . $ativo . "," . $nome . "," . $cpf . "," . $genero .  "," . $dataNascimento . "," . $Cargo . "," . $PossuiFilhos . " ";
+    $sql = "dbo.funcionarios_Atualiza " . $id . "," . $ativo . "," . $nome . "," . $cpf . "," . $rg . "," . $genero .  "," . $dataNascimento . "," . $Cargo . "," . $PossuiFilhos . " ";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
@@ -98,7 +101,7 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, dataNascimento, ativo, genero, PossuiFilhos, Cargo
+    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, PossuiFilhos, Cargo
              FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
 
     if ($condicaoId) {
@@ -118,6 +121,7 @@ function recuperaFuncionario()
         $ativo = +$row['ativo'];
         $nome = $row['nome'];
         $cpf = $row['cpf'];
+        $rg = $row['rg'];
         $dataNascimento = $row['dataNascimento'];
     if ($dataNascimento) {
         $dataNascimento = explode(" ", $dataNascimento);
@@ -135,6 +139,7 @@ function recuperaFuncionario()
         $ativo . "^" .
         $nome . "^" .
         $cpf . "^" .
+        $rg . "^" .
         $dataNascimento . "^" .
         $genero . "^" .
         $PossuiFilhos . "^" .
@@ -281,6 +286,27 @@ function VerificaCPF()
     }
 
 }
+
+function VerificaRG(){
+    ////////verifica registros duplicados
+
+        $rg = $_POST["rg"];
+
+        $sql = "SELECT rg FROM dbo.funcionario WHERE rg='$rg'";
+        //achou 
+        $reposit = new reposit();
+        $result = $reposit->RunQuery($sql);
+
+        ////! ANTES É NEGAÇÃO
+        if (!$result){
+            echo  'success#';
+        }
+        else{
+            $mensagem = "RG já registrado!";
+            echo "failed#" . $mensagem .' ';
+        }
+
+    }
 
 function gravarNovaSenha()
 {

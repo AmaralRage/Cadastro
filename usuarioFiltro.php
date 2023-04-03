@@ -180,12 +180,14 @@ include("inc/scripts.php");
     function listarFiltro() {
         var nome = $('#nome').val();
         var cpf = $('#cpf').val();
+        var rg = $('#rg').val();
         var dataNascimento = $('#dataNascimento').val();
         var ativo = $('#ativo').val();
 
         $('#resultadoBusca').load('usuarioFiltroListagem.php?', {
             nomeFiltro: nome,
             cpf: cpf,
+            rg: rg,
             dataNascimento: dataNascimento,
             ativo: ativo
         });

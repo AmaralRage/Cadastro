@@ -9,6 +9,7 @@ include "js/repositorio.php";
                     <th class="text-left" style="min-width:30px;">Nome</th>
                     <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
                     <th class="text-left" style="min-width:35px;">CPF</th>
+                    <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
                 </tr>
             </thead>
@@ -23,6 +24,11 @@ include "js/repositorio.php";
                     if ($_POST["cpf"] != "") {
                         $cpf = $_POST["cpf"];
                         $where = $where . " AND (cpf = '$cpf')";
+                    }
+                    $rg = "";
+                    if ($_POST["rg"] != "") {
+                        $rg = $_POST["rg"];
+                        $where = $where . " AND (rg = '$rg')";
                     }
                     $ativo = "";
                     if ($_POST["ativo"] != "") {
@@ -42,7 +48,7 @@ include "js/repositorio.php";
                         $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
                     }
 
-                $sql = " SELECT cpf, dataNascimento, id, ativo, nome FROM dbo.funcionarios";
+                $sql = " SELECT cpf, rg, dataNascimento, id, ativo, nome FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;
@@ -61,6 +67,7 @@ include "js/repositorio.php";
                     }
                     
                     $cpf = $row['cpf'];
+                    $rg = $row['rg'];
                     $descricaoAtivo = "";
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
@@ -72,6 +79,7 @@ include "js/repositorio.php";
                     echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
                     echo '<td class="text-left">' . $data . '</td>';
                     echo '<td class="text-left">' . $cpf . '</td>';
+                    echo '<td class="text-left">' . $rg . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

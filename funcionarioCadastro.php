@@ -94,13 +94,13 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">CPF</label>
                                                                 <label class="input">
-                                                                    <input id="cpf" maxlength="20" name="senha" type="text" class="required" value="">
+                                                                    <input id="cpf" name="senha" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
                                                                 <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <input id="rg" maxlength="20" name="senha" type="text" class="required" value="">
+                                                                    <input id="rg" name="senha" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -298,12 +298,17 @@ include("inc/scripts.php");
             var data = $("#cpf").val();
             validarCPF();
         });
+        $("#rg").on("change", function() {
+            var data = $("rg").val();
+            VerificaRG();
+        });
 
         $("#btnVoltar").on("click", function() {
             voltar();
         });
 
         $("#cpf").mask('999.999.999-99');
+        $("#rg").mask('99.999.999-9');
     });
 
 
@@ -331,11 +336,12 @@ include("inc/scripts.php");
                             var id = piece[0];
                             var ativo = piece[1];
                             var nome = piece[2];
-                            var cpf = piece[3];
-                            var dataNascimento = piece[4];
-                            var genero = piece[5];
-                            var PossuiFilhos = piece[6];
-                            var Cargo = piece[7];
+                            var cpf = piece[4];
+                            var rg = piece[5];
+                            var dataNascimento = piece[6];
+                            var genero = piece[7];
+                            var PossuiFilhos = piece[8];
+                            var Cargo = piece[9];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
@@ -359,6 +365,11 @@ include("inc/scripts.php");
 
     }
 
+    function VerificaRG() {
+        var rg = $("#rg").val();
+        RGverificado(rg);
+        return;
+    }
 
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
@@ -457,6 +468,7 @@ include("inc/scripts.php");
         }
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
+        var rg = $("#rg").val();
         var genero = $("#genero").val();
         var Cargo = $("#Cargo").val();
         var PossuiFilhos = $("#PossuiFilhos").val();
@@ -478,6 +490,11 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
+        if (!rg) {
+            smartAlert("Atenção", "Informe o RG", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
 
         if (!dataNascimento) {
             smartAlert("Atenção", "Informe a data correta", "error");
@@ -489,6 +506,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, genero, Cargo, PossuiFilhos, dataNascimento);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, Cargo, PossuiFilhos, dataNascimento);
     }
 </script>
