@@ -76,7 +76,7 @@ function cpfverificado(cpf) {
 
 function RGverificado(rg) {
     $.ajax({
-        url: 'js/sqlscopeCadastroFuncionario.php',
+        url: 'js/sqlscopeFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: { funcao: "VerificaRG", rg: rg }, //valores enviados ao script

@@ -100,13 +100,30 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <input id="rg" name="senha" type="text" class="required" value="">
+                                                                    <input id="rg" name="rg" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-2">
+                                                            <section class="col col-2 col-auto">
                                                                 <label class="label">Gênero</label>
-                                                                <label class="input">
-                                                                    <input id="genero" maxlength="20" name="genero" type="text" class="required" value="">
+                                                                <label class="select">
+                                                                    <select id="genero" name="genero">
+                                                                    <option hidden></option>
+                                                                        <option value="1">Masculino</option>
+                                                                        <option value="2">Feminino</option>
+                                                                        <option value="3">Outros</option>
+                                                                    </select><i></i>
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2 col-auto">
+                                                                <label class="label">Estado Civil</label>
+                                                                <label class="select">
+                                                                    <select id="estadocivil" name="estadocivil">
+                                                                        <option value="1" selected>Solteiro(a)</option>
+                                                                        <option value="2">Casado(a)</option>
+                                                                        <option value="3">Divorciado(a)</option>
+                                                                        <option value="4">Separado(a)</option>
+                                                                        <option value="5">Viúvo(a)</option>
+                                                                    </select><i></i>
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -127,7 +144,7 @@ include("inc/nav.php");
                                                             <br>
                                                             <input type='color' id='CorFavorita' name='cor'>
                                                             </section> -->
-                                                            <section class="col col-4 col-auto">
+                                                            <section class="col col-2 col-auto">
                                                                 <label class="label " for="Cargo">Cargo</label>
                                                                 <label class="input">
                                                                     <input type="text" class="required" id="Cargo">

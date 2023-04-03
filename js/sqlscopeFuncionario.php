@@ -128,7 +128,7 @@ function recuperaFuncionario()
         $data = explode("-", $dataNascimento[0]);
         $dataNascimento = ($data[2]. "/". $data[1]. "/". $data[0]);
         };
-        $genero = $row['genero'];
+        $genero = (int)$row['genero'];
         $PossuiFilhos = +$row['PossuiFilhos'];
         $Cargo = $row['Cargo'];
     }
@@ -290,9 +290,9 @@ function VerificaCPF()
 function VerificaRG(){
     ////////verifica registros duplicados
 
-        $rg = $_POST["rg"];
+        $rg = "'" . $_POST["rg"] . "'";
 
-        $sql = "SELECT rg FROM dbo.funcionario WHERE rg='$rg'";
+        $sql = " SELECT rg FROM dbo.funcionarios WHERE rg = $rg ";
         //achou 
         $reposit = new reposit();
         $result = $reposit->RunQuery($sql);
