@@ -98,6 +98,12 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
+                                                                <label class="label">RG</label>
+                                                                <label class="input">
+                                                                    <input id="rg" maxlength="20" name="senha" type="text" class="required" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
                                                                 <label class="label">Gênero</label>
                                                                 <label class="input">
                                                                     <input id="genero" maxlength="20" name="genero" type="text" class="required" value="">
@@ -287,7 +293,7 @@ include("inc/scripts.php");
             var data = $("#dataNascimento").val();
             validaData(data);
         });
-        
+
         $("#cpf").on("change", function() {
             var data = $("#cpf").val();
             validarCPF();
@@ -434,13 +440,13 @@ include("inc/scripts.php");
     }
 
     function validarCPF() {
-        var id = +($("#codigo").val());
+        // var id = +($("#codigo").val());
         var cpf = $("#cpf").val();
-    
-        validaCPF(id, cpf);
+
+        validaCPF(cpf);
     }
 
-    
+
 
 
     function gravar() {

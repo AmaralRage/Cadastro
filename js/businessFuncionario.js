@@ -28,13 +28,50 @@ function validaCPF(id, cpf) {
             if (data.trim() === 'success') {
                 smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 
             } else {
-                smartAlert("Atenção", "Deu Ruim !!!", "error");
+                smartAlert("Atenção", "CPF Inválido", "error");
                 document.getElementById('cpf').value = "";
             }
         }, error: function (xhr, er) {
             console.log(xhr, er);
         }
     });
+}
+
+function cpfverificado(cpf) {
+    $.ajax({
+        url: 'js/sqlscopeCadastroFuncionario.php',
+        dataType: 'html', //tipo do retorno
+        type: 'post', //metodo de envio
+        data: { funcao: "VerificaCPF", cpf: cpf }, //valores enviados ao script
+        beforeSend: function () {
+            //função chamada antes de realizar o ajax
+        },
+        complete: function () {
+            //função executada depois de terminar o ajax
+        },
+        success: function (data, textStatus) {
+            if (data.indexOf('success') < 0) {
+                var piece = data.split("#");
+                var mensagem = piece[1];
+                if (piece[0] === "success") {
+                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+                    return;
+                }
+                else {
+                    mensagem ="Opa! CPF já registrado.";
+                    smartAlert("Atenção", mensagem, "error");
+                    return;
+                }
+            }
+            ////////////////////////////////////////
+            //retorno dos dados
+        },
+        error: function (xhr, er) {
+            //tratamento de erro
+            console.log(xhr, er)
+        }
+    });
+    return '';
 }
 
 
