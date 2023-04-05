@@ -128,7 +128,7 @@ if ($condicaoTabelaBasicaOk) {
 
 
     if (true) {
-        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generoFuncionarioCadastro.php"));
+        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/TabelaBasicaGeneroFiltro.php"));
     }
     if (true) {
         $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
