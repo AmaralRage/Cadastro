@@ -207,82 +207,82 @@ function recuperarDadosUsuario()
     return;
 }
 
-function validaCPF() {
+// function validaCPF() {
  
-    // Extrai somente os números
-    $cpf = $_POST["cpf"];
-    $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
+//     // Extrai somente os números
+//     $cpf = $_POST["cpf"];
+//     $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
      
-    // Verifica se foi informado todos os digitos corretamente
-    if (strlen($cpf) != 11) {
-        return false;
-    }
+//     // Verifica se foi informado todos os digitos corretamente
+//     if (strlen($cpf) != 11) {
+//         return false;
+//     }
 
-    // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
-    if (preg_match('/(\d)\1{10}/', $cpf)) {
-        return false;
-    }
+//     // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
+//     if (preg_match('/(\d)\1{10}/', $cpf)) {
+//         return false;
+//     }
 
-    // Faz o calculo para validar o CPF
-    for ($t = 9; $t < 11; $t++) {
-        for ($d = 0, $c = 0; $c < $t; $c++) {
-            $d += $cpf[$c] * (($t + 1) - $c);
-        }
-        $d = ((10 * $d) % 11) % 10;
-        if ($cpf[$c] != $d) {
-            echo "failed";
-            return false;
-        }
-    }
-    echo "success";  
-    return true;
+//     // Faz o calculo para validar o CPF
+//     for ($t = 9; $t < 11; $t++) {
+//         for ($d = 0, $c = 0; $c < $t; $c++) {
+//             $d += $cpf[$c] * (($t + 1) - $c);
+//         }
+//         $d = ((10 * $d) % 11) % 10;
+//         if ($cpf[$c] != $d) {
+//             echo "failed";
+//             return false;
+//         }
+//     }
+//     echo "success";  
+//     return true;
 
-}
+// }
 
-function VerificaCPF()
-{
-    $cpf = $_POST["cpf"];
-    $sql = "SELECT cpf, codigo FROM dbo.funcionario WHERE cpf='$cpf'";
-    //achou 
-    // $sql = "SELECT cpf FROM dbo.funcionario WHERE (0 = 0) AND" . "' cpf ='".$cpf;
-    $reposit = new reposit();
-    $result = $reposit->RunQuery($sql);
-    // $result = $reposit->RunQuery($sql);
-    // if ($id > 0) {
-    //     $sql = "SELECT codigo FROM dbo.funcionario WHERE cpf='$cpf' and codigo !=id";
-    // }
-    if ($result >0){
-        $mensagem = "CPF já registrado!";
-        echo "failed#" . $mensagem .' ';
-        return;
-    }
-    else{
-        echo  'succes#';
-        return;
-    }
+// function VerificaCPF()
+// {
+//     $cpf = $_POST["cpf"];
+//     $sql = "SELECT cpf, codigo FROM dbo.funcionario WHERE cpf='$cpf'";
+//     //achou 
+//     // $sql = "SELECT cpf FROM dbo.funcionario WHERE (0 = 0) AND" . "' cpf ='".$cpf;
+//     $reposit = new reposit();
+//     $result = $reposit->RunQuery($sql);
+//     // $result = $reposit->RunQuery($sql);
+//     // if ($id > 0) {
+//     //     $sql = "SELECT codigo FROM dbo.funcionario WHERE cpf='$cpf' and codigo !=id";
+//     // }
+//     if ($result >0){
+//         $mensagem = "CPF já registrado!";
+//         echo "failed#" . $mensagem .' ';
+//         return;
+//     }
+//     else{
+//         echo  'succes#';
+//         return;
+//     }
 
-}
+// }
 
-function VerificaRG(){
-    ////////verifica registros duplicados
+// function VerificaRG(){
+//     ////////verifica registros duplicados
 
-        $rg = "'" . $_POST["rg"] . "'";
+//         $rg = "'" . $_POST["rg"] . "'";
 
-        $sql = " SELECT rg FROM dbo.funcionarios WHERE rg = $rg ";
-        //achou 
-        $reposit = new reposit();
-        $result = $reposit->RunQuery($sql);
+//         $sql = " SELECT rg FROM dbo.funcionarios WHERE rg = $rg ";
+//         //achou 
+//         $reposit = new reposit();
+//         $result = $reposit->RunQuery($sql);
 
-        ////! ANTES É NEGAÇÃO
-        if (!$result){
-            echo  'success#';
-        }
-        else{
-            $mensagem = "RG já registrado!";
-            echo "failed#" . $mensagem .' ';
-        }
+//         ////! ANTES É NEGAÇÃO
+//         if (!$result){
+//             echo  'success#';
+//         }
+//         else{
+//             $mensagem = "RG já registrado!";
+//             echo "failed#" . $mensagem .' ';
+//         }
 
-    }
+//     }
 
 function gravarNovaSenha()
 {

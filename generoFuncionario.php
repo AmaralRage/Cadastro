@@ -69,9 +69,9 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">Nome</label>
-                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                    <input id="nome" maxlength="255" name="nome" class="required" type="text" value="">
+                                                                <label class="label">Gênero</label>
+                                                                <label class="input">
+                                                                    <input id="genero" maxlength="255" name="" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -278,11 +278,11 @@ include("inc/scripts.php");
 
     }
 
-    function VerificaRG() {
-        var rg = $("#rg").val();
-        RGverificado(rg);
-        return;
-    }
+    // function VerificaRG() {
+    //     var rg = $("#rg").val();
+    //     RGverificado(rg);
+    //     return;
+    // }
 
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
@@ -326,42 +326,42 @@ include("inc/scripts.php");
 
     //CONTINUAR A PARTIR DAQUI
 
-    function validaData(data) {
-        var data = document.getElementById("dataNascimento").value; // pega o valor do input
-        data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
-        var data_array = data.split("-"); // quebra a data em array
+    // function validaData(data) {
+    //     var data = document.getElementById("dataNascimento").value; // pega o valor do input
+    //     data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
+    //     var data_array = data.split("-"); // quebra a data em array
 
-        // para o IE onde será inserido no formato dd/MM/yyyy
-        if (data_array[0].length != 4) {
-            data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
-        }
+    //     // para o IE onde será inserido no formato dd/MM/yyyy
+    //     if (data_array[0].length != 4) {
+    //         data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
+    //     }
 
-        // compara as datas e calcula a idade
-        var hoje = new Date();
-        var nasc = new Date(data);
-        var idade = hoje.getFullYear() - nasc.getFullYear();
-        var m = hoje.getMonth() - nasc.getMonth();
-        if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+    //     // compara as datas e calcula a idade
+    //     var hoje = new Date();
+    //     var nasc = new Date(data);
+    //     var idade = hoje.getFullYear() - nasc.getFullYear();
+    //     var m = hoje.getMonth() - nasc.getMonth();
+    //     if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
 
-        if (idade <= 14) {
-            smartAlert("Atenção", "Informe a data correta", "error");
-            $("#idade").val(idade)
-            $("#btnGravar").prop('disabled', false);
-            return false;
+    //     if (idade <= 14) {
+    //         smartAlert("Atenção", "Informe a data correta", "error");
+    //         $("#idade").val(idade)
+    //         $("#btnGravar").prop('disabled', false);
+    //         return false;
 
-        }
+    //     }
 
-        if (idade >= 18 && idade <= 95) {
-            smartAlert("Atenção", "A Data está Correta !", "success");
-            $("#idade").val(idade)
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-        if (hoje)
-            //se for maior que 60 não vai acontecer nada!
-            return false;
+    //     if (idade >= 18 && idade <= 95) {
+    //         smartAlert("Atenção", "A Data está Correta !", "success");
+    //         $("#idade").val(idade)
+    //         $("#btnGravar").prop('disabled', false);
+    //         return;
+    //     }
+    //     if (hoje)
+    //         //se for maior que 60 não vai acontecer nada!
+    //         return false;
 
-    }
+    // }
 
     // function validarCPF() {
         // var id = +($("#codigo").val());
