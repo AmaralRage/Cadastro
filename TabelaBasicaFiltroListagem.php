@@ -6,11 +6,7 @@ include "js/repositorio.php";
         <table id="tableSearchResult" class="table table-bordered table-striped table-condensed table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th class="text-left" style="min-width:30px;">Nome</th>
-                    <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
                     <th class="text-left" style="min-width:30px;">Descrisão</th>
-                    <th class="text-left" style="min-width:35px;">CPF</th>
-                    <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
                 </tr>
             </thead>
@@ -59,16 +55,7 @@ include "js/repositorio.php";
                 foreach($result as $row) {
                     $id = (int) $row['id'];
                      $ativo = (int) $row['ativo'];
-                    $nome = $row['nome'];
-                    $dataNascimento = $row['dataNascimento'];
-                    if ($dataNascimento) {
-                        $dataNascimento = explode(" ", $dataNascimento);
-                        $data = explode("-", $dataNascimento[0]);
-                        $data = ($data[2]. "/". $data[1]. "/". $data[0]);
-                    }
-                    
-                    $cpf = $row['cpf'];
-                    $rg = $row['rg'];
+                   
                     $descricaoAtivo = "";
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
@@ -77,11 +64,8 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
-                    echo '<td class="text-left">' . $data . '</td>';
+                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $genero . '</a></td>';
                     echo '<td class="text-left">' . $genero . '</td>';
-                    echo '<td class="text-left">' . $cpf . '</td>';
-                    echo '<td class="text-left">' . $rg . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }
