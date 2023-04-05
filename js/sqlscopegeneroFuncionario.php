@@ -17,23 +17,6 @@ if ($funcao == 'excluir') {
     call_user_func($funcao);
 }
 
-if ($funcao == 'recuperarDadosUsuario') {
-    call_user_func($funcao);
-}
-if ($funcao == 'validaCPF') {
-    call_user_func($funcao);
-}
-if ($funcao == 'VerificaCPF') {
-    call_user_func($funcao);
-}
-if ($funcao == 'VerificaRG') {
-    call_user_func($funcao);
-}
-
-if ($funcao == 'gravarNovaSenha') {
-    call_user_func($funcao);
-}
-
 return;
 
 function grava()

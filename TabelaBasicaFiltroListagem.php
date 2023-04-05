@@ -6,7 +6,7 @@ include "js/repositorio.php";
         <table id="tableSearchResult" class="table table-bordered table-striped table-condensed table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th class="text-left" style="min-width:30px;">Descrisão</th>
+                    <th class="text-left" style="min-width:30px;">Descrição</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
                 </tr>
             </thead>
@@ -17,16 +17,7 @@ include "js/repositorio.php";
 
             //alterar nomes SELECT
             
-                    $cpf = "";
-                    if ($_POST["cpf"] != "") {
-                        $cpf = $_POST["cpf"];
-                        $where = $where . " AND (cpf = '$cpf')";
-                    }
-                    $rg = "";
-                    if ($_POST["rg"] != "") {
-                        $rg = $_POST["rg"];
-                        $where = $where . " AND (rg = '$rg')";
-                    }
+                   
                     $ativo = "";
                     if ($_POST["ativo"] != "") {
                         $ativo = $_POST["ativo"];
@@ -34,18 +25,13 @@ include "js/repositorio.php";
 
                         //$where = $where . " AND ";
                     }
-                    $nomeFiltro = "";
-                    if ($_POST["nomeFiltro"] != "") {
-                        $nomeFiltro = $_POST["nomeFiltro"];
-                        $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
+                    $generoFiltro = "";
+                    if ($_POST["generoFiltro"] != "") {
+                        $generoFiltro = $_POST["generoFiltro"];
+                        $where = $where . " AND (funcionarios.[genero] like '%' + " . "replace('" . $generoFiltro . "',' ','%') + " . "'%')";
                     }
-                    $dataNascimento = "";
-                    if ($_POST["dataNascimento"] != "") {
-                        $dataNascimento = $_POST["dataNascimento"];
-                        $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
-                    }
-
-                $sql = " SELECT cpf, rg, genero, dataNascimento, id, ativo, nome FROM dbo.funcionarios";
+                   
+                $sql = " SELECT genero, id, ativo FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;

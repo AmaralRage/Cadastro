@@ -1,4 +1,4 @@
-function gravaFuncionario(id, ativo, genero,) {
+function gravaGenero(id, ativo, genero,) {
     $.ajax({ 
         url: 'js/sqlscopeFuncionario.php',
         type: 'post',

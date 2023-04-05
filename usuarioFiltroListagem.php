@@ -8,7 +8,7 @@ include "js/repositorio.php";
                 <tr role="row">
                     <th class="text-left" style="min-width:30px;">Nome</th>
                     <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
-                    <th class="text-left" style="min-width:30px;">Descrisão</th>
+                    <th class="text-left" style="min-width:30px;">Descrição</th>
                     <th class="text-left" style="min-width:35px;">CPF</th>
                     <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>

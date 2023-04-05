@@ -71,7 +71,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">Gênero</label>
                                                                 <label class="input">
-                                                                    <input id="genero" maxlength="255" name="" class="required" type="text" value="">
+                                                                    <input id="genero" maxlength="255" name="genero" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -131,7 +131,7 @@ include("inc/footer.php");
 include("inc/scripts.php");
 ?>
 
-<script src="<?php echo ASSETS_URL; ?>/js/businessFuncionario.js" type="text/javascript"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/businessGeneroFuncionario.js" type="text/javascript"></script>
 
 <!-- PAGE RELATED PLUGIN(S) 
 <script src="..."></script>-->
@@ -381,36 +381,10 @@ include("inc/scripts.php");
         }
         var genero = $("#genero").val();
 
-        if (!nome) {
-            smartAlert("Atenção", "Informe o nome", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
         if (!genero) {
             smartAlert("Atenção", "Informe seu genero", "error");
             $("#btnGravar").prop('disabled', false);
             return;
-        }
-
-        if (!cpf) {
-            smartAlert("Atenção", "Informe o cpf", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-        if (!rg) {
-            smartAlert("Atenção", "Informe o RG", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-
-        if (!dataNascimento) {
-            smartAlert("Atenção", "Informe a data correta", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-            $dataNascimento = '1988-12-20';
-            $date = new DateTime($dataNascimento);
-            $interval = $date > diff(new DateTime(date('Y-m-d')));
-            $interval > format('%Y anos');
         }
 
         gravaGenero(id, ativo, genero);
