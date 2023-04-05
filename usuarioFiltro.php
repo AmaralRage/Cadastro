@@ -85,14 +85,20 @@ include("inc/nav.php");
                                                                 <label class="label">Data Inicio</label>
                                                                 <label class="input">
                                                                     <i class="icon-append fa fa-calendar"></i>
+                                                                    <input id="dataInicio" name="dataInicio" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Data Final</label>
+                                                                <label class="input">
+                                                                    <i class="icon-append fa fa-calendar"></i>
                                                                     <input id="dataFim" name="dataFim" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">Data Termino</label>
+                                                                <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <i class="icon-append fa fa-calendar"></i>
-                                                                    <input id="dataFim" name="dataFim" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                    <input id="rg" name="rg" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -174,7 +180,8 @@ include("inc/scripts.php");
         $('#btnNovo').on("click", function() {
             novo();
         });
-        //   $("#cpf").mask('999.999.999-99');
+        $("#cpf").mask('999.999.999-99');
+        $("#rg").mask('99.999.999-9');
     });
 
     function listarFiltro() {
