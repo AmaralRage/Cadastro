@@ -3,7 +3,7 @@ function gravaGenero(id, ativo, genero,) {
         url: 'js/sqlscopeFuncionario.php',
         type: 'post',
         dataType:"html",
-        data: {funcao: "grava", id:id, ativo:ativo, genero:genero,},
+        data: {funcao: "grava", id:id, ativo:ativo, genero:genero},
         
         success: function (data, textStatus) {
             if (data.trim() === 'success') {
@@ -127,7 +127,7 @@ function recupera(id, callback) {
 
 function excluirUsuario(id) {
     $.ajax({
-        url: 'js/sqlscopeFuncionario.php', //caminho do arquivo a ser executado
+        url: 'js/sqlscopegeneroFuncionario.php', //caminho do arquivo a ser executado
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: {funcao: 'excluir', id: id}, //valores enviados ao script     

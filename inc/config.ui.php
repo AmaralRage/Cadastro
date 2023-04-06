@@ -98,9 +98,9 @@ if (true) {
     $page_nav['cadastro']['sub'] = array();
 
         $page_nav['cadastro']['sub'] += array("cadastro" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
-    // if (true) {
-    //     $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoFuncionarioCadastro.php"));
-    // }
+    if (true) {
+        $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
+    }
     // if (true) {
     //     $page_nav['cadastro']['sub'] += array("grupo" => array("title" => "Grupo", "url" => APP_URL . "/usuarioGrupoFiltro.php"));
     // }

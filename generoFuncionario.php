@@ -74,6 +74,23 @@ include("inc/nav.php");
                                                                     <input id="genero" maxlength="255" name="genero" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
+                                                            <label class="label " for="projeto" style="text-align: center;font-size: 23px;font-weight: bold;margin-top: 10px;">Projeto</label>
+                                                            <label class="select projetoTf">
+                                                                <select id="projeto" name="projeto" class="projetoTf" disabled style="text-align: center;" value="" onchange="projetoMudar()">
+                                                                    <option></option>
+                                                                    <?php
+                                                                    $reposit = new reposit();
+                                                                    $sql = "SELECT codigo, genero FROM dbo.funcionarios BP 
+                                                                                WHERE ativo = 1 order by genero";
+                                                                    $result = $reposit->RunQuery($sql);
+                                                                    foreach ($result as $row) {
+                                                                        $id = $row['codigo'];
+                                                                        $genero = $row['genero'];
+                                                                        echo '<option value=' . $id . '>' . $genero . ' </option>';
+                                                                    }
+                                                                    ?>
+                                                                </select><i></i>
+                                                            </label>
                                                         </div>
                                                         <div class="row">
                                                             <footer>
@@ -364,10 +381,10 @@ include("inc/scripts.php");
     // }
 
     // function validarCPF() {
-        // var id = +($("#codigo").val());
-        // var cpf = $("#cpf").val();
+    // var id = +($("#codigo").val());
+    // var cpf = $("#cpf").val();
 
-        // validaCPF(cpf);
+    // validaCPF(cpf);
     // }
 
 

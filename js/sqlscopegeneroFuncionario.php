@@ -76,7 +76,7 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, PossuiFilhos, Cargo
+    $sql = " SELECT id as codigoFuncionario, ativo, genero
              FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
 
     if ($condicaoId) {
