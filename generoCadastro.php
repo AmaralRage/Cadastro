@@ -212,39 +212,19 @@ include("inc/scripts.php");
         });
 
         $("#btnGravar").on("click", function() {
-            // var id = +$("#codigo").val();
+
 
             gravar()
 
-            // if (id !== 0) {
-            //     $('#dlgSimpleExcluir').dialog('open');
-            // }
         });
 
         $("#btnNovo").on("click", function() {
             novo();
         });
 
-        // $("#dataNascimento").on("change", function() {
-        //     var data = $("#dataNascimento").val();
-        //     validaData(data);
-        // });
-
-        // $("#cpf").on("change", function() {
-        //     var data = $("#cpf").val();
-        //     validarCPF();
-        // });
-        // $("#rg").on("change", function() {
-        //     var data = $("rg").val();
-        //     VerificaRG();
-        // });
-
         $("#btnVoltar").on("click", function() {
             voltar();
         });
-
-        // $("#cpf").mask('999.999.999-99');
-        // $("#rg").mask('99.999.999-9');
     });
 
 
@@ -271,22 +251,9 @@ include("inc/scripts.php");
                             // Atributos de vale transporte unitário que serão recuperados: 
                             var id = piece[0];
                             var ativo = piece[1];
-                            // var nome = piece[2];
-                            // var cpf = piece[4];
-                            // var rg = piece[5];
-                            // var dataNascimento = piece[6];
                             var genero = piece[2];
-                            // var PossuiFilhos = piece[8];
-                            // var Cargo = piece[9];
-
-                            //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
-                            // $("#codigo").val(id);
-                            // $("#cpf").val(cpf);
-                            // $("#nome").val(nome);
-                            // $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
-                            // $("#PossuiFilhos").val(PossuiFilhos);
-                            // $("#Cargo").val(Cargo);
+                           
 
 
 
@@ -300,12 +267,6 @@ include("inc/scripts.php");
         $("#nome").focus();
 
     }
-
-    // function VerificaRG() {
-    //     var rg = $("#rg").val();
-    //     RGverificado(rg);
-    //     return;
-    // }
 
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
@@ -337,7 +298,6 @@ include("inc/scripts.php");
             ativo = 1;
         }
 
-        //  (nome=="")  (dataNascimento=="")
         if (descricao == "") {
             smartAlert("Atenção", "Campo de descrição não pode ser vazio!", "error");
             $("#descricao").focus();

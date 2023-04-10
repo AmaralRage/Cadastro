@@ -19,9 +19,9 @@ include "js/repositorio.php";
 
 
                 $ativo = "";
-                if ($_POST["ativo"] != "") {
-                    $ativo = $_POST["ativo"];
-                    $where = $where . " AND (ativo = $ativo)";
+                if ($_POST["generoAtivo"] != "") {
+                    $generoAtivo = $_POST["generoAtivo"];
+                    $where = $where . " AND (generoAtivo = $generoAtivo)";
 
                     //$where = $where . " AND ";
                 }
