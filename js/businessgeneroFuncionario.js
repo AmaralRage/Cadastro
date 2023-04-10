@@ -1,21 +1,38 @@
-function gravaGenero(id, ativo, genero,) {
-    $.ajax({ 
+function gravaGenero(codigo, descricao, ativo) {
+    $.ajax({
         url: 'js/sqlscopegeneroFuncionario.php',
-        type: 'post',
-        dataType:"html",
-        data: {funcao: "grava", id:id, ativo:ativo, genero:genero},
-        
+        dataType: 'html', //tipo do retorno
+        type: 'post', //metodo de envio
+        data: { funcao: "gravar", codigo:codigo, descricao: descricao, ativo: ativo}, //valores enviados ao script
+        beforeSend: function () {
+            //função chamada antes de realizar o ajax
+        },
+        complete: function () {ss
+            //função executada depois de terminar o ajax
+        },
+        ///////////////////////////////////////////////////
         success: function (data, textStatus) {
-            if (data.trim() === 'success') {
-                smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 
-                voltar();
-            } else {
-                smartAlert("Atenção", "Operação não realizada - entre em contato com a GIR!", "error");
+            if (data.indexOf('sucess') < 0) {
+                var piece = data.split("#");
+                var mensagem = piece[1];
+                if (mensagem !== "") {
+                    smartAlert("Atenção", mensagem, "error");
+                } else {
+                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+                    voltar();
+                }
+
+                return '';
             }
-        }, error: function (xhr, er) {
-            console.log(xhr, er);
+            ////////////////////////////////////////
+            //retorno dos dados
+        },
+        error: function (xhr, er) {
+            //tratamento de erro
         }
     });
+    return '';
+
 }
 // function validaCPF(cpf) {
 //     $.ajax({ 

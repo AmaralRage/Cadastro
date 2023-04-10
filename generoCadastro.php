@@ -10,7 +10,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Funcionario";
+$page_title = "Genero";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -39,7 +39,7 @@ include("inc/nav.php");
         <section id="widget-grid" class="">
             <div class="row">
                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable centerBox">
-                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false" style="">
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
                             <h2>Usuário</h2>
@@ -62,19 +62,13 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                        <section class="col col-1">
-                                                                <label class="label">Código</label>
-                                                                <label class="input">
-                                                                    <input id="codigo" name="codigo" type="text" class="readonly" readonly>
-                                                                </label>
-                                                            </section>
                                                         <section class="col col-2">
                                                                 <label class="label">Descriçao</label>
                                                                 <label class="input">
                                                                     <input id="descricao" maxlength="255" name="descricao" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <section class="hidden" class="col col-2">
+                                                            <section class="col col-2">
                                                                 <label class="label">&nbsp;</label>
                                                                 <label id="labelAtivo" class="checkbox ">
                                                                     <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
@@ -146,7 +140,7 @@ include("inc/footer.php");
 include("inc/scripts.php");
 ?>
 
-<script src="<?php echo ASSETS_URL; ?>/js/businessFuncionario.js" type="text/javascript"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/businessgeneroFuncionario.js" type="text/javascript"></script>
 
 <!-- PAGE RELATED PLUGIN(S) 
 <script src="..."></script>-->
@@ -218,13 +212,13 @@ include("inc/scripts.php");
         });
 
         $("#btnGravar").on("click", function() {
-            var id = +$("#codigo").val();
+            // var id = +$("#codigo").val();
 
             gravar()
 
-            if (id !== 0) {
-                $('#dlgSimpleExcluir').dialog('open');
-            }
+            // if (id !== 0) {
+            //     $('#dlgSimpleExcluir').dialog('open');
+            // }
         });
 
         $("#btnNovo").on("click", function() {
@@ -318,7 +312,7 @@ include("inc/scripts.php");
     }
 
     function voltar() {
-        $(location).attr('href', 'usuarioFiltro.php');
+        $(location).attr('href', 'TabelaBasicaGeneroFiltro.php');
     }
 
     function excluir() {
@@ -332,117 +326,28 @@ include("inc/scripts.php");
         excluirUsuario(id);
     }
 
-    // function idade(dia, mes, ano) {
-    // return new Date().getFullYear() - ano;
-    // }
-
-    // idade(11, 12, 1980); //  33
-    // idade(15, 2, 2011);  // 2
-    // idade(5, 31, 1993);  // 20
-
-    // function getAge(dateString) {
-    //     const today = new Date();
-    //     const birthDate = new Date(dateString);
-    //     let age = today.getFullYear() - birthDate.getFullYear();
-    //     const m = today.getMonth() - birthDate.getMonth();
-
-    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    //         age--;
-    //     }
-
-    //     return age;
-    // }
-
-    //CONTINUAR A PARTIR DAQUI
-
-    // function validaData(data) {
-    //     var data = document.getElementById("dataNascimento").value; // pega o valor do input
-    //     data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
-    //     var data_array = data.split("-"); // quebra a data em array
-
-    //     // para o IE onde será inserido no formato dd/MM/yyyy
-    //     if (data_array[0].length != 4) {
-    //         data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
-    //     }
-
-    //     // compara as datas e calcula a idade
-    //     var hoje = new Date();
-    //     var nasc = new Date(data);
-    //     var idade = hoje.getFullYear() - nasc.getFullYear();
-    //     var m = hoje.getMonth() - nasc.getMonth();
-    //     if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
-
-    //     if (idade <= 14) {
-    //         smartAlert("Atenção", "Informe a data correta", "error");
-    //         $("#idade").val(idade)
-    //         $("#btnGravar").prop('disabled', false);
-    //         return false;
-
-    //     }
-
-    //     if (idade >= 18 && idade <= 95) {
-    //         smartAlert("Atenção", "Data Valida !", "success");
-    //         $("#idade").val(idade)
-    //         $("#btnGravar").prop('disabled', false);
-    //         return;
-    //     }
-    //     if (hoje)
-    //         //se for maior que 60 não vai acontecer nada!
-    //         return false;
-
-    // }
-
-    // function validarCPF() {
-    //     // var id = +($("#codigo").val());
-    //     var cpf = $("#cpf").val();
-
-    //     validaCPF(cpf);
-    // }
-
-
 
 
     function gravar() {
-        var id = +($("#codigo").val());
+        var descricao = $("#descricao").val();
         var ativo = 0;
+        var codigo = 0;
+
         if ($("#ativo").is(':checked')) {
             ativo = 1;
         }
 
-        var genero = $("#genero").val();
-
-        // if (!genero) {
-        //     smartAlert("Atenção", "Informe o Genero", "error");
-        //     $("#btnGravar").prop('disabled', false);
-        //     return;
-        }
-        if (!genero) {
-            smartAlert("Atenção", "Informe seu genero", "error");
-            $("#btnGravar").prop('disabled', false);
+        //  (nome=="")  (dataNascimento=="")
+        if (descricao == "") {
+            smartAlert("Atenção", "Campo de descrição não pode ser vazio!", "error");
+            $("#descricao").focus();
             return;
         }
 
-        // if (!cpf) {
-        //     smartAlert("Atenção", "Informe o cpf", "error");
-        //     $("#btnGravar").prop('disabled', false);
-        //     return;
-        // }
-        // if (!rg) {
-        //     smartAlert("Atenção", "Informe o RG", "error");
-        //     $("#btnGravar").prop('disabled', false);
-        //     return;
-        // }
+        gravaGenero(codigo, descricao, ativo);
+    }
 
-        // if (!dataNascimento) {
-        //     smartAlert("Atenção", "Informe a data valida", "error");
-        //     $("#btnGravar").prop('disabled', false);
-        //     return;
-        //     $dataNascimento = '1988-12-20';
-        //     $date = new DateTime($dataNascimento);
-        //     $interval = $date > diff(new DateTime(date('Y-m-d')));
-        //     $interval > format('%Y anos');
-        // }
-
-        gravaFuncionario(id, ativo, genero );
+    
+      
     
 </script>

@@ -15,34 +15,34 @@ include "js/repositorio.php";
                 $nomeFiltro = "";
                 $where = " WHERE (0 = 0)";
 
-            //alterar nomes SELECT
-            
-                   
-                    $ativo = "";
-                    if ($_POST["ativo"] != "") {
-                        $ativo = $_POST["ativo"];
-                        $where = $where . " AND (ativo = $ativo)";
+                //alterar nomes SELECT
 
-                        //$where = $where . " AND ";
-                    }
-                    $generoFiltro = "";
-                    if ($_POST["generoFiltro"] != "") {
-                        $generoFiltro = $_POST["generoFiltro"];
-                        $where = $where . " AND (funcionarios.[genero] like '%' + " . "replace('" . $generoFiltro . "',' ','%') + " . "'%')";
-                    }
-                   
-                $sql = " SELECT genero, id, ativo FROM dbo.funcionarios";
+
+                $ativo = "";
+                if ($_POST["ativo"] != "") {
+                    $ativo = $_POST["ativo"];
+                    $where = $where . " AND (ativo = $ativo)";
+
+                    //$where = $where . " AND ";
+                }
+                $generoFiltro = "";
+                if ($_POST["generoFiltro"] != "") {
+                    $generoFiltro = $_POST["generoFiltro"];
+                    $where = $where . " AND (funcionarios.[genero] like '%' + " . "replace('" . $generoFiltro . "',' ','%') + " . "'%')";
+                }
+
+                $sql = " SELECT codigo, descricao, generoAtivo FROM dbo.genero";
                 $where = $where;
 
                 $sql = $sql . $where;
                 $reposit = new reposit();
                 $result = $reposit->RunQuery($sql);
 
-                foreach($result as $row) {
+                foreach ($result as $row) {
                     $id = (int) $row['id'];
-                     $ativo = (int) $row['ativo'];
-                   
-                    $descricaoAtivo = "";
+                    $descricao = $row['descricao'];
+
+                    $ativo = $row['generoAtivo'];
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
                     } else {
@@ -50,8 +50,7 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $genero . '</a></td>';
-                    echo '<td class="text-left">' . $genero . '</td>';
+                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $descricao . '</a></td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

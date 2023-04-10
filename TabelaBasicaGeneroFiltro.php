@@ -77,13 +77,25 @@ include("inc/nav.php");
                                                                         <option value="0">Não</option>
                                                                     </select><i></i>
                                                             </section>
-                                                        <div class="row">
-                                                            <section class="col col-2">
+                                                            <section class="col col-2 col-auto">
                                                                 <label class="label">Gênero</label>
-                                                                <label class="input">
-                                                                    <input id="genero" maxlength="50" name="genero" type="text" value="" placeholder="">
+                                                                <label class="select">
+                                                                    <select id="descricao" name="genero">
+                                                                    <option value="" selected>Todos</option>
+                                                                        <?php
+                                                                        $reposit = new reposit();
+                                                                        $sql = "SELECT codigo, descricao
+                                                                        FROM dbo.genero ORDER BY codigo";
+                                                                        $result = $reposit->RunQuery($sql);
+                                                                        foreach ($result as $row) {
+                                                                            $codigo = $row['codigo'];
+                                                                            $descricao = $row['descricao'];
+                                                                            echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                        }
+                                                                        ?>
+                                                                    </select><i></i>
                                                                 </label>
-                                                        </div>
+                                                            </section>
                                                     </fieldset>
                                                 </div>
                                             </div>
@@ -158,16 +170,16 @@ include("inc/scripts.php");
     });
 
     function listarFiltro() {
-        var genero = $('#genero').val();
         var ativo = $('#ativo').val();
+        var codigo = $('#descricao').val();
 
         $('#resultadoBusca').load('TabelaBasicaFiltroListagem.php?', {
-            generoFiltro: genero,
-            ativo: ativo
+           codigoFiltro: codigo,
+            ativoFiltro: ativo
         });
     }
 
     function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
+        $(location).attr('href', 'generoCadastro.php');
     }
 </script>

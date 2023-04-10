@@ -5,7 +5,7 @@ include "girComum.php";
 
 $funcao = $_POST["funcao"];
 
-if ($funcao == 'grava') {
+if ($funcao == 'gravar') {
     call_user_func($funcao);
 }
 
@@ -19,37 +19,37 @@ if ($funcao == 'excluir') {
 
 return;
 
-function grava()
+
+function gravar()
 {
+    // if ((empty($_POST['id'])) || (!isset($_POST['id'])) || (is_null($_POST['id']))) {
+    //     $id = 0;
+    // } else {
+    //     $id = (int) $_POST["id"];
+    // }
 
-    $reposit = new reposit();
 
-    if ((empty($_POST['id'])) || (!isset($_POST['id'])) || (is_null($_POST['id']))) {
-        $id = 0;
-    } else {
-        $id = (int) $_POST["id"];
-    }
+    $descricao = $_POST['descricao'];
+    $codigo = 0;
+    $ativo = (int)$_POST['ativo'];
 
-    if ((empty($_POST['ativo'])) || (!isset($_POST['ativo'])) || (is_null($_POST['ativo']))) {
-        $ativo = 0;
-    } else {
-        $ativo = (int) $_POST["ativo"];
-    }
-    
-    $genero = $_POST['genero'];
-  
-    $sql = "dbo.funcionarios_Atualiza " . $id . "," . $ativo . "," . $genero .  ",";
+    $sql = "dbo.Genero_Atualiza 
+
+    '$codigo'
+    ,'$descricao'
+    ,'$ativo'";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
 
-    $ret = 'success';
+    $ret = 'success#';
     if ($result < 1) {
         $ret = 'failed#';
     }
     echo $ret;
     return;
 }
+
 
 function recuperaFuncionario()
 {
@@ -95,7 +95,6 @@ function recuperaFuncionario()
         $id = +$row['codigoFuncionario'];
         $ativo = +$row['ativo'];
         $genero = (int)$row['genero'];
-     
     }
 
     //Mudar os nomes das variaveis ACIMA 
@@ -130,7 +129,7 @@ function excluir()
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
 
-    $result = $reposit->update('dbo.funcionarios' .'|'.'ativo = 0'.'|'.'id ='.$id);
+    $result = $reposit->update('dbo.funcionarios' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
 
     $reposit = new reposit();
 
@@ -191,11 +190,11 @@ function recuperarDadosUsuario()
 }
 
 // function validaCPF() {
- 
+
 //     // Extrai somente os números
 //     $cpf = $_POST["cpf"];
 //     $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-     
+
 //     // Verifica se foi informado todos os digitos corretamente
 //     if (strlen($cpf) != 11) {
 //         return false;
