@@ -8,7 +8,7 @@ include "js/repositorio.php";
                 <tr role="row">
                     <th class="text-left" style="min-width:30px;">Nome</th>
                     <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
-                    <th class="text-left" style="min-width:30px;">Descrição</th>
+                    <th class="text-left" style="min-width:30px;">Gênero</th>
                     <th class="text-left" style="min-width:35px;">CPF</th>
                     <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
@@ -49,7 +49,7 @@ include "js/repositorio.php";
                         $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
                     }
 
-                $sql = " SELECT cpf, rg, genero, dataNascimento, id, ativo, nome FROM dbo.funcionarios";
+                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento , rg, genero, Cargo, PossuiFilhos FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;
@@ -58,9 +58,10 @@ include "js/repositorio.php";
 
                 foreach($result as $row) {
                     $id = (int) $row['id'];
-                     $ativo = (int) $row['ativo'];
+                    $ativo = (int) $row['ativo'];
+                    $genero = (int) $row['genero'];
                     $nome = $row['nome'];
-                    $dataNascimento = $row['dataNascimento'];
+                    $dataNascimento = $row['data_Nascimento'];
                     if ($dataNascimento) {
                         $dataNascimento = explode(" ", $dataNascimento);
                         $data = explode("-", $dataNascimento[0]);

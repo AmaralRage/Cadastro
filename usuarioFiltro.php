@@ -98,7 +98,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <input id="rg" name="rg" type="text" class="required" value="">
+                                                                    <input id="rg" name="rg" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
