@@ -70,8 +70,8 @@ include("inc/nav.php");
                                                             </section>
                                                             <section class="col col-2">
                                                                 <label class="label">&nbsp;</label>
-                                                                <label id="labelAtivo" class="checkbox ">
-                                                                    <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
+                                                                <label class="checkbox ">
+                                                                    <input checked="checked" id="generoAtivo" name="ativo" type="checkbox" value="true"><i></i>
                                                                     Ativo
                                                                 </label>
                                                             </section>
@@ -213,7 +213,6 @@ include("inc/scripts.php");
 
         $("#btnGravar").on("click", function() {
 
-
             gravar()
 
         });
@@ -284,7 +283,7 @@ include("inc/scripts.php");
             return;
         }
 
-        excluirUsuario(id);
+        excluirGenero(id);
     }
 
 

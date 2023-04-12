@@ -188,6 +188,7 @@ include("inc/scripts.php");
         var nome = $('#nome').val();
         var cpf = $('#cpf').val();
         var rg = $('#rg').val();
+        var genero = $('#genero').val();
         var dataNascimento = $('#dataNascimento').val();
         var ativo = $('#ativo').val();
 
@@ -195,6 +196,7 @@ include("inc/scripts.php");
             nomeFiltro: nome,
             cpf: cpf,
             rg: rg,
+            genero: genero,
             dataNascimento: dataNascimento,
             ativo: ativo
         });

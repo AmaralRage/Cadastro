@@ -12,25 +12,25 @@ include "js/repositorio.php";
             </thead>
             <tbody>
                 <?php
-                $nomeFiltro = "";
+
                 $where = " WHERE (0 = 0)";
 
                 //alterar nomes SELECT
 
 
-                $ativo = "";
-                if ($_POST["generoAtivo"] != "") {
-                    $generoAtivo = $_POST["generoAtivo"];
-                    $where = $where . " AND (generoAtivo = $generoAtivo)";
-
-                    //$where = $where . " AND ";
-                }
-                $generoFiltro = "";
-                if ($_POST["generoFiltro"] != "") {
-                    $generoFiltro = $_POST["generoFiltro"];
-                    $where = $where . " AND (funcionarios.[genero] like '%' + " . "replace('" . $generoFiltro . "',' ','%') + " . "'%')";
+                $codigoFiltro = "";
+                $codigoFiltro = $_POST["codigoFiltro"];
+                if ($_POST["codigoFiltro"] != "") {
+                    $codigoFiltro = $_POST["codigoFiltro"];
+                    $where = $where . " AND genero.[codigo] = " . $codigoFiltro;
                 }
 
+                $ativoFiltro = "";
+                $ativoFiltro = $_POST["ativoFiltro"];
+                if ($_POST["ativoFiltro"] != "") {
+                    $ativoFiltro = $_POST["ativoFiltro"];
+                    $where = $where . " AND genero.[generoAtivo] =" . $ativoFiltro;
+                }
                 $sql = " SELECT codigo, descricao, generoAtivo FROM dbo.genero";
                 $where = $where;
 
@@ -50,7 +50,7 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $descricao . '</a></td>';
+                    echo '<td class="text-left"><a href="generoCadastro.php?id=' . $id . '">' . $descricao . '</a></td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

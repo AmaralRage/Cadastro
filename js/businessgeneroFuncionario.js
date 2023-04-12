@@ -142,9 +142,9 @@ function recupera(id, callback) {
     });
 }
 
-function excluirUsuario(id) {
+function excluirGenero(id) {
     $.ajax({
-        url: 'js/sqlscopegenerogeneroFuncionario.php', //caminho do arquivo a ser executado
+        url: 'js/sqlscopgeneroFuncionario.php', //caminho do arquivo a ser executado
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: {funcao: 'excluir', id: id}, //valores enviados ao script     

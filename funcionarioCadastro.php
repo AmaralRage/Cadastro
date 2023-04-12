@@ -116,7 +116,7 @@ include("inc/nav.php");
                                                                         foreach ($result as $row) {
                                                                             $codigo = $row['codigo'];
                                                                             $descricao = $row['descricao'];
-                                                                            echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                                echo '<option value=' . $codigo . '>' . $descricao . '</option>';
                                                                         }
                                                                         ?>
                                                                     </select><i></i>
@@ -509,7 +509,7 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-
+s
         if (!cpf) {
             smartAlert("Atenção", "Informe o cpf", "error");
             $("#btnGravar").prop('disabled', false);
