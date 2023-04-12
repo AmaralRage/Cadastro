@@ -46,7 +46,7 @@ include("inc/nav.php");
                         </header>
                         <div>
                             <div class="widget-body no-padding">
-                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">
+                                <form class="smart-form client-form" id="formUsuario" method="post">
                                     <div class="panel-group smart-accordion-default" id="accordion">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -212,7 +212,6 @@ include("inc/scripts.php");
         });
 
         $("#btnGravar").on("click", function() {
-
             gravar()
 
         });
@@ -224,6 +223,7 @@ include("inc/scripts.php");
         $("#btnVoltar").on("click", function() {
             voltar();
         });
+        
     });
 
 
@@ -289,6 +289,7 @@ include("inc/scripts.php");
 
 
     function gravar() {
+            $("#btnGravar").attr('disabled', true);
         var descricao = $("#descricao").val();
         var ativo = 0;
         var codigo = 0;
@@ -302,7 +303,6 @@ include("inc/scripts.php");
             $("#descricao").focus();
             return;
         }
-
         gravaGenero(codigo, descricao, ativo);
     }
 

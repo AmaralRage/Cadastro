@@ -46,7 +46,7 @@ include("inc/nav.php");
                         </header>
                         <div>
                             <div class="widget-body no-padding">
-                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">
+                                <form class="smart-form client-form" id="formUsuario" method="post">
                                     <div class="panel-group smart-accordion-default" id="accordion">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -494,7 +494,7 @@ include("inc/scripts.php");
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
         var rg = $("#rg").val();
-        var genero = $("#genero").val();
+        var genero = $("#descricao").val();
         var Cargo = $("#Cargo").val();
         var PossuiFilhos = $("#PossuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
@@ -509,7 +509,7 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-s
+
         if (!cpf) {
             smartAlert("Atenção", "Informe o cpf", "error");
             $("#btnGravar").prop('disabled', false);

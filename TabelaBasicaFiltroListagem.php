@@ -42,6 +42,7 @@ include "js/repositorio.php";
                     $id = (int) $row['id'];
                     $descricao = $row['descricao'];
 
+                    $ativo = 0;
                     $ativo = $row['generoAtivo'];
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
