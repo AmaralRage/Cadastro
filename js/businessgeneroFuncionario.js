@@ -151,7 +151,7 @@ function excluirGenero(id) {
         success: function (data, textStatus) { 
             if (textStatus === 'success') {
                 smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 
-               voltar();
+               novo();
             } else {
                 smartAlert("Atenção", "Operação não realizada - entre em contato com a GIR!", "error");
             }
