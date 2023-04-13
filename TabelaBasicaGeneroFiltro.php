@@ -13,7 +13,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Usuário";
+$page_title = "Genero";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -25,7 +25,7 @@ include("inc/header.php");
 
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
-$page_nav["configuracao"]["sub"]["usuarios"]["active"] = true;
+$page_nav["TabelaBasica"]["sub"]["genero"]["active"] = true;
 
 include("inc/nav.php");
 ?>
@@ -68,40 +68,7 @@ include("inc/nav.php");
                                             <div id="collapseFiltro" class="panel-collapse collapse in">
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
-                                                        <div class="row">
-                                                            <section class="col col-2">
-                                                                <label class="label">Nome</label>
-                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                    <input id="nome" maxlength="50" name="nome" type="text" value="" placeholder="Nome">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">CPF</label>
-                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                    <input id="cpf" maxlength="50" name="nome" type="text" value="" placeholder="XXX.XXX.XXX-XX">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">Data Inicio</label>
-                                                                <label class="input">
-                                                                    <i class="icon-append fa fa-calendar"></i>
-                                                                    <input id="dataInicio" name="dataInicio" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">Data Final</label>
-                                                                <label class="input">
-                                                                    <i class="icon-append fa fa-calendar"></i>
-                                                                    <input id="dataFim" name="dataFim" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">RG</label>
-                                                                <label class="input">
-                                                                    <input id="rg" name="rg" type="text" value="">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
+                                                        <section class="col col-1">
                                                                 <label class="label" for="ativo">Ativo</label>
                                                                 <label class="select">
                                                                     <select id="ativo" name="ativo">
@@ -110,7 +77,25 @@ include("inc/nav.php");
                                                                         <option value="0">Não</option>
                                                                     </select><i></i>
                                                             </section>
-                                                        </div>
+                                                            <section class="col col-2 col-auto">
+                                                                <label class="label">Gênero</label>
+                                                                <label class="select">
+                                                                    <select id="descricao" name="genero">
+                                                                    <option value="" selected>Todos</option>
+                                                                        <?php
+                                                                        $reposit = new reposit();
+                                                                        $sql = "SELECT codigo, descricao
+                                                                        FROM dbo.genero ORDER BY codigo";
+                                                                        $result = $reposit->RunQuery($sql);
+                                                                        foreach ($result as $row) {
+                                                                            $codigo = $row['codigo'];
+                                                                            $descricao = $row['descricao'];
+                                                                            echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                        }
+                                                                        ?>
+                                                                    </select><i></i>
+                                                                </label>
+                                                            </section>
                                                     </fieldset>
                                                 </div>
                                             </div>
@@ -185,24 +170,16 @@ include("inc/scripts.php");
     });
 
     function listarFiltro() {
-        var nome = $('#nome').val();
-        var cpf = $('#cpf').val();
-        var rg = $('#rg').val();
-        var genero = $('#genero').val();
-        var dataNascimento = $('#dataNascimento').val();
         var ativo = $('#ativo').val();
+        var codigo = $('#descricao').val();
 
-        $('#resultadoBusca').load('usuarioFiltroListagem.php?', {
-            nomeFiltro: nome,
-            cpf: cpf,
-            rg: rg,
-            genero: genero,
-            dataNascimento: dataNascimento,
-            ativo: ativo
+        $('#resultadoBusca').load('TabelaBasicaFiltroListagem.php?', {
+           codigoFiltro: codigo,
+            ativoFiltro: ativo
         });
     }
 
     function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
+        $(location).attr('href', 'generoCadastro.php');
     }
 </script>

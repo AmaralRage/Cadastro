@@ -6,73 +6,44 @@ include "js/repositorio.php";
         <table id="tableSearchResult" class="table table-bordered table-striped table-condensed table-hover dataTable">
             <thead>
                 <tr role="row">
-                    <th class="text-left" style="min-width:30px;">Nome</th>
-                    <th class="text-left" style="min-width:30px;">Data de Nascimento</th>
-                    <th class="text-left" style="min-width:30px;">Gênero</th>
-                    <th class="text-left" style="min-width:30px;">Estado Civil</th>
-                    <th class="text-left" style="min-width:35px;">CPF</th>
-                    <th class="text-left" style="min-width:35px;">RG</th>
+                    <th class="text-left" style="min-width:30px;">Descrição</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $nomeFiltro = "";
+
                 $where = " WHERE (0 = 0)";
 
-            //alterar nomes SELECT
-            
-                    $cpf = "";
-                    if ($_POST["cpf"] != "") {
-                        $cpf = $_POST["cpf"];
-                        $where = $where . " AND (cpf = '$cpf')";
-                    }
-                    $rg = "";
-                    if ($_POST["rg"] != "") {
-                        $rg = $_POST["rg"];
-                        $where = $where . " AND (rg = '$rg')";
-                    }
-                    $ativo = "";
-                    if ($_POST["ativo"] != "") {
-                        $ativo = $_POST["ativo"];
-                        $where = $where . " AND (ativo = $ativo)";
+                //alterar nomes SELECT
 
-                        //$where = $where . " AND ";
-                    }
-                    $nomeFiltro = "";
-                    if ($_POST["nomeFiltro"] != "") {
-                        $nomeFiltro = $_POST["nomeFiltro"];
-                        $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
-                    }
-                    $dataNascimento = "";
-                    if ($_POST["dataNascimento"] != "") {
-                        $dataNascimento = $_POST["dataNascimento"];
-                        $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
-                    }
 
-                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero, Cargo, PossuiFilhos FROM dbo.funcionarios";
+                $codigoFiltro = "";
+                $codigoFiltro = $_POST["codigoFiltro"];
+                if ($_POST["codigoFiltro"] != "") {
+                    $codigoFiltro = $_POST["codigoFiltro"];
+                    $where = $where . " AND genero.[codigo] = " . $codigoFiltro;
+                }
+
+                $ativoFiltro = "";
+                $ativoFiltro = $_POST["ativoFiltro"];
+                if ($_POST["ativoFiltro"] != "") {
+                    $ativoFiltro = $_POST["ativoFiltro"];
+                    $where = $where . " AND genero.[generoAtivo] =" . $ativoFiltro;
+                }
+                $sql = " SELECT codigo, descricao, generoAtivo FROM dbo.genero";
                 $where = $where;
 
                 $sql = $sql . $where;
                 $reposit = new reposit();
                 $result = $reposit->RunQuery($sql);
 
-                foreach($result as $row) {
+                foreach ($result as $row) {
                     $id = (int) $row['id'];
-                    $ativo = (int) $row['ativo'];
-                    $genero = (int) $row['genero'];
-                    $EstadoCivil = (int) $row['EstadoCivil'];
-                    $nome = $row['nome'];
-                    $dataNascimento = $row['data_Nascimento'];
-                    if ($dataNascimento) {
-                        $dataNascimento = explode(" ", $dataNascimento);
-                        $data = explode("-", $dataNascimento[0]);
-                        $data = ($data[2]. "/". $data[1]. "/". $data[0]);
-                    }
-                    
-                    $cpf = $row['cpf'];
-                    $rg = $row['rg'];
-                    $descricaoAtivo = "";
+                    $descricao = $row['descricao'];
+
+                    $ativo = 0;
+                    $ativo = $row['generoAtivo'];
                     if ($ativo == 1) {
                         $descricaoAtivo = "Sim";
                     } else {
@@ -80,12 +51,7 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
-                    echo '<td class="text-left">' . $data . '</td>';
-                    echo '<td class="text-left">' . $genero . '</td>';
-                    echo '<td class="text-left">' . $EstadoCivil . '</td>';
-                    echo '<td class="text-left">' . $cpf . '</td>';
-                    echo '<td class="text-left">' . $rg . '</td>';
+                    echo '<td class="text-left"><a href="generoCadastro.php?id=' . $id . '">' . $descricao . '</a></td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

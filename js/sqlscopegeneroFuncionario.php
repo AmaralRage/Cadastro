@@ -5,7 +5,7 @@ include "girComum.php";
 
 $funcao = $_POST["funcao"];
 
-if ($funcao == 'grava') {
+if ($funcao == 'gravar') {
     call_user_func($funcao);
 }
 
@@ -17,74 +17,33 @@ if ($funcao == 'excluir') {
     call_user_func($funcao);
 }
 
-if ($funcao == 'recuperarDadosUsuario') {
-    call_user_func($funcao);
-}
-if ($funcao == 'validaCPF') {
-    call_user_func($funcao);
-}
-if ($funcao == 'VerificaCPF') {
-    call_user_func($funcao);
-}
-if ($funcao == 'VerificaRG') {
-    call_user_func($funcao);
-}
-
-if ($funcao == 'gravarNovaSenha') {
-    call_user_func($funcao);
-}
-
 return;
 
-function grava()
+
+function gravar()
 {
 
-    $reposit = new reposit();
+    $descricao = $_POST['descricao'];
+    $codigo = 0;
+    $ativo = (int)$_POST['ativo'];
 
-    if ((empty($_POST['id'])) || (!isset($_POST['id'])) || (is_null($_POST['id']))) {
-        $id = 0;
-    } else {
-        $id = (int) $_POST["id"];
-    }
+    $sql = "dbo.Genero_Atualiza 
 
-    if ((empty($_POST['ativo'])) || (!isset($_POST['ativo'])) || (is_null($_POST['ativo']))) {
-        $ativo = 0;
-    } else {
-        $ativo = (int) $_POST["ativo"];
-    }
-
-    $nome = $_POST['nome'];
-    $cpf =  "'" . $_POST['cpf'] . "'";
-    $rg = "'" . $_POST['rg'] . "'";
-    // $nome = "'" . $nome . "'";
-    $genero = $_POST['genero'];
-    $estadoCivil = $_POST['estadoCivil'];
-    $Cargo = $_POST['Cargo'];
-    // $Cargo = "'" . $Cargo . "'";
-    $PossuiFilhos = $_POST['PossuiFilhos'];
-    $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
-    $sql = "dbo.funcionarios_Atualiza 
-    $id , 
-    $ativo ,
-    $nome, 
-    $cpf,
-    $estadoCivil,
-    $rg,
-    $genero ,
-    $dataNascimento,
-    $Cargo ,
-    $PossuiFilhos";
+    '$codigo'
+    ,'$descricao'
+    ,'$ativo'";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
 
-    $ret = 'success';
+    $ret = 'success#';
     if ($result < 1) {
         $ret = 'failed#';
     }
     echo $ret;
     return;
 }
+
 
 function recuperaFuncionario()
 {
@@ -111,7 +70,7 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, PossuiFilhos, Cargo
+    $sql = " SELECT id as codigoFuncionario, ativo, genero
              FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
 
     if ($condicaoId) {
@@ -129,32 +88,12 @@ function recuperaFuncionario()
     if ($row = $result[0]) {
         $id = +$row['codigoFuncionario'];
         $ativo = +$row['ativo'];
-        $nome = $row['nome'];
-        $cpf = $row['cpf'];
-        $estadoCivil = $row['estadoCivil'];
-        $rg = $row['rg'];
-        $dataNascimento = $row['dataNascimento'];
-        if ($dataNascimento) {
-            $dataNascimento = explode(" ", $dataNascimento);
-            $data = explode("-", $dataNascimento[0]);
-            $dataNascimento = ($data[2] . "/" . $data[1] . "/" . $data[0]);
-        };
         $genero = (int)$row['genero'];
-        $PossuiFilhos = +$row['PossuiFilhos'];
-        $Cargo = $row['Cargo'];
     }
 
-    //Mudar os nomes das variaveis ACIMA 
-
     $out =   $id . "^" .
-        $ativo . "^" .
-        $nome . "^" .
-        $cpf . "^" .
-        $rg . "^" .
-        $dataNascimento . "^" .
         $genero . "^" .
-        $PossuiFilhos . "^" .
-        $Cargo;
+        $genero;
 
     if ($out == "") {
         echo "failed#";
@@ -240,80 +179,6 @@ function recuperarDadosUsuario()
 
     echo "success" . $out;
     return;
-}
-
-function validaCPF()
-{
-
-    // Extrai somente os números
-    $cpf = $_POST["cpf"];
-    $cpf = preg_replace('/[^0-9]/is', '', $cpf);
-
-    // Verifica se foi informado todos os digitos corretamente
-    if (strlen($cpf) != 11) {
-        return false;
-    }
-
-    // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
-    if (preg_match('/(\d)\1{10}/', $cpf)) {
-        return false;
-    }
-
-    // Faz o calculo para validar o CPF
-    for ($t = 9; $t < 11; $t++) {
-        for ($d = 0, $c = 0; $c < $t; $c++) {
-            $d += $cpf[$c] * (($t + 1) - $c);
-        }
-        $d = ((10 * $d) % 11) % 10;
-        if ($cpf[$c] != $d) {
-            echo "failed";
-            return false;
-        }
-    }
-    echo "success";
-    return true;
-}
-
-function VerificaCPF()
-{
-    $cpf = $_POST["cpf"];
-    $sql = "SELECT cpf, codigo FROM dbo.funcionario WHERE cpf='$cpf'";
-    //achou 
-    // $sql = "SELECT cpf FROM dbo.funcionario WHERE (0 = 0) AND" . "' cpf ='".$cpf;
-    $reposit = new reposit();
-    $result = $reposit->RunQuery($sql);
-    // $result = $reposit->RunQuery($sql);
-    // if ($id > 0) {
-    //     $sql = "SELECT codigo FROM dbo.funcionario WHERE cpf='$cpf' and codigo !=id";
-    // }
-    if ($result > 0) {
-        $mensagem = "CPF já registrado!";
-        echo "failed#" . $mensagem . ' ';
-        return;
-    } else {
-        echo  'succes#';
-        return;
-    }
-}
-
-function VerificaRG()
-{
-    ////////verifica registros duplicados
-
-    $rg = "'" . $_POST["rg"] . "'";
-
-    $sql = " SELECT rg FROM dbo.funcionarios WHERE rg = $rg ";
-    //achou 
-    $reposit = new reposit();
-    $result = $reposit->RunQuery($sql);
-
-    ////! ANTES É NEGAÇÃO
-    if (!$result) {
-        echo  'success#';
-    } else {
-        $mensagem = "RG já registrado!";
-        echo "failed#" . $mensagem . ' ';
-    }
 }
 
 function gravarNovaSenha()

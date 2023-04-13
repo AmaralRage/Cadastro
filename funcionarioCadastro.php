@@ -39,14 +39,14 @@ include("inc/nav.php");
         <section id="widget-grid" class="">
             <div class="row">
                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable centerBox">
-                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false" style="">
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
                             <h2>Usuário</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">
-                                <form action="javascript:gravar()" class="smart-form client-form" id="formUsuario" method="post">
+                                <form class="smart-form client-form" id="formUsuario" method="post">
                                     <div class="panel-group smart-accordion-default" id="accordion">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -62,13 +62,13 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                            <section class="col col-1">
+                                                            <section class="hidden" class="col col-1">
                                                                 <label class="label">Código</label>
                                                                 <label class="input">
                                                                     <input id="codigo" name="codigo" type="text" class="readonly" readonly>
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-2">
+                                                            <section class="hidden" class="col col-2">
                                                                 <label class="label">&nbsp;</label>
                                                                 <label id="labelAtivo" class="checkbox ">
                                                                     <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
@@ -94,13 +94,44 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">CPF</label>
                                                                 <label class="input">
-                                                                    <input id="cpf" maxlength="20" name="senha" type="text" class="required" value="">
+                                                                    <input id="cpf" name="senha" type="text" class="required" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">Gênero</label>
+                                                                <label class="label">RG</label>
                                                                 <label class="input">
-                                                                    <input id="genero" maxlength="20" name="genero" type="text" class="required" value="">
+                                                                    <input id="rg" name="rg" type="text" class="required" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2 col-auto">
+                                                                <label class="label">Gênero</label>
+                                                                <label class="select">
+                                                                    <select id="descricao" name="descricao">
+                                                                        <option>Todos</option>
+                                                                        <?php
+                                                                        $reposit = new reposit();
+                                                                        $sql = "SELECT codigo,descricao
+                                                                        FROM dbo.genero ORDER BY codigo";
+                                                                        $result = $reposit->RunQuery($sql);
+                                                                        foreach ($result as $row) {
+                                                                            $codigo = $row['codigo'];
+                                                                            $descricao = $row['descricao'];
+                                                                                echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                        }
+                                                                        ?>
+                                                                    </select><i></i>
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2 col-auto">
+                                                                <label class="label">Estado Civil</label>
+                                                                <label class="select">
+                                                                    <select id="estadoCivil" name="estadoCivil">
+                                                                        <option value="1" selected>Solteiro(a)</option>
+                                                                        <option value="2">Casado(a)</option>
+                                                                        <option value="3">Divorciado(a)</option>
+                                                                        <option value="4">Separado(a)</option>
+                                                                        <option value="5">Viúvo(a)</option>
+                                                                    </select><i></i>
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -121,7 +152,7 @@ include("inc/nav.php");
                                                             <br>
                                                             <input type='color' id='CorFavorita' name='cor'>
                                                             </section> -->
-                                                            <section class="col col-4 col-auto">
+                                                            <section class="col col-2 col-auto">
                                                                 <label class="label " for="Cargo">Cargo</label>
                                                                 <label class="input">
                                                                     <input type="text" class="required" id="Cargo">
@@ -287,10 +318,14 @@ include("inc/scripts.php");
             var data = $("#dataNascimento").val();
             validaData(data);
         });
-        
+
         $("#cpf").on("change", function() {
             var data = $("#cpf").val();
             validarCPF();
+        });
+        $("#rg").on("change", function() {
+            var data = $("rg").val();
+            VerificaRG();
         });
 
         $("#btnVoltar").on("click", function() {
@@ -298,6 +333,7 @@ include("inc/scripts.php");
         });
 
         $("#cpf").mask('999.999.999-99');
+        $("#rg").mask('99.999.999-9');
     });
 
 
@@ -325,11 +361,12 @@ include("inc/scripts.php");
                             var id = piece[0];
                             var ativo = piece[1];
                             var nome = piece[2];
-                            var cpf = piece[3];
-                            var dataNascimento = piece[4];
-                            var genero = piece[5];
-                            var PossuiFilhos = piece[6];
-                            var Cargo = piece[7];
+                            var cpf = piece[4];
+                            var rg = piece[5];
+                            var dataNascimento = piece[6];
+                            var genero = piece[7];
+                            var PossuiFilhos = piece[8];
+                            var Cargo = piece[9];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
@@ -353,6 +390,11 @@ include("inc/scripts.php");
 
     }
 
+    function VerificaRG() {
+        var rg = $("#rg").val();
+        RGverificado(rg);
+        return;
+    }
 
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
@@ -422,7 +464,7 @@ include("inc/scripts.php");
         }
 
         if (idade >= 18 && idade <= 95) {
-            smartAlert("Atenção", "A Data está Correta !", "success");
+            smartAlert("Atenção", "Data Valida !", "success");
             $("#idade").val(idade)
             $("#btnGravar").prop('disabled', false);
             return;
@@ -434,13 +476,13 @@ include("inc/scripts.php");
     }
 
     function validarCPF() {
-        var id = +($("#codigo").val());
+        // var id = +($("#codigo").val());
         var cpf = $("#cpf").val();
-    
-        validaCPF(id, cpf);
+
+        validaCPF(cpf);
     }
 
-    
+
 
 
     function gravar() {
@@ -451,7 +493,9 @@ include("inc/scripts.php");
         }
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
-        var genero = $("#genero").val();
+        var rg = $("#rg").val();
+        var genero = $("#descricao").val();
+        var estadoCivil = $("#estadoCivil").val();
         var Cargo = $("#Cargo").val();
         var PossuiFilhos = $("#PossuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
@@ -472,9 +516,14 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
+        if (!rg) {
+            smartAlert("Atenção", "Informe o RG", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
 
         if (!dataNascimento) {
-            smartAlert("Atenção", "Informe a data correta", "error");
+            smartAlert("Atenção", "Informe a data valida", "error");
             $("#btnGravar").prop('disabled', false);
             return;
             $dataNascimento = '1988-12-20';
@@ -483,6 +532,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, genero, Cargo, PossuiFilhos, dataNascimento);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo, dataNascimento, PossuiFilhos);
     }
 </script>
