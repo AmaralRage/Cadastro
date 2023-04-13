@@ -56,24 +56,23 @@ function grava()
     $nome = $_POST['nome'];
     $cpf =  "'" . $_POST['cpf'] . "'";
     $rg = "'" . $_POST['rg'] . "'";
-    // $nome = "'" . $nome . "'";
     $genero = $_POST['genero'];
     $estadoCivil = $_POST['estadoCivil'];
     $Cargo = $_POST['Cargo'];
-    // $Cargo = "'" . $Cargo . "'";
-    $PossuiFilhos = $_POST['PossuiFilhos'];
+    $possuiFilhos = $_POST['possuiFilhos'];
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
+    
     $sql = "dbo.funcionarios_Atualiza 
     $id , 
     $ativo ,
     $nome, 
     $cpf,
-    $estadoCivil,
     $rg,
     $genero ,
     $dataNascimento,
     $Cargo ,
-    $PossuiFilhos";
+    $possuiFilhos,
+    $estadoCivil";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
@@ -111,7 +110,7 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, PossuiFilhos, Cargo
+    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, possuiFilhos, Cargo
              FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
 
     if ($condicaoId) {
@@ -140,7 +139,7 @@ function recuperaFuncionario()
             $dataNascimento = ($data[2] . "/" . $data[1] . "/" . $data[0]);
         };
         $genero = (int)$row['genero'];
-        $PossuiFilhos = +$row['PossuiFilhos'];
+        $possuiFilhos = +$row['possuiFilhos'];
         $Cargo = $row['Cargo'];
     }
 
@@ -153,7 +152,7 @@ function recuperaFuncionario()
         $rg . "^" .
         $dataNascimento . "^" .
         $genero . "^" .
-        $PossuiFilhos . "^" .
+        $possuiFilhos . "^" .
         $Cargo;
 
     if ($out == "") {

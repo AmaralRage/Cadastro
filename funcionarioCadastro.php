@@ -110,8 +110,8 @@ include("inc/nav.php");
                                                                         <option>Todos</option>
                                                                         <?php
                                                                         $reposit = new reposit();
-                                                                        $sql = "SELECT codigo,descricao
-                                                                        FROM dbo.genero ORDER BY codigo";
+                                                                        $sql = "SELECT codigo,descricao, generoAtivo
+                                                                        FROM dbo.genero where generoAtivo = 1 ORDER BY codigo";
                                                                         $result = $reposit->RunQuery($sql);
                                                                         foreach ($result as $row) {
                                                                             $codigo = $row['codigo'];
@@ -161,7 +161,7 @@ include("inc/nav.php");
                                                             <section class="col col-2 col-auto">
                                                                 <label class="label">Possui filhos ?</label>
                                                                 <label class="select">
-                                                                    <select id="PossuiFilhos" name="PossuiFilhos">
+                                                                    <select id="possuiFilhos" name="possuiFilhos">
                                                                         <option value="1">Sim</option>
                                                                         <option value="0">Não</option>
                                                                     </select><i></i>
@@ -365,7 +365,7 @@ include("inc/scripts.php");
                             var rg = piece[5];
                             var dataNascimento = piece[6];
                             var genero = piece[7];
-                            var PossuiFilhos = piece[8];
+                            var possuiFilhos = piece[8];
                             var Cargo = piece[9];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
@@ -374,7 +374,7 @@ include("inc/scripts.php");
                             $("#nome").val(nome);
                             $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
-                            $("#PossuiFilhos").val(PossuiFilhos);
+                            $("#possuiFilhos").val(possuiFilhos);
                             $("#Cargo").val(Cargo);
 
 
@@ -497,7 +497,7 @@ include("inc/scripts.php");
         var genero = $("#descricao").val();
         var estadoCivil = $("#estadoCivil").val();
         var Cargo = $("#Cargo").val();
-        var PossuiFilhos = $("#PossuiFilhos").val();
+        var possuiFilhos = $("#possuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
 
         if (!nome) {
@@ -532,6 +532,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo, dataNascimento, PossuiFilhos);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo, dataNascimento, possuiFilhos);
     }
 </script>
