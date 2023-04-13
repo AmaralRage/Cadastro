@@ -304,9 +304,6 @@ include("inc/scripts.php");
             return;
         }
         gravaGenero(codigo, descricao, ativo);
-    }
-
-    
-      
+    }   
     
 </script>
