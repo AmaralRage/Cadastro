@@ -1,9 +1,9 @@
-function gravaFuncionario(id, ativo, nome, cpf, rg, genero,Cargo, PossuiFilhos, dataNascimento) {
+function gravaFuncionario(id, ativo, nome, cpf, rg, genero,Cargo, PossuiFilhos, dataNascimento, estadoCivil) {
     $.ajax({ 
         url: 'js/sqlscopeFuncionario.php',
         type: 'post',
         dataType:"html",
-        data: {funcao: "grava", id:id,  nome:nome, ativo:ativo, cpf:cpf, dataNascimento:dataNascimento, rg:rg, genero:genero, Cargo:Cargo, PossuiFilhos:PossuiFilhos,},
+        data: {funcao: "grava", id:id, ativo:ativo, nome:nome, cpf:cpf, rg:rg, genero:genero, estadoCivil:estadoCivil, Cargo:Cargo, dataNascimento:dataNascimento, PossuiFilhos:PossuiFilhos},
         
         success: function (data, textStatus) {
             if (data.trim() === 'success') {

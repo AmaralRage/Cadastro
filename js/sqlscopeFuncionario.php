@@ -56,10 +56,11 @@ function grava()
     $nome = $_POST['nome'];
     $cpf =  "'" . $_POST['cpf'] . "'";
     $rg = "'" . $_POST['rg'] . "'";
-    $nome = "'" . $nome . "'";
+    // $nome = "'" . $nome . "'";
     $genero = $_POST['genero'];
+    $estadoCivil = $_POST['estadoCivil'];
     $Cargo = $_POST['Cargo'];
-    $Cargo = "'" . $Cargo . "'";
+    // $Cargo = "'" . $Cargo . "'";
     $PossuiFilhos = $_POST['PossuiFilhos'];
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
     $sql = "dbo.funcionarios_Atualiza 
@@ -67,6 +68,7 @@ function grava()
     $ativo ,
     $nome, 
     $cpf,
+    $estadoCivil,
     $rg,
     $genero ,
     $dataNascimento,
@@ -129,6 +131,7 @@ function recuperaFuncionario()
         $ativo = +$row['ativo'];
         $nome = $row['nome'];
         $cpf = $row['cpf'];
+        $estadoCivil = $row['estadoCivil'];
         $rg = $row['rg'];
         $dataNascimento = $row['dataNascimento'];
         if ($dataNascimento) {

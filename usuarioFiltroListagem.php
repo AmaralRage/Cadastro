@@ -7,8 +7,9 @@ include "js/repositorio.php";
             <thead>
                 <tr role="row">
                     <th class="text-left" style="min-width:30px;">Nome</th>
-                    <th class="text-left" style="min-width:30px;">Data De Nascimento</th>
+                    <th class="text-left" style="min-width:30px;">Data de Nascimento</th>
                     <th class="text-left" style="min-width:30px;">Gênero</th>
+                    <th class="text-left" style="min-width:30px;">Estado Civil</th>
                     <th class="text-left" style="min-width:35px;">CPF</th>
                     <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
@@ -49,7 +50,7 @@ include "js/repositorio.php";
                         $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
                     }
 
-                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento , rg, genero, Cargo, PossuiFilhos FROM dbo.funcionarios";
+                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero, Cargo, PossuiFilhos FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;
@@ -60,6 +61,7 @@ include "js/repositorio.php";
                     $id = (int) $row['id'];
                     $ativo = (int) $row['ativo'];
                     $genero = (int) $row['genero'];
+                    $EstadoCivil = (int) $row['EstadoCivil'];
                     $nome = $row['nome'];
                     $dataNascimento = $row['data_Nascimento'];
                     if ($dataNascimento) {
@@ -81,6 +83,7 @@ include "js/repositorio.php";
                     echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
                     echo '<td class="text-left">' . $data . '</td>';
                     echo '<td class="text-left">' . $genero . '</td>';
+                    echo '<td class="text-left">' . $EstadoCivil . '</td>';
                     echo '<td class="text-left">' . $cpf . '</td>';
                     echo '<td class="text-left">' . $rg . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';

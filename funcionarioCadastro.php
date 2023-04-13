@@ -125,7 +125,7 @@ include("inc/nav.php");
                                                             <section class="col col-2 col-auto">
                                                                 <label class="label">Estado Civil</label>
                                                                 <label class="select">
-                                                                    <select id="estadocivil" name="estadocivil">
+                                                                    <select id="estadoCivil" name="estadoCivil">
                                                                         <option value="1" selected>Solteiro(a)</option>
                                                                         <option value="2">Casado(a)</option>
                                                                         <option value="3">Divorciado(a)</option>
@@ -495,6 +495,7 @@ include("inc/scripts.php");
         var cpf = $("#cpf").val();
         var rg = $("#rg").val();
         var genero = $("#descricao").val();
+        var estadoCivil = $("#estadoCivil").val();
         var Cargo = $("#Cargo").val();
         var PossuiFilhos = $("#PossuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
@@ -531,6 +532,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, Cargo, PossuiFilhos, dataNascimento);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo, dataNascimento, PossuiFilhos);
     }
 </script>
