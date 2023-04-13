@@ -1,10 +1,10 @@
-function gravaFuncionario(id, ativo, nome, cpf, rg, genero,Cargo, PossuiFilhos, dataNascimento, estadoCivil) {
+function gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo,  dataNascimento, possuiFilhos) {
     $.ajax({ 
         url: 'js/sqlscopeFuncionario.php',
         type: 'post',
         dataType:"html",
-        data: {funcao: "grava", id:id, ativo:ativo, nome:nome, cpf:cpf, rg:rg, genero:genero, estadoCivil:estadoCivil, Cargo:Cargo, dataNascimento:dataNascimento, PossuiFilhos:PossuiFilhos},
-        
+        data: {funcao: "grava", id:id, ativo:ativo, nome:nome, cpf:cpf, rg:rg, genero:genero, estadoCivil:estadoCivil, Cargo:Cargo, dataNascimento:dataNascimento, possuiFilhos:possuiFilhos},
+                                
         success: function (data, textStatus) {
             if (data.trim() === 'success') {
                 smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 

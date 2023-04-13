@@ -291,7 +291,7 @@ include("inc/scripts.php");
     function gravar() {
             $("#btnGravar").attr('disabled', true);
         var descricao = $("#descricao").val();
-        var ativo = 0;
+        var ativo = 1;
         var codigo = 0;
 
         if ($("#ativo").is(':checked')) {
@@ -304,9 +304,6 @@ include("inc/scripts.php");
             return;
         }
         gravaGenero(codigo, descricao, ativo);
-    }
-
-    
-      
+    }   
     
 </script>
