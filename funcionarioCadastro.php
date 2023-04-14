@@ -173,10 +173,6 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="panel-body no-padding">
-                                        <div class="panel-group smart-accordion-default" id="accordion">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
@@ -301,19 +297,14 @@ include("inc/nav.php");
                                                                     </table>
                                                                 </div>
                                                             </div>
+                                                            </div>
                                                         </fieldset>
                                                     </div>
 
                                                 </div>
-                                            </div>
-                                        </div>
+                                            <!-- </div> -->
                                     </div>
-
-
                                                 <!-- ACCORDION ACIMA -->
-
-
-
 
                                     <footer>
                                         <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
