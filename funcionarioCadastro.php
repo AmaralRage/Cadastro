@@ -173,138 +173,138 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
-                                                            <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                            <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                            Contato
-                                                        </a>
-                                                    </h4>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
+                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                        Contato
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseContato" class="panel-collapse collapse in">
+                                                <div class="panel-body no-padding">
+
+                                                    <fieldset>
+                                                        <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
+                                                        <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
+                                                        <div id="formTelefone" class="col-sm-6 required">
+                                                            <input id="telefoneId" name="telefoneId" type="hidden" value="">
+                                                            <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
+                                                            <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
+                                                            <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
+                                                            <input id="sequencialTel" name="sequencialTel" type="hidden" value="">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <section class="col col-md-3">
+                                                                        <label class="label">Telefone</label>
+                                                                        <label class="input"><i class="icon-prepend fa fa-phone"></i>
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-md-2">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <label class="checkbox ">
+                                                                            <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="true" checked="checked"><i></i>
+                                                                            Principal
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-md-2">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <label class="checkbox ">
+                                                                            <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="true" checked="checked"><i></i>
+                                                                            WhatsApp
+                                                                        </label>
+                                                                    </section>
+
+                                                                    <section class="col col-md-3">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <button id="btnAddTelefone" type="button" class="btn btn-primary">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                        <button id="btnRemoverTelefone" type="button" class="btn btn-danger">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </button>
+                                                                    </section>
+                                                                </div>
+                                                            </div>
+                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                                <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th></th>
+                                                                            <th class="text-left" style="min-width: 500%;">Telefone</th>
+                                                                            <th class="text-left">Principal</th>
+                                                                            <th class="text-left">WhatsApp</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div id="formTelefone" class="col-sm-6">
+                                                            <input id="TelefoneId" name="TelefoneId" type="hidden" value="">
+                                                            <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
+                                                            <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
+                                                            <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value="">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <section class="col col-md-6">
+                                                                        <label class="label">Telefone</label>
+                                                                        <label class="input"><i class="icon-prepend fa fa-at"></i>
+                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-md-2">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <label class="checkbox ">
+                                                                            <input id="TelefonePrincipal" name="TelefonePrincipal" type="checkbox" value="true" checked><i></i>
+                                                                            Principal
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-md-2">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <label class="checkbox ">
+                                                                            <input id="TelefoneCorporativo" name="TelefoneCorporativo" type="checkbox" value="false"><i></i>
+                                                                            Corporativo
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-auto">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <button id="btnAddTelefone" type="button" class="btn btn-primary">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                        <button id="btnRemoverTelefone" type="button" class="btn btn-danger">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </button>
+                                                                    </section>
+                                                                </div>
+                                                            </div>
+                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                                <table id="tableEmail" class="table table-bordered table-striped table-condensed table-hover dataTable">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th></th>
+                                                                            <th class="text-left" style="min-width: 100px;">Telefone</th>
+                                                                            <th class="text-left">Principal</th>
+                                                                            <th class="text-left">Corporativo</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                 </div>
-                                                <div id="collapseContato" class="panel-collapse collapse in">
-                                                    <div class="panel-body no-padding">
+                                                </fieldset>
+                                            </div>
 
-                                                        <fieldset>
-                                                            <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
-                                                            <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
-                                                            <div id="formTelefone" class="col-sm-6 required">
-                                                                <input id="telefoneId" name="telefoneId" type="hidden" value="">
-                                                                <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
-                                                                <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
-                                                                <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
-                                                                <input id="sequencialTel" name="sequencialTel" type="hidden" value="">
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <section class="col col-md-3">
-                                                                            <label class="label">Telefone</label>
-                                                                            <label class="input"><i class="icon-prepend fa fa-phone"></i>
-                                                                                <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-md-2">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <label class="checkbox ">
-                                                                                <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="true" checked="checked"><i></i>
-                                                                                Principal
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-md-2">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <label class="checkbox ">
-                                                                                <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="true" checked="checked"><i></i>
-                                                                                WhatsApp
-                                                                            </label>
-                                                                        </section>
-
-                                                                        <section class="col col-md-3">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <button id="btnAddTelefone" type="button" class="btn btn-primary">
-                                                                                <i class="fa fa-plus"></i>
-                                                                            </button>
-                                                                            <button id="btnRemoverTelefone" type="button" class="btn btn-danger">
-                                                                                <i class="fa fa-minus"></i>
-                                                                            </button>
-                                                                        </section>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
-                                                                    <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
-                                                                        <thead>
-                                                                            <tr role="row">
-                                                                                <th></th>
-                                                                                <th class="text-left" style="min-width: 500%;">Telefone</th>
-                                                                                <th class="text-left">Principal</th>
-                                                                                <th class="text-left">WhatsApp</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div id="formTelefone" class="col-sm-6">
-                                                                <input id="TelefoneId" name="TelefoneId" type="hidden" value="">
-                                                                <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
-                                                                <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
-                                                                <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value="">
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <section class="col col-md-6">
-                                                                            <label class="label">Telefone</label>
-                                                                            <label class="input"><i class="icon-prepend fa fa-at"></i>
-                                                                                <input id="Telefone" maxlength="50" name="Telefone" type="text" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-md-2">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <label class="checkbox ">
-                                                                                <input id="TelefonePrincipal" name="TelefonePrincipal" type="checkbox" value="true" checked><i></i>
-                                                                                Principal
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-md-2">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <label class="checkbox ">
-                                                                                <input id="TelefoneCorporativo" name="TelefoneCorporativo" type="checkbox" value="false"><i></i>
-                                                                                Corporativo
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-auto">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <button id="btnAddTelefone" type="button" class="btn btn-primary">
-                                                                                <i class="fa fa-plus"></i>
-                                                                            </button>
-                                                                            <button id="btnRemoverTelefone" type="button" class="btn btn-danger">
-                                                                                <i class="fa fa-minus"></i>
-                                                                            </button>
-                                                                        </section>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
-                                                                    <table id="tableEmail" class="table table-bordered table-striped table-condensed table-hover dataTable">
-                                                                        <thead>
-                                                                            <tr role="row">
-                                                                                <th></th>
-                                                                                <th class="text-left" style="min-width: 100px;">Telefone</th>
-                                                                                <th class="text-left">Principal</th>
-                                                                                <th class="text-left">Corporativo</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </div>
-
-                                                </div>
-                                            <!-- </div> -->
+                                        </div>
+                                        <!-- </div> -->
                                     </div>
-                                                <!-- ACCORDION ACIMA -->
+                                    <!-- ACCORDION ACIMA -->
 
                                     <footer>
                                         <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
@@ -605,7 +605,8 @@ include("inc/scripts.php");
         var ativo = 0;
         if ($("#ativo").is(':checked')) {
             ativo = 1;
-        }J
+        }
+        J
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
         var rg = $("#rg").val();
