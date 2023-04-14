@@ -173,7 +173,7 @@ include("inc/nav.php");
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
                                                         <i class="fa fa-lg fa-angle-down pull-right"></i>
                                                         <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                        Contato
+                                                        Contatos
                                                     </a>
                                                 </h4>
                                             </div>
@@ -387,7 +387,7 @@ include("inc/scripts.php");
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
 
-        jsonTorreArray = JSON.parse($("#jsonTorre").val());
+        jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
 
         carregaPagina();
 
@@ -469,27 +469,28 @@ include("inc/scripts.php");
 
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
+        $("#telefone").mask('99999-9999');
 
         // JSON ABAIXO
 
-        $("#btnAddTorre").on("click", function() {
-            if (validaTorre())
-                addTorre();
+        $("#btnAddTelefone").on("click", function() {
+            if (validaTelefone())
+                addTelefone();
         });
 
-        $("#btnRemoverTorre").on("click", function() {
-            excluiTorreTabela();
+        $("#btnRemoverTelefone").on("click", function() {
+            excluiTelefoneTabela();
         });
     });
 
     //FUNCTIONS
 
-    function validaTorre() {
-        var achouTorre = false;
+    function validaTelefone() {
+        var achouTelefone = false;
         var limiteFuncionario = false;
         var departamentoId = +$('#departamentoProjetoId').val();
-        var sequencial = +$('#sequencialTorre').val();
-        var funcionariosTorre = +$("#funcionarioSimultaneosTorre").val();
+        var sequencial = +$('#sequencialTelefone').val();
+        var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
         var funcionarios = +$("#funcionarioSimultaneos").val();
 
         if (!funcionarios) {
@@ -497,26 +498,26 @@ include("inc/scripts.php");
             return;
         }
 
-        for (i = jsonTorreArray.length - 1; i >= 0; i--) {
+        for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
             if (departamentoId !== "") {
-                if ((jsonTorreArray[i].departamentoProjetoId === departamentoId) && (jsonTorreArray[i].sequencialTorre !== sequencial)) {
-                    achouTorre = true;
+                if ((jsonTelefoneArray[i].departamentoProjetoId === departamentoId) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
+                    achouTelefone = true;
                     break;
                 }
             }
         }
 
-        if (achouTorre === true) {
+        if (achouTelefone === true) {
             smartAlert("Erro", "Já existe um Departamento na lista.", "error");
             $('#departamentoProjeto').val("");
             return false;
         }
 
-        //-------------------------------- Validação de funcionarios da torre -----------------------------------
-        //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da torre
+        //-------------------------------- Validação de funcionarios da Telefone -----------------------------------
+        //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da Telefone
 
-        for (i = jsonTorreArray.length; i >= 0; i--) {
-            if (funcionariosTorre < funcionarios) {
+        for (i = jsonTelefoneArray.length; i >= 0; i--) {
+            if (funcionariosTelefone < funcionarios) {
                 limiteFuncionario = true;
                 $("#funcionarioSimultaneos").val('');
                 break;
@@ -524,7 +525,7 @@ include("inc/scripts.php");
         }
 
         if (limiteFuncionario === true) {
-            smartAlert("Atenção", `A torre tem o limite de ${funcionariosTorre} funcionarios simultaneos`, "warning");
+            smartAlert("Atenção", `A Telefone tem o limite de ${funcionariosTelefone} funcionarios simultaneos`, "warning");
             return false;
         }
         //------------------------------------------------------------------------------------------
@@ -532,83 +533,83 @@ include("inc/scripts.php");
         return true;
     }
 
-    function addTorre() {
-        var item = $("#formTorre").toObject({
+    function addTelefone() {
+        var item = $("#formTelefone").toObject({
             mode: 'combine',
             skipEmpty: false
         });
 
-        if (item["sequencialTorre"] === '') {
-            if (jsonTorreArray.length === 0) {
-                item["sequencialTorre"] = 1;
+        if (item["sequencialTelefone"] === '') {
+            if (jsonTelefoneArray.length === 0) {
+                item["sequencialTelefone"] = 1;
             } else {
-                item["sequencialTorre"] = Math.max.apply(Math, jsonTorreArray.map(function(o) {
-                    return o.sequencialTorre;
+                item["sequencialTelefone"] = Math.max.apply(Math, jsonTelefoneArray.map(function(o) {
+                    return o.sequencialTelefone;
                 })) + 1;
             }
-            item["torreId"] = 0;
+            item["TelefoneId"] = 0;
         } else {
-            item["sequencialTorre"] = +item["sequencialTorre"];
+            item["sequencialTelefone"] = +item["sequencialTelefone"];
         }
 
         var index = -1;
-        $.each(jsonTorreArray, function(i, obj) {
-            if (+$('#sequencialTorre').val() === obj.sequencialTorre) {
+        $.each(jsonTelefoneArray, function(i, obj) {
+            if (+$('#sequencialTelefone').val() === obj.sequencialTelefone) {
                 index = i;
                 return false;
             }
         });
 
         if (index >= 0)
-            jsonTorreArray.splice(index, 1, item);
+            jsonTelefoneArray.splice(index, 1, item);
         else
-            jsonTorreArray.push(item);
+            jsonTelefoneArray.push(item);
 
-        $("#jsonTorre").val(JSON.stringify(jsonTorreArray));
+        $("#jsonTelefone").val(JSON.stringify(jsonTelefoneArray));
 
-        fillTableTorre();
-        clearFormTorre();
+        fillTableTelefone();
+        clearFormTelefone();
     }
 
-    function fillTableTorre() {
-        $("#tableTorre tbody").empty();
-        for (var i = 0; i < jsonTorreArray.length; i++) {
+    function fillTableTelefone() {
+        $("#tableTelefone tbody").empty();
+        for (var i = 0; i < jsonTelefoneArray.length; i++) {
             var row = $('<tr />');
 
-            $("#tableTorre tbody").append(row);
-            row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTorreArray[i].sequencialTorre + '"><i></i></label></td>'));
+            $("#tableTelefone tbody").append(row);
+            row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
 
-            if (jsonTorreArray[i].departamentoProjeto != undefined) {
-                row.append($('<td class="text-left" >' + jsonTorreArray[i].departamentoProjeto + '</td>'));
+            if (jsonTelefoneArray[i].departamentoProjeto != undefined) {
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].departamentoProjeto + '</td>'));
             } else {
-                row.append($('<td class="text-left" >' + jsonTorreArray[i].descricaoProjeto + " - " + jsonTorreArray[i].descricaoDepartamento + '</td>'));
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoProjeto + " - " + jsonTelefoneArray[i].descricaoDepartamento + '</td>'));
             }
 
-            row.append($('<td class="text-left" >' + jsonTorreArray[i].funcionarioSimultaneos + '</td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].funcionarioSimultaneos + '</td>'));
         }
     }
 
-    function clearFormTorre() {
-        $("#torreId").val('');
-        $("#sequencialTorre").val('');
+    function clearFormTelefone() {
+        $("#TelefoneId").val('');
+        $("#sequencialTelefone").val('');
         $("#departamentoProjeto").val('');
         $("#funcionarioSimultaneos").val('');
     }
 
-    function excluiTorreTabela() {
+    function excluiTelefoneTabela() {
         var arrSequencial = [];
-        $('#tableTorre input[type=checkbox]:checked').each(function() {
+        $('#tableTelefone input[type=checkbox]:checked').each(function() {
             arrSequencial.push(parseInt($(this).val()));
         });
         if (arrSequencial.length > 0) {
-            for (i = jsonTorreArray.length - 1; i >= 0; i--) {
-                var obj = jsonTorreArray[i];
-                if (jQuery.inArray(obj.sequencialTorre, arrSequencial) > -1) {
-                    jsonTorreArray.splice(i, 1);
+            for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
+                var obj = jsonTelefoneArray[i];
+                if (jQuery.inArray(obj.sequencialTelefone, arrSequencial) > -1) {
+                    jsonTelefoneArray.splice(i, 1);
                 }
             }
-            $("#jsonTorre").val(JSON.stringify(jsonTorreArray));
-            fillTableTorre();
+            $("#jsonTelefone").val(JSON.stringify(jsonTelefoneArray));
+            fillTableTelefone();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
