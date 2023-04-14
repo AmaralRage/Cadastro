@@ -469,7 +469,7 @@ include("inc/scripts.php");
 
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
-        $("#telefone").mask('99999-9999');
+        $("#telefone").mask('(99)99999-9999');
 
         // JSON ABAIXO
 
@@ -492,11 +492,6 @@ include("inc/scripts.php");
         var sequencial = +$('#sequencialTelefone').val();
         var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
         var funcionarios = +$("#funcionarioSimultaneos").val();
-
-        if (!funcionarios) {
-            smartAlert("Atenção", "Preencha o campo de Fun. Simultaneos por Departamento", "error");
-            return;
-        }
 
         for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
             if (departamentoId !== "") {
