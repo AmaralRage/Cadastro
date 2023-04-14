@@ -574,21 +574,21 @@ include("inc/scripts.php");
             $("#tableTelefone tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
 
-            if (jsonTelefoneArray[i].departamentoProjeto != undefined) {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].departamentoProjeto + '</td>'));
+            if (jsonTelefoneArray[i].telefonePrincipal != undefined) {
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].whatsapp + '</td>'));
             } else {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoProjeto + " - " + jsonTelefoneArray[i].descricaoDepartamento + '</td>'));
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + " - " + jsonTelefoneArray[i].whatsapp + '</td>'));
             }
 
-            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].funcionarioSimultaneos + '</td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
         }
     }
 
     function clearFormTelefone() {
         $("#TelefoneId").val('');
         $("#sequencialTelefone").val('');
-        $("#departamentoProjeto").val('');
-        $("#funcionarioSimultaneos").val('');
+        $("#whatsapp").val('');
+        $("#telefonePrincipal").val('');
     }
 
     function excluiTelefoneTabela() {
