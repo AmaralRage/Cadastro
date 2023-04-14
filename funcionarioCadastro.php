@@ -200,14 +200,14 @@ include("inc/nav.php");
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
-                                                                            <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="true" checked="checked"><i></i>
+                                                                            <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="Sim" checked="checked"><i></i>
                                                                             Principal
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
-                                                                            <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="true" checked="checked"><i></i>
+                                                                            <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="Sim" checked="checked"><i></i>
                                                                             WhatsApp
                                                                         </label>
                                                                     </section>
@@ -574,21 +574,23 @@ include("inc/scripts.php");
             $("#tableTelefone tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
 
-            if (jsonTelefoneArray[i].telefonePrincipal != undefined) {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].whatsapp + '</td>'));
+
+
+            if (jsonTelefoneArray[i].telefone != undefined) {
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefone + '</td>'));
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
             } else {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + " - " + jsonTelefoneArray[i].whatsapp + '</td>'));
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
             }
 
-            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
         }
     }
+
 
     function clearFormTelefone() {
         $("#TelefoneId").val('');
         $("#sequencialTelefone").val('');
-        $("#whatsapp").val('');
-        $("#telefonePrincipal").val('');
     }
 
     function excluiTelefoneTabela() {
