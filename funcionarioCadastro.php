@@ -246,9 +246,9 @@ include("inc/nav.php");
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-md-6">
-                                                                        <label class="label">Telefone</label>
+                                                                        <label class="label">Email</label>
                                                                         <label class="input"><i class="icon-prepend fa fa-at"></i>
-                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" value="">
+                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" class="required" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-md-2">
@@ -258,13 +258,13 @@ include("inc/nav.php");
                                                                             Principal
                                                                         </label>
                                                                     </section>
-                                                                    <section class="col col-md-2">
+                                                                    <!-- <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
                                                                             <input id="TelefoneCorporativo" name="TelefoneCorporativo" type="checkbox" value="false"><i></i>
                                                                             Corporativo
                                                                         </label>
-                                                                    </section>
+                                                                    </section> -->
                                                                     <section class="col col-auto">
                                                                         <label class="label">&nbsp;</label>
                                                                         <button id="btnAddTelefone" type="button" class="btn btn-primary">
@@ -281,7 +281,7 @@ include("inc/nav.php");
                                                                     <thead>
                                                                         <tr role="row">
                                                                             <th></th>
-                                                                            <th class="text-left" style="min-width: 100px;">Telefone</th>
+                                                                            <th class="text-left" style="min-width: 100px;">Email</th>
                                                                             <th class="text-left">Principal</th>
                                                                             <th class="text-left">Corporativo</th>
                                                                         </tr>
