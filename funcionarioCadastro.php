@@ -85,12 +85,6 @@ include("inc/nav.php");
                                                                     <input id="nome" maxlength="255" name="nome" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <!-- <section class="col col-2">
-                                                                <label class="label">RG</label>
-                                                                <label class="input">
-                                                                    <input id="rg" maxlength="20" name="rg" type="text" class="required" value="">
-                                                                </label>
-                                                            </section> -->
                                                             <section class="col col-2">
                                                                 <label class="label">CPF</label>
                                                                 <label class="input">
@@ -305,6 +299,9 @@ include("inc/nav.php");
                                         <!-- </div> -->
                                     </div>
                                     <!-- ACCORDION ACIMA -->
+
+
+                                    <!-- FOOTER ABAIXO -->
 
                                     <footer>
                                         <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
