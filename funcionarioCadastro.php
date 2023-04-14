@@ -173,7 +173,7 @@ include("inc/nav.php");
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
                                                         <i class="fa fa-lg fa-angle-down pull-right"></i>
                                                         <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                        Contato
+                                                        Contatos
                                                     </a>
                                                 </h4>
                                             </div>
@@ -246,9 +246,9 @@ include("inc/nav.php");
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-md-6">
-                                                                        <label class="label">Telefone</label>
+                                                                        <label class="label">Email</label>
                                                                         <label class="input"><i class="icon-prepend fa fa-at"></i>
-                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" value="">
+                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" class="required" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-md-2">
@@ -258,13 +258,13 @@ include("inc/nav.php");
                                                                             Principal
                                                                         </label>
                                                                     </section>
-                                                                    <section class="col col-md-2">
+                                                                    <!-- <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
                                                                             <input id="TelefoneCorporativo" name="TelefoneCorporativo" type="checkbox" value="false"><i></i>
                                                                             Corporativo
                                                                         </label>
-                                                                    </section>
+                                                                    </section> -->
                                                                     <section class="col col-auto">
                                                                         <label class="label">&nbsp;</label>
                                                                         <button id="btnAddTelefone" type="button" class="btn btn-primary">
@@ -281,7 +281,7 @@ include("inc/nav.php");
                                                                     <thead>
                                                                         <tr role="row">
                                                                             <th></th>
-                                                                            <th class="text-left" style="min-width: 100px;">Telefone</th>
+                                                                            <th class="text-left" style="min-width: 100px;">Email</th>
                                                                             <th class="text-left">Principal</th>
                                                                             <th class="text-left">Corporativo</th>
                                                                         </tr>
@@ -387,6 +387,8 @@ include("inc/scripts.php");
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
 
+        jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+
         carregaPagina();
 
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
@@ -467,9 +469,146 @@ include("inc/scripts.php");
 
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
+        $("#telefone").mask('(99)99999-9999');
+
+        // JSON ABAIXO
+
+        $("#btnAddTelefone").on("click", function() {
+            if (validaTelefone())
+                addTelefone();
+        });
+
+        $("#btnRemoverTelefone").on("click", function() {
+            excluiTelefoneTabela();
+        });
     });
 
     //FUNCTIONS
+
+    function validaTelefone() {
+        var achouTelefone = false;
+        var limiteFuncionario = false;
+        var departamentoId = +$('#departamentoProjetoId').val();
+        var sequencial = +$('#sequencialTelefone').val();
+        var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
+        var funcionarios = +$("#funcionarioSimultaneos").val();
+
+        for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
+            if (departamentoId !== "") {
+                if ((jsonTelefoneArray[i].departamentoProjetoId === departamentoId) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
+                    achouTelefone = true;
+                    break;
+                }
+            }
+        }
+
+        if (achouTelefone === true) {
+            smartAlert("Erro", "Já existe um Departamento na lista.", "error");
+            $('#departamentoProjeto').val("");
+            return false;
+        }
+
+        //-------------------------------- Validação de funcionarios da Telefone -----------------------------------
+        //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da Telefone
+
+        for (i = jsonTelefoneArray.length; i >= 0; i--) {
+            if (funcionariosTelefone < funcionarios) {
+                limiteFuncionario = true;
+                $("#funcionarioSimultaneos").val('');
+                break;
+            }
+        }
+
+        if (limiteFuncionario === true) {
+            smartAlert("Atenção", `A Telefone tem o limite de ${funcionariosTelefone} funcionarios simultaneos`, "warning");
+            return false;
+        }
+        //------------------------------------------------------------------------------------------
+
+        return true;
+    }
+
+    function addTelefone() {
+        var item = $("#formTelefone").toObject({
+            mode: 'combine',
+            skipEmpty: false
+        });
+
+        if (item["sequencialTelefone"] === '') {
+            if (jsonTelefoneArray.length === 0) {
+                item["sequencialTelefone"] = 1;
+            } else {
+                item["sequencialTelefone"] = Math.max.apply(Math, jsonTelefoneArray.map(function(o) {
+                    return o.sequencialTelefone;
+                })) + 1;
+            }
+            item["TelefoneId"] = 0;
+        } else {
+            item["sequencialTelefone"] = +item["sequencialTelefone"];
+        }
+
+        var index = -1;
+        $.each(jsonTelefoneArray, function(i, obj) {
+            if (+$('#sequencialTelefone').val() === obj.sequencialTelefone) {
+                index = i;
+                return false;
+            }
+        });
+
+        if (index >= 0)
+            jsonTelefoneArray.splice(index, 1, item);
+        else
+            jsonTelefoneArray.push(item);
+
+        $("#jsonTelefone").val(JSON.stringify(jsonTelefoneArray));
+
+        fillTableTelefone();
+        clearFormTelefone();
+    }
+
+    function fillTableTelefone() {
+        $("#tableTelefone tbody").empty();
+        for (var i = 0; i < jsonTelefoneArray.length; i++) {
+            var row = $('<tr />');
+
+            $("#tableTelefone tbody").append(row);
+            row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
+
+            if (jsonTelefoneArray[i].telefonePrincipal != undefined) {
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].whatsapp + '</td>'));
+            } else {
+                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + " - " + jsonTelefoneArray[i].whatsapp + '</td>'));
+            }
+
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
+        }
+    }
+
+    function clearFormTelefone() {
+        $("#TelefoneId").val('');
+        $("#sequencialTelefone").val('');
+        $("#whatsapp").val('');
+        $("#telefonePrincipal").val('');
+    }
+
+    function excluiTelefoneTabela() {
+        var arrSequencial = [];
+        $('#tableTelefone input[type=checkbox]:checked').each(function() {
+            arrSequencial.push(parseInt($(this).val()));
+        });
+        if (arrSequencial.length > 0) {
+            for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
+                var obj = jsonTelefoneArray[i];
+                if (jQuery.inArray(obj.sequencialTelefone, arrSequencial) > -1) {
+                    jsonTelefoneArray.splice(i, 1);
+                }
+            }
+            $("#jsonTelefone").val(JSON.stringify(jsonTelefoneArray));
+            fillTableTelefone();
+        } else
+            smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
+    }
+
 
     function carregaPagina() {
         var urlx = window.document.URL.toString();
