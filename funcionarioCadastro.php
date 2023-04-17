@@ -188,7 +188,7 @@ include("inc/nav.php");
                                                             <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
                                                             <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
                                                             <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
-                                                            <input id="sequencialTel" name="sequencialTel" type="hidden" value="">
+                                                            <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value="">
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-md-3">
@@ -222,7 +222,7 @@ include("inc/nav.php");
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; display:flex; justify-content:center;  overflow-x: auto;">
                                                                 <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
                                                                     <thead>
                                                                         <tr role="row">
@@ -282,8 +282,6 @@ include("inc/nav.php");
                                                                             <th></th>
                                                                             <th class="text-left" style="min-width: 100px;">Email</th>
                                                                             <th class="text-left">Principal</th>
-                                                                            <th class="text-left">Corporativo</th>
-                                                                        </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                     </tbody>
@@ -468,7 +466,7 @@ include("inc/scripts.php");
 
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
-        $("#telefone").mask('(99)99999-9999');
+        $("#telefone").mask('(99) 99999-9999');
 
         // JSON ABAIXO
 
@@ -528,56 +526,15 @@ include("inc/scripts.php");
     }
 
 
-    function addProtocolo() {
-        var item = $("#formProtocolo").toObject({
-            mode: 'combine',
-            skipEmpty: false
-        });
-        if ($("#item").val() == "" || $("#quantidade").val() == "") {
-            smartAlert("Atenção", "Informe o item e a quantidade", "error");
-
-            clearFormProtocolo()
-            return;
-        }
-        if (item["sequencialProtocolo"] === '') {
-            if (jsonFuncionarioArray.length === 0) {
-                item["sequencialProtocolo"] = 1;
-            } else {
-                item["sequencialProtocolo"] = Math.max.apply(Math, jsonFuncionarioArray.map(function(o) {
-                    return o.sequencialProtocolo;
-                })) + 1;
-            }
-            item["itemId"] = 0;
-        } else {
-            item["sequencialProtocolo"] = +item["sequencialProtocolo"];
-        }
-
-        var index = -1;
-        $.each(jsonFuncionarioArray, function(i, obj) {
-            if (+$('#sequencialProtocolo').val() === obj.sequencialProtocolo) {
-                index = i;
-                return false;
-            }
-        });
-
-        if (index >= 0)
-            jsonFuncionarioArray.splice(index, 1, item);
-        else
-            jsonFuncionarioArray.push(item);
-
-        $("#jsonFuncionario").val(JSON.stringify(jsonFuncionarioArray));
-
-    }
-
     function addTelefone() {
-        
+
         var telefone = $("#telefone").val();
         if (telefone === "") {
             smartAlert("Atenção", "Informe o Telefone !", "error");
             $("#telefone").focus();
             return;
-        } 
-       
+        }
+
         var item = $("#formTelefone").toObject({
             mode: 'combine',
             skipEmpty: false
@@ -624,14 +581,10 @@ include("inc/scripts.php");
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
 
 
+            row.append($('<td class="text-left" ><a href="funcionarioCadastro.php">' + jsonTelefoneArray[i].telefone + '</a></td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
 
-            if (jsonTelefoneArray[i].telefone != undefined) {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefone + '</td>'));
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
-            } else {
-                row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
-            }
 
         }
     }
@@ -657,6 +610,32 @@ include("inc/scripts.php");
             fillTableTelefone();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
+    }
+
+    function carrega(sequencial) {
+        var arr = jQuery.grep(jsonArray, function(item, i) {
+            return (item.sequencial === sequencial);
+        });
+
+        clearForm();
+
+        if (arr.length > 0) {
+            var item = arr[0];
+            $("#telefone").val(telefoneId);
+            $("#campo").val(item.campo);
+            $("#sequencialTelefone").val(sequencialTelefone);
+            $("#telefonePrincipal").val(telefonePrincipal);
+            $("#WhatsApp").val(item.WhatsApp);
+            $("#Corporativo").val(item.Corporativo);
+
+            if (item.Corporativo === 1) {
+                $('#Corporativo').prop('checked', true);
+                $('#Corporativo').val("Sim");
+            } else {
+                $('#Corporativo').prop('checked', false);
+                $('#Corporativo').val("Não");
+            }
+        }
     } 
 
     function carregaPagina() {
