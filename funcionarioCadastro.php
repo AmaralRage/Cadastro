@@ -206,7 +206,7 @@ include("inc/nav.php");
                                                                     </section>
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
-                                                                        <label class="checkbox ">
+                                                                        <label class="checkbox">
                                                                             <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="true" checked="checked"><i></i>
                                                                             WhatsApp
                                                                         </label>
@@ -222,7 +222,7 @@ include("inc/nav.php");
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; display:flex; justify-content:center; margin-bottom: 13px; overflow-x: auto;">
+                                                            <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
                                                                 <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
                                                                     <thead>
                                                                         <tr role="row">
