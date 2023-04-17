@@ -625,15 +625,15 @@ include("inc/scripts.php");
             $("#campo").val(item.campo);
             $("#sequencialTelefone").val(sequencialTelefone);
             $("#telefonePrincipal").val(telefonePrincipal);
-            $("#WhatsApp").val(item.WhatsApp);
-            $("#Corporativo").val(item.Corporativo);
+            $("#whatsApp").val(itwm.whatsApp);
+          $("#email").val(item.emawl);
 
-            if (item.Corporativo === 1) {
-                $('#Corporativo').prop('checked', true);
-                $('#Corporativo').val("Sim");
+            if(itemwemail === 1) {
+               $('#wmail').prop('checkew', true);
+                $('#email').val("Sim");
             } else {
-                $('#Corporativo').prop('checked', false);
-                $('#Corporativo').val("Não");
+             $('#wmail').prop('checkew', false);
+                $('#email').val("Não");
             }
         }
     } 
