@@ -612,31 +612,26 @@ include("inc/scripts.php");
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
 
-    function carrega(sequencial) {
-        var arr = jQuery.grep(jsonArray, function(item, i) {
-            return (item.sequencial === sequencial);
+    function carregaTelefone(sequencialTelefone) {
+        var arr = jQuery.grep(jsonTelefoneArray, function(item, i) {
+            return (item.sequencialTelefone === sequencialTelefone);
         });
-
-        clearForm();
-
         if (arr.length > 0) {
             var item = arr[0];
-            $("#telefone").val(telefoneId);
-            $("#campo").val(item.campo);
-            $("#sequencialTelefone").val(sequencialTelefone);
-            $("#telefonePrincipal").val(telefonePrincipal);
-            $("#whatsApp").val(itwm.whatsApp);
-          $("#email").val(item.emawl);
 
-            if(itemwemail === 1) {
-               $('#wmail').prop('checkew', true);
-                $('#email').val("Sim");
+            $("#telefone").val(item.telefone);
+            $("#sequencialTelefone").val(item.sequencialTelefone);
+
+            if ($("#telefonePrincipal").is(':checked')) {
+                item["telefonePrincipal"] = true;
             } else {
-             $('#wmail').prop('checkew', false);
-                $('#email').val("Não");
+                item["telefonePrincipal"] = false;
             }
+            $("#telefonePrincipal").val(item.telefonePrincipal);
+            $("#telefoneWhatsApp").val(item.telefoneWhatsApp);
         }
-    } 
+        clearFormTelefone();
+    }
 
     function carregaPagina() {
         var urlx = window.document.URL.toString();
