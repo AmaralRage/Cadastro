@@ -200,14 +200,14 @@ include("inc/nav.php");
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
-                                                                            <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="Sim" checked="checked"><i></i>
+                                                                            <input id="telefonePrincipal" name="telefonePrincipal" type="checkbox" value="true" checked="checked"><i></i>
                                                                             Principal
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
-                                                                            <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="Sim" checked="checked"><i></i>
+                                                                            <input id="telefoneWhatsApp" name="telefoneWhatsApp" type="checkbox" value="true" checked="checked"><i></i>
                                                                             WhatsApp
                                                                         </label>
                                                                     </section>
@@ -248,7 +248,7 @@ include("inc/nav.php");
                                                                     <section class="col col-md-6">
                                                                         <label class="label">Email</label>
                                                                         <label class="input"><i class="icon-prepend fa fa-at"></i>
-                                                                            <input id="Telefone" maxlength="50" name="Telefone" type="text" class="required" value="">
+                                                                            <input id="email" maxlength="50" name="email" type="text" class="required" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-md-2">
@@ -528,7 +528,57 @@ include("inc/scripts.php");
         return true;
     }
 
+
+    function addProtocolo() {
+        var item = $("#formProtocolo").toObject({
+            mode: 'combine',
+            skipEmpty: false
+        });
+        if ($("#item").val() == "" || $("#quantidade").val() == "") {
+            smartAlert("Atenção", "Informe o item e a quantidade", "error");
+
+            clearFormProtocolo()
+            return;
+        }
+        if (item["sequencialProtocolo"] === '') {
+            if (jsonFuncionarioArray.length === 0) {
+                item["sequencialProtocolo"] = 1;
+            } else {
+                item["sequencialProtocolo"] = Math.max.apply(Math, jsonFuncionarioArray.map(function(o) {
+                    return o.sequencialProtocolo;
+                })) + 1;
+            }
+            item["itemId"] = 0;
+        } else {
+            item["sequencialProtocolo"] = +item["sequencialProtocolo"];
+        }
+
+        var index = -1;
+        $.each(jsonFuncionarioArray, function(i, obj) {
+            if (+$('#sequencialProtocolo').val() === obj.sequencialProtocolo) {
+                index = i;
+                return false;
+            }
+        });
+
+        if (index >= 0)
+            jsonFuncionarioArray.splice(index, 1, item);
+        else
+            jsonFuncionarioArray.push(item);
+
+        $("#jsonFuncionario").val(JSON.stringify(jsonFuncionarioArray));
+
+    }
+
     function addTelefone() {
+        
+        var telefone = $("#telefone").val();
+        if (telefone === "") {
+            smartAlert("Atenção", "Informe o Telefone !", "error");
+            $("#telefone").focus();
+            return;
+        } 
+       
         var item = $("#formTelefone").toObject({
             mode: 'combine',
             skipEmpty: false
@@ -589,7 +639,7 @@ include("inc/scripts.php");
 
 
     function clearFormTelefone() {
-        $("#TelefoneId").val('');
+        $("#telefone").val('');
         $("#sequencialTelefone").val('');
     }
 
