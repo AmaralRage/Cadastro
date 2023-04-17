@@ -211,7 +211,6 @@ include("inc/nav.php");
                                                                             WhatsApp
                                                                         </label>
                                                                     </section>
-
                                                                     <section class="col col-md-3">
                                                                         <label class="label">&nbsp;</label>
                                                                         <button id="btnAddTelefone" type="button" class="btn btn-primary">
@@ -270,7 +269,7 @@ include("inc/nav.php");
                                                                         <button id="btnAddTelefone" type="button" class="btn btn-primary">
                                                                             <i class="fa fa-plus"></i>
                                                                         </button>
-                                                                        <button id="btnRemoverTelefone" type="button" class="btn btn-danger">
+                                                                        <button id="btnRemoverEmail" type="button" class="btn btn-danger">
                                                                             <i class="fa fa-minus"></i>
                                                                         </button>
                                                                     </section>
@@ -637,7 +636,6 @@ include("inc/scripts.php");
         }
     }
 
-
     function clearFormTelefone() {
         $("#telefone").val('');
         $("#sequencialTelefone").val('');
@@ -659,8 +657,7 @@ include("inc/scripts.php");
             fillTableTelefone();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
-    }
-
+    } 
 
     function carregaPagina() {
         var urlx = window.document.URL.toString();
