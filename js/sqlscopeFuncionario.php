@@ -110,7 +110,7 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero, possuiFilhos, Cargo
+    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero
              FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
 
     if ($condicaoId) {
@@ -139,8 +139,6 @@ function recuperaFuncionario()
             $dataNascimento = ($data[2] . "/" . $data[1] . "/" . $data[0]);
         };
         $genero = (int)$row['genero'];
-        $possuiFilhos = +$row['possuiFilhos'];
-        $Cargo = $row['Cargo'];
     }
 
     //Mudar os nomes das variaveis ACIMA 
@@ -151,9 +149,7 @@ function recuperaFuncionario()
         $cpf . "^" .
         $rg . "^" .
         $dataNascimento . "^" .
-        $genero . "^" .
-        $possuiFilhos . "^" .
-        $Cargo;
+        $genero;
 
     if ($out == "") {
         echo "failed#";

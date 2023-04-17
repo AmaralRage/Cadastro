@@ -50,7 +50,7 @@ include "js/repositorio.php";
                         $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
                     }
 
-                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero, Cargo, PossuiFilhos FROM dbo.funcionarios";
+                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;

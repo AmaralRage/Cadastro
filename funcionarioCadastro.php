@@ -660,8 +660,6 @@ include("inc/scripts.php");
                             var rg = piece[5];
                             var dataNascimento = piece[6];
                             var genero = piece[7];
-                            var possuiFilhos = piece[8];
-                            var Cargo = piece[9];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
@@ -669,10 +667,6 @@ include("inc/scripts.php");
                             $("#nome").val(nome);
                             $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
-                            $("#possuiFilhos").val(possuiFilhos);
-                            $("#Cargo").val(Cargo);
-
-
 
                             return;
 
@@ -771,8 +765,6 @@ include("inc/scripts.php");
         var rg = $("#rg").val();
         var genero = $("#descricao").val();
         var estadoCivil = $("#estadoCivil").val();
-        var Cargo = $("#Cargo").val();
-        var possuiFilhos = $("#possuiFilhos").val();
         var dataNascimento = $("#dataNascimento").val();
 
         if (!nome) {
@@ -807,6 +799,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, Cargo, dataNascimento, possuiFilhos);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento,);
     }
 </script>
