@@ -146,7 +146,7 @@ include("inc/nav.php");
                                                             <br>
                                                             <input type='color' id='CorFavorita' name='cor'>
                                                             </section> -->
-                                                            <section class="col col-2 col-auto">
+                                                            <!-- <section class="col col-2 col-auto">
                                                                 <label class="label " for="Cargo">Cargo</label>
                                                                 <label class="input">
                                                                     <input type="text" class="required" id="Cargo">
@@ -160,7 +160,7 @@ include("inc/nav.php");
                                                                         <option value="0">Não</option>
                                                                     </select><i></i>
                                                                 </label>
-                                                            </section>
+                                                            </section> -->
 
                                                         </div>
                                                     </fieldset>
