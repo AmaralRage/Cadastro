@@ -182,7 +182,6 @@ include("inc/nav.php");
 
                                                     <fieldset>
                                                         <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
-                                                        <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
                                                         <div id="formTelefone" class="col-sm-6 required">
                                                             <input id="telefoneId" name="telefoneId" type="hidden" value="">
                                                             <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
@@ -237,11 +236,11 @@ include("inc/nav.php");
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div id="formTelefone" class="col-sm-6">
-                                                            <input id="TelefoneId" name="TelefoneId" type="hidden" value="">
-                                                            <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
-                                                            <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
-                                                            <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value="">
+                                                        <div id="formEmail" class="col-sm-6">
+                                                        <input id="jsonEmail" name="jsonEmail" type="hidden" value="[]">
+                                                            <input id="emailId" name="Id" type="hidden" value="">
+                                                            <input id="descricaoEmailPrincipal" name="descricaoEmailPrincipal" type="hidden" value="">
+                                                            <input id="sequencialEmail" name="sequencialEmail" type="hidden" value="">
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-md-6">
@@ -257,16 +256,9 @@ include("inc/nav.php");
                                                                             Principal
                                                                         </label>
                                                                     </section>
-                                                                    <!-- <section class="col col-md-2">
-                                                                        <label class="label">&nbsp;</label>
-                                                                        <label class="checkbox ">
-                                                                            <input id="TelefoneCorporativo" name="TelefoneCorporativo" type="checkbox" value="false"><i></i>
-                                                                            Corporativo
-                                                                        </label>
-                                                                    </section> -->
                                                                     <section class="col col-auto">
                                                                         <label class="label">&nbsp;</label>
-                                                                        <button id="btnAddTelefone" type="button" class="btn btn-primary">
+                                                                        <button id="btnAddEmail" type="button" class="btn btn-primary">
                                                                             <i class="fa fa-plus"></i>
                                                                         </button>
                                                                         <button id="btnRemoverEmail" type="button" class="btn btn-danger">
@@ -385,9 +377,9 @@ include("inc/scripts.php");
     $(document).ready(function() {
 
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+        jsonEmailArray = JSON.parse($("#jsonEmail").val());
 
         carregaPagina();
-        carregaTelefone();
 
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
             _title: function(title) {
@@ -468,6 +460,7 @@ include("inc/scripts.php");
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
         $("#telefone").mask('(99) 99999-9999');
+        // $("#email").mask('Amanda');
 
         // JSON ABAIXO
 
@@ -479,52 +472,103 @@ include("inc/scripts.php");
         $("#btnRemoverTelefone").on("click", function() {
             excluiTelefoneTabela();
         });
+
+        $("#btnAddEmail").on("click", function() {
+            if (validaEmail())
+                addEmail();
+        });
+
+        $("#btnRemoverEmail").on("click", function() {
+            excluiTelefoneTabela();
+        });
     });
 
     //FUNCTIONS
 
     function validaTelefone() {
         var achouTelefone = false;
-        var limiteFuncionario = false;
-        var departamentoId = +$('#departamentoProjetoId').val();
+        var achouTelefonePrincipal = false;
+        var telefonePrincipal = '';
+
+        if ($('#telefonePrincipal').is(':checked')) {
+            telefonePrincipal = true;
+        } else {
+            telefonePrincipal = false;
+        }
+
         var sequencial = +$('#sequencialTelefone').val();
-        var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
-        var funcionarios = +$("#funcionarioSimultaneos").val();
+        var telefone = $('#telefone').val();
 
         for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
-            if (departamentoId !== "") {
-                if ((jsonTelefoneArray[i].departamentoProjetoId === departamentoId) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
-                    achouTelefone = true;
+            if (telefonePrincipal == true) {
+                if ((jsonTelefoneArray[i].telefonePrincipal == telefonePrincipal) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
+                    achouTelefonePrincipal = true;
+                    break;
+                }
+            }
+            if (telefone !== "") {
+                if ((jsonTelefoneArray[i].telefone === telefone) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
+                    achouTelefonePrincipal = true;
                     break;
                 }
             }
         }
-
         if (achouTelefone === true) {
-            smartAlert("Erro", "Já existe um Departamento na lista.", "error");
-            $('#departamentoProjeto').val("");
+            smartAlert("Erro", "Este número já está na lista.", "error");
+            clearFormTelefone();
             return false;
         }
-
-        //-------------------------------- Validação de funcionarios da Telefone -----------------------------------
-        //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da Telefone
-
-        for (i = jsonTelefoneArray.length; i >= 0; i--) {
-            if (funcionariosTelefone < funcionarios) {
-                limiteFuncionario = true;
-                $("#funcionarioSimultaneos").val('');
-                break;
-            }
-        }
-
-        if (limiteFuncionario === true) {
-            smartAlert("Atenção", `A Telefone tem o limite de ${funcionariosTelefone} funcionarios simultaneos`, "warning");
+        if (achouTelefonePrincipal === true) {
+            smartAlert("Erro", "Já existe um Telefone Principal na lista.", "error");
+            clearFormTelefone();
             return false;
         }
-        //------------------------------------------------------------------------------------------
-
         return true;
     }
+
+
+    // function validaTelefone() {
+    //     var achouTelefone = false;
+    //     var limiteFuncionario = false;
+    //     var departamentoId = +$('#departamentoProjetoId').val();
+    //     var sequencial = +$('#sequencialTelefone').val();
+    //     var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
+    //     var funcionarios = +$("#funcionarioSimultaneos").val();
+
+    //     for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
+    //         if (departamentoId !== "") {
+    //             if ((jsonTelefoneArray[i].departamentoProjetoId === departamentoId) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
+    //                 achouTelefone = true;
+    //                 break;
+    //             }
+    //         }
+    //     }
+
+    //     if (achouTelefone === true) {
+    //         smartAlert("Erro", "Já existe um Departamento na lista.", "error");
+    //         $('#departamentoProjeto').val("");
+    //         return false;
+    //     }
+
+    //     //-------------------------------- Validação de funcionarios da Telefone -----------------------------------
+    //     //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da Telefone
+
+    //     for (i = jsonTelefoneArray.length; i >= 0; i--) {
+    //         if (funcionariosTelefone < funcionarios) {
+    //             limiteFuncionario = true;
+    //             $("#funcionarioSimultaneos").val('');
+    //             break;
+    //         }
+    //     }
+
+    //     if (limiteFuncionario === true) {
+    //         smartAlert("Atenção", `A Telefone tem o limite de ${funcionariosTelefone} funcionarios simultaneos`, "warning");
+    //         return false;
+    //     }
+    //     //------------------------------------------------------------------------------------------
+
+    //     return true;
+    // }
 
 
     function addTelefone() {
@@ -559,12 +603,12 @@ include("inc/scripts.php");
         } else {
             item["descricaoTelefonePrincipal"] = "Não"
         }
-        
+
         if (item["telefoneWhatsApp"]) {
             item["descricaoTelefoneWhatsApp"] = "Sim"
         } else {
             item["descricaoTelefoneWhatsApp"] = "Não"
-        } 
+        }
 
         // linha de sinalização dos if e else 
 
@@ -585,6 +629,62 @@ include("inc/scripts.php");
 
         fillTableTelefone();
         clearFormTelefone();
+    }
+    
+    function addEmail() {
+
+        var Email = $("#Email").val();
+        if (Email === "") {
+            smartAlert("Atenção", "Informe o Email !", "error");
+            $("#Email").focus();
+            return;
+        }
+
+        var item = $("#formEmail").toObject({
+            mode: 'combine',
+            skipEmpty: false
+        });
+
+        if (item["sequencialEmail"] === '') {
+            if (jsonEmailArray.length === 0) {
+                item["sequencialEmail"] = 1;
+            } else {
+                item["sequencialEmail"] = Math.max.apply(Math, jsonEmailArray.map(function(o) {
+                    return o.sequencialEmail;
+                })) + 1;
+            }
+            item["EmailId"] = 0;
+        } else {
+            item["sequencialEmail"] = +item["sequencialEmail"];
+        }
+
+        if (item["EmailPrincipal"]) {
+            item["descricaoEmailPrincipal"] = "Sim"
+        } else {
+            item["descricaoEmailPrincipal"] = "Não"
+        }
+
+        if (item["EmailWhatsApp"]) 
+
+        // linha de sinalização dos if e else 
+
+        var index = -1;
+        $.each(jsonEmailpoArray, function(i, obj) {
+            if (+$('#sequencialEmailpo').val() === obj.sequencialEmailpo) {
+                index = i;
+                return false;
+            }
+        });
+
+        if (index >= 0)
+            jsonEmailpoArray.splice(index, 1, item);
+        else
+            jsonEmailpoArray.push(item);
+
+        $("#jsonEmailpo").val(JSON.stringify(jsonEmailpoArray));
+
+        fillTableEmailpo();
+        clearFormEmailpo();
     }
 
     function fillTableTelefone() {
@@ -639,183 +739,195 @@ include("inc/scripts.php");
 
             $("#telefone").val(item.telefone);
             $("#sequencialTelefone").val(item.sequencialTelefone);
-
-            if ($("#telefonePrincipal").is(':checked')) {
-                item["telefonePrincipal"] = true;
-            } else {
-                item["telefonePrincipal"] = false;
-            }
             $("#telefonePrincipal").val(item.telefonePrincipal);
             $("#telefoneWhatsApp").val(item.telefoneWhatsApp);
-        }
-    }
 
-    function carregaPagina() {
-        var urlx = window.document.URL.toString();
-        var params = urlx.split("?");
-        if (params.length === 2) {
-            var id = params[1];
-            var idx = id.split("=");
-            var idd = idx[1];
-            if (idd !== "") {
-                recupera(idd,
-                    function(data) {
-                        if (data.indexOf('failed') > -1) {
-                            return;
-                        } else {
-                            data = data.replace(/failed/g, '');
-                            var piece = data.split("#");
-                            var mensagem = piece[0];
-                            var out = piece[1];
-                            piece = out.split("^");
+            if (item.telefonePrincipal == 1) {
+                $('#telefonePrincipal').prop('checked', true);
+                item["telefonePrincipal"] = true;
 
-                            // Atributos de vale transporte unitário que serão recuperados: 
-                            var id = piece[0];
-                            var ativo = piece[1];
-                            var nome = piece[2];
-                            var cpf = piece[4];
-                            var rg = piece[5];
-                            var dataNascimento = piece[6];
-                            var genero = piece[7];
+            } else {
+                item['telefonePrincipal'] = false;
+                ($('#telefonePrincipal').prop('checked', false));
+            }
 
-                            //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
-                            $("#codigo").val(id);
-                            $("#cpf").val(cpf);
-                            $("#nome").val(nome);
-                            $("#dataNascimento").val(dataNascimento);
-                            $("#genero").val(genero);
+            if (item.telefoneWhatsApp == 1) {
+                $('#telefoneWhatsApp').prop('checked', true);
+                item["telefoneWhatsApp"] = true;
 
-                            return;
-
-                        }
-                    }
-                );
+            } else {
+                item['telefoneWhatsApp'] = false;
+                ($('#telefoneWhatsApp').prop('checked', false));
             }
         }
-        $("#nome").focus();
-
     }
 
-    function VerificaRG() {
-        var rg = $("#rg").val();
-        RGverificado(rg);
-        return;
-    }
+        function carregaPagina() {
+            var urlx = window.document.URL.toString();
+            var params = urlx.split("?");
+            if (params.length === 2) {
+                var id = params[1];
+                var idx = id.split("=");
+                var idd = idx[1];
+                if (idd !== "") {
+                    recupera(idd,
+                        function(data) {
+                            if (data.indexOf('failed') > -1) {
+                                return;
+                            } else {
+                                data = data.replace(/failed/g, '');
+                                var piece = data.split("#");
+                                var mensagem = piece[0];
+                                var out = piece[1];
+                                piece = out.split("^");
 
-    function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
-    }
+                                // Atributos de vale transporte unitário que serão recuperados: 
+                                var id = piece[0];
+                                var ativo = piece[1];
+                                var nome = piece[2];
+                                var cpf = piece[4];
+                                var rg = piece[5];
+                                var dataNascimento = piece[6];
+                                var genero = piece[7];
 
-    function voltar() {
-        $(location).attr('href', 'usuarioFiltro.php');
-    }
+                                //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
+                                $("#codigo").val(id);
+                                $("#cpf").val(cpf);
+                                $("#nome").val(nome);
+                                $("#dataNascimento").val(dataNascimento);
+                                $("#genero").val(genero);
 
-    function excluir() {
-        var id = +$("#codigo").val();
+                                return;
 
-        if (id === 0) {
-            smartAlert("Atenção", "Selecione um registro para excluir!", "error");
+                            }
+                        }
+                    );
+                }
+            }
+            $("#nome").focus();
+
+        }
+
+        function VerificaRG() {
+            var rg = $("#rg").val();
+            RGverificado(rg);
             return;
         }
 
-        excluirUsuario(id);
-    }
-
-    //CONTINUAR A PARTIR DAQUI
-
-    function validaData(data) {
-        var data = document.getElementById("dataNascimento").value; // pega o valor do input
-        data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
-        var data_array = data.split("-"); // quebra a data em array
-
-        // para o IE onde será inserido no formato dd/MM/yyyy
-        if (data_array[0].length != 4) {
-            data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
+        function novo() {
+            $(location).attr('href', 'usuarioCadastro.php');
         }
 
-        // compara as datas e calcula a idade
-        var hoje = new Date();
-        var nasc = new Date(data);
-        var idade = hoje.getFullYear() - nasc.getFullYear();
-        var m = hoje.getMonth() - nasc.getMonth();
-        if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+        function voltar() {
+            $(location).attr('href', 'usuarioFiltro.php');
+        }
 
-        if (idade <= 14) {
-            smartAlert("Atenção", "Informe a data correta", "error");
-            $("#idade").val(idade)
-            $("#btnGravar").prop('disabled', false);
-            return false;
+        function excluir() {
+            var id = +$("#codigo").val();
+
+            if (id === 0) {
+                smartAlert("Atenção", "Selecione um registro para excluir!", "error");
+                return;
+            }
+
+            excluirUsuario(id);
+        }
+
+        //CONTINUAR A PARTIR DAQUI
+
+        function validaData(data) {
+            var data = document.getElementById("dataNascimento").value; // pega o valor do input
+            data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
+            var data_array = data.split("-"); // quebra a data em array
+
+            // para o IE onde será inserido no formato dd/MM/yyyy
+            if (data_array[0].length != 4) {
+                data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
+            }
+
+            // compara as datas e calcula a idade
+            var hoje = new Date();
+            var nasc = new Date(data);
+            var idade = hoje.getFullYear() - nasc.getFullYear();
+            var m = hoje.getMonth() - nasc.getMonth();
+            if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+
+            if (idade <= 14) {
+                smartAlert("Atenção", "Informe a data correta", "error");
+                $("#idade").val(idade)
+                $("#btnGravar").prop('disabled', false);
+                return false;
+
+            }
+
+            if (idade >= 18 && idade <= 95) {
+                smartAlert("Atenção", "Data Valida !", "success");
+                $("#idade").val(idade)
+                $("#btnGravar").prop('disabled', false);
+                return;
+            }
+            if (hoje)
+                //se for maior que 60 não vai acontecer nada!
+                return false;
 
         }
 
-        if (idade >= 18 && idade <= 95) {
-            smartAlert("Atenção", "Data Valida !", "success");
-            $("#idade").val(idade)
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-        if (hoje)
-            //se for maior que 60 não vai acontecer nada!
-            return false;
+        function validarCPF() {
+            // var id = +($("#codigo").val());
+            var cpf = $("#cpf").val();
 
-    }
-
-    function validarCPF() {
-        // var id = +($("#codigo").val());
-        var cpf = $("#cpf").val();
-
-        validaCPF(cpf);
-    }
-
-
-    //FUNCTION GRAVAR
-
-    function gravar() {
-        var id = +($("#codigo").val());
-        var ativo = 0;
-        if ($("#ativo").is(':checked')) {
-            ativo = 1;
-        }
-        J
-        var nome = $("#nome").val();
-        var cpf = $("#cpf").val();
-        var rg = $("#rg").val();
-        var genero = $("#descricao").val();
-        var estadoCivil = $("#estadoCivil").val();
-        var dataNascimento = $("#dataNascimento").val();
-
-        if (!nome) {
-            smartAlert("Atenção", "Informe o nome", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-        if (!genero) {
-            smartAlert("Atenção", "Informe seu genero", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
+            validaCPF(cpf);
         }
 
-        if (!cpf) {
-            smartAlert("Atenção", "Informe o cpf", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-        if (!rg) {
-            smartAlert("Atenção", "Informe o RG", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
 
-        if (!dataNascimento) {
-            smartAlert("Atenção", "Informe a data valida", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-            $dataNascimento = '1988-12-20';
-            $date = new DateTime($dataNascimento);
-            $interval = $date > diff(new DateTime(date('Y-m-d')));
-            $interval > format('%Y anos');
-        }
+        //FUNCTION GRAVAR
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento,);
-    }
+        function gravar() {
+            var id = +($("#codigo").val());
+            var ativo = 0;
+            if ($("#ativo").is(':checked')) {
+                ativo = 1;
+            }
+            J
+            var nome = $("#nome").val();
+            var cpf = $("#cpf").val();
+            var rg = $("#rg").val();
+            var genero = $("#descricao").val();
+            var estadoCivil = $("#estadoCivil").val();
+            var dataNascimento = $("#dataNascimento").val();
+
+            if (!nome) {
+                smartAlert("Atenção", "Informe o nome", "error");
+                $("#btnGravar").prop('disabled', false);
+                return;
+            }
+            if (!genero) {
+                smartAlert("Atenção", "Informe seu genero", "error");
+                $("#btnGravar").prop('disabled', false);
+                return;
+            }
+
+            if (!cpf) {
+                smartAlert("Atenção", "Informe o cpf", "error");
+                $("#btnGravar").prop('disabled', false);
+                return;
+            }
+            if (!rg) {
+                smartAlert("Atenção", "Informe o RG", "error");
+                $("#btnGravar").prop('disabled', false);
+                return;
+            }
+
+            if (!dataNascimento) {
+                smartAlert("Atenção", "Informe a data valida", "error");
+                $("#btnGravar").prop('disabled', false);
+                return;
+                $dataNascimento = '1988-12-20';
+                $date = new DateTime($dataNascimento);
+                $interval = $date > diff(new DateTime(date('Y-m-d')));
+                $interval > format('%Y anos');
+            }
+
+            gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, );
+        }
 </script>
