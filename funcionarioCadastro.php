@@ -253,7 +253,7 @@ include("inc/nav.php");
                                                                     <section class="col col-md-2">
                                                                         <label class="label">&nbsp;</label>
                                                                         <label class="checkbox ">
-                                                                            <input id="TelefonePrincipal" name="TelefonePrincipal" type="checkbox" value="true" checked><i></i>
+                                                                            <input id="emailPrincipal" name="emailPrincipal" type="checkbox" value="true" checked><i></i>
                                                                             Principal
                                                                         </label>
                                                                     </section>
@@ -275,7 +275,7 @@ include("inc/nav.php");
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                            <div class="table-responsive" style="min-height: 115px; width:95%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                            <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
                                                                 <table id="tableEmail" class="table table-bordered table-striped table-condensed table-hover dataTable">
                                                                     <thead>
                                                                         <tr role="row">
@@ -387,6 +387,7 @@ include("inc/scripts.php");
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
 
         carregaPagina();
+        carregaTelefone();
 
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
             _title: function(title) {
@@ -553,6 +554,20 @@ include("inc/scripts.php");
             item["sequencialTelefone"] = +item["sequencialTelefone"];
         }
 
+        if (item["telefonePrincipal"]) {
+            item["descricaoTelefonePrincipal"] = "Sim"
+        } else {
+            item["descricaoTelefonePrincipal"] = "Não"
+        }
+        
+        if (item["telefoneWhatsApp"]) {
+            item["descricaoTelefoneWhatsApp"] = "Sim"
+        } else {
+            item["descricaoTelefoneWhatsApp"] = "Não"
+        } 
+
+        // linha de sinalização dos if e else 
+
         var index = -1;
         $.each(jsonTelefoneArray, function(i, obj) {
             if (+$('#sequencialTelefone').val() === obj.sequencialTelefone) {
@@ -581,9 +596,10 @@ include("inc/scripts.php");
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonTelefoneArray[i].sequencialTelefone + '"><i></i></label></td>'));
 
 
-            row.append($('<td class="text-left" ><a href="funcionarioCadastro.php">' + jsonTelefoneArray[i].telefone + '</a></td>'));
-            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefonePrincipal + '</td>'));
-            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefoneWhatsApp + '</td>'));
+            row.append($('<td class="text-left" onclick="carregaTelefone(' + jsonTelefoneArray[i].sequencialTelefone + ');">' + jsonTelefoneArray[i].telefone + '</td>'));
+            // row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefone + '</td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoTelefonePrincipal + '</td>'));
+            row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoTelefoneWhatsApp + '</td>'));
 
 
         }
@@ -592,6 +608,8 @@ include("inc/scripts.php");
     function clearFormTelefone() {
         $("#telefone").val('');
         $("#sequencialTelefone").val('');
+        $("#telefonePrincipal").prop('checked', false);
+        $("#telefoneWhatsApp").prop('checked', false);
     }
 
     function excluiTelefoneTabela() {
@@ -630,7 +648,6 @@ include("inc/scripts.php");
             $("#telefonePrincipal").val(item.telefonePrincipal);
             $("#telefoneWhatsApp").val(item.telefoneWhatsApp);
         }
-        clearFormTelefone();
     }
 
     function carregaPagina() {
