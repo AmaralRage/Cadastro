@@ -485,6 +485,8 @@ include("inc/scripts.php");
 
     //FUNCTIONS
 
+//================================================================================= VALIDA TELEFONE ====================================================================================================
+
     function validaTelefone() {
         var achouTelefone = false;
         var achouTelefonePrincipal = false;
@@ -526,50 +528,52 @@ include("inc/scripts.php");
         return true;
     }
 
+//================================================================================= VALIDA TELEFONE =============================================================================================
+    
+//=================================================================================== VALIDA EMAIL ====================================================================================================
 
-    // function validaTelefone() {
-    //     var achouTelefone = false;
-    //     var limiteFuncionario = false;
-    //     var departamentoId = +$('#departamentoProjetoId').val();
-    //     var sequencial = +$('#sequencialTelefone').val();
-    //     var funcionariosTelefone = +$("#funcionarioSimultaneosTelefone").val();
-    //     var funcionarios = +$("#funcionarioSimultaneos").val();
+    function validaEmail() {
+        var achouvalidaEmail = false;
+        var achouEmailPrincipal = false;
+        var emailPrincipal = '';
 
-    //     for (i = jsonTelefoneArray.length - 1; i >= 0; i--) {
-    //         if (departamentoId !== "") {
-    //             if ((jsonTelefoneArray[i].departamentoProjetoId === departamentoId) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
-    //                 achouTelefone = true;
-    //                 break;
-    //             }
-    //         }
-    //     }
+        if ($('#emailPrincipal').is(':checked')) {
+            emailPrincipal = true;
+        } else {
+            emailPrincipal = false;
+        }
 
-    //     if (achouTelefone === true) {
-    //         smartAlert("Erro", "Já existe um Departamento na lista.", "error");
-    //         $('#departamentoProjeto').val("");
-    //         return false;
-    //     }
+        var sequencial = +$('#sequencialEmail').val();
+        var email = $('#email').val();
 
-    //     //-------------------------------- Validação de funcionarios da Telefone -----------------------------------
-    //     //OBS:O numero de funcionarios por projeto não pode passar o numero de funcionarios simultaneos da Telefone
+        for (i = jsonEmailArray.length - 1; i >= 0; i--) {
+            if (emailPrincipal == true) {
+                if ((jsonEmailArray[i].validaEmailPrincipal == emailPrincipal) && (jsonEmailArray[i].sequencialEmail !== sequencial)) {
+                    achouEmailPrincipal = true;
+                    break;
+                }
+            }
+            if (validaEmail !== "") {
+                if ((jsonEmailArray[i].validaEmail === validaEmail) && (jsonEmailArray[i].sequencialvalidaEmail !== sequencial)) {
+                    achouEmailPrincipal = true;
+                    break;
+                }
+            }
+        }
+        if (achouvalidaEmail === true) {
+            smartAlert("Erro", "Este número já está na lista.", "error");
+            clearFormvalidaEmail();
+            return false;
+        }
+        if (achouvalidaEmailPrincipal === true) {
+            smartAlert("Erro", "Já existe um validaEmail Principal na lista.", "error");
+            clearFormvalidaEmail();
+            return false;
+        }
+        return true;
+    }
 
-    //     for (i = jsonTelefoneArray.length; i >= 0; i--) {
-    //         if (funcionariosTelefone < funcionarios) {
-    //             limiteFuncionario = true;
-    //             $("#funcionarioSimultaneos").val('');
-    //             break;
-    //         }
-    //     }
-
-    //     if (limiteFuncionario === true) {
-    //         smartAlert("Atenção", `A Telefone tem o limite de ${funcionariosTelefone} funcionarios simultaneos`, "warning");
-    //         return false;
-    //     }
-    //     //------------------------------------------------------------------------------------------
-
-    //     return true;
-    // }
-
+//================================================================================== VALIDA EMAIL =============================================================================================
 
     function addTelefone() {
 
@@ -630,7 +634,10 @@ include("inc/scripts.php");
         fillTableTelefone();
         clearFormTelefone();
     }
-    
+
+    //================================================================================== ADD EMAIL =============================================================================================
+
+
     function addEmail() {
 
         var Email = $("#Email").val();
@@ -687,6 +694,69 @@ include("inc/scripts.php");
         clearFormEmailpo();
     }
 
+    function clearFormEmail() {
+        $("#email").val('');
+        $("#sequencialEmail").val('');
+        $("#emailPrincipal").prop('checked', false);
+    }
+
+    function excluiEmailTabela() {
+        var arrSequencial = [];
+        $('#tableEmail input[type=checkbox]:checked').each(function() {
+            arrSequencial.push(parseInt($(this).val()));
+        });
+        if (arrSequencial.length > 0) {
+            for (i = jsonEmailArray.length - 1; i >= 0; i--) {
+                var obj = jsonEmailArray[i];
+                if (jQuery.inArray(obj.sequencialEmail, arrSequencial) > -1) {
+                    jsonEmailArray.splice(i, 1);
+                }
+            }
+            $("#jsonEmail").val(JSON.stringify(jsonEmailArray));
+            fillTableEmail();
+        } else
+            smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
+    }
+
+    function carregaEmail(sequencialEmail) {
+        var arr = jQuery.grep(jsonEmailArray, function(item, i) {
+            return (item.sequencialEmail === sequencialEmail);
+        });
+        if (arr.length > 0) {
+            var item = arr[0];
+
+            $("#email").val(item.Email);
+            $("#sequencialEmail").val(item.sequencialEmail);
+            $("#emailPrincipal").val(item.emailPrincipal);
+
+            if (item.EmailPrincipal == 1) {
+                $('#emailPrincipal').prop('checked', true);
+                item["emailPrincipal"] = true;
+
+            } else {
+                item['emailPrincipal'] = false;
+                ($('#emailPrincipal').prop('checked', false));
+            }
+        }
+    }
+
+    function fillTableEmail() {
+        $("#tableEmail tbody").empty();
+        for (var i = 0; i < jsonEmailArray.length; i++) {
+            var row = $('<tr />');
+
+            $("#tableEmail tbody").append(row);
+            row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonEmailArray[i].sequencialEmail + '"><i></i></label></td>'));
+
+
+            row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].Email + '</td>'));
+            // row.append($('<td class="text-left" >' + jsonEmailArray[i].Email + '</td>'));
+            row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailPrincipal + '</td>'));
+            row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailWhatsApp + '</td>'));
+
+
+        }
+    }
     function fillTableTelefone() {
         $("#tableTelefone tbody").empty();
         for (var i = 0; i < jsonTelefoneArray.length; i++) {
