@@ -566,8 +566,8 @@ include("inc/scripts.php");
             return false;
         }
         if (achouEmailPrincipal === true) {
-            smartAlert("Erro", "Já existe um validaEmail Principal na lista.", "error");
-            clearFormvalidaEmail();
+            smartAlert("Erro", "Já existe um Email Principal na lista.", "error");
+            clearFormEmail();
             return false;
         }
         return true;
@@ -749,7 +749,7 @@ include("inc/scripts.php");
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonEmailArray[i].sequencialEmail + '"><i></i></label></td>'));
 
 
-            row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].Email + '</td>'));
+            row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].email + '</td>'));
             // row.append($('<td class="text-left" >' + jsonEmailArray[i].Email + '</td>'));
             row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailPrincipal + '</td>'));
 
