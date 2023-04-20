@@ -479,7 +479,7 @@ include("inc/scripts.php");
         });
 
         $("#btnRemoverEmail").on("click", function() {
-            excluiTelefoneTabela();
+            excluiEmailTabela();
         });
     });
 
@@ -511,7 +511,7 @@ include("inc/scripts.php");
             if (telefone !== "") {
                 if ((jsonTelefoneArray[i].telefone === telefone) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
                     achouTelefonePrincipal = true;
-                    break;
+                    break;email
                 }
             }
         }
@@ -548,7 +548,7 @@ include("inc/scripts.php");
 
         for (i = jsonEmailArray.length - 1; i >= 0; i--) {
             if (emailPrincipal == true) {
-                if ((jsonEmailArray[i].validaEmailPrincipal == emailPrincipal) && (jsonEmailArray[i].sequencialEmail !== sequencial)) {
+                if ((jsonEmailArray[i].emailPrincipal == emailPrincipal) && (jsonEmailArray[i].sequencialEmail !== sequencial)) {
                     achouEmailPrincipal = true;
                     break;
                 }
@@ -700,24 +700,6 @@ include("inc/scripts.php");
         $("#emailPrincipal").prop('checked', false);
     }
 
-    function excluiEmailTabela() {
-        var arrSequencial = [];
-        $('#tableEmail input[type=checkbox]:checked').each(function() {
-            arrSequencial.push(parseInt($(this).val()));
-        });
-        if (arrSequencial.length > 0) {
-            for (i = jsonEmailArray.length - 1; i >= 0; i--) {
-                var obj = jsonEmailArray[i];
-                if (jQuery.inArray(obj.sequencialEmail, arrSequencial) > -1) {
-                    jsonEmailArray.splice(i, 1);
-                }
-            }
-            $("#jsonEmail").val(JSON.stringify(jsonEmailArray));
-            fillTableEmail();
-        } else
-            smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
-    }
-
     function carregaEmail(sequencialEmail) {
         var arr = jQuery.grep(jsonEmailArray, function(item, i) {
             return (item.sequencialEmail === sequencialEmail);
@@ -725,7 +707,7 @@ include("inc/scripts.php");
         if (arr.length > 0) {
             var item = arr[0];
 
-            $("#email").val(item.Email);
+            $("#email").val(item.email);
             $("#sequencialEmail").val(item.sequencialEmail);
             $("#emailPrincipal").val(item.emailPrincipal);
 
@@ -780,6 +762,17 @@ include("inc/scripts.php");
         $("#telefoneWhatsApp").prop('checked', false);
     }
 
+    
+
+    function clearFormEmail() {
+        $("#email").val('');
+        $("#sequencialEmail").val('');
+        $("#emailPrincipal").prop('checked', false);
+    }
+
+    //================================================================================== EXCLUIR EMAIL =============================================================================================
+
+
     function excluiTelefoneTabela() {
         var arrSequencial = [];
         $('#tableTelefone input[type=checkbox]:checked').each(function() {
@@ -797,6 +790,9 @@ include("inc/scripts.php");
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
+
+    //================================================================================== FIM EXCLUIR EMAIL =============================================================================================
+
 
     function carregaTelefone(sequencialTelefone) {
         var arr = jQuery.grep(jsonTelefoneArray, function(item, i) {
@@ -828,6 +824,23 @@ include("inc/scripts.php");
                 ($('#telefoneWhatsApp').prop('checked', false));
             }
         }
+    }
+    function excluiEmailTabela() {
+        var arrSequencial = [];
+        $('#tableEmail input[type=checkbox]:checked').each(function() {
+            arrSequencial.push(parseInt($(this).val()));
+        });
+        if (arrSequencial.length > 0) {
+            for (i = jsonEmailArray.length - 1; i >= 0; i--) {
+                var obj = jsonEmailArray[i];
+                if (jQuery.inArray(obj.sequencialEmail, arrSequencial) > -1) {
+                    jsonEmailArray.splice(i, 1);
+                }
+            }
+            $("#jsonEmail").val(JSON.stringify(jsonEmailArray));
+            fillTableEmail();
+        } else
+            smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
 
     function carregaPagina() {
