@@ -969,13 +969,13 @@ include("inc/scripts.php");
         if ($("#ativo").is(':checked')) {
             ativo = 1;
         }
-        J
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
         var rg = $("#rg").val();
         var genero = $("#descricao").val();
         var estadoCivil = $("#estadoCivil").val();
         var dataNascimento = $("#dataNascimento").val();
+        var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
 
         if (!nome) {
             smartAlert("Atenção", "Informe o nome", "error");
@@ -1009,6 +1009,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, );
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, jsonTelefoneArray);
     }
 </script>

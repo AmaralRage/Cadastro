@@ -61,7 +61,51 @@ function grava()
     $Cargo = $_POST['Cargo'];
     $possuiFilhos = $_POST['possuiFilhos'];
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
-    
+
+
+    $strArrayTelefone = $_POST['jsonTelefoneArray'];
+    // $strArrayTelefone = json_decode($strArrayTelefone, true);
+    $xmlTelefone = "";
+    $nomeXml = "ArrayOfTelefone";
+    $nomeTabela = "telefone";
+    if (sizeof($strArrayTelefone) > 0) {
+        $xmlTelefone = '<?xml version="1.0"?>';
+        $xmlTelefone = $xmlTelefone . '<' . $nomeXml . ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
+
+        foreach ($strArrayTelefone as $key) {
+            $xmlTelefone = $xmlTelefone . "<" . $nomeTabela . ">";
+            foreach ($key as $campo => $valor) {
+                if (($campo === "sequencialTelefone")) {
+                    continue;
+                }
+                if (($campo === "telefone")) {
+                    continue;
+                }
+                if (($campo === "telefonePrincipal")) {
+                    continue;
+                }
+                if (($campo === "telefoneWhatsApp")) {
+                    continue;
+                }
+                $xmlTelefone = $xmlTelefone . "<" . $campo . ">" . $valor . "</" . $campo . ">";
+            }
+            $xmlTelefone = $xmlTelefone . "</" . $nomeTabela . ">";
+        }
+        $xmlTelefone = $xmlTelefone . "</" . $nomeXml . ">";
+    } else {
+        $xmlTelefone = '<?xml version="1.0"?>';
+        $xmlTelefone = $xmlTelefone . '<' . $nomeXml . ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
+        $xmlTelefone = $xmlTelefone . "</" . $nomeXml . ">";
+    }
+    $xml = simplexml_load_string($xmlTelefone);
+    if ($xml === false) {
+        $mensagem = "Erro na criação do XML de Telefone";
+        echo "failed#" . $mensagem . ' ';
+        return;
+    }
+    $xmlTelefone = "'" . $xmlTelefone . "'";
+
+
     $sql = "dbo.funcionarios_Atualiza 
     $id , 
     $ativo ,
@@ -72,7 +116,8 @@ function grava()
     $dataNascimento,
     $Cargo ,
     $possuiFilhos,
-    $estadoCivil";
+    $estadoCivil,
+    $xmlTelefone";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
