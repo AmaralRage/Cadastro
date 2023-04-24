@@ -1,4 +1,10 @@
 {
     "name": "admin/cadastro",
-    "require": {}
+    "require": {
+        "phpoffice/phpspreadsheet": "1.17",
+        "servo/fluidxml": "^1.21",
+        "phpmailer/phpmailer": "^6.6",
+        "firebase/php-jwt": "^6.4",
+        "paragonie/sodium_compat": "^1.19"
+    }
 }

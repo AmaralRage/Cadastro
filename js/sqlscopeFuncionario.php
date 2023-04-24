@@ -63,6 +63,7 @@ function grava()
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
 
 
+    
     $strArrayTelefone = $_POST['jsonTelefoneArray'];
     // $strArrayTelefone = json_decode($strArrayTelefone, true);
     $xmlTelefone = "";
@@ -156,7 +157,7 @@ function recuperaFuncionario()
     }
 
     $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero
-             FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
+             FROM dbo.funcionarios USU WHERE (id = $id)";
 
     if ($condicaoId) {
         $sql = $sql . " AND USU.id = " . $id . " ";
