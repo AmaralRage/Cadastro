@@ -62,7 +62,7 @@ function grava()
     $possuiFilhos = $_POST['possuiFilhos'];
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
 
-
+//=============================================================================================TELEFONE==================================================================================================
 
     $strArrayTelefone = $_POST['jsonTelefoneArray'];
 
@@ -95,11 +95,42 @@ function grava()
         $xmlTelefone->addChild('telefone', true) //nome da tabela
             ->add('telefone', $item['telefone'])
             ->add('telefonePrincipal', $telefonePrincipal)
-            ->add('telefoneWhatsApp', $telefonePrincipal)
+            ->add('telefoneWhatsApp', $telefoneWhatsApp)
             ->add('sequencialTelefone', $item['sequencialTelefone']);
     }
 
     $xmlTelefone = $comum->formatarString($xmlTelefone);
+   
+    //========================================================================================EMAIL============================================================================================================
+   
+    $strArrayEmail = $_POST['jsonEmailArray'];
+
+    // $strArrayEmail = json_decode($strArrayEmail, true);
+    $xmlEmail = "";
+    // $nomeXml = "ArrayOfEmail";
+    // $nomeTabela = "Email";
+    $comum = new comum();
+
+    $strArrayEmail = $_POST['jsonEmailArray'];
+    $arrayEmail = $strArrayEmail;
+
+    $xmlEmail = new \FluidXml\FluidXml('ArrayOfEmail', ['encoding' => '']);
+    foreach ($arrayEmail as $item) {
+
+        $emailPrincipal = $item['emailPrincipal'];
+        if ($emailPrincipal == 'true') {
+            $emailPrincipal = '1';
+        } else {
+            $emailPrincipal = '0';
+        }
+
+        $xmlEmail->addChild('email', true) //nome da tabela
+            ->add('email', $item['email'])
+            ->add('emailPrincipal', $emailPrincipal)
+            ->add('sequencialEmail', $item['sequencialEmail']);
+    }
+
+    $xmlEmail = $comum->formatarString($xmlEmail);
 
 
     $sql = "dbo.funcionarios_Atualiza 
@@ -111,7 +142,8 @@ function grava()
     $genero ,
     $dataNascimento,
     $estadoCivil,
-    $xmlTelefone";
+    $xmlTelefone,
+    $xmlEmail";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
