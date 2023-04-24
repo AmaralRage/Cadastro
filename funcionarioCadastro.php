@@ -101,7 +101,7 @@ include("inc/nav.php");
                                                                 <label class="label">Gênero</label>
                                                                 <label class="select">
                                                                     <select id="descricao" name="descricao">
-                                                                        <option>Todos</option>
+                                                                        <option value="0"></option>
                                                                         <?php
                                                                         $reposit = new reposit();
                                                                         $sql = "SELECT codigo,descricao, generoAtivo
@@ -183,10 +183,8 @@ include("inc/nav.php");
                                                     <fieldset>
                                                         <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
                                                         <div id="formTelefone" class="col-sm-6 required">
-                                                            <input id="telefoneId" name="telefoneId" type="hidden" value="">
                                                             <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
                                                             <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
-                                                            <input id="descricaoTelefoneCorporativo" name="descricaoTelefoneCorporativo" type="hidden" value="">
                                                             <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value="">
                                                             <div class="form-group">
                                                                 <div class="row">
@@ -511,7 +509,7 @@ include("inc/scripts.php");
             if (telefone !== "") {
                 if ((jsonTelefoneArray[i].telefone === telefone) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
                     achouTelefonePrincipal = true;
-                    break;email
+                    break;
                 }
             }
         }

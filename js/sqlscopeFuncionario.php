@@ -63,48 +63,43 @@ function grava()
     $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
 
 
-    
+
     $strArrayTelefone = $_POST['jsonTelefoneArray'];
+
     // $strArrayTelefone = json_decode($strArrayTelefone, true);
     $xmlTelefone = "";
-    $nomeXml = "ArrayOfTelefone";
-    $nomeTabela = "telefone";
-    if (sizeof($strArrayTelefone) > 0) {
-        $xmlTelefone = '<?xml version="1.0"?>';
-        $xmlTelefone = $xmlTelefone . '<' . $nomeXml . ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
+    // $nomeXml = "ArrayOfTelefone";
+    // $nomeTabela = "telefone";
+    $comum = new comum();
 
-        foreach ($strArrayTelefone as $key) {
-            $xmlTelefone = $xmlTelefone . "<" . $nomeTabela . ">";
-            foreach ($key as $campo => $valor) {
-                if (($campo === "sequencialTelefone")) {
-                    continue;
-                }
-                if (($campo === "telefone")) {
-                    continue;
-                }
-                if (($campo === "telefonePrincipal")) {
-                    continue;
-                }
-                if (($campo === "telefoneWhatsApp")) {
-                    continue;
-                }
-                $xmlTelefone = $xmlTelefone . "<" . $campo . ">" . $valor . "</" . $campo . ">";
-            }
-            $xmlTelefone = $xmlTelefone . "</" . $nomeTabela . ">";
+    $strArrayTelefone = $_POST['jsonTelefoneArray'];
+    $arrayTelefone = $strArrayTelefone;
+
+    $xmlTelefone = new \FluidXml\FluidXml('ArrayOfTelefone', ['encoding' => '']);
+    foreach ($arrayTelefone as $item) {
+
+        $telefonePrincipal = $item['telefonePrincipal'];
+        if ($telefonePrincipal == 'true') {
+            $telefonePrincipal = '1';
+        } else {
+            $telefonePrincipal = '0';
         }
-        $xmlTelefone = $xmlTelefone . "</" . $nomeXml . ">";
-    } else {
-        $xmlTelefone = '<?xml version="1.0"?>';
-        $xmlTelefone = $xmlTelefone . '<' . $nomeXml . ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
-        $xmlTelefone = $xmlTelefone . "</" . $nomeXml . ">";
+
+        $telefoneWhatsApp = $item['telefoneWhatsApp'];
+        if ($telefoneWhatsApp == 'true') {
+            $telefoneWhatsApp = '1';
+        } else {
+            $telefoneWhatsApp = '0';
+        }
+
+        $xmlTelefone->addChild('telefone', true) //nome da tabela
+            ->add('telefone', $item['telefone'])
+            ->add('telefonePrincipal', $telefonePrincipal)
+            ->add('telefoneWhatsApp', $telefonePrincipal)
+            ->add('sequencialTelefone', $item['sequencialTelefone']);
     }
-    $xml = simplexml_load_string($xmlTelefone);
-    if ($xml === false) {
-        $mensagem = "Erro na criação do XML de Telefone";
-        echo "failed#" . $mensagem . ' ';
-        return;
-    }
-    $xmlTelefone = "'" . $xmlTelefone . "'";
+
+    $xmlTelefone = $comum->formatarString($xmlTelefone);
 
 
     $sql = "dbo.funcionarios_Atualiza 
@@ -115,8 +110,6 @@ function grava()
     $rg,
     $genero ,
     $dataNascimento,
-    $Cargo ,
-    $possuiFilhos,
     $estadoCivil,
     $xmlTelefone";
 
