@@ -649,13 +649,11 @@ include("inc/scripts.php");
             item["descricaoEmailPrincipal"] = "Não"
         }
 
-        if (item["emailWhatsApp"])
-
             // linha de sinalização dos if e else 
 
             var index = -1;
         $.each(jsonEmailArray, function(i, obj) {
-            if (+$('#sequencialEmailpo').val() === obj.sequencialEmailpo) {
+            if (+$('#sequencialEmail').val() === obj.sequencialEmail) {
                 index = i;
                 return false;
             }
@@ -670,12 +668,6 @@ include("inc/scripts.php");
 
         fillTableEmail();
         clearFormEmail();
-    }
-
-    function clearFormEmail() {
-        $("#email").val('');
-        $("#sequencialEmail").val('');
-        $("#emailPrincipal").prop('checked', false);
     }
 
     function carregaEmail(sequencialEmail) {
@@ -707,8 +699,7 @@ include("inc/scripts.php");
 
             $("#tableEmail tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonEmailArray[i].sequencialEmail + '"><i></i></label></td>'));
-
-
+            
             row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].email + '</td>'));
             // row.append($('<td class="text-left" >' + jsonEmailArray[i].Email + '</td>'));
             row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailPrincipal + '</td>'));
