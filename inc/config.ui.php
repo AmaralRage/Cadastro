@@ -126,7 +126,14 @@ if ($condicaoTabelaBasicaOk) {
     $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
     $page_nav['tabelaBasica']['sub'] = array();
     $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/TabelaBasicaGeneroFiltro.php"));
+    if (true) {
+        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasica_generoFiltro.php"));
+    }
+    if (true) {
+        $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
+    }
     $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
+    
 
 
     // if (true) {
