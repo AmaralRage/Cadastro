@@ -142,27 +142,6 @@ include("inc/nav.php");
                                                                     <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <!-- <section class="col col-1">
-                                                            <label for="cor">Cor Favorita</label>
-                                                            <br>
-                                                            <input type='color' id='CorFavorita' name='cor'>
-                                                            </section> -->
-                                                            <!-- <section class="col col-2 col-auto">
-                                                                <label class="label " for="Cargo">Cargo</label>
-                                                                <label class="input">
-                                                                    <input type="text" class="required" id="Cargo">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2 col-auto">
-                                                                <label class="label">Possui filhos ?</label>
-                                                                <label class="select">
-                                                                    <select id="possuiFilhos" name="possuiFilhos">
-                                                                        <option value="1">Sim</option>
-                                                                        <option value="0">Não</option>
-                                                                    </select><i></i>
-                                                                </label>
-                                                            </section> -->
-
                                                         </div>
                                                     </fieldset>
                                                 </div>

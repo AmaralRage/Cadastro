@@ -59,7 +59,7 @@ include "js/repositorio.php";
                 }
                 $dataFim = $_POST["dataFim"];
                 $dataFim = explode("/", $dataFim);
-                $dataFim = ($data[0] . "-" . $data[1] . "-" . $data[2]);
+                $dataFim = ($dataFim[2] . "-" . $dataFim[1] . "-" . $dataFim[0]);
                 if  ($dataFim != "") {
                     $dataFim = $_POST["dataFim"];
                     $where = $where . " AND (data_Nascimento <='$dataFim')";
