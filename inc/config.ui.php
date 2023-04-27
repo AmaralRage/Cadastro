@@ -67,15 +67,20 @@ if (true) {
     $page_nav['configuracao']['sub'] = array();
 
 
-    if (true) {
-        $page_nav['configuracao']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioFiltro.php"));
-    }
-    if (true) {
-        $page_nav['configuracao']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generoFuncionarioFiltro.php"));
-    }
-    if (true) {
-        $page_nav['configuracao']['sub'] += array("dependenteFiltro" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesFiltro.php"));
-    }
+    //!!!!!!!!
+
+    // if (true) {
+    //     $page_nav['configuracao']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioFiltro.php"));
+    // }
+    // if (true) {
+    //     $page_nav['configuracao']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generoFuncionarioFiltro.php"));
+    // }
+    // if (true) {
+    //     $page_nav['configuracao']['sub'] += array("dependenteFiltro" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesFiltro.php"));
+    // }
+
+    //!!!!!!!!
+
     // if (true) {
     //     $page_nav['configuracao']['sub'] += array("grupo" => array("title" => "Grupo", "url" => APP_URL . "/usuarioGrupoFiltro.php"));
     // }
@@ -123,16 +128,16 @@ $condicaoOperacaoOk = true;
 $condicaoTabelaBasicaOk = (true);
 
 if ($condicaoTabelaBasicaOk) {
-    $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
-    $page_nav['tabelaBasica']['sub'] = array();
-    $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
+        $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
+        $page_nav['tabelaBasica']['sub'] = array();
+        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
     if (true) {
-        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasica_generoFiltro.php"));
+        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
     }
     if (true) {
         $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
     }
-    $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
+        $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
 
     // if (true) {
 

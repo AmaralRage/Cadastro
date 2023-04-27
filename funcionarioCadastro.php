@@ -267,6 +267,65 @@ include("inc/nav.php");
                                     </div>
                                     <!-- ACCORDION ACIMA -->
 
+                                    <!--ACCORDION CEP ABAIXO -->
+
+                                    
+                                    <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
+                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                        <div style="margin-left: 15px;">Teste</div>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseContato" class="panel-collapse collapse in">
+                                                <div class="panel-body no-padding">
+
+                                                    <fieldset>
+                                                        <!-- <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
+                                                        <div id="formTelefone" class="col-sm-6 required">
+                                                            <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
+                                                            <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
+                                                            <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value=""> -->
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <section class="col col-2">
+                                                                        <label class="label">CEP</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                <div class="row">
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Logradouro</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                              
+                                                            <!-- <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
+                                                                <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th></th>
+                                                                            <th class="text-left" style="min-width: 500%;">Telefone</th>
+                                                                            <th class="text-left">Principal</th>
+                                                                            <th class="text-left">WhatsApp</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    </tbody>
+                                                                </table> -->
+                                                        </div>
+                                                            </fieldset>
+                                                                </div>
+                                                            </div>
+
 
                                     <!-- FOOTER ABAIXO -->
 
