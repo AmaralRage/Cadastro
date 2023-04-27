@@ -508,7 +508,7 @@ include("inc/scripts.php");
             }
             if (telefone !== "") {
                 if ((jsonTelefoneArray[i].telefone === telefone) && (jsonTelefoneArray[i].sequencialTelefone !== sequencial)) {
-                    achouTelefonePrincipal = true;
+                    achouTelefone = true;
                     break;
                 }
             }
@@ -551,8 +551,8 @@ include("inc/scripts.php");
                     break;
                 }
             }
-            if (validaEmail !== "") {
-                if ((jsonEmailArray[i].validaEmail === validaEmail) && (jsonEmailArray[i].sequencialvalidaEmail !== sequencial)) {
+            if (achouEmail !== "") {
+                if ((jsonEmailArray[i].email === email) && (jsonEmailArray[i].sequencialEmail !== sequencial)) {
                     achouEmailPrincipal = true;
                     break;
                 }
