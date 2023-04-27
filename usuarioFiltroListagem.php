@@ -20,35 +20,50 @@ include "js/repositorio.php";
                 $nomeFiltro = "";
                 $where = " WHERE (0 = 0)";
 
-            //alterar nomes SELECT
-            
-                    $cpf = "";
-                    if ($_POST["cpf"] != "") {
-                        $cpf = $_POST["cpf"];
-                        $where = $where . " AND (cpf = '$cpf')";
-                    }
-                    $rg = "";
-                    if ($_POST["rg"] != "") {
-                        $rg = $_POST["rg"];
-                        $where = $where . " AND (rg = '$rg')";
-                    }
-                    $ativo = "";
-                    if ($_POST["ativo"] != "") {
-                        $ativo = $_POST["ativo"];
-                        $where = $where . " AND (ativo = $ativo)";
+                //alterar nomes SELECT
 
-                        //$where = $where . " AND ";
-                    }
-                    $nomeFiltro = "";
-                    if ($_POST["nomeFiltro"] != "") {
-                        $nomeFiltro = $_POST["nomeFiltro"];
-                        $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
-                    }
-                    $dataNascimento = "";
-                    if ($_POST["dataNascimento"] != "") {
-                        $dataNascimento = $_POST["dataNascimento"];
-                        $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
-                    }
+                $cpf = "";
+                if ($_POST["cpf"] != "") {
+                    $cpf = $_POST["cpf"];
+                    $where = $where . " AND (cpf = '$cpf')";
+                }
+                $rg = "";
+                if ($_POST["rg"] != "") {
+                    $rg = $_POST["rg"];
+                    $where = $where . " AND (rg = '$rg')";
+                }
+                $ativo = "";
+                if ($_POST["ativo"] != "") {
+                    $ativo = $_POST["ativo"];
+                    $where = $where . " AND (ativo = $ativo)";
+
+                    //$where = $where . " AND ";
+                }
+                $nomeFiltro = "";
+                if ($_POST["nomeFiltro"] != "") {
+                    $nomeFiltro = $_POST["nomeFiltro"];
+                    $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
+                }
+                $dataNascimento = "";
+                if ($_POST["dataNascimento"] != "") {
+                    $dataNascimento = $_POST["dataNascimento"];
+                    $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
+                }
+
+                $dataInicio = $_POST["dataInicio"];
+                $dataInicio = explode("/", $dataInicio);
+                $dataInicio = ($dataInicio[2] . "-" . $dataInicio[1] . "-" . $dataInicio[0]);
+                if ($dataInicio != "") {
+                    $dataInicio = $_POST["dataInicio"];
+                    $where = $where . " AND (data_Nascimento >='$dataInicio')";
+                }
+                $dataFim = $_POST["dataFim"];
+                $dataFim = explode("/", $dataFim);
+                $dataFim = ($data[0] . "-" . $data[1] . "-" . $data[2]);
+                if  ($dataFim != "") {
+                    $dataFim = $_POST["dataFim"];
+                    $where = $where . " AND (data_Nascimento <='$dataFim')";
+                }
 
                 $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero FROM dbo.funcionarios";
                 $where = $where;
@@ -57,7 +72,7 @@ include "js/repositorio.php";
                 $reposit = new reposit();
                 $result = $reposit->RunQuery($sql);
 
-                foreach($result as $row) {
+                foreach ($result as $row) {
                     $id = (int) $row['id'];
                     $ativo = (int) $row['ativo'];
                     $genero = (int) $row['genero'];
@@ -67,9 +82,9 @@ include "js/repositorio.php";
                     if ($dataNascimento) {
                         $dataNascimento = explode(" ", $dataNascimento);
                         $data = explode("-", $dataNascimento[0]);
-                        $data = ($data[2]. "/". $data[1]. "/". $data[0]);
+                        $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
                     }
-                    
+
                     $cpf = $row['cpf'];
                     $rg = $row['rg'];
                     $descricaoAtivo = "";

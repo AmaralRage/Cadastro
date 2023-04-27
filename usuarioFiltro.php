@@ -189,7 +189,8 @@ include("inc/scripts.php");
         var cpf = $('#cpf').val();
         var rg = $('#rg').val();
         var genero = $('#genero').val();
-        var dataNascimento = $('#dataNascimento').val();
+        var dataInicio = $('#dataInicio').val();
+        var dataFim = $('#dataFim').val();
         var ativo = $('#ativo').val();
 
         $('#resultadoBusca').load('usuarioFiltroListagem.php?', {
@@ -197,7 +198,8 @@ include("inc/scripts.php");
             cpf: cpf,
             rg: rg,
             genero: genero,
-            dataNascimento: dataNascimento,
+            dataInicio: dataInicio,
+            dataFim: dataFim,
             ativo: ativo
         });
     }
