@@ -94,28 +94,28 @@ if (true) {
 }
 
 //CADASTRO
-    $page_nav['cadastro'] = array("title" => "Cadastro", "icon" => " fa-pencil-square-o");
-    $page_nav['cadastro']['sub'] = array();
+$page_nav['cadastro'] = array("title" => "Cadastro", "icon" => " fa-pencil-square-o");
+$page_nav['cadastro']['sub'] = array();
 
-        $page_nav['cadastro']['sub'] += array("cadastro" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
-    if (true) {
-        $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
-    }
-    // if (true) {
-    //     $page_nav['cadastro']['sub'] += array("grupo" => array("title" => "Grupo", "url" => APP_URL . "/usuarioGrupoFiltro.php"));
-    // }
-    // if (true) {
-    //     $page_nav['cadastro']['sub'] += array("permissoesUsuarios" => array("title" => "Permissões do Usuário", "url" => APP_URL . "/usuarioFuncionalidadeFiltro.php"));
-    // }
-    // if (true) {
-    //     $page_nav['cadastro']['sub'] += array("permissoesGrupoUsuarios" => array("title" => "Permissões do Grupo", "url" => APP_URL . "/usuarioGrupoFuncionalidadeFiltro.php"));
-    // }
-    // // if (in_array('PERMISSAOUSUARIO_ACESSAR', $arrayPermissao, true)) {
-    // //     $page_nav['configuracao']['sub'] += array("permissoesGrupoUsuarios" => array("title" => "Permissões do Grupo", "url" => APP_URL . "/usuarioGrupoFuncionalidadeFiltro.php"));
-    // // }
-    // if (true) {
-    //     $page_nav['configuracao']['sub'] += array("parametro" => array("title" => "Parâmetros", "url" => APP_URL . "/parametros.php"));
-    // }
+$page_nav['cadastro']['sub'] += array("cadastro" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
+if (true) {
+    $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
+}
+// if (true) {
+//     $page_nav['cadastro']['sub'] += array("grupo" => array("title" => "Grupo", "url" => APP_URL . "/usuarioGrupoFiltro.php"));
+// }
+// if (true) {
+//     $page_nav['cadastro']['sub'] += array("permissoesUsuarios" => array("title" => "Permissões do Usuário", "url" => APP_URL . "/usuarioFuncionalidadeFiltro.php"));
+// }
+// if (true) {
+//     $page_nav['cadastro']['sub'] += array("permissoesGrupoUsuarios" => array("title" => "Permissões do Grupo", "url" => APP_URL . "/usuarioGrupoFuncionalidadeFiltro.php"));
+// }
+// // if (in_array('PERMISSAOUSUARIO_ACESSAR', $arrayPermissao, true)) {
+// //     $page_nav['configuracao']['sub'] += array("permissoesGrupoUsuarios" => array("title" => "Permissões do Grupo", "url" => APP_URL . "/usuarioGrupoFuncionalidadeFiltro.php"));
+// // }
+// if (true) {
+//     $page_nav['configuracao']['sub'] += array("parametro" => array("title" => "Parâmetros", "url" => APP_URL . "/parametros.php"));
+// }
 
 $condicaoOperacaoOk = true;
 
@@ -125,7 +125,7 @@ $condicaoTabelaBasicaOk = (true);
 if ($condicaoTabelaBasicaOk) {
     $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
     $page_nav['tabelaBasica']['sub'] = array();
-    $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/TabelaBasicaGeneroFiltro.php"));
+    $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
     if (true) {
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasica_generoFiltro.php"));
     }
@@ -133,11 +133,9 @@ if ($condicaoTabelaBasicaOk) {
         $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
     }
     $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
-    
-
 
     // if (true) {
-       
+
     // }
 
 

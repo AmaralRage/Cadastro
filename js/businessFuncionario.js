@@ -26,7 +26,6 @@ function validaCPF(cpf) {
         
         success: function (data, textStatus) {  
             if (data.trim() === 'success') {
-                smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 
             } else {
                 smartAlert("Atenção", "CPF Inválido", "error");
                 document.getElementById('cpf').value = "";

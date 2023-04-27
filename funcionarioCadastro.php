@@ -933,7 +933,7 @@ include("inc/scripts.php");
         if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
 
         if (idade <= 14) {
-            smartAlert("Atenção", "Informe a data correta", "error");
+            smartAlert("Atenção", "Informe uma data válida", "error");
             $("#idade").val(idade)
             $("#btnGravar").prop('disabled', false);
             return false;
@@ -941,7 +941,6 @@ include("inc/scripts.php");
         }
 
         if (idade >= 18 && idade <= 95) {
-            smartAlert("Atenção", "Data Valida !", "success");
             $("#idade").val(idade)
             $("#btnGravar").prop('disabled', false);
             return;
