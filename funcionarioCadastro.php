@@ -313,7 +313,7 @@ include("inc/nav.php");
                                                                 <section class="col col-2">
                                                                     <label class="label">Complemento</label>
                                                                     <label class="input">
-                                                                        <input id="complemento" name="complemento" type="text" class="form-control required" value="">
+                                                                        <input id="complemento" name="complemento" type="text" value="">
                                                                     </label>
                                                                 </section>
                                                                     </div>  
