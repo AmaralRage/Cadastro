@@ -70,15 +70,15 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, ativo, genero
-             FROM dbo.funcionarios USU WHERE (0 = 0) AND (id = $id)";
+    $sql = " SELECT codigo, ativo, genero
+               FROM dbo.funcionarios WHERE genero = $id";
 
-    if ($condicaoId) {
-        $sql = $sql . " AND USU.id = " . $id . " ";
-    }
+    // if ($condicaoId) {
+    //     $sql = $sql . " AND codigo = " . $id . " ";
+    // }
 
     if ($condicaoLogin) {
-        $sql = $sql . " AND USU.login = '" . $loginPesquisa . "' ";
+        $sql = $sql . " AND login = '" . $loginPesquisa . "' ";
     }
 
     $reposit = new reposit();

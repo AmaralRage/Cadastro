@@ -159,7 +159,6 @@ include("inc/nav.php");
                                             </div>
                                             <div id="collapseContato" class="panel-collapse collapse in">
                                                 <div class="panel-body no-padding">
-
                                                     <fieldset>
                                                         <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
                                                         <div id="formTelefone" class="col-sm-6 required">
@@ -265,81 +264,76 @@ include("inc/nav.php");
                                         </div>
                                         <!-- </div> -->
                                     </div>
+
                                     <!-- ACCORDION ACIMA -->
 
                                     <!--ACCORDION CEP ABAIXO -->
 
                                     
                                     <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
-                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                        <div style="margin-left: 15px;">Teste</div>
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseContato" class="panel-collapse collapse in">
-                                                <div class="panel-body no-padding">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
+                                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                    <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                    <div style="margin-left: 15px;">Endereço</div>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseContato" class="panel-collapse collapse in">
+                                            <div class="panel-body no-padding">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <section class="col col-2">
+                                                                <label class="label">CEP</label>
+                                                                <label class="input">
+                                                                    <input id="cep" name="cep" type="text" class="form-control required" value="">
+                                                                </label>
+                                                            </section>
+                                                            <div class="row">
+                                                                <section class="col col-2">
+                                                                    <label class="label">Rua</label>
+                                                                    <label class="input">
+                                                                        <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Bairro</label>
+                                                                    <label class="input">
+                                                                        <input id="bairro" name="bairro" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Número</label>
+                                                                    <label class="input">
+                                                                        <input id="numero" name="numero" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Complemento</label>
+                                                                    <label class="input">
+                                                                        <input id="complemento" name="complemento" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                    </div>  
+                                                                <section class="col col-2">
+                                                                    <label class="label">UF</label>
+                                                                    <label class="input">
+                                                                        <input id="uf" name="uf" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Cidade</label>
+                                                                <label class="input">
+                                                                    <input id="cidade" name="cidade" type="text" class="form-control required" value="">
+                                                                </label>
+                                                            </section>
 
-                                                    <fieldset>
-                                                        <!-- <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
-                                                        <div id="formTelefone" class="col-sm-6 required">
-                                                            <input id="descricaoTelefonePrincipal" name="descricaoTelefonePrincipal" type="hidden" value="">
-                                                            <input id="descricaoTelefoneWhatsApp" name="descricaoTelefoneWhatsApp" type="hidden" value="">
-                                                            <input id="sequencialTelefone" name="sequencialTelefone" type="hidden" value=""> -->
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <section class="col col-2">
-                                                                        <label class="label">CEP</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                <div class="row">
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Logradouro</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Número</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Complemento</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">UF</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    </div>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Bairro</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Cidade</label>
-                                                                        <label class="input">
-                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
+                                                        </div>
+                                                    </div>
 
-                                                                </div>
-                                                            </div>
-                                                              
-                                                            <!-- <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
+                                                    <!-- <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
                                                                 <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
                                                                     <thead>
                                                                         <tr role="row">
@@ -352,10 +346,10 @@ include("inc/nav.php");
                                                                     <tbody>
                                                                     </tbody>
                                                                 </table> -->
-                                                        </div>
-                                                            </fieldset>
-                                                                </div>
-                                                            </div>
+                                            </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
 
 
                                     <!-- FOOTER ABAIXO -->
@@ -521,6 +515,41 @@ include("inc/scripts.php");
 
         $("#btnVoltar").on("click", function() {
             voltar();
+        });
+
+        $("#cep").on("change", function() {
+            //Nova variável "cep" somente com dígitos.
+            var cep = $("#cep").val().replace(/\D/g, '');
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#logradouro").val(dados.logradouro);
+                            $("#bairro").val(dados.bairro);
+                            $("#cidade").val(dados.localidade);
+                            $("#uf").val(dados.uf);
+                            $("#numero").focus();
+                        } //end if.
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            console.log("CEP não encontrado.");
+                        }
+
+                    });
+                } //end if.
+                else {
+                    console.log("Formato de CEP inválido.");
+                }
+            } //end if.
         });
 
         //MASKS
@@ -739,9 +768,9 @@ include("inc/scripts.php");
             item["descricaoEmailPrincipal"] = "Não"
         }
 
-            // linha de sinalização dos if e else 
+        // linha de sinalização dos if e else 
 
-            var index = -1;
+        var index = -1;
         $.each(jsonEmailArray, function(i, obj) {
             if (+$('#sequencialEmail').val() === obj.sequencialEmail) {
                 index = i;
@@ -789,7 +818,7 @@ include("inc/scripts.php");
 
             $("#tableEmail tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonEmailArray[i].sequencialEmail + '"><i></i></label></td>'));
-            
+
             row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].email + '</td>'));
             // row.append($('<td class="text-left" >' + jsonEmailArray[i].Email + '</td>'));
             row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailPrincipal + '</td>'));
@@ -821,7 +850,7 @@ include("inc/scripts.php");
         $("#telefoneWhatsApp").prop('checked', false);
     }
 
-    
+
 
     function clearFormEmail() {
         $("#email").val('');
@@ -884,6 +913,7 @@ include("inc/scripts.php");
             }
         }
     }
+
     function excluiEmailTabela() {
         var arrSequencial = [];
         $('#tableEmail input[type=checkbox]:checked').each(function() {
