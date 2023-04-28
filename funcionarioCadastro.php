@@ -304,7 +304,38 @@ include("inc/nav.php");
                                                                             <input id="telefone" name="telefone" type="text" class="form-control required" value="">
                                                                         </label>
                                                                     </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Número</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Complemento</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">UF</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
                                                                     </div>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Bairro</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Cidade</label>
+                                                                        <label class="input">
+                                                                            <input id="telefone" name="telefone" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+
                                                                 </div>
                                                             </div>
                                                               

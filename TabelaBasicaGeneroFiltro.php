@@ -13,7 +13,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Genero";
+$page_title = "Gênero";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -35,7 +35,6 @@ include("inc/nav.php");
     <?php
     //configure ribbon (breadcrumbs) array("name"=>"url"), leave url empty if no url
     //$breadcrumbs["New Crumb"] => "http://url.com"
-    $breadcrumbs["Configurações"] = "";
     include("inc/ribbon.php");
     ?>
 
@@ -49,7 +48,7 @@ include("inc/nav.php");
                     <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
-                            <h2>Usuário</h2>
+                            <h2>Gênero</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">

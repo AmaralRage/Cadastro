@@ -51,17 +51,16 @@ include "js/repositorio.php";
                 }
 
                 $dataInicio = $_POST["dataInicio"];
-                $dataInicio = explode("/", $dataInicio);
-                $dataInicio = ($dataInicio[2] . "-" . $dataInicio[1] . "-" . $dataInicio[0]);
-                if ($dataInicio != "") {
-                    $dataInicio = $_POST["dataInicio"];
+                if ($dataInicio != "") {                    
+                    $dataInicio = explode("/", $dataInicio);
+                    $dataInicio = ($dataInicio[2] . "-" . $dataInicio[1] . "-" . $dataInicio[0]);
                     $where = $where . " AND (data_Nascimento >='$dataInicio')";
                 }
+                
                 $dataFim = $_POST["dataFim"];
-                $dataFim = explode("/", $dataFim);
-                $dataFim = ($dataFim[2] . "-" . $dataFim[1] . "-" . $dataFim[0]);
                 if  ($dataFim != "") {
-                    $dataFim = $_POST["dataFim"];
+                    $dataFim = explode("/", $dataFim);
+                    $dataFim = ($dataFim[2] . "-" . $dataFim[1] . "-" . $dataFim[0]);
                     $where = $where . " AND (data_Nascimento <='$dataFim')";
                 }
 
