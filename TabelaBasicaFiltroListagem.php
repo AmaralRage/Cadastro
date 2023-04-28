@@ -22,7 +22,7 @@ include "js/repositorio.php";
                 $codigoFiltro = $_POST["codigoFiltro"];
                 if ($_POST["codigoFiltro"] != "") {
                     $codigoFiltro = $_POST["codigoFiltro"];
-                    $where = $where . " AND genero.[codigo] = " . $codigoFiltro;
+                    $where = $where . " AND [codigo] = " . $codigoFiltro;
                 }
 
                 $ativoFiltro = "";

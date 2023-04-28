@@ -1033,6 +1033,13 @@ include("inc/scripts.php");
         var genero = $("#descricao").val();
         var estadoCivil = $("#estadoCivil").val();
         var dataNascimento = $("#dataNascimento").val();
+        var cep = $("#cep").val();
+        var logradouro = $("#logradouro").val();
+        var numero = $("#numero").val();
+        var complemento = $("#complemento").val();
+        var uf = $("#uf").val();
+        var bairro = $("#bairro").val();
+        var cidade = $("#cidade").val();
         var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
 
         if (!nome) {
@@ -1067,6 +1074,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, jsonTelefoneArray);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, cep, logradouro, numero, complemento, uf, bairro, cidade, jsonTelefoneArray);
     }
 </script>

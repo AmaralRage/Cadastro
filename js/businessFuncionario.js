@@ -1,9 +1,24 @@
-function gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, jsonTelefoneArray) {
+function gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, cep, logradouro, numero, complemento, uf, bairro, cidade, jsonTelefoneArray) {
     $.ajax({ 
         url: 'js/sqlscopeFuncionario.php',
         type: 'post',
         dataType:"html",
-        data: {funcao: "grava", id:id, ativo:ativo, nome:nome, cpf:cpf, rg:rg, genero:genero, estadoCivil:estadoCivil, dataNascimento:dataNascimento, jsonTelefoneArray:jsonTelefoneArray},
+        data: {funcao: "grava", id:id, ativo:ativo,
+        nome:nome,
+        cpf:cpf, 
+        rg:rg, 
+        genero:genero, 
+        estadoCivil:estadoCivil, 
+        dataNascimento:dataNascimento, 
+        cep:cep, 
+        logradouro:logradouro,  
+        numero:numero, 
+        complemento:complemento,  
+        uf:uf,  
+        bairro:bairro, 
+        cidade:cidade, 
+        jsonTelefoneArray:jsonTelefoneArray},
+
                                 
         success: function (data, textStatus) {
             if (data.trim() === 'success') {
@@ -17,6 +32,7 @@ function gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNas
         }
     });
 }
+
 function validaCPF(cpf) {
     $.ajax({ 
         url: 'js/sqlscopeFuncionario.php',
