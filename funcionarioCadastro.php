@@ -157,7 +157,7 @@ include("inc/nav.php");
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="collapseContato" class="panel-collapse collapse in">
+                                            <div id="collapseContato" class="panel-collapse collapse">
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <input id="jsonTelefone" name="jsonTelefone" type="hidden" value="[]">
@@ -273,14 +273,14 @@ include("inc/nav.php");
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseContato" class="" id="accordionContato">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseEndereco" class="" id="accordionEndereco">
                                                     <i class="fa fa-lg fa-angle-down pull-right"></i>
                                                     <i class="fa fa-lg fa-angle-up pull-right"></i>
                                                     <div style="margin-left: 15px;">Endereço</div>
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseContato" class="panel-collapse collapse in">
+                                        <div id="collapseEndereco" class="panel-collapse collapse">
                                             <div class="panel-body no-padding">
                                                 <fieldset>
                                                     <div class="form-group">
@@ -332,6 +332,9 @@ include("inc/nav.php");
 
                                                         </div>
                                                     </div>
+                                                </fieldset>
+                                                
+                                                
 
                                                     <!-- <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
                                                                 <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">

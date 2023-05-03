@@ -62,16 +62,19 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                        <section class="col col-2 col-auto">
+                                                        <section class="col col-2">
                                                                 <label class="label">Dependentes</label>
-                                                                <label class="select">
-                                                                    <select id="estadoCivil" name="estadoCivil" class="required">
-                                                                        <option value="hidden"></option>
-                                                                        <option value="1">Filho</option>
-                                                                        <option value="2">Cônjuge</option>
-                                                                        <option value="3">Pai</option>
-                                                                        <option value="4">Mãe</option>
-                                                                    </select><i></i>
+                                                                <label class="input">
+                                                                    <input id="dependentes" maxlength="255" name="dependentes" class="required" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">&nbsp;</label>
+                                                                <label class="checkbox ">
+                                                                    <input checked="checked" id="dependenteAtivo" name="ativo" type="checkbox" value="true"><i></i>
+                                                                    Ativo
+                                                                </label>
+                                                            </section>
                                                         </div>
 
                                                         <!-- FOOTER ABAIXO -->
