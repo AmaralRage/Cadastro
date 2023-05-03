@@ -135,7 +135,7 @@ function grava()
             ->add('sequencialEmail', $item['sequencialEmail']);
     }
 
-    $xmlDependente = $comum->formatarString($xmlDependente);
+    // $xmlDependente = $comum->formatarString($xmlDependente);
    
     $strArrayDependente = $_POST['jsonDependenteArray'];
 
