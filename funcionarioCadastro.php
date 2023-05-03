@@ -562,7 +562,7 @@ include("inc/scripts.php");
             excluiEmailTabela();
         });
     });
-    
+
         $("#btnAddDependente").on("click", function() {
             if (validaDependente())
                 addDependente();
@@ -1173,6 +1173,8 @@ include("inc/scripts.php");
         var uf = $("#uf").val();
         var cidade = $("#cidade").val();
         var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+        var jsonEmailArray = JSON.parse($("#jsonEmailelefone").val());
+        var jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
         if (!nome) {
             smartAlert("Atenção", "Informe o nome", "error");
@@ -1206,6 +1208,22 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, cep, logradouro, bairro, numero, complemento, uf, cidade, jsonTelefoneArray);
+        gravaFuncionario(id, ativo,
+         nome,
+         cpf, 
+         rg, 
+         genero, 
+         estadoCivil, 
+         dataNascimento, 
+         cep, 
+         logradouro, 
+         bairro, 
+         numero, 
+         complemento, 
+         uf, 
+         cidade, 
+         jsonTelefoneArray, 
+         jsonEmailArray, 
+         jsonDependenteArray);
     }
 </script>

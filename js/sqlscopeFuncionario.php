@@ -135,7 +135,36 @@ function grava()
             ->add('sequencialEmail', $item['sequencialEmail']);
     }
 
-    $xmlEmail = $comum->formatarString($xmlEmail);
+    $xmlDependente = $comum->formatarString($xmlDependente);
+   
+    $strArrayDependente = $_POST['jsonDependenteArray'];
+
+    // $strArrayDependente = json_decode($strArrayDependente, true);
+    $xmlDependente = "";
+    // $nomeXml = "ArrayOfDependente";
+    // $nomeTabela = "Dependente";
+    $comum = new comum();
+
+    $strArrayDependente = $_POST['jsonDependenteArray'];
+    $arrayDependente = $strArrayDependente;
+
+    $xmlDependente = new \FluidXml\FluidXml('ArrayOfDependente', ['encoding' => '']);
+    foreach ($arrayDependente as $item) {
+
+        $DependentePrincipal = $item['DependentePrincipal'];
+        if ($DependentePrincipal == 'true') {
+            $DependentePrincipal = '1';
+        } else {
+            $DependentePrincipal = '0';
+        }
+
+        $xmlDependente->addChild('Dependente', true) //nome da tabela
+            ->add('Dependente', $item['Dependente'])
+            ->add('DependentePrincipal', $DependentePrincipal)
+            ->add('sequencialDependente', $item['sequencialDependente']);
+    }
+
+    $xmlDependente = $comum->formatarString($xmlDependente);
 
 
     $sql = "dbo.funcionarios_Atualiza 
@@ -149,6 +178,7 @@ function grava()
     '$estadoCivil',
     $xmlTelefone,
     $xmlEmail,
+    $xmlDependente,
     '$cep',
     '$logradouro',
     '$bairro',
