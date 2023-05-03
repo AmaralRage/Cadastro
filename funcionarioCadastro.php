@@ -549,19 +549,10 @@ include("inc/scripts.php");
                 addTelefone();
         });
         
-        $("#btnAddDependente").on("click", function() {
-            if (validaDependente())
-                addDependente();
-        });
-
         $("#btnRemoverTelefone").on("click", function() {
             excluiTelefoneTabela();
         });
         
-        $("#btnRemoverDependente").on("click", function() {
-            excluiDependenteTabela();
-        });
-
         $("#btnAddEmail").on("click", function() {
             if (validaEmail())
                 addEmail();
@@ -571,6 +562,16 @@ include("inc/scripts.php");
             excluiEmailTabela();
         });
     });
+    
+        $("#btnAddDependente").on("click", function() {
+            if (validaDependente())
+                addDependente();
+        });
+
+        $("#btnRemoverDependente").on("click", function() {
+            excluiDependenteTabela();
+        });
+
 
 
     //FUNCTIONS
