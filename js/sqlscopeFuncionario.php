@@ -54,13 +54,18 @@ function grava()
     }
 
     $nome = $_POST['nome'];
-    $cpf =  "'" . $_POST['cpf'] . "'";
-    $rg = "'" . $_POST['rg'] . "'";
+    $cpf = $_POST['cpf']; 
+    $rg = $_POST['rg']; 
     $genero = $_POST['genero'];
+    $dataNascimento = $_POST['dataNascimento']; 
     $estadoCivil = $_POST['estadoCivil'];
-    $Cargo = $_POST['Cargo'];
-    $possuiFilhos = $_POST['possuiFilhos'];
-    $dataNascimento = "'" . $_POST['dataNascimento'] . "'";
+    $cep = $_POST['cep'];
+    $logradouro = $_POST['logradouro'];
+    $bairro = $_POST['bairro'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
+    $uf = $_POST['uf'];
+    $cidade = $_POST['cidade'];
 
 //=============================================================================================TELEFONE==================================================================================================
 
@@ -134,16 +139,23 @@ function grava()
 
 
     $sql = "dbo.funcionarios_Atualiza 
-    $id , 
-    $ativo ,
-    $nome, 
-    $cpf,
-    $rg,
-    $genero ,
-    $dataNascimento,
-    $estadoCivil,
+    '$id' , 
+    '$ativo' ,
+    '$nome', 
+    '$cpf',
+    '$rg',
+    '$genero' ,
+    '$dataNascimento',
+    '$estadoCivil',
     $xmlTelefone,
-    $xmlEmail";
+    $xmlEmail,
+    '$cep',
+    '$logradouro',
+    '$bairro',
+    '$numero',
+    '$complemento',
+    '$uf',
+    '$cidade'";
 
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
@@ -380,90 +392,4 @@ function VerificaRG()
         $mensagem = "RG já registrado!";
         echo "failed#" . $mensagem . ' ';
     }
-}
-
-function gravarNovaSenha()
-{
-    $reposit = new reposit();
-    $senhaConfirma = $_POST["senhaConfirma"];
-    $senha = $_POST["senha"];
-
-    if ((empty($_POST['senhaConfirma'])) || (!isset($_POST['senhaConfirma'])) || (is_null($_POST['senhaConfirma']))) {
-        $senhaConfirma = null;
-    }
-    if ((empty($_POST['senha'])) || (!isset($_POST['senha'])) || (is_null($_POST['senha']))) {
-        $senha = null;
-    }
-
-    if ((!is_null($senhaConfirma)) or (!is_null($senha))) {
-        $comum = new comum();
-        $validouSenha = 1;
-        if (!is_null($senha)) {
-            $validouSenha = $comum->validaSenha($senha);
-        }
-        if ($validouSenha === 0) {
-            if ($senhaConfirma !== $senha) {
-                $mensagem = "A confirmação da senha deve ser igual a senha.";
-                echo "failed#" . $mensagem . ' ';
-                return;
-            } else {
-                $comum = new comum();
-                $senhaCript = $comum->criptografia($senha);
-                $senha = "'" . $senhaCript . "'";
-            }
-        } else {
-            switch ($validouSenha) {
-                case 1:
-                    $mensagem = "Senha não pode conter espaços.";
-                    break;
-                case 2:
-                    $mensagem = "Senha deve possuir no mínimo 7 caracter.";
-                    break;
-                case 3:
-                    $mensagem = "Senha ultrapassou de 15 caracteres.";
-                    break;
-                case 4:
-                    $mensagem = "Senha deve possuir no mínimo um caractér númerico.";
-                    break;
-                case 5:
-                    $mensagem = "Senha deve possuir no mínimo um caractér alfabético.";
-                    break;
-                case 6:
-                    $mensagem = "Senha deve possuir no mínimo um caracter especial.\nSão válidos : ! # $ & * - + ? . ; , : ] [ ( )";
-                    break;
-                case 7:
-                    $mensagem = "Senha não pode ter caracteres acentuados.";
-                    break;
-            }
-            echo "failed#" . $mensagem . ' ';
-            return;
-        }
-    }
-
-    session_start();
-    $login = "'" .  $_SESSION['login'] . "'";
-    $usuario =  $login;
-
-    $id = $_SESSION['codigo'];
-    $funcionario = $_SESSION['funcionario'];
-    if (!$funcionario) {
-        $funcionario = 'NULL';
-    }
-    $ativo = 1;
-    $tipoUsuario = 'C';
-    $restaurarSenha = 0;
-
-    $sql = "Ntl.usuario_Atualiza " . $id . "," . $ativo . "," . $login . "," . $senha . "," . $tipoUsuario . "," . $usuario . "," . $funcionario . "," . $restaurarSenha . " ";
-
-    $reposit = new reposit();
-    $result = $reposit->Execprocedure($sql);
-
-    $ret = 'sucess#';
-
-    if ($result < 1) {
-        $ret = 'failed#';
-    }
-
-    echo $ret;
-    return;
 }

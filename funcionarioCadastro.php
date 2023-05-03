@@ -12,6 +12,7 @@ require_once("inc/config.ui.php");
 
 $page_title = "Cadastro Funcionario";
 
+
 /* ---------------- END PHP Custom Scripts ------------- */
 
 //include header
@@ -269,7 +270,7 @@ include("inc/nav.php");
 
                                     <!--ACCORDION CEP ABAIXO -->
 
-                                    
+
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
@@ -293,7 +294,7 @@ include("inc/nav.php");
                                                             </section>
                                                             <div class="row">
                                                                 <section class="col col-2">
-                                                                    <label class="label">Rua</label>
+                                                                    <label class="label">Logradouro</label>
                                                                     <label class="input">
                                                                         <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
                                                                     </label>
@@ -316,13 +317,13 @@ include("inc/nav.php");
                                                                         <input id="complemento" name="complemento" type="text" value="">
                                                                     </label>
                                                                 </section>
-                                                                    </div>  
-                                                                <section class="col col-2">
-                                                                    <label class="label">UF</label>
-                                                                    <label class="input">
-                                                                        <input id="uf" name="uf" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
+                                                            </div>
+                                                            <section class="col col-2">
+                                                                <label class="label">UF</label>
+                                                                <label class="input">
+                                                                    <input id="uf" name="uf" type="text" class="form-control required" value="">
+                                                                </label>
+                                                            </section>
                                                             <section class="col col-2">
                                                                 <label class="label">Cidade</label>
                                                                 <label class="input">
@@ -484,13 +485,7 @@ include("inc/scripts.php");
         });
 
         $("#btnGravar").on("click", function() {
-            var id = +$("#codigo").val();
-
             gravar()
-
-            if (id !== 0) {
-                $('#dlgSimpleExcluir').dialog('open');
-            }
         });
 
         $("#btnNovo").on("click", function() {
@@ -1065,10 +1060,10 @@ include("inc/scripts.php");
         var dataNascimento = $("#dataNascimento").val();
         var cep = $("#cep").val();
         var logradouro = $("#logradouro").val();
+        var bairro = $("#bairro").val();
         var numero = $("#numero").val();
         var complemento = $("#complemento").val();
         var uf = $("#uf").val();
-        var bairro = $("#bairro").val();
         var cidade = $("#cidade").val();
         var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
 
@@ -1104,6 +1099,6 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, cep, logradouro, numero, complemento, uf, bairro, cidade, jsonTelefoneArray);
+        gravaFuncionario(id, ativo, nome, cpf, rg, genero, estadoCivil, dataNascimento, cep, logradouro, bairro, numero, complemento, uf, cidade, jsonTelefoneArray);
     }
 </script>
