@@ -548,9 +548,18 @@ include("inc/scripts.php");
             if (validaTelefone())
                 addTelefone();
         });
+        
+        $("#btnAddDependente").on("click", function() {
+            if (validaDependente())
+                addDependente();
+        });
 
         $("#btnRemoverTelefone").on("click", function() {
             excluiTelefoneTabela();
+        });
+        
+        $("#btnRemoverDependente").on("click", function() {
+            excluiDependenteTabela();
         });
 
         $("#btnAddEmail").on("click", function() {
@@ -562,6 +571,7 @@ include("inc/scripts.php");
             excluiEmailTabela();
         });
     });
+
 
     //FUNCTIONS
 
@@ -907,14 +917,8 @@ include("inc/scripts.php");
         $("#sequencialEmail").val('');
         $("#emailPrincipal").prop('checked', false);
     }
-    
-    function clearFormDependente() {
-        $("#dependente").val('');
-        $("#sequencialDependente").val('');
-        $("#dependentePrincipal").prop('checked', false);
-    }
 
-    //================================================================================== EXCLUIR EMAIL =============================================================================================
+    //================================================================================== EXCLUIR =============================================================================================
 
 
     function excluiTelefoneTabela() {
@@ -934,8 +938,26 @@ include("inc/scripts.php");
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
+    
+    function excluiDependenteTabela() {
+        var arrSequencial = [];
+        $('#tableDependente input[type=checkbox]:checked').each(function() {
+            arrSequencial.push(parseInt($(this).val()));
+        });
+        if (arrSequencial.length > 0) {
+            for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
+                var obj = jsonDependenteArray[i];
+                if (jQuery.inArray(obj.sequencialDependente, arrSequencial) > -1) {
+                    jsonDependenteArray.splice(i, 1);
+                }
+            }
+            $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
+            fillTableDependente();
+        } else
+            smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
+    }
 
-    //================================================================================== FIM EXCLUIR EMAIL =============================================================================================
+    //================================================================================== FIM EXCLUIR =============================================================================================
 
 
     function carregaTelefone(sequencialTelefone) {
