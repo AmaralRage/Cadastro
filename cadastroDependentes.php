@@ -62,61 +62,47 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                            <section class="hidden" class="col col-1">
-                                                                <label class="label">Código</label>
-                                                                <label class="input">
-                                                                    <input id="codigo" name="codigo" type="text" class="readonly" readonly>
-                                                                </label>
-                                                            </section>
-                                                            <section class="hidden" class="col col-2">
-                                                                <label class="label">&nbsp;</label>
-                                                                <label id="labelAtivo" class="checkbox ">
-                                                                    <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
-                                                                    Ativo
-                                                                </label>
-                                                            </section>
+                                                        <section class="col col-2 col-auto">
+                                                                <label class="label">Dependentes</label>
+                                                                <label class="select">
+                                                                    <select id="estadoCivil" name="estadoCivil" class="required">
+                                                                        <option value="hidden"></option>
+                                                                        <option value="1">Filho</option>
+                                                                        <option value="2">Cônjuge</option>
+                                                                        <option value="3">Pai</option>
+                                                                        <option value="4">Mãe</option>
+                                                                    </select><i></i>
                                                         </div>
-                                                        <div class="row">
-                                                        </div>
-                                                        <div class="row">
-                                                            <section class="col col-2">
-                                                                <label class="label">Dependente</label>
-                                                                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                    <input id="nome" maxlength="255" name="nome" class="required" type="text" value="">
-                                                                </label>
-                                                            </section>
-                                                           
 
+                                                        <!-- FOOTER ABAIXO -->
 
-                                    <!-- FOOTER ABAIXO -->
-
-                                    <footer>
-                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                            <span class="fa fa-trash"></span>
-                                        </button>
-                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
-                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-                                                <span id="ui-id-2" class="ui-dialog-title">
-                                                </span>
-                                            </div>
-                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
-                                                <p>CONFIRMA A EXCLUSÃO ? </p>
-                                            </div>
-                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                                                <div class="ui-dialog-buttonset">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                            <span class="fa fa-floppy-o"></span>
-                                        </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
-                                            <span class="fa fa-file-o"></span>
-                                        </button>
-                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                            <span class="fa fa-backward "></span>
-                                        </button>
-                                    </footer>
+                                                        <footer>
+                                                            <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                                                <span class="fa fa-trash"></span>
+                                                            </button>
+                                                            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                                                <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                                                    <span id="ui-id-2" class="ui-dialog-title">
+                                                                    </span>
+                                                                </div>
+                                                                <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
+                                                                    <p>CONFIRMA A EXCLUSÃO ? </p>
+                                                                </div>
+                                                                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                                                    <div class="ui-dialog-buttonset">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                                                <span class="fa fa-floppy-o"></span>
+                                                            </button>
+                                                            <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                                                <span class="fa fa-file-o"></span>
+                                                            </button>
+                                                            <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
+                                                                <span class="fa fa-backward "></span>
+                                                            </button>
+                                                        </footer>
                                 </form>
                             </div>
                         </div>
