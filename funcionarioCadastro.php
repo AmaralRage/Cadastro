@@ -332,25 +332,13 @@ include("inc/nav.php");
 
                                                         </div>
                                                     </div>
-                                                </fieldset>
-                                                
-                                                
 
-                                                    <!-- <div class="table-responsive" style="min-height: 115px; width:90%; border: 1px solid #ddd;">
-                                                                <table id="tableTelefone" class="table table-bordered table-striped table-condensed table-hover dataTable">
-                                                                    <thead>
-                                                                        <tr role="row">
-                                                                            <th></th>
-                                                                            <th class="text-left" style="min-width: 500%;">Telefone</th>
-                                                                            <th class="text-left">Principal</th>
-                                                                            <th class="text-left">WhatsApp</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    </tbody>
-                                                                </table> -->
+
+
+
+
+                                                </fieldset>
                                             </div>
-                                            </fieldset>
                                         </div>
                                     </div>
 
