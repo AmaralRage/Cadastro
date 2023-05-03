@@ -269,7 +269,6 @@ include("inc/nav.php");
 
                                     <!--ACCORDION CEP ABAIXO -->
 
-
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
@@ -279,99 +278,98 @@ include("inc/nav.php");
                                                     <div style="margin-left: 15px;">Endereço</div>
                                                 </a>
                                             </h4>
-                                        </div>
-                                        <div id="collapseEndereco" class="panel-collapse collapse">
-                                            <div class="panel-body no-padding">
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <section class="col col-2">
-                                                                <label class="label">CEP</label>
-                                                                <label class="input">
-                                                                    <input id="cep" name="cep" type="text" class="form-control required" value="">
-                                                                </label>
-                                                            </section>
+                                            <div id="collapseEndereco" class="panel-collapse collapse">
+                                                <div class="panel-body no-padding">
+                                                    <fieldset>
+                                                        <div class="form-group">
                                                             <div class="row">
                                                                 <section class="col col-2">
-                                                                    <label class="label">Logradouro</label>
+                                                                    <label class="label">CEP</label>
                                                                     <label class="input">
-                                                                        <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                        <input id="cep" name="cep" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <div class="row">
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Logradouro</label>
+                                                                        <label class="input">
+                                                                            <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Bairro</label>
+                                                                        <label class="input">
+                                                                            <input id="bairro" name="bairro" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Número</label>
+                                                                        <label class="input">
+                                                                            <input id="numero" name="numero" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Complemento</label>
+                                                                        <label class="input">
+                                                                            <input id="complemento" name="complemento" type="text" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                </div>
+                                                                <section class="col col-2">
+                                                                    <label class="label">UF</label>
+                                                                    <label class="input">
+                                                                        <input id="uf" name="uf" type="text" class="form-control required" value="">
                                                                     </label>
                                                                 </section>
                                                                 <section class="col col-2">
-                                                                    <label class="label">Bairro</label>
+                                                                    <label class="label">Cidade</label>
                                                                     <label class="input">
-                                                                        <input id="bairro" name="bairro" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
-                                                                <section class="col col-2">
-                                                                    <label class="label">Número</label>
-                                                                    <label class="input">
-                                                                        <input id="numero" name="numero" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
-                                                                <section class="col col-2">
-                                                                    <label class="label">Complemento</label>
-                                                                    <label class="input">
-                                                                        <input id="complemento" name="complemento" type="text" value="">
+                                                                        <input id="cidade" name="cidade" type="text" class="form-control required" value="">
                                                                     </label>
                                                                 </section>
                                                             </div>
-                                                            <section class="col col-2">
-                                                                <label class="label">UF</label>
-                                                                <label class="input">
-                                                                    <input id="uf" name="uf" type="text" class="form-control required" value="">
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">Cidade</label>
-                                                                <label class="input">
-                                                                    <input id="cidade" name="cidade" type="text" class="form-control required" value="">
-                                                                </label>
-                                                            </section>
-
                                                         </div>
-                                                    </div>
 
 
 
 
 
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                    </div>
 
-
-                                    <!-- FOOTER ABAIXO -->
-
-                                    <footer>
-                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                            <span class="fa fa-trash"></span>
-                                        </button>
-                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
-                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-                                                <span id="ui-id-2" class="ui-dialog-title">
-                                                </span>
-                                            </div>
-                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
-                                                <p>CONFIRMA A EXCLUSÃO ? </p>
-                                            </div>
-                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                                                <div class="ui-dialog-buttonset">
+                                                    </fieldset>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                            <span class="fa fa-floppy-o"></span>
-                                        </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
-                                            <span class="fa fa-file-o"></span>
-                                        </button>
-                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                            <span class="fa fa-backward "></span>
-                                        </button>
-                                    </footer>
+
+
+                                        <!-- FOOTER ABAIXO -->
+
+                                        <footer>
+                                            <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                                <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                                    <span id="ui-id-2" class="ui-dialog-title">
+                                                    </span>
+                                                </div>
+                                                <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
+                                                    <p>CONFIRMA A EXCLUSÃO ? </p>
+                                                </div>
+                                                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                                    <div class="ui-dialog-buttonset">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                                <span class="fa fa-floppy-o"></span>
+                                            </button>
+                                            <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                                <span class="fa fa-file-o"></span>
+                                            </button>
+                                            <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
+                                                <span class="fa fa-backward "></span>
+                                            </button>
+                                        </footer>
                                 </form>
                             </div>
                         </div>
@@ -720,6 +718,67 @@ include("inc/scripts.php");
     //================================================================================== ADD EMAIL =============================================================================================
 
 
+    function addDependente() {
+
+        var dependente = $("#dependente").val();
+        if (dependente === "") {
+            smartAlert("Atenção", "Informe o Dependente !", "error");
+            $("#dependente").focus();
+            return;
+        }
+
+        var item = $("#formDependente").toObject({
+            mode: 'combine',
+            skipEmpty: false
+        });
+
+        if (item["sequencialDependente"] === '') {
+            if (jsonDependenteArray.length === 0) {
+                item["sequencialDependente"] = 1;
+            } else {
+                item["sequencialDependente"] = Math.max.apply(Math, jsonDependenteArray.map(function(o) {
+                    return o.sequencialDependente;
+                })) + 1;
+            }
+            item["DependenteId"] = 0;
+        } else {
+            item["sequencialDependente"] = +item["sequencialDependente"];
+        }
+
+        if (item["DependentePrincipal"]) {
+            item["descricaoDependentePrincipal"] = "Sim"
+        } else {
+            item["descricaoDependentePrincipal"] = "Não"
+        }
+
+        if (item["DependenteWhatsApp"]) {
+            item["descricaoDependenteWhatsApp"] = "Sim"
+        } else {
+            item["descricaoDependenteWhatsApp"] = "Não"
+        }
+
+        // linha de sinalização dos if e else 
+
+        var index = -1;
+        $.each(jsonDependenteArray, function(i, obj) {
+            if (+$('#sequencialDependente').val() === obj.sequencialDependente) {
+                index = i;
+                return false;
+            }
+        });
+
+        if (index >= 0)
+            jsonDependenteArray.splice(index, 1, item);
+        else
+            jsonDependenteArray.push(item);
+
+        $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
+
+        fillTableDependente();
+        clearFormDependente();
+    }
+
+
     function addEmail() {
 
         var email = $("#email").val();
@@ -834,6 +893,12 @@ include("inc/scripts.php");
         $("#telefonePrincipal").prop('checked', false);
         $("#telefoneWhatsApp").prop('checked', false);
     }
+    
+    function clearFormDependente() {
+        $("#dependente").val('');
+        $("#sequencialDependente").val('');
+        $("#dependentePrincipal").prop('checked', false);
+    }
 
 
 
@@ -841,6 +906,12 @@ include("inc/scripts.php");
         $("#email").val('');
         $("#sequencialEmail").val('');
         $("#emailPrincipal").prop('checked', false);
+    }
+    
+    function clearFormDependente() {
+        $("#dependente").val('');
+        $("#sequencialDependente").val('');
+        $("#dependentePrincipal").prop('checked', false);
     }
 
     //================================================================================== EXCLUIR EMAIL =============================================================================================
@@ -895,6 +966,29 @@ include("inc/scripts.php");
             } else {
                 item['telefoneWhatsApp'] = false;
                 ($('#telefoneWhatsApp').prop('checked', false));
+            }
+        }
+    }
+    
+    function carregaDependente(sequencialDependente) {
+        var arr = jQuery.grep(jsonDependenteArray, function(item, i) {
+            return (item.sequencialDependente === sequencialDependente);
+        });
+        if (arr.length > 0) {
+            var item = arr[0];
+
+            $("#dependente").val(item.dependente);
+            $("#sequencialDependente").val(item.sequencialDependente);
+            $("#dependentePrincipal").val(item.dependentePrincipal);
+            $("#dependenteWhatsApp").val(item.dependenteWhatsApp);
+
+            if (item.dependentePrincipal == 1) {
+                $('#dependentePrincipal').prop('checked', true);
+                item["dependentePrincipal"] = true;
+
+            } else {
+                item['dependentePrincipal'] = false;
+                ($('#dependentePrincipal').prop('checked', false));
             }
         }
     }
