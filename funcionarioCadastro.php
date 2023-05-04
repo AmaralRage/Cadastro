@@ -429,6 +429,7 @@ include("inc/scripts.php");
 
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
         jsonEmailArray = JSON.parse($("#jsonEmail").val());
+        jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
 
         carregaPagina();
 
