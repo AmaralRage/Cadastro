@@ -268,7 +268,7 @@ include("inc/nav.php");
                                     <!-- ACCORDION ACIMA -->
 
                                     <!--ACCORDION CEP ABAIXO -->
-
+                                    
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
@@ -329,47 +329,134 @@ include("inc/nav.php");
                                                                 </section>
                                                             </div>
                                                         </div>
-
-
-
-
-
-
                                                     </fieldset>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
+                                                                        <!--accordion de Dependentes-->
 
-                                        <!-- FOOTER ABAIXO -->
-
-                                        <footer>
-                                            <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                                <span class="fa fa-trash"></span>
-                                            </button>
-                                            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
-                                                <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-                                                    <span id="ui-id-2" class="ui-dialog-title">
-                                                    </span>
+                                    <div class="panel-body no-padding">
+                                        <div class="panel-group smart-accordion-default" id="accordion">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependentes" class="" id="accordionDependentes">
+                                                            <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                            <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                            Dependentes
+                                                        </a>
+                                                    </h4>
                                                 </div>
-                                                <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
-                                                    <p>CONFIRMA A EXCLUSÃO ? </p>
-                                                </div>
-                                                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                                                    <div class="ui-dialog-buttonset">
+                                                <div id="collapseDependentes" class="panel-collapse collapse in">
+                                                    <div class="panel-body no-padding">
+                                                        <fieldset>
+                                                            <input id="jsonDependentes" name="jsonDependentes" type="hidden" value="[]">
+                                                            <div id="formDependentes" class="col-sm-10 required">
+                                                                <input id="descricaoDependentes" type="hidden" value="">
+                                                                <input id="sequencialDependentes" type="hidden" value="">
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <section class="col col-3">
+                                                                            <label class="label">Nome do Dependente:</label>
+                                                                            <label class="input">
+                                                                                <input id="dependente" maxlength="255" name="dependente" class="required" value="">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2">
+                                                                            <label class="label">CPF:</label>
+                                                                            <label class="input"><i class="icon-prepend fa fa-user"></i>
+                                                                                <input id="cpfDependente" name="cpf" class="required cpf-mask" type="text" value="" placeholder="XXX.XXX.XXX-XX">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2">
+                                                                            <label class="label">Data de Nascimento:</label>
+                                                                            <label class="input">
+                                                                                <input id="dataNascimentoDependente" type="text" class="datepicker required" data-dateformat="dd/mm/yy" value="" placeholder="XX/XX/XXXX">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2 col-auto">
+                                                                            <label class="label">Tipo de Dependente:</label>
+                                                                            <label class="select">
+                                                                                <select id="tipoDependente" class="required">
+                                                                                    <?php
+                                                                                    $reposit = new reposit();
+                                                                                    $sql = "SELECT codigo, descricao FROM dbo.dependentes where dependenteAtivo = 1 ORDER BY codigo";
+                                                                                    $result = $reposit->RunQuery($sql);
+                                                                                    foreach ($result as $row) {
+                                                                                        $codigo = $row['codigo'];
+                                                                                        $descricao = $row['descricao'];
+                                                                                        echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                                    }
+                                                                                    ?>
+                                                                                </select><i></i>
+                                                                            </label>
+                                                                        </section>
+
+                                                                        <section class="col col-md-3">
+                                                                            <label class="label">&nbsp;</label>
+                                                                            <button id="btnAddDependente" type="button" class="btn btn-primary">
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </button>
+                                                                            <button id="btnRemoverDependente" type="button" class="btn btn-danger">
+                                                                                <i class="fa fa-minus"></i>
+                                                                            </button>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-responsive" style="min-height: 115px;  border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                                    <table id="tableDependentes" class="table table-bordered table-striped table-condensed table-hover dataTable">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th></th>
+                                                                                <th class="text-left">Nome</th>
+                                                                                <th class="text-left">CPF</th>
+                                                                                <th class="text-left">Data de Nascimento</th>
+                                                                                <th class="text-left">Tipo</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                                <span class="fa fa-floppy-o"></span>
-                                            </button>
-                                            <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
-                                                <span class="fa fa-file-o"></span>
-                                            </button>
-                                            <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                                <span class="fa fa-backward "></span>
-                                            </button>
-                                        </footer>
+                                        </div>
+                                    </div>
+
+                                    <!-- FOOTER ABAIXO -->
+
+                                    <footer>
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                            <span class="fa fa-trash"></span>
+                                        </button>
+                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                                <span id="ui-id-2" class="ui-dialog-title">
+                                                </span>
+                                            </div>
+                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
+                                                <p>CONFIRMA A EXCLUSÃO ? </p>
+                                            </div>
+                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                                <div class="ui-dialog-buttonset">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                            <span class="fa fa-floppy-o"></span>
+                                        </button>
+                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                            <span class="fa fa-file-o"></span>
+                                        </button>
+                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
+                                            <span class="fa fa-backward "></span>
+                                        </button>
+                                    </footer>
                                 </form>
                             </div>
                         </div>
@@ -429,7 +516,7 @@ include("inc/scripts.php");
 
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
         jsonEmailArray = JSON.parse($("#jsonEmail").val());
-        jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
+        // jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
 
         carregaPagina();
 
@@ -549,11 +636,11 @@ include("inc/scripts.php");
             if (validaTelefone())
                 addTelefone();
         });
-        
+
         $("#btnRemoverTelefone").on("click", function() {
             excluiTelefoneTabela();
         });
-        
+
         $("#btnAddEmail").on("click", function() {
             if (validaEmail())
                 addEmail();
@@ -564,14 +651,14 @@ include("inc/scripts.php");
         });
     });
 
-        $("#btnAddDependente").on("click", function() {
-            if (validaDependente())
-                addDependente();
-        });
+    $("#btnAddDependente").on("click", function() {
+        if (validaDependente())
+            addDependente();
+    });
 
-        $("#btnRemoverDependente").on("click", function() {
-            excluiDependenteTabela();
-        });
+    $("#btnRemoverDependente").on("click", function() {
+        excluiDependenteTabela();
+    });
 
 
 
@@ -905,7 +992,7 @@ include("inc/scripts.php");
         $("#telefonePrincipal").prop('checked', false);
         $("#telefoneWhatsApp").prop('checked', false);
     }
-    
+
     function clearFormDependente() {
         $("#dependente").val('');
         $("#sequencialDependente").val('');
@@ -940,7 +1027,7 @@ include("inc/scripts.php");
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
-    
+
     function excluiDependenteTabela() {
         var arrSequencial = [];
         $('#tableDependente input[type=checkbox]:checked').each(function() {
@@ -993,7 +1080,7 @@ include("inc/scripts.php");
             }
         }
     }
-    
+
     function carregaDependente(sequencialDependente) {
         var arr = jQuery.grep(jsonDependenteArray, function(item, i) {
             return (item.sequencialDependente === sequencialDependente);
@@ -1210,21 +1297,21 @@ include("inc/scripts.php");
         }
 
         gravaFuncionario(id, ativo,
-         nome,
-         cpf, 
-         rg, 
-         genero, 
-         estadoCivil, 
-         dataNascimento, 
-         cep, 
-         logradouro, 
-         bairro, 
-         numero, 
-         complemento, 
-         uf, 
-         cidade, 
-         jsonTelefoneArray, 
-         jsonEmailArray, 
-         jsonDependenteArray);
+            nome,
+            cpf,
+            rg,
+            genero,
+            estadoCivil,
+            dataNascimento,
+            cep,
+            logradouro,
+            bairro,
+            numero,
+            complemento,
+            uf,
+            cidade,
+            jsonTelefoneArray,
+            jsonEmailArray,
+            jsonDependenteArray);
     }
 </script>
