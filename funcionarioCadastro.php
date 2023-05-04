@@ -386,8 +386,8 @@ include("inc/nav.php");
                                                                                     $result = $reposit->RunQuery($sql);
                                                                                     foreach ($result as $row) {
                                                                                         $codigo = $row['codigo'];
-                                                                                        $descricao = $row['descricao'];
-                                                                                        echo '<option value=' . $codigo . '>' . $descricao . '</option>';
+                                                                                        $descricao = $row['tipoDependente'];
+                                                                                        echo '<option value=' . $codigo . '>' . $tipoDependente . '</option>';
                                                                                     }
                                                                                     ?>
                                                                                 </select><i></i>
