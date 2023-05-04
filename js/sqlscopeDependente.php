@@ -27,7 +27,7 @@ function gravar()
     $codigo = 0;
     $ativo = (int)$_POST['ativo'];
 
-    $sql = "dbo.Genero_Atualiza 
+    $sql = "dbo.dependentes_Atualiza 
 
     '$codigo'
     ,'$descricao'

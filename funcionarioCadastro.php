@@ -268,74 +268,74 @@ include("inc/nav.php");
                                     <!-- ACCORDION ACIMA -->
 
                                     <!--ACCORDION CEP ABAIXO -->
-                                    
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseEndereco" class="" id="accordionEndereco">
-                                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                    <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                    <div style="margin-left: 15px;">Endereço</div>
-                                                </a>
-                                            </h4>
-                                            <div id="collapseEndereco" class="panel-collapse collapse">
-                                                <div class="panel-body no-padding">
-                                                    <fieldset>
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <section class="col col-2">
-                                                                    <label class="label">CEP</label>
-                                                                    <label class="input">
-                                                                        <input id="cep" name="cep" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
+                                    <div class="panel-group smart-accordion-default" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEndereco" class="" id="accordionEndereco">
+                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                        Endereço
+                                                    </a>
+                                                </h4>
+                                                <div id="collapseEndereco" class="panel-collapse collapse">
+                                                    <div class="panel-body no-padding">
+                                                        <fieldset>
+                                                            <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-2">
-                                                                        <label class="label">Logradouro</label>
+                                                                        <label class="label">CEP</label>
                                                                         <label class="input">
-                                                                            <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                            <input id="cep" name="cep" type="text" class="form-control required" value="">
+                                                                        </label>
+                                                                    </section>
+                                                                    <div class="row">
+                                                                        <section class="col col-2">
+                                                                            <label class="label">Logradouro</label>
+                                                                            <label class="input">
+                                                                                <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2">
+                                                                            <label class="label">Bairro</label>
+                                                                            <label class="input">
+                                                                                <input id="bairro" name="bairro" type="text" class="form-control required" value="">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2">
+                                                                            <label class="label">Número</label>
+                                                                            <label class="input">
+                                                                                <input id="numero" name="numero" type="text" class="form-control required" value="">
+                                                                            </label>
+                                                                        </section>
+                                                                        <section class="col col-2">
+                                                                            <label class="label">Complemento</label>
+                                                                            <label class="input">
+                                                                                <input id="complemento" name="complemento" type="text" value="">
+                                                                            </label>
+                                                                        </section>
+                                                                    </div>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">UF</label>
+                                                                        <label class="input">
+                                                                            <input id="uf" name="uf" type="text" class="form-control required" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
-                                                                        <label class="label">Bairro</label>
+                                                                        <label class="label">Cidade</label>
                                                                         <label class="input">
-                                                                            <input id="bairro" name="bairro" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Número</label>
-                                                                        <label class="input">
-                                                                            <input id="numero" name="numero" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">Complemento</label>
-                                                                        <label class="input">
-                                                                            <input id="complemento" name="complemento" type="text" value="">
+                                                                            <input id="cidade" name="cidade" type="text" class="form-control required" value="">
                                                                         </label>
                                                                     </section>
                                                                 </div>
-                                                                <section class="col col-2">
-                                                                    <label class="label">UF</label>
-                                                                    <label class="input">
-                                                                        <input id="uf" name="uf" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
-                                                                <section class="col col-2">
-                                                                    <label class="label">Cidade</label>
-                                                                    <label class="input">
-                                                                        <input id="cidade" name="cidade" type="text" class="form-control required" value="">
-                                                                    </label>
-                                                                </section>
                                                             </div>
-                                                        </div>
-                                                    </fieldset>
+                                                        </fieldset>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                                                        <!--accordion de Dependentes-->
+                                    <!--accordion de Dependentes-->
 
                                     <div class="panel-body no-padding">
                                         <div class="panel-group smart-accordion-default" id="accordion">
@@ -380,13 +380,14 @@ include("inc/nav.php");
                                                                             <label class="label">Tipo de Dependente:</label>
                                                                             <label class="select">
                                                                                 <select id="tipoDependente" class="required">
+                                                                                <option value="hidden"></option>
                                                                                     <?php
                                                                                     $reposit = new reposit();
-                                                                                    $sql = "SELECT codigo, descricao FROM dbo.tipoDependentes where dependenteAtivo = 1 ORDER BY codigo";
+                                                                                    $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE dependenteAtivo = 1";
                                                                                     $result = $reposit->RunQuery($sql);
                                                                                     foreach ($result as $row) {
                                                                                         $codigo = $row['codigo'];
-                                                                                        $descricao = $row['tipoDependente'];
+                                                                                        $tipoDependente = $row['tipoDependente'];
                                                                                         echo '<option value=' . $codigo . '>' . $tipoDependente . '</option>';
                                                                                     }
                                                                                     ?>
@@ -516,7 +517,7 @@ include("inc/scripts.php");
 
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
         jsonEmailArray = JSON.parse($("#jsonEmail").val());
-        // jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
+        jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
 
         carregaPagina();
 
@@ -707,7 +708,62 @@ include("inc/scripts.php");
         return true;
     }
 
-    //================================================================================= VALIDA TELEFONE =============================================================================================
+    //================================================================================= VALIDA DEPENDENTE =============================================================================================
+
+    function validaDependente() {
+        var achouDependente = false;
+        var achouDependentePrincipal = false;
+        var dependentePrincipal = '';
+
+        if ($('#dependentePrincipal').is(':checked')) {
+            dependentePrincipal = true;
+        } else {
+            dependentePrincipal = false;
+        }
+
+        var sequencial = +$('#sequencialDependente').val();
+        var dependente = $('#dependente').val();
+
+        for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
+            if (dependentePrincipal == true) {
+                if ((jsonDependenteArray[i].dependentePrincipal == dependentePrincipal) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependentePrincipal = true;
+                    break;
+                }
+            }
+            if (dependente !== "") {
+                if ((jsonDependenteArray[i].dependente === dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependente = true;
+                    break;
+                }
+            }
+        }
+        if (achouDependente === true) {
+            smartAlert("Erro", "Este número já está na lista.", "error");
+            clearFormDependente();
+            return false;
+        }
+        if (achouDependentePrincipal === true) {
+            smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
+            clearFormDependente();
+            return false;
+        }
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //=================================================================================== VALIDA EMAIL ====================================================================================================
 

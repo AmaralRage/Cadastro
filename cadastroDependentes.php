@@ -62,7 +62,7 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                        <section class="col col-2">
+                                                            <section class="col col-2">
                                                                 <label class="label">Descrição de Dependente</label>
                                                                 <label class="input">
                                                                     <input id="tipoDependente" maxlength="255" name="tipoDependente" class="required" type="text" value="">
@@ -85,35 +85,35 @@ include("inc/nav.php");
                                             </div>
                                         </div>
                                     </div>
-                                                    <!-- FOOTER ABAIXO -->
+                                    <!-- FOOTER ABAIXO -->
 
-                                                    <footer>
-                                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                                            <span class="fa fa-trash"></span>
-                                                        </button>
-                                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
-                                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-                                                                <span id="ui-id-2" class="ui-dialog-title">
-                                                                </span>
-                                                            </div>
-                                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
-                                                                <p>CONFIRMA A EXCLUSÃO ? </p>
-                                                            </div>
-                                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                                                                <div class="ui-dialog-buttonset">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                                            <span class="fa fa-floppy-o"></span>
-                                                        </button>
-                                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
-                                                            <span class="fa fa-file-o"></span>
-                                                        </button>
-                                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                                            <span class="fa fa-backward "></span>
-                                                        </button>
-                                                    </footer>
+                                    <footer>
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                            <span class="fa fa-trash"></span>
+                                        </button>
+                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                                <span id="ui-id-2" class="ui-dialog-title">
+                                                </span>
+                                            </div>
+                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
+                                                <p>CONFIRMA A EXCLUSÃO ? </p>
+                                            </div>
+                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                                <div class="ui-dialog-buttonset">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                            <span class="fa fa-floppy-o">   </span>
+                                        </button>
+                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                            <span class="fa fa-file-o"></span>
+                                        </button>
+                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
+                                            <span class="fa fa-backward "></span>
+                                        </button>
+                                    </footer>
                                 </form>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ include("inc/footer.php");
 include("inc/scripts.php");
 ?>
 
-<script src="<?php echo ASSETS_URL; ?>/js/businessFuncionario.js" type="text/javascript"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/businessDependente.js" type="text/javascript"></script>
 
 <!-- PAGE RELATED PLUGIN(S) 
 <script src="..."></script>-->
@@ -170,10 +170,6 @@ include("inc/scripts.php");
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
-
-        jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
-        jsonEmailArray = JSON.parse($("#jsonEmail").val());
-
         carregaPagina();
 
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
@@ -336,7 +332,7 @@ include("inc/scripts.php");
                             var ativo = piece[1];
                             var dependente = piece[2];
                             $("#dependente").val(dependente);
-        
+
                             return;
 
                         }
@@ -369,10 +365,10 @@ include("inc/scripts.php");
 
     //CONTINUAR A PARTIR DAQUI
 
-   
+
 
     function gravar() {
-            $("#btnGravar").attr('disabled', true);
+        $("#btnGravar").attr('disabled', true);
         var tipoDependente = $("#tipoDependente").val();
         var ativo = 1;
         var codigo = 0;
@@ -386,6 +382,6 @@ include("inc/scripts.php");
             $("#tipoDependente").focus();
             return;
         }
-        gravaFuncionario(codigo, tipoDependente, ativo);
+        gravaDependente(codigo, tipoDependente, ativo);
     }
 </script>
