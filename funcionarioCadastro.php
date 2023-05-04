@@ -382,7 +382,7 @@ include("inc/nav.php");
                                                                                 <select id="tipoDependente" class="required">
                                                                                     <?php
                                                                                     $reposit = new reposit();
-                                                                                    $sql = "SELECT codigo, descricao FROM dbo.dependentes where dependenteAtivo = 1 ORDER BY codigo";
+                                                                                    $sql = "SELECT codigo, descricao FROM dbo.tipoDependentes where dependenteAtivo = 1 ORDER BY codigo";
                                                                                     $result = $reposit->RunQuery($sql);
                                                                                     foreach ($result as $row) {
                                                                                         $codigo = $row['codigo'];
