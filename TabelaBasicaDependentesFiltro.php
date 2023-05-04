@@ -13,7 +13,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Gênero";
+$page_title = "Dependentes";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -48,7 +48,7 @@ include("inc/nav.php");
                     <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
                         <header>
                             <span class="widget-icon"><i class="fa fa-cog"></i></span>
-                            <h2>Gênero</h2>
+                            <h2>Dependentes</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">
@@ -77,14 +77,14 @@ include("inc/nav.php");
                                                                     </select><i></i>
                                                             </section>
                                                             <section class="col col-2 col-auto">
-                                                                <label class="label">Gênero</label>
+                                                                <label class="label">Dependentes</label>
                                                                 <label class="select">
-                                                                    <select id="descricao" name="genero">
+                                                                    <select id="tipoDependente" name="tipoDependente">
                                                                     <option value="" selected></option>
                                                                         <?php
                                                                         $reposit = new reposit();
                                                                         $sql = "SELECT codigo, descricao
-                                                                        FROM dbo.genero where generoAtivo = 1 ORDER BY codigo";
+                                                                        FROM dbo.dependentes where dependentesAtivo = 1 ORDER BY codigo";
                                                                         $result = $reposit->RunQuery($sql);
                                                                         foreach ($result as $row) {
                                                                             $codigo = $row['codigo'];

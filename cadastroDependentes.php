@@ -62,31 +62,10 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                            <section class="col col-2">
-                                                                <label class="label">Dependentes</label>
-                                                                <label class="select">
-                                                                    <select id="descricao" name="descricao" class="required">
-                                                                        <option value="0"></option>
-                                                                        <?php
-                                                                        $reposit = new reposit();
-                                                                        $sql = "SELECT codigo,descricao, dependentesAtivo
-                                                                        FROM dbo.genero where dependentesAtivo = 1 ORDER BY codigo";
-                                                                        $result = $reposit->RunQuery($sql);
-                                                                        foreach ($result as $row) {
-                                                                            $codigo = $row['codigo'];
-                                                                            $descricao = $row['descricao'];
-                                                                            echo '<option value=' . $codigo . '>' . $descricao . '</option>';
-                                                                        }
-                                                                        ?>
-                                                                    </select><i></i>
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                    </fieldset>
-                                                    <!-- <section class="col col-2">
-                                                                <label class="label">Dependentes</label>
+                                                        <section class="col col-2">
+                                                                <label class="label">Descrição de Dependente</label>
                                                                 <label class="input">
-                                                                    <input id="dependentes" maxlength="255" name="dependentes" class="required" type="text" value="">
+                                                                    <input id="tipoDependente" maxlength="255" name="tipoDependente" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -96,8 +75,16 @@ include("inc/nav.php");
                                                                     Ativo
                                                                 </label>
                                                             </section>
-                                                        </div> -->
-
+                                                        </div>
+                                                        <div class="row">
+                                                        </div>
+                                                        <div class="row">
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                                     <!-- FOOTER ABAIXO -->
 
                                                     <footer>
