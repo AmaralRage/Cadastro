@@ -48,7 +48,7 @@ function recupera(id, callback) {
     });
 }
 
-function excluirGenero(id) {
+function excluirDependente(id) {
     $.ajax({
         url: 'js/sqlscopeDependente.php', //caminho do arquivo a ser executado
         dataType: 'html', //tipo do retorno
