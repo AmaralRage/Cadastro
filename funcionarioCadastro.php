@@ -352,7 +352,7 @@ include("inc/nav.php");
                                                 <div id="collapseDependentes" class="panel-collapse collapse in">
                                                     <div class="panel-body no-padding">
                                                         <fieldset>
-                                                            <input id="jsonDependentes" name="jsonDependentes" type="hidden" value="[]">
+                                                            <input id="jsonDependente" name="jsonDependente" type="hidden" value="[]">
                                                             <div id="formDependentes" class="col-sm-10 required">
                                                                 <input id="descricaoDependentes" type="hidden" value="">
                                                                 <input id="sequencialDependentes" type="hidden" value="">
@@ -517,7 +517,7 @@ include("inc/scripts.php");
 
         jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
         jsonEmailArray = JSON.parse($("#jsonEmail").val());
-        jsonDependentesArray = JSON.parse($("#jsonDependentes").val());
+        jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
         carregaPagina();
 
@@ -1027,6 +1027,21 @@ include("inc/scripts.php");
         }
     }
 
+    function fillTableDependente() {
+        $("#tableDependente tbody").empty();
+        for (var i = 0; i < jsonDependenteArray.length; i++) {
+            var row = $('<tr />');
+
+            $("#tableDependente tbody").append(row);
+            row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonDependenteArray[i].sequencialDependente + '"><i></i></label></td>'));
+
+
+            row.append($('<td class="text-left" onclick="carregaDependente(' + jsonDependenteArray[i].sequencialDependente + ');">' + jsonDependenteArray[i].Dependente + '</td>'));
+            // row.append($('<td class="text-left" >' + jsonDependenteArray[i].Dependente + '</td>'));
+            row.append($('<td class="text-left" >' + jsonDependenteArray[i].descricaoDependentePrincipal + '</td>'));
+        }
+    }
+
     function clearFormTelefone() {
         $("#telefone").val('');
         $("#sequencialTelefone").val('');
@@ -1039,8 +1054,6 @@ include("inc/scripts.php");
         $("#sequencialDependente").val('');
         $("#dependentePrincipal").prop('checked', false);
     }
-
-
 
     function clearFormEmail() {
         $("#email").val('');
@@ -1132,7 +1145,6 @@ include("inc/scripts.php");
             $("#dependente").val(item.dependente);
             $("#sequencialDependente").val(item.sequencialDependente);
             $("#dependentePrincipal").val(item.dependentePrincipal);
-            $("#dependenteWhatsApp").val(item.dependenteWhatsApp);
 
             if (item.dependentePrincipal == 1) {
                 $('#dependentePrincipal').prop('checked', true);
