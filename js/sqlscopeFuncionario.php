@@ -151,16 +151,11 @@ function grava()
     $xmlDependente = new \FluidXml\FluidXml('ArrayOfDependente', ['encoding' => '']);
     foreach ($arrayDependente as $item) {
 
-        $DependentePrincipal = $item['DependentePrincipal'];
-        if ($DependentePrincipal == 'true') {
-            $DependentePrincipal = '1';
-        } else {
-            $DependentePrincipal = '0';
-        }
-
         $xmlDependente->addChild('Dependente', true) //nome da tabela
-            ->add('Dependente', $item['Dependente'])
-            ->add('DependentePrincipal', $DependentePrincipal)
+            ->add('dependente', $item['Dependente'])
+            ->add('cpfDependente', $item['cpfDependente'])
+            ->add('dataNascimentoDependente', $item['dataNascimentoDependentes'])
+            ->add('tipoDependente', $item['tipoDependente'])
             ->add('sequencialDependente', $item['sequencialDependente']);
     }
 

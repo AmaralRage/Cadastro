@@ -367,13 +367,14 @@ include("inc/nav.php");
                                                                         <section class="col col-2">
                                                                             <label class="label">CPF:</label>
                                                                             <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                                <input id="cpfDependente" name="cpf" class="required cpf-mask" type="text" value="" placeholder="XXX.XXX.XXX-XX">
+                                                                                <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="" placeholder="XXX.XXX.XXX-XX">
                                                                             </label>
                                                                         </section>
                                                                         <section class="col col-2">
                                                                             <label class="label">Data de Nascimento:</label>
                                                                             <label class="input">
-                                                                                <input id="dataNascimentoDependente" type="text" class="datepicker required" data-dateformat="dd/mm/yy" value="" placeholder="XX/XX/XXXX">
+                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa"
+                                                                             data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
                                                                             </label>
                                                                         </section>
                                                                         <section class="col col-2 col-auto">
@@ -627,8 +628,11 @@ include("inc/scripts.php");
         //MASKS
 
         $("#cpf").mask('999.999.999-99');
+        $("#cpfDependente").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
         $("#telefone").mask('(99) 99999-9999');
+        $("#dataNascimentoDependnete").mask('99/99/9999');
+
         // $("#email").mask('');
 
         // JSON ABAIXO
@@ -653,8 +657,7 @@ include("inc/scripts.php");
     });
 
     $("#btnAddDependente").on("click", function() {
-        if (validaDependente())
-            addDependente();
+        addDependente();
     });
 
     $("#btnRemoverDependente").on("click", function() {
@@ -710,46 +713,46 @@ include("inc/scripts.php");
 
     //================================================================================= VALIDA DEPENDENTE =============================================================================================
 
-    function validaDependente() {
-        var achouDependente = false;
-        var achouDependentePrincipal = false;
-        var dependentePrincipal = '';
+    // function validaDependente() {
+    //     var achouDependente = false;
+    //     var achouDependentePrincipal = false;
+    //     var dependentePrincipal = '';
 
-        if ($('#dependentePrincipal').is(':checked')) {
-            dependentePrincipal = true;
-        } else {
-            dependentePrincipal = false;
-        }
+    //     if ($('#dependentePrincipal').is(':checked')) {
+    //         dependente = true;
+    //     } else {
+    //         dependente = false;
+    //     }
 
-        var sequencial = +$('#sequencialDependente').val();
-        var dependente = $('#dependente').val();
+    //     var sequencial = +$('#sequencialDependente').val();
+    //     var dependente = $('#dependente').val();
 
-        for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
-            if (dependentePrincipal == true) {
-                if ((jsonDependenteArray[i].dependentePrincipal == dependentePrincipal) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
-                    achouDependentePrincipal = true;
-                    break;
-                }
-            }
-            if (dependente !== "") {
-                if ((jsonDependenteArray[i].dependente === dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
-                    achouDependente = true;
-                    break;
-                }
-            }
-        }
-        if (achouDependente === true) {
-            smartAlert("Erro", "Este Dependente já está na lista.", "error");
-            clearFormDependente();
-            return false;
-        }
-        if (achouDependentePrincipal === true) {
-            smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
-            clearFormDependente();
-            return false;
-        }
-        return true;
-    }
+    //     for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
+    //         if (dependente == true) {
+    //             if ((jsonDependenteArray[i].dependente == dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+    //                 achouDependente = true;
+    //                 break;
+    //             }
+    //         }
+    //         if (dependente !== "") {
+    //             if ((jsonDependenteArray[i].dependente === dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+    //                 achouDependente = true;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     if (achouDependente === true) {
+    //         smartAlert("Erro", "Este Dependente já está na lista.", "error");
+    //         clearFormDependente();
+    //         return false;
+    //     }
+    //     if (achouDependentePrincipal === true) {
+    //         smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
+    //         clearFormDependente();
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     //=================================================================================== VALIDA EMAIL ====================================================================================================
 
@@ -885,15 +888,8 @@ include("inc/scripts.php");
                     return o.sequencialDependente;
                 })) + 1;
             }
-            item["DependenteId"] = 0;
         } else {
             item["sequencialDependente"] = +item["sequencialDependente"];
-        }
-
-        if (item["DependentePrincipal"]) {
-            item["descricaoDependentePrincipal"] = "Sim"
-        } else {
-            item["descricaoDependentePrincipal"] = "Não"
         }
 
         // linha de sinalização dos if e else 
@@ -1031,17 +1027,20 @@ include("inc/scripts.php");
     }
 
     function fillTableDependente() {
-        $("#tableDependente tbody").empty();
+        $("#tableDependentes tbody").empty();
         for (var i = 0; i < jsonDependenteArray.length; i++) {
             var row = $('<tr />');
 
-            $("#tableDependente tbody").append(row);
+            $("#tableDependentes tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonDependenteArray[i].sequencialDependente + '"><i></i></label></td>'));
 
 
-            row.append($('<td class="text-left" onclick="carregaDependente(' + jsonDependenteArray[i].sequencialDependente + ');">' + jsonDependenteArray[i].Dependente + '</td>'));
+            row.append($('<td class="text-left" onclick="carregaDependente(' + jsonDependenteArray[i].sequencialDependente + ');">' + jsonDependenteArray[i].dependente + '</td>'));
             // row.append($('<td class="text-left" >' + jsonDependenteArray[i].Dependente + '</td>'));
-            row.append($('<td class="text-left" >' + jsonDependenteArray[i].descricaoDependentePrincipal + '</td>'));
+            row.append($('<td class="text-left" >' + jsonDependenteArray[i].dependente + '</td>'));
+            row.append($('<td class="text-left" >' + jsonDependenteArray[i].cpfDependente + '</td>'));
+            row.append($('<td class="text-left" >' + jsonDependenteArray[i].dataNascimentoDependente + '</td>'));
+            row.append($('<td class="text-left" >' + jsonDependenteArray[i].tipoDependente + '</td>'));
         }
     }
 
@@ -1102,7 +1101,7 @@ include("inc/scripts.php");
                 }
             }
             $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
-            fillTableDependente();
+            fillTableDependentes();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
