@@ -102,6 +102,24 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
+                                                                <label class="label">Bairro</label>
+                                                                <label class="input">
+                                                                    <input id="bairro" name="bairro" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">RG</label>
+                                                                <label class="input">
+                                                                    <input id="rg" name="rg" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">RG</label>
+                                                                <label class="input">
+                                                                    <input id="rg" name="rg" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
                                                                 <label class="label" for="ativo">Ativo</label>
                                                                 <label class="select">
                                                                     <select id="ativo" name="ativo">

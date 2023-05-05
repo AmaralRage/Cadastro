@@ -1036,7 +1036,6 @@ include("inc/scripts.php");
 
             row.append($('<td class="text-left" onclick="carregaDependente(' + jsonDependenteArray[i].sequencialDependente + ');">' + jsonDependenteArray[i].dependente + '</td>'));
             // row.append($('<td class="text-left" >' + jsonDependenteArray[i].Dependente + '</td>'));
-            row.append($('<td class="text-left" >' + jsonDependenteArray[i].dependente + '</td>'));
             row.append($('<td class="text-left" >' + jsonDependenteArray[i].cpfDependente + '</td>'));
             row.append($('<td class="text-left" >' + jsonDependenteArray[i].dataNascimentoDependente + '</td>'));
             row.append($('<td class="text-left" >' + jsonDependenteArray[i].tipoDependente + '</td>'));
@@ -1057,7 +1056,6 @@ include("inc/scripts.php");
         $("#dataNascimentoDependente").val('');
         $("#tipoDependente").val('');
         $("#sequencialDependente").val('');
-        $("#dependentePrincipal").prop('checked', false);
     }
 
     function clearFormEmail() {
