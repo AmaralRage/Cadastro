@@ -335,8 +335,9 @@ include("inc/nav.php");
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <!--accordion de Dependentes-->
-
+                                    
                                     <div class="panel-body no-padding">
                                         <div class="panel-group smart-accordion-default" id="accordion">
                                             <div class="panel panel-default">
@@ -1090,7 +1091,7 @@ include("inc/scripts.php");
 
     function excluiDependenteTabela() {
         var arrSequencial = [];
-        $('#tableDependente input[type=checkbox]:checked').each(function() {
+        $('#tableDependentes input[type=checkbox]:checked').each(function() {
             arrSequencial.push(parseInt($(this).val()));
         });
         if (arrSequencial.length > 0) {
@@ -1100,8 +1101,8 @@ include("inc/scripts.php");
                     jsonDependenteArray.splice(i, 1);
                 }
             }
-            $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
-            fillTableDependentes();
+            $("#jsonDependentes").val(JSON.stringify(jsonDependenteArray));
+            fillTableDependente();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
