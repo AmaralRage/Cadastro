@@ -349,13 +349,13 @@ include("inc/nav.php");
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <div id="collapseDependentes" class="panel-collapse collapse in">
+                                                <div id="collapseDependente" class="panel-collapse collapse in">
                                                     <div class="panel-body no-padding">
                                                         <fieldset>
                                                             <input id="jsonDependente" name="jsonDependente" type="hidden" value="[]">
-                                                            <div id="formDependentes" class="col-sm-10 required">
-                                                                <input id="descricaoDependentes" type="hidden" value="">
-                                                                <input id="sequencialDependentes" type="hidden" value="">
+                                                            <div id="formDependente" class="col-sm-10 required">
+                                                                <input id="descricaoDependente" type="hidden" value="">
+                                                                <input id="sequencialDependente" type="hidden" value="">
                                                                 <div class="form-group">
                                                                     <div class="row">
                                                                         <section class="col col-3">
@@ -380,7 +380,7 @@ include("inc/nav.php");
                                                                             <label class="label">Tipo de Dependente:</label>
                                                                             <label class="select">
                                                                                 <select id="tipoDependente" class="required">
-                                                                                <option value="hidden"></option>
+                                                                                    <option value="hidden"></option>
                                                                                     <?php
                                                                                     $reposit = new reposit();
                                                                                     $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE dependenteAtivo = 1";
@@ -739,7 +739,7 @@ include("inc/scripts.php");
             }
         }
         if (achouDependente === true) {
-            smartAlert("Erro", "Este número já está na lista.", "error");
+            smartAlert("Erro", "Este Dependente já está na lista.", "error");
             clearFormDependente();
             return false;
         }
@@ -861,6 +861,9 @@ include("inc/scripts.php");
     function addDependente() {
 
         var dependente = $("#dependente").val();
+        var cpfDependente = $("#cpfDependente").val();
+        var dataNascimentoDependente = $("#dataNascimentoDependente").val();
+        var tipoDependente = $("#tipoDependente").val();
         if (dependente === "") {
             smartAlert("Atenção", "Informe o Dependente !", "error");
             $("#dependente").focus();
@@ -871,6 +874,8 @@ include("inc/scripts.php");
             mode: 'combine',
             skipEmpty: false
         });
+
+        item["sequencialDependente"] = $("#sequencialDependente").val();
 
         if (item["sequencialDependente"] === '') {
             if (jsonDependenteArray.length === 0) {
@@ -893,6 +898,11 @@ include("inc/scripts.php");
 
         // linha de sinalização dos if e else 
 
+        item["dependente"] = $('#dependente').val()
+        item["cpfDependente"] = $('#cpfDependente').val()
+        item["dataNascimentoDependente"] = $('#dataNascimentoDependente').val()
+        item["tipoDependente"] = $('#tipoDependente').val()
+
         var index = -1;
         $.each(jsonDependenteArray, function(i, obj) {
             if (+$('#sequencialDependente').val() === obj.sequencialDependente) {
@@ -909,7 +919,6 @@ include("inc/scripts.php");
         $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
 
         fillTableDependente();
-        clearFormDependente();
     }
 
 
@@ -1044,7 +1053,11 @@ include("inc/scripts.php");
     }
 
     function clearFormDependente() {
+        $("#dependente").focus('');
         $("#dependente").val('');
+        $("#cpfDependente").val('');
+        $("#dataNascimentoDependente").val('');
+        $("#tipoDependente").val('');
         $("#sequencialDependente").val('');
         $("#dependentePrincipal").prop('checked', false);
     }
@@ -1137,8 +1150,9 @@ include("inc/scripts.php");
             var item = arr[0];
 
             $("#dependente").val(item.dependente);
+            $("#cpfDependente").val(item.cpfDependente);
+            $("#tipoDependente").val(item.tipoDependente);
             $("#sequencialDependente").val(item.sequencialDependente);
-            $("#dependentePrincipal").val(item.dependentePrincipal);
 
             if (item.dependentePrincipal == 1) {
                 $('#dependentePrincipal').prop('checked', true);
