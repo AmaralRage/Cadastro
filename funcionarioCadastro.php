@@ -335,9 +335,8 @@ include("inc/nav.php");
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <!--accordion de Dependentes-->
-                                    
+
                                     <div class="panel-body no-padding">
                                         <div class="panel-group smart-accordion-default" id="accordion">
                                             <div class="panel panel-default">
@@ -374,8 +373,7 @@ include("inc/nav.php");
                                                                         <section class="col col-2">
                                                                             <label class="label">Data de Nascimento:</label>
                                                                             <label class="input">
-                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa"
-                                                                             data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                                <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
                                                                             </label>
                                                                         </section>
                                                                         <section class="col col-2 col-auto">
