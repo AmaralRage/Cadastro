@@ -151,8 +151,8 @@ function grava()
     $xmlDependente = new \FluidXml\FluidXml('ArrayOfDependente', ['encoding' => '']);
     foreach ($arrayDependente as $item) {
 
-        $xmlDependente->addChild('Dependente', true) //nome da tabela
-            ->add('dependente', $item['Dependente'])
+        $xmlDependente->addChild('dependente', true) //nome da tabela
+            ->add('dependente', $item['dependente'])
             ->add('cpfDependente', $item['cpfDependente'])
             ->add('dataNascimentoDependente', $item['dataNascimentoDependentes'])
             ->add('tipoDependente', $item['tipoDependente'])

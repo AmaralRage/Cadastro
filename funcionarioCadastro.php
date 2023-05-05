@@ -142,6 +142,18 @@ include("inc/nav.php");
                                                                     <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
+                                                            <!-- <section class="col col-2">
+                                                                <label class="label">Primeiro Emprego</label>
+                                                                <label class="input">
+                                                                    <input id="primeiroEmprego" maxlength="255" class="required" name="primeiroEmprego" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-1">
+                                                                <label class="label">Pispasep</label>
+                                                                <label class="input">
+                                                                    <input id="pispasep" maxlength="255" class="readonly" name="pispasep" type="text" value="">
+                                                                </label>
+                                                            </section> -->
                                                         </div>
                                                     </fieldset>
                                                 </div>
@@ -367,7 +379,7 @@ include("inc/nav.php");
                                                                         <section class="col col-2">
                                                                             <label class="label">CPF:</label>
                                                                             <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                                <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="" placeholder="XXX.XXX.XXX-XX">
+                                                                                <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="">
                                                                             </label>
                                                                         </section>
                                                                         <section class="col col-2">
@@ -711,46 +723,46 @@ include("inc/scripts.php");
 
     //================================================================================= VALIDA DEPENDENTE =============================================================================================
 
-    // function validaDependente() {
-    //     var achouDependente = false;
-    //     var achouDependentePrincipal = false;
-    //     var dependentePrincipal = '';
+    function validaDependente() {
+        var achouDependente = false;
+        var achouDependentePrincipal = false;
+        var dependentePrincipal = '';
 
-    //     if ($('#dependentePrincipal').is(':checked')) {
-    //         dependente = true;
-    //     } else {
-    //         dependente = false;
-    //     }
+        if ($('#dependentePrincipal').is(':checked')) {
+            dependente = true;
+        } else {
+            dependente = false;
+        }
 
-    //     var sequencial = +$('#sequencialDependente').val();
-    //     var dependente = $('#dependente').val();
+        var sequencial = +$('#sequencialDependente').val();
+        var dependente = $('#dependente').val();
 
-    //     for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
-    //         if (dependente == true) {
-    //             if ((jsonDependenteArray[i].dependente == dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
-    //                 achouDependente = true;
-    //                 break;
-    //             }
-    //         }
-    //         if (dependente !== "") {
-    //             if ((jsonDependenteArray[i].dependente === dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
-    //                 achouDependente = true;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     if (achouDependente === true) {
-    //         smartAlert("Erro", "Este Dependente já está na lista.", "error");
-    //         clearFormDependente();
-    //         return false;
-    //     }
-    //     if (achouDependentePrincipal === true) {
-    //         smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
-    //         clearFormDependente();
-    //         return false;
-    //     }
-    //     return true;
-    // }
+        for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
+            if (dependente == true) {
+                if ((jsonDependenteArray[i].dependente == dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependente = true;
+                    break;
+                }
+            }
+            if (dependente !== "") {
+                if ((jsonDependenteArray[i].dependente === dependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependente = true;
+                    break;
+                }
+            }
+        }
+        if (achouDependente === true) {
+            smartAlert("Erro", "Este Dependente já está na lista.", "error");
+            clearFormDependente();
+            return false;
+        }
+        if (achouDependentePrincipal === true) {
+            smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
+            clearFormDependente();
+            return false;
+        }
+        return true;
+    }
 
     //=================================================================================== VALIDA EMAIL ====================================================================================================
 
@@ -1317,7 +1329,7 @@ include("inc/scripts.php");
         var uf = $("#uf").val();
         var cidade = $("#cidade").val();
         var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
-        var jsonEmailArray = JSON.parse($("#jsonEmailelefone").val());
+        var jsonEmailArray = JSON.parse($("#jsonEmail").val());
         var jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
         if (!nome) {
