@@ -891,12 +891,6 @@ include("inc/scripts.php");
             item["descricaoDependentePrincipal"] = "Não"
         }
 
-        if (item["DependenteWhatsApp"]) {
-            item["descricaoDependenteWhatsApp"] = "Sim"
-        } else {
-            item["descricaoDependenteWhatsApp"] = "Não"
-        }
-
         // linha de sinalização dos if e else 
 
         var index = -1;
