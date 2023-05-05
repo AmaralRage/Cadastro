@@ -102,21 +102,33 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
+                                                                <label class="label">CEP</label>
+                                                                <label class="input">
+                                                                    <input id="cep" name="cep" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Logradouro</label>
+                                                                <label class="input">
+                                                                    <input id="logradouro" name="logradouro" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
                                                                 <label class="label">Bairro</label>
                                                                 <label class="input">
                                                                     <input id="bairro" name="bairro" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">RG</label>
+                                                                <label class="label">UF</label>
                                                                 <label class="input">
-                                                                    <input id="rg" name="rg" type="text" value="">
+                                                                    <input id="uf" name="uf" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
-                                                                <label class="label">RG</label>
+                                                                <label class="label">Complemento</label>
                                                                 <label class="input">
-                                                                    <input id="rg" name="rg" type="text" value="">
+                                                                    <input id="complemento" name="complemento" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
