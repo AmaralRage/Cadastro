@@ -394,7 +394,6 @@ include("inc/nav.php");
                                                                                 </select><i></i>
                                                                             </label>
                                                                         </section>
-
                                                                         <section class="col col-md-3">
                                                                             <label class="label">&nbsp;</label>
                                                                             <button id="btnAddDependente" type="button" class="btn btn-primary">
@@ -630,7 +629,7 @@ include("inc/scripts.php");
         $("#cpfDependente").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
         $("#telefone").mask('(99) 99999-9999');
-        $("#dataNascimentoDependnete").mask('99/99/9999');
+        $("#dataNascimentoDependente").mask('99/99/9999');
 
         // $("#email").mask('');
 
