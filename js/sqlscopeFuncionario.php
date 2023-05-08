@@ -54,10 +54,10 @@ function grava()
     }
 
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf']; 
-    $rg = $_POST['rg']; 
+    $cpf = $_POST['cpf'];
+    $rg = $_POST['rg'];
     $genero = $_POST['genero'];
-    $dataNascimento = $_POST['dataNascimento']; 
+    $dataNascimento = $_POST['dataNascimento'];
     $estadoCivil = $_POST['estadoCivil'];
     $cep = $_POST['cep'];
     $logradouro = $_POST['logradouro'];
@@ -67,7 +67,7 @@ function grava()
     $uf = $_POST['uf'];
     $cidade = $_POST['cidade'];
 
-//=============================================================================================TELEFONE==================================================================================================
+    //=============================================================================================TELEFONE==================================================================================================
 
     $strArrayTelefone = $_POST['jsonTelefoneArray'];
 
@@ -105,9 +105,9 @@ function grava()
     }
 
     $xmlTelefone = $comum->formatarString($xmlTelefone);
-   
+
     //========================================================================================EMAIL============================================================================================================
-   
+
     $strArrayEmail = $_POST['jsonEmailArray'];
 
     // $strArrayEmail = json_decode($strArrayEmail, true);
@@ -134,9 +134,8 @@ function grava()
             ->add('emailPrincipal', $emailPrincipal)
             ->add('sequencialEmail', $item['sequencialEmail']);
     }
+    $xmlEmail = $comum->formatarString($xmlEmail);
 
-    // $xmlDependente = $comum->formatarString($xmlDependente);
-   
     $strArrayDependente = $_POST['jsonDependenteArray'];
 
     // $strArrayDependente = json_decode($strArrayDependente, true);
@@ -154,7 +153,7 @@ function grava()
         $xmlDependente->addChild('dependente', true) //nome da tabela
             ->add('dependente', $item['dependente'])
             ->add('cpfDependente', $item['cpfDependente'])
-            ->add('dataNascimentoDependente', $item['dataNascimentoDependentes'])
+            ->add('dataNascimentoDependente', $item['dataNascimentoDependente'])
             ->add('tipoDependente', $item['tipoDependente'])
             ->add('sequencialDependente', $item['sequencialDependente']);
     }
