@@ -142,10 +142,14 @@ include("inc/nav.php");
                                                                     <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <!-- <section class="col col-2">
+                                                            <section class="col col-2">
                                                                 <label class="label">Primeiro Emprego</label>
-                                                                <label class="input">
-                                                                    <input id="primeiroEmprego" maxlength="255" class="required" name="primeiroEmprego" type="text" value="">
+                                                                <label class="select">
+                                                                    <select id="pispasep" name="pispasep" class="required">
+                                                                        <option value="hidden"></option>
+                                                                        <option value="1">Sim</option>
+                                                                        <option value="2">Não</option>
+                                                                    </select><i></i>
                                                                 </label>
                                                             </section>
                                                             <section class="col col-1">
@@ -153,7 +157,7 @@ include("inc/nav.php");
                                                                 <label class="input">
                                                                     <input id="pispasep" maxlength="255" class="readonly" name="pispasep" type="text" value="">
                                                                 </label>
-                                                            </section> -->
+                                                            </section>
                                                         </div>
                                                     </fieldset>
                                                 </div>
