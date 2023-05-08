@@ -153,9 +153,9 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-1">
-                                                                <label class="label">Pispasep</label>
+                                                                <label class="label">Idade</label>
                                                                 <label class="input">
-                                                                    <input id="pispasep" maxlength="255" class="readonly" name="pispasep" type="text" value="">
+                                                                    <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -1220,6 +1220,8 @@ include("inc/scripts.php");
                             var dataNascimento = piece[5];
                             var genero = piece[6];
                             var estadoCivil = piece[7];
+                            var primeiroEmprego = piece[8];
+                            var pispasep = piece[9];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
@@ -1229,6 +1231,8 @@ include("inc/scripts.php");
                             $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
                             $("#estadoCivil").val(estadoCivil);
+                            $("#primeiroEmprego").val(primeiroEmprego);
+                            $("#pispasep").val(pispasep);
 
                             return;
 
@@ -1333,6 +1337,8 @@ include("inc/scripts.php");
         var complemento = $("#complemento").val();
         var uf = $("#uf").val();
         var cidade = $("#cidade").val();
+        var primeiroEmprego = $("#primeiroEmprego").val();
+        var pispasep = $("#pispasep").val();
         var jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
         var jsonEmailArray = JSON.parse($("#jsonEmail").val());
         var jsonDependenteArray = JSON.parse($("#jsonDependente").val());
@@ -1383,6 +1389,8 @@ include("inc/scripts.php");
             complemento,
             uf,
             cidade,
+            primeiroEmprego,
+            pispasep,
             jsonTelefoneArray,
             jsonEmailArray,
             jsonDependenteArray);

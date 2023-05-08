@@ -66,6 +66,8 @@ function grava()
     $complemento = $_POST['complemento'];
     $uf = $_POST['uf'];
     $cidade = $_POST['cidade'];
+    $primeiroEmprego = $_POST['primeiroEmprego'];
+    $pispasep = $_POST['pispasep'];
 
     //=============================================================================================TELEFONE==================================================================================================
 
@@ -184,6 +186,7 @@ function grava()
     '$uf',
     '$cidade'";
 
+
     $reposit = new reposit();
     $result = $reposit->Execprocedure($sql);
 
@@ -236,6 +239,8 @@ function recuperaFuncionario()
         $cpf = $row['cpf'];
         $estadoCivil = $row['estadoCivil'];
         $rg = $row['rg'];
+        // $primeiroEmprego = $row['primeiroEmprego'];
+        // $pispasep = $row['pispasep'];
         $data_nascimento = $row['data_nascimento'];
         if ($data_nascimento) {
             $data_nascimento = explode(" ", $data_nascimento);
