@@ -100,7 +100,7 @@ include("inc/nav.php");
                                                             <section class="col col-2 col-auto">
                                                                 <label class="label">Gênero</label>
                                                                 <label class="select">
-                                                                    <select id="descricao" name="descricao" class="required">
+                                                                    <select id="genero" name="genero" class="required">
                                                                         <option value="0"></option>
                                                                         <?php
                                                                         $reposit = new reposit();
@@ -272,11 +272,9 @@ include("inc/nav.php");
                                                 </div>
                                                 </fieldset>
                                             </div>
-
                                         </div>
                                         <!-- </div> -->
                                     </div>
-
                                     <!-- ACCORDION ACIMA -->
 
                                     <!--ACCORDION CEP ABAIXO -->
@@ -1213,17 +1211,20 @@ include("inc/scripts.php");
                             var id = piece[0];
                             var ativo = piece[1];
                             var nome = piece[2];
-                            var cpf = piece[4];
-                            var rg = piece[5];
-                            var dataNascimento = piece[6];
-                            var genero = piece[7];
+                            var cpf = piece[3];
+                            var rg = piece[4];
+                            var dataNascimento = piece[5];
+                            var genero = piece[6];
+                            var estadoCivil = piece[7];
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
-                            $("#cpf").val(cpf);
                             $("#nome").val(nome);
+                            $("#cpf").val(cpf);
+                            $("#rg").val(rg);
                             $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
+                            $("#estadoCivil").val(estadoCivil);
 
                             return;
 
@@ -1318,7 +1319,7 @@ include("inc/scripts.php");
         var nome = $("#nome").val();
         var cpf = $("#cpf").val();
         var rg = $("#rg").val();
-        var genero = $("#descricao").val();
+        var genero = $("#genero").val();
         var estadoCivil = $("#estadoCivil").val();
         var dataNascimento = $("#dataNascimento").val();
         var cep = $("#cep").val();

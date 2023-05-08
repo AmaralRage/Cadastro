@@ -82,6 +82,13 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
+                                                                <label class="label">Data Nascimento</label>
+                                                                <label class="input">
+                                                                    <i class="icon-append fa fa-calendar"></i>
+                                                                    <input id="data_Nascimento" name="data_Nascimento" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
                                                                 <label class="label">Data Inicio</label>
                                                                 <label class="input">
                                                                     <i class="icon-append fa fa-calendar"></i>

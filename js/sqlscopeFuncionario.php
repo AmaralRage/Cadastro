@@ -134,7 +134,11 @@ function grava()
             ->add('emailPrincipal', $emailPrincipal)
             ->add('sequencialEmail', $item['sequencialEmail']);
     }
+
     $xmlEmail = $comum->formatarString($xmlEmail);
+
+    //========================================================================================DEPENDENTES============================================================================================================
+
 
     $strArrayDependente = $_POST['jsonDependenteArray'];
 
@@ -217,16 +221,10 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT id as codigoFuncionario, nome, cpf, rg, dataNascimento, ativo, genero
-             FROM dbo.funcionarios USU WHERE (id = $id)";
+    $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil
+             FROM dbo.funcionarios USU WHERE codigo = $id";
 
-    if ($condicaoId) {
-        $sql = $sql . " AND USU.id = " . $id . " ";
-    }
 
-    if ($condicaoLogin) {
-        $sql = $sql . " AND USU.login = '" . $loginPesquisa . "' ";
-    }
 
     $reposit = new reposit();
     $result = $reposit->RunQuery($sql);
@@ -239,11 +237,11 @@ function recuperaFuncionario()
         $cpf = $row['cpf'];
         $estadoCivil = $row['estadoCivil'];
         $rg = $row['rg'];
-        $dataNascimento = $row['dataNascimento'];
-        if ($dataNascimento) {
-            $dataNascimento = explode(" ", $dataNascimento);
-            $data = explode("-", $dataNascimento[0]);
-            $dataNascimento = ($data[2] . "/" . $data[1] . "/" . $data[0]);
+        $data_nascimento = $row['data_nascimento'];
+        if ($data_nascimento) {
+            $data_nascimento = explode(" ", $data_nascimento);
+            $data = explode("-", $data_nascimento[0]);
+            $data_nascimento = ($data[2] . "/" . $data[1] . "/" . $data[0]);
         };
         $genero = (int)$row['genero'];
     }
@@ -255,8 +253,9 @@ function recuperaFuncionario()
         $nome . "^" .
         $cpf . "^" .
         $rg . "^" .
-        $dataNascimento . "^" .
-        $genero;
+        $data_nascimento . "^" .
+        $genero . "^" . 
+        $estadoCivil;
 
     if ($out == "") {
         echo "failed#";
