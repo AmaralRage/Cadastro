@@ -131,8 +131,7 @@ function grava()
 
         $xmlEmail->addChild('email', true) //nome da tabela
             ->add('email', $item['email'])
-            ->add('emailPrincipal', $emailPrincipal)
-            ->add('sequencialEmail', $item['sequencialEmail']);
+            ->add('emailPrincipal', $emailPrincipal);
     }
 
     $xmlEmail = $comum->formatarString($xmlEmail);
