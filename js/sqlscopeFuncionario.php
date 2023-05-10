@@ -187,7 +187,9 @@ function grava()
     '$numero',
     '$complemento',
     '$uf',
-    '$cidade'";
+    '$cidade',
+    '$primeiroEmprego',
+    '$pispasep'";
 
 
     $reposit = new reposit();

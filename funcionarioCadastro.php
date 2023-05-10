@@ -146,8 +146,8 @@ include("inc/nav.php");
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
                                                                     <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
-                                                                        <option value="hidden"></option>
-                                                                        <option value="1">Sim</option>
+                                                                        <option></option>
+                                                                        <option value="1" selected>Sim</option>
                                                                         <option value="2">Não</option>
                                                                     </select><i></i>
                                                                 </label>
