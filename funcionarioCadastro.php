@@ -593,6 +593,12 @@ include("inc/scripts.php");
             var data = $("#cpf").val();
             validarCPF();
         });
+     
+        $("#cpfDependente").on("change", function() {
+            var data = $("#cpfDependente").val();
+            validarCPFDependente();
+        });
+
         $("#rg").on("change", function() {
             var data = $("rg").val();
             VerificaRG();
@@ -876,7 +882,7 @@ include("inc/scripts.php");
     function addDependente() {
 
         var dependente = $("#dependente").val();
-        var cpfDependente = $("#cpfDependente").val();
+        var cpfDependente = $("#cpf").val();
         var dataNascimentoDependente = $("#dataNascimentoDependente").val();
         var tipoDependente = $("#tipoDependente").val();
         if (dependente === "") {
@@ -1313,6 +1319,13 @@ include("inc/scripts.php");
         var cpf = $("#cpf").val();
 
         validaCPF(cpf);
+    }
+    
+    function validarCPFDependente() {
+        // var id = +($("#codigo").val());
+        var cpfDependente = $("#cpfDependente").val();
+
+        validaCPFDependente(cpf);
     }
 
 
