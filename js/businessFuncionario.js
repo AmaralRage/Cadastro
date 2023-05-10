@@ -75,6 +75,24 @@ function validaCPF(cpf) {
         }
     });
 }
+// function validaCPFDependente(cpf) {
+//     $.ajax({
+//         url: 'js/sqlscopeFuncionario.php',
+//         type: 'post',
+//         dataType: "html",
+//         data: { funcao: "validaCPF", cpf: cpf },
+
+//         success: function (data, textStatus) {
+//             if (data.trim() === 'success') {
+//             } else {
+//                 smartAlert("Atenção", "CPF Inválido", "error");
+//                 document.getElementById('cpf').value = "";
+//             }
+//         }, error: function (xhr, er) {
+//             console.log(xhr, er);
+//         }
+//     });
+// }
 
 function cpfverificado(cpf) {
     $.ajax({

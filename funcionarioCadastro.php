@@ -145,7 +145,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
-                                                                    <select id="pispasep" name="pispasep" class="required">
+                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
                                                                         <option value="hidden"></option>
                                                                         <option value="1">Sim</option>
                                                                         <option value="2">Não</option>
@@ -153,9 +153,9 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-1">
-                                                                <label class="label">Idade</label>
+                                                                <label class="label">Pispasep</label>
                                                                 <label class="input">
-                                                                    <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
+                                                                    <input id="pispasep" maxlength="255" class="readonly" readonly name="pispasep" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
