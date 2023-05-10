@@ -227,6 +227,13 @@ include("inc/scripts.php");
             validaData(data);
         });
 
+        $("#tipoDependente").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
+            smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
+            $("#tipoDependente").val('');
+        }) 
+
+
         $("#cpf").on("change", function() {
             var data = $("#cpf").val();
             validarCPF();
