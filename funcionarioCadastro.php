@@ -145,8 +145,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
-                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
-                                                                        <option></option>
+                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">                                                                        
                                                                         <option value="1" selected>Sim</option>
                                                                         <option value="2">Não</option>
                                                                     </select><i></i>
@@ -363,7 +362,7 @@ include("inc/nav.php");
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <div id="collapseDependente" class="panel-collapse collapse in">
+                                                <div id="collapseDependente" class="panel-collapse collapse">
                                                     <div class="panel-body no-padding">
                                                         <fieldset>
                                                             <input id="jsonDependente" name="jsonDependente" type="hidden" value="[]">
@@ -588,6 +587,19 @@ include("inc/scripts.php");
             var data = $("#dataNascimento").val();
             validaData(data);
         });
+
+        $("#nome").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
+            smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
+            $("#nome").val('');
+        }) 
+       
+        $("#dependente").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
+            smartAlert("Atenção", "dependente Inválido, apenas Letras!", "error");
+            $("#dependente").val('');
+        }) 
+
 
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
