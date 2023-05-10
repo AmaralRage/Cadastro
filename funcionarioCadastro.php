@@ -356,7 +356,7 @@ include("inc/nav.php");
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependentes" class="" id="accordionDependentes">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependente" class="" id="accordionDependentes">
                                                             <i class="fa fa-lg fa-angle-down pull-right"></i>
                                                             <i class="fa fa-lg fa-angle-up pull-right"></i>
                                                             Dependentes
@@ -590,12 +590,12 @@ include("inc/scripts.php");
         });
 
         $("#cpf").on("change", function() {
-            var data = $("#cpf").val();
+            // var data = $("#cpf").val();
             validarCPF();
         });
      
         $("#cpfDependente").on("change", function() {
-            var data = $("#cpfDependente").val();
+            // var data = $("#cpfDependente").val();
             validarCPFDependente();
         });
 
@@ -1315,17 +1315,13 @@ include("inc/scripts.php");
     }
 
     function validarCPF() {
-        // var id = +($("#codigo").val());
         var cpf = $("#cpf").val();
-
         validaCPF(cpf);
     }
     
     function validarCPFDependente() {
-        // var id = +($("#codigo").val());
         var cpfDependente = $("#cpfDependente").val();
-
-        validaCPFDependente(cpf);
+        validaCPFDependente(cpfDependente);
     }
 
 
