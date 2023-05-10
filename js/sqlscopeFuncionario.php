@@ -401,27 +401,21 @@ function VerificaCPF()
     }
 }
 
-function VerificaCPFDependente()
-{
-    $cpf = $_POST["cpf"];
-    $sql = "SELECT cpf, codigo FROM dbo.funcionario WHERE cpf='$cpf'";
-    //achou 
-    // $sql = "SELECT cpf FROM dbo.funcionario WHERE (0 = 0) AND" . "' cpf ='".$cpf;
-    $reposit = new reposit();
-    $result = $reposit->RunQuery($sql);
-    // $result = $reposit->RunQuery($sql);
-    // if ($id > 0) {
-    //     $sql = "SELECT codigo FROM dbo.funcionario WHERE cpf='$cpf' and codigo !=id";
-    // }
-    if ($result > 0) {
-        $mensagem = "CPF já registrado!";
-        echo "failed#" . $mensagem . ' ';
-        return;
-    } else {
-        echo  'succes#';
-        return;
-    }
-}
+// function validarCPFDependente()
+// {
+//     $cpfDependente = $_POST["cpfDependente"];
+//     $sql = "SELECT cpfDependente, codigo FROM dbo.funcionario WHERE cpfDependente='$cpfDependente'";
+//     $reposit = new reposit();
+//     $result = $reposit->RunQuery($sql);
+//     if ($result > 0) {
+//         $mensagem = "CPF do dependente já registrado!";
+//         echo "failed#" . $mensagem . ' ';
+//         return;
+//     } else {
+//         echo  'succes#';
+//         return;
+//     }
+// }
 
 function VerificaRG()
 {
