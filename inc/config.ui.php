@@ -108,9 +108,10 @@ $page_nav['cadastro']['sub'] = array();
 
 $page_nav['cadastro']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
 if (true) {
-    $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
-    $page_nav['cadastro']['sub'] += array("title" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));
+    $page_nav['cadastro']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
+    $page_nav['cadastro']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));
 }
+
 
 // if (true) {
 //     $page_nav['cadastro']['sub'] += array("grupo" => array("title" => "Grupo", "url" => APP_URL . "/usuarioGrupoFiltro.php"));

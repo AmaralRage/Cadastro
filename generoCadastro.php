@@ -20,6 +20,9 @@ $page_title = "Genero";
 $page_css[] = "your_style.css";
 include("inc/header.php");
 
+$page_nav["cadastro"]["sub"]["genero"]["active"] = true;
+
+
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
 include("inc/nav.php");
