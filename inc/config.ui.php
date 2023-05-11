@@ -106,7 +106,7 @@ $page_nav['cadastro'] = array("title" => "Cadastro", "icon" => " fa-pencil-squar
 $page_nav['cadastro']['sub'] = array();
 
 
-$page_nav['cadastro']['sub'] += array("cadastro" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
+$page_nav['cadastro']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
 if (true) {
     $page_nav['cadastro']['sub'] += array("" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
     $page_nav['cadastro']['sub'] += array("title" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));

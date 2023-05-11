@@ -1,5 +1,5 @@
 <?php
-//initilize the page
+//initilize the pagee
 require_once("inc/init.php");
 
 //require UI configuration (nav, ribbon, etc.)
@@ -10,7 +10,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Cadastro Funcionario";
+$page_title = "Cadastro/Funcionario";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
@@ -19,6 +19,8 @@ $page_title = "Cadastro Funcionario";
 //Note: all css files are inside css/ folder
 $page_css[] = "your_style.css";
 include("inc/header.php");
+
+$page_nav["cadastro"]["sub"]["funcionario"]["active"] = true;
 
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
@@ -146,8 +148,8 @@ include("inc/nav.php");
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
                                                                     <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">                                                                        
-                                                                        <option value="1" selected>Sim</option>
-                                                                        <option value="2">Não</option>
+                                                                        <option value="0" selected>Sim</option>
+                                                                        <option value="1">Não</option>
                                                                     </select><i></i>
                                                                 </label>
                                                             </section>
@@ -355,7 +357,7 @@ include("inc/nav.php");
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependente" class="" id="accordionDependentes">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependente" class="" id="accordionDependente">
                                                             <i class="fa fa-lg fa-angle-down pull-right"></i>
                                                             <i class="fa fa-lg fa-angle-up pull-right"></i>
                                                             Dependentes
@@ -586,6 +588,10 @@ include("inc/scripts.php");
         $("#dataNascimento").on("change", function() {
             var data = $("#dataNascimento").val();
             validaData(data);
+        });
+        $("#primeiroEmprego").on("change", function() {
+            
+            verificaPrimeiroEmprego();
         });
 
         $("#nome").on("change", function() {
@@ -1270,6 +1276,22 @@ include("inc/scripts.php");
         return;
     }
 
+    function verificaPrimeiroEmprego() {
+        let primeiroEmprego = ($("#primeiroEmprego").val())
+
+        if (primeiroEmprego == 1) {
+            $("#pispasep").addClass("readonly");
+            $("#pispasep").prop("disabled", true);
+            $("#pispasep").val('');
+        } else if (primeiroEmprego == 0) {
+            $("#pispasep").val('');
+            $("#pispasep").prop("disabled", false);
+            $("#pispasep").removeAttr("disabled");
+            $("#pispasep").removeClass("readonly");
+            $("#pispasep").addClass("required");
+        }
+    }
+
     function novo() {
         $(location).attr('href', 'usuarioCadastro.php');
     }
@@ -1370,6 +1392,13 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
+
+        if (nome.length === 0 || !nome.trim()) {
+            smartAlert("Atenção", "Informe o nome!", "error");
+            $("#nome").focus();
+            return;
+        } 
+
         if (!genero) {
             smartAlert("Atenção", "Informe seu genero", "error");
             $("#btnGravar").prop('disabled', false);
@@ -1417,4 +1446,5 @@ include("inc/scripts.php");
             jsonEmailArray,
             jsonDependenteArray);
     }
+
 </script>
