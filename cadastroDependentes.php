@@ -20,7 +20,7 @@ $page_title = "Cadastro/Dependentes";
 $page_css[] = "your_style.css";
 include("inc/header.php");
 
-$page_nav["cadastro"]["sub"]["dependentes"]["active"] = true;
+$page_nav["tabelaBasica"]["sub"]["Dependentes"]["active"] = true;
 
 
 //include left panel (navigation)

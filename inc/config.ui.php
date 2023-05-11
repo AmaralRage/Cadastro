@@ -63,7 +63,6 @@ $page_nav = array("home" => array("title" => "Home", "icon" => "fa-home", "url" 
 
 if (true) {
     $page_nav['configuracao'] = array("title" => "Configurações", "icon" => "fa-gear fa-spin");
-
     $page_nav['configuracao']['sub'] = array();
 
 
@@ -107,10 +106,9 @@ $page_nav['cadastro']['sub'] = array();
 
 
 $page_nav['cadastro']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
-if (true) {
-    $page_nav['cadastro']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generoCadastro.php"));
-    $page_nav['cadastro']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));
-}
+// if (true) {
+
+// }
 
 
 // if (true) {
@@ -138,16 +136,11 @@ if ($condicaoTabelaBasicaOk) {
         $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
         $page_nav['tabelaBasica']['sub'] = array();
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
-    if (true) {
-        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
-    }
-    if (true) {
-        $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
-    }
-        $page_nav['tabelaBasica']['sub'] += array("dependente" => array("title" => "Dependentes", "url" => APP_URL . "/dependentesCadastro.php"));
-    // if (true) {
 
-    // }
+    if (true) {
+        $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generotabelaBasica.php"));
+        $page_nav['tabelaBasica']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));
+    }
 
 
 
