@@ -608,6 +608,15 @@ include("inc/scripts.php");
             }
         }) 
 
+        $("#dataNascimentoDependente").on("change", function() {
+            var dataNascimentoDependente = $("#dataNascimentoDependente").val();
+            if (validarDataDependente(dataNascimentoDependente) == false) {
+                smartAlert("Atenção", "Data Inválida!", "error");
+                $("#idade").val("");
+                $("#dataNascimentoDependente").val("");
+            }
+        }); 
+
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
             validarCPF();
@@ -1258,6 +1267,10 @@ include("inc/scripts.php");
                             $("#estadoCivil").val(estadoCivil);
                             $("#primeiroEmprego").val(primeiroEmprego);
                             $("#pispasep").val(pispasep);
+
+
+                            validarDataDependente(); 
+
 
                             return;
 

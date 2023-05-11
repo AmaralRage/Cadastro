@@ -95,6 +95,42 @@ function validaCPFDependente(cpfDependente) {
     })
 }
 
+function validarDataDependente() {
+    var data = $("#dataNascimentoDependente").val();
+    data = data.replace(/\//g, "/");
+    var data_array = data.split("/"); //responsável por quebrar a data em array
+
+    //Inserir formato DD/MM/YYYY
+    if (data_array[0].length != 4) {
+        data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
+    }
+
+    //Calculo da idade referente a Data de Nascimento
+    var hoje = new Date();
+    var nasc = new Date(data);
+    var idade = hoje.getFullYear() - nasc.getFullYear();
+    var m = hoje.getMonth() - nasc.getMonth();
+    if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+
+    if (idade <= 0) {
+        // alert("Usuários com menos de 18 anos não podem ser cadastrados.");
+        $("#idade").val(idade)
+        $("#btnGravar").prop('disabled', false);
+        return false;
+    }
+
+    if (idade >= 18 && idade <= 120) {
+        // smartAlert("Sucesso","Data permitida.", "success")
+        $("#idade").val(idade)
+        $("#btnGravar").prop('disabled', false);
+        return;
+    }
+
+    //Idade superior a 50 não altera o cadastro
+
+    if (hoje) return false;
+} 
+
 function cpfverificado(cpf) {
     $.ajax({
         url: 'js/sqlscopeCadastroFuncionario.php',
