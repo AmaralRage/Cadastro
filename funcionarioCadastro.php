@@ -596,10 +596,9 @@ include("inc/scripts.php");
        
         $("#dependente").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
-            smartAlert("Atenção", "dependente Inválido, apenas Letras!", "error");
+            smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
             $("#dependente").val('');
         }) 
-
 
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
