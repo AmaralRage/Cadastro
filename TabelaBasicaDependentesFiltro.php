@@ -172,7 +172,7 @@ include("inc/scripts.php");
         var ativo = $('#ativo').val();
         var codigo = $('#descricao').val();
 
-        $('#resultadoBusca').load('TabelaBasicaFiltroListagem.php?', {
+        $('#resultadoBusca').load('TabelaBasicaFiltroDependenteListagem.php?', {
            codigoFiltro: codigo,
             ativoFiltro: ativo
         });
