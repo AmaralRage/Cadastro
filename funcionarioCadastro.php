@@ -589,15 +589,17 @@ include("inc/scripts.php");
         });
 
         $("#nome").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
             smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
             $("#nome").val('');
+            }
         }) 
        
         $("#dependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value));
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
             smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
             $("#dependente").val('');
+            }
         }) 
 
         $("#cpf").on("change", function() {
