@@ -1440,6 +1440,12 @@ include("inc/scripts.php");
             return;
         }
         
+        // if (!email || email =="__.___.___-_") {
+        //     smartAlert("Atenção", "Informe o Email corretamente", "error");
+        //     $("#btnGravar").prop('disabled', false);
+        //     return;
+        // }
+        
         if (!pispasep || pispasep =="__.___.___-_") {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);

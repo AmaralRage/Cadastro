@@ -13,7 +13,7 @@ require_once("inc/config.ui.php");
   YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
   E.G. $page_title = "Custom Title" */
 
-$page_title = "Dependentes";
+$page_title = "Filtro/Dependentes";
 
 /* ---------------- END PHP Custom Scripts ------------- */
 
