@@ -356,11 +356,11 @@ include("inc/scripts.php");
     }
 
     function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
+        $(location).attr('href', 'TabelaBasicaFiltroDependenteListagem.php');
     }
 
     function voltar() {
-        $(location).attr('href', 'usuarioFiltro.php');
+        $(location).attr('href', 'cadastroDependentes.php');
     }
 
     function excluir() {

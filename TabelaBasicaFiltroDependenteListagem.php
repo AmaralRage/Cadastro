@@ -52,7 +52,7 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="cadastroDependentes.php?id=' . $id . '">' . $descricao . '</a></td>';
+                    echo '<td class="text-left"><a href="TabelaBasicaDependentesFiltro.php?id=' . $id . '">' . $descricao . '</a></td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }
