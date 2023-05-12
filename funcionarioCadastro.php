@@ -674,6 +674,7 @@ include("inc/scripts.php");
         $("#rg").mask('99.999.999-9');
         $("#telefone").mask('(99) 99999-9999');
         $("#dataNascimentoDependente").mask('99/99/9999');
+        $("#pispasep").mask('999.99999.99-9');
 
         // $("#email").mask('');
 
@@ -1419,8 +1420,14 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        if (!rg) {
+        if (!rg || rg =="__.___.___-_") {
             smartAlert("Atenção", "Informe o RG", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        
+        if (!pispasep || pispasep =="__.___.___-_") {
+            smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
