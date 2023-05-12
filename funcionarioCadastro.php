@@ -144,17 +144,17 @@ include("inc/nav.php");
                                                                     <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-2">
+                                                            <section class="col col-1.5">
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
-                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">                                                                        
-                                                                        <option value="1" selected>Sim</option>
-                                                                        <option value="2">Não</option>
+                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
+                                                                        <option value="0" selected>Não</option>
+                                                                        <option value="1" >Sim</option>
                                                                     </select><i></i>
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-1">
-                                                                <label class="label">Pispasep</label>
+                                                            <section class="col col-2">
+                                                                <label class="label">PIS:PASEP</label>
                                                                 <label class="input">
                                                                     <input id="pispasep" class="required" type="text">
                                                                 </label>
@@ -274,16 +274,13 @@ include("inc/nav.php");
                                                                 </table>
                                                             </div>
                                                         </div>
+                                                    </fieldset>
                                                 </div>
-                                                </fieldset>
                                             </div>
                                         </div>
-                                        <!-- </div> -->
-                                    </div>
-                                    <!-- ACCORDION ACIMA -->
+                                        <!-- ACCORDION ACIMA -->
 
-                                    <!--ACCORDION CEP ABAIXO -->
-                                    <div class="panel-group smart-accordion-default" id="accordion">
+                                        <!--ACCORDION CEP ABAIXO -->
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -293,155 +290,153 @@ include("inc/nav.php");
                                                         Endereço
                                                     </a>
                                                 </h4>
-                                                <div id="collapseEndereco" class="panel-collapse collapse">
-                                                    <div class="panel-body no-padding">
-                                                        <fieldset>
+                                            </div>
+                                            <div id="collapseEndereco" class="panel-collapse collapse">
+                                                <div class="panel-body no-padding">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <section class="col col-2">
+                                                                    <label class="label">CEP</label>
+                                                                    <label class="input">
+                                                                        <input id="cep" name="cep" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Logradouro</label>
+                                                                    <label class="input">
+                                                                        <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Bairro</label>
+                                                                    <label class="input">
+                                                                        <input id="bairro" name="bairro" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Número</label>
+                                                                    <label class="input">
+                                                                        <input id="numero" name="numero" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Complemento</label>
+                                                                    <label class="input">
+                                                                        <input id="complemento" name="complemento" type="text" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">UF</label>
+                                                                    <label class="input">
+                                                                        <input id="uf" name="uf" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="col col-2">
+                                                                    <label class="label">Cidade</label>
+                                                                    <label class="input">
+                                                                        <input id="cidade" name="cidade" type="text" class="form-control required" value="">
+                                                                    </label>
+                                                                </section>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--accordion de Dependentes-->
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependente" class="" id="accordionDependente">
+                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                        Dependentes
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseDependente" class="panel-collapse collapse">
+                                                <div class="panel-body no-padding">
+                                                    <fieldset>
+                                                        <input id="jsonDependente" name="jsonDependente" type="hidden" value="[]">
+                                                        <div id="formDependente" class="col-sm-10 required">
+                                                            <input id="descricaoDependente" type="hidden" value="">
+                                                            <input id="sequencialDependente" type="hidden" value="">
                                                             <div class="form-group">
                                                                 <div class="row">
-                                                                    <section class="col col-2">
-                                                                        <label class="label">CEP</label>
+                                                                    <section class="col col-3">
+                                                                        <label class="label">Nome do Dependente:</label>
                                                                         <label class="input">
-                                                                            <input id="cep" name="cep" type="text" class="form-control required" value="">
-                                                                        </label>
-                                                                    </section>
-                                                                    <div class="row">
-                                                                        <section class="col col-2">
-                                                                            <label class="label">Logradouro</label>
-                                                                            <label class="input">
-                                                                                <input id="logradouro" name="logradouro" type="text" class="form-control required" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2">
-                                                                            <label class="label">Bairro</label>
-                                                                            <label class="input">
-                                                                                <input id="bairro" name="bairro" type="text" class="form-control required" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2">
-                                                                            <label class="label">Número</label>
-                                                                            <label class="input">
-                                                                                <input id="numero" name="numero" type="text" class="form-control required" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2">
-                                                                            <label class="label">Complemento</label>
-                                                                            <label class="input">
-                                                                                <input id="complemento" name="complemento" type="text" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                    </div>
-                                                                    <section class="col col-2">
-                                                                        <label class="label">UF</label>
-                                                                        <label class="input">
-                                                                            <input id="uf" name="uf" type="text" class="form-control required" value="">
+                                                                            <input id="dependente" maxlength="255" name="dependente" class="required" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
-                                                                        <label class="label">Cidade</label>
-                                                                        <label class="input">
-                                                                            <input id="cidade" name="cidade" type="text" class="form-control required" value="">
+                                                                        <label class="label">CPF:</label>
+                                                                        <label class="input"><i class="icon-prepend fa fa-user"></i>
+                                                                            <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="">
                                                                         </label>
+                                                                    </section>
+                                                                    <section class="col col-2">
+                                                                        <label class="label">Data de Nascimento:</label>
+                                                                        <label class="input">
+                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-2 col-auto">
+                                                                        <label class="label">Tipo de Dependente:</label>
+                                                                        <label class="select">
+                                                                            <select id="tipoDependente" class="required">
+                                                                                <option value="hidden"></option>
+                                                                                <?php
+                                                                                $reposit = new reposit();
+                                                                                $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE dependenteAtivo = 1";
+                                                                                $result = $reposit->RunQuery($sql);
+                                                                                foreach ($result as $row) {
+                                                                                    $codigo = $row['codigo'];
+                                                                                    $tipoDependente = $row['tipoDependente'];
+                                                                                    echo '<option value=' . $codigo . '>' . $tipoDependente . '</option>';
+                                                                                }
+                                                                                ?>
+                                                                            </select><i></i>
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-md-3">
+                                                                        <label class="label">&nbsp;</label>
+                                                                        <button id="btnAddDependente" type="button" class="btn btn-primary">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                        <button id="btnRemoverDependente" type="button" class="btn btn-danger">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </button>
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                        </fieldset>
-                                                    </div>
+                                                            <div class="table-responsive" style="min-height: 115px;  border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
+                                                                <table id="tableDependentes" class="table table-bordered table-striped table-condensed table-hover dataTable">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th></th>
+                                                                            <th class="text-left">Nome</th>
+                                                                            <th class="text-left">CPF</th>
+                                                                            <th class="text-left">Data de Nascimento</th>
+                                                                            <th class="text-left">Tipo</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--accordion de Dependentes-->
 
-                                    <div class="panel-body no-padding">
-                                        <div class="panel-group smart-accordion-default" id="accordion">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseDependente" class="" id="accordionDependente">
-                                                            <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                            <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                            Dependentes
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseDependente" class="panel-collapse collapse">
-                                                    <div class="panel-body no-padding">
-                                                        <fieldset>
-                                                            <input id="jsonDependente" name="jsonDependente" type="hidden" value="[]">
-                                                            <div id="formDependente" class="col-sm-10 required">
-                                                                <input id="descricaoDependente" type="hidden" value="">
-                                                                <input id="sequencialDependente" type="hidden" value="">
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <section class="col col-3">
-                                                                            <label class="label">Nome do Dependente:</label>
-                                                                            <label class="input">
-                                                                                <input id="dependente" maxlength="255" name="dependente" class="required" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2">
-                                                                            <label class="label">CPF:</label>
-                                                                            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                                <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2">
-                                                                            <label class="label">Data de Nascimento:</label>
-                                                                            <label class="input">
-                                                                                <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-2 col-auto">
-                                                                            <label class="label">Tipo de Dependente:</label>
-                                                                            <label class="select">
-                                                                                <select id="tipoDependente" class="required">
-                                                                                    <option value="hidden"></option>
-                                                                                    <?php
-                                                                                    $reposit = new reposit();
-                                                                                    $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE dependenteAtivo = 1";
-                                                                                    $result = $reposit->RunQuery($sql);
-                                                                                    foreach ($result as $row) {
-                                                                                        $codigo = $row['codigo'];
-                                                                                        $tipoDependente = $row['tipoDependente'];
-                                                                                        echo '<option value=' . $codigo . '>' . $tipoDependente . '</option>';
-                                                                                    }
-                                                                                    ?>
-                                                                                </select><i></i>
-                                                                            </label>
-                                                                        </section>
-                                                                        <section class="col col-md-3">
-                                                                            <label class="label">&nbsp;</label>
-                                                                            <button id="btnAddDependente" type="button" class="btn btn-primary">
-                                                                                <i class="fa fa-plus"></i>
-                                                                            </button>
-                                                                            <button id="btnRemoverDependente" type="button" class="btn btn-danger">
-                                                                                <i class="fa fa-minus"></i>
-                                                                            </button>
-                                                                        </section>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="table-responsive" style="min-height: 115px;  border: 1px solid #ddd; margin-bottom: 13px; overflow-x: auto;">
-                                                                    <table id="tableDependentes" class="table table-bordered table-striped table-condensed table-hover dataTable">
-                                                                        <thead>
-                                                                            <tr role="row">
-                                                                                <th></th>
-                                                                                <th class="text-left">Nome</th>
-                                                                                <th class="text-left">CPF</th>
-                                                                                <th class="text-left">Data de Nascimento</th>
-                                                                                <th class="text-left">Tipo</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        
                                     </div>
+
 
                                     <!-- FOOTER ABAIXO -->
 
@@ -589,24 +584,25 @@ include("inc/scripts.php");
             var data = $("#dataNascimento").val();
             validaData(data);
         });
+
         $("#primeiroEmprego").on("change", function() {
-            
+
             verificaPrimeiroEmprego();
         });
 
         $("#nome").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
-            smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
-            $("#nome").val('');
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
+                $("#nome").val('');
             }
-        }) 
-       
+        })
+
         $("#dependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
-            smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
-            $("#dependente").val('');
+            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
+                $("#dependente").val('');
             }
-        }) 
+        })
 
         $("#dataNascimentoDependente").on("change", function() {
             var dataNascimentoDependente = $("#dataNascimentoDependente").val();
@@ -615,13 +611,13 @@ include("inc/scripts.php");
                 $("#idade").val("");
                 $("#dataNascimentoDependente").val("");
             }
-        }); 
+        });
 
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
             validarCPF();
         });
-     
+
         $("#cpfDependente").on("change", function() {
             // var data = $("#cpfDependente").val();
             validarCPFDependente();
@@ -1269,7 +1265,7 @@ include("inc/scripts.php");
                             $("#pispasep").val(pispasep);
 
 
-                            validarDataDependente(); 
+                            validarDataDependente();
 
 
                             return;
@@ -1366,7 +1362,7 @@ include("inc/scripts.php");
         var cpf = $("#cpf").val();
         validaCPF(cpf);
     }
-    
+
     function validarCPFDependente() {
         var cpfDependente = $("#cpfDependente").val();
         validaCPFDependente(cpfDependente);
@@ -1410,7 +1406,7 @@ include("inc/scripts.php");
             smartAlert("Atenção", "Informe o nome!", "error");
             $("#nome").focus();
             return;
-        } 
+        }
 
         if (!genero) {
             smartAlert("Atenção", "Informe seu genero", "error");
@@ -1459,5 +1455,4 @@ include("inc/scripts.php");
             jsonEmailArray,
             jsonDependenteArray);
     }
-
 </script>
