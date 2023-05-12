@@ -604,13 +604,6 @@ include("inc/scripts.php");
             }
         })
        
-        $("#telefone").on("change", function() {
-            if (/[\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "Telefone Inválido", "error");
-                $("#telefone").val('');
-            }
-        })
-       
         $("#cep").on("change", function() {
             if (/[\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
