@@ -106,6 +106,7 @@ $page_nav['cadastro']['sub'] = array();
 
 
 $page_nav['cadastro']['sub'] += array("funcionario" => array("title" => "Funcionário", "url" => APP_URL . "/funcionarioCadastro.php"));
+// $page_nav['cadastro']['sub'] += array("cadastro" => array("title" => "cadastro", "url" => APP_URL . "/usuarioFiltro.php"));
 // if (true) {
 
 // }
@@ -136,7 +137,6 @@ if ($condicaoTabelaBasicaOk) {
         $page_nav['tabelaBasica'] = array("title" => "Tabela Básica", "icon" => "fa fa-table");
         $page_nav['tabelaBasica']['sub'] = array();
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
-
     if (true) {
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generotabelaBasica.php"));
         $page_nav['tabelaBasica']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/TabelaBasicaDependentesFiltro.php"));

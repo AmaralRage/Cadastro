@@ -457,7 +457,7 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                        <button type="button" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
                                             <span class="fa fa-floppy-o"></span>
                                         </button>
                                         <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
@@ -597,13 +597,6 @@ include("inc/scripts.php");
             }
         })
        
-        $("#rg").on("change", function() {
-            if (/[\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "RG Inválido", "error");
-                $("#rg").val('');
-            }
-        })
-       
         $("#cep").on("change", function() {
             if (/[\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
@@ -626,6 +619,7 @@ include("inc/scripts.php");
                 $("#dataNascimentoDependente").val("");
             }
         });
+
 
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
@@ -1357,6 +1351,7 @@ include("inc/scripts.php");
         if (idade <= 14) {
             smartAlert("Atenção", "Informe uma data válida", "error");
             $("#idade").val(idade)
+            $("#dataNascimento").val("");
             $("#btnGravar").prop('disabled', false);
             return false;
 
@@ -1369,6 +1364,7 @@ include("inc/scripts.php");
         }
         if (hoje)
             //se for maior que 60 não vai acontecer nada!
+            
             return false;
 
     }
@@ -1434,6 +1430,7 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
+        
         if (!rg || rg =="__.___.___-_") {
             smartAlert("Atenção", "Informe o RG", "error");
             $("#btnGravar").prop('disabled', false);

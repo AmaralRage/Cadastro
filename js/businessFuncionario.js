@@ -112,14 +112,14 @@ function validarDataDependente() {
     var m = hoje.getMonth() - nasc.getMonth();
     if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
 
-    if (idade <= 0) {
+    if (idade < 0) {
         // alert("Usuários com menos de 18 anos não podem ser cadastrados.");
         $("#idade").val(idade)
         $("#btnGravar").prop('disabled', false);
         return false;
     }
 
-    if (idade >= 18 && idade <= 120) {
+    if (idade >= 0 && idade <= 120) {
         // smartAlert("Sucesso","Data permitida.", "success")
         $("#idade").val(idade)
         $("#btnGravar").prop('disabled', false);

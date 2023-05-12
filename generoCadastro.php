@@ -20,7 +20,7 @@ $page_title = "Genero";
 $page_css[] = "your_style.css";
 include("inc/header.php");
 
-$page_nav["cadastro"]["sub"]["genero"]["active"] = true;
+$page_nav["tabelaBasica"]["sub"]["genero"]["active"] = true;
 
 
 //include left panel (navigation)
@@ -278,7 +278,7 @@ include("inc/scripts.php");
     }
 
     function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
+        $(location).attr('href', 'generoCadastro.php');
     }
 
     function voltar() {

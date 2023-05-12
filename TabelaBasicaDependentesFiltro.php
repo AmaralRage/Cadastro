@@ -179,6 +179,6 @@ include("inc/scripts.php");
     }
 
     function novo() {
-        $(location).attr('href', 'generoCadastro.php');
+        $(location).attr('href', 'cadastroDependentes.php');
     }
 </script>
