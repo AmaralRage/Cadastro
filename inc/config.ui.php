@@ -139,7 +139,7 @@ if ($condicaoTabelaBasicaOk) {
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/tabelaBasicaGeneroFiltro.php"));
     if (true) {
         $page_nav['tabelaBasica']['sub'] += array("genero" => array("title" => "Gênero", "url" => APP_URL . "/generotabelaBasica.php"));
-        $page_nav['tabelaBasica']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/cadastroDependentes.php"));
+        $page_nav['tabelaBasica']['sub'] += array("dependentes" => array("title" => "Dependentes", "url" => APP_URL . "/TabelaBasicaDependentesFiltro.php"));
     }
 
 

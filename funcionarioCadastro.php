@@ -149,7 +149,7 @@ include("inc/nav.php");
                                                                 <label class="select">
                                                                     <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
                                                                         <option value="0" selected>Não</option>
-                                                                        <option value="1" >Sim</option>
+                                                                        <option value="1">Sim</option>
                                                                     </select><i></i>
                                                                 </label>
                                                             </section>
@@ -434,7 +434,7 @@ include("inc/nav.php");
                                         </div>
 
 
-                                        
+
                                     </div>
 
 
@@ -596,7 +596,7 @@ include("inc/scripts.php");
                 $("#nome").val('');
             }
         })
-       
+
         $("#cep").on("change", function() {
             if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
@@ -699,7 +699,8 @@ include("inc/scripts.php");
 
         $("#btnAddEmail").on("click", function() {
             if (validaEmail())
-                addEmail();
+            addEmail();
+            validateEmail();
         });
 
         $("#btnRemoverEmail").on("click", function() {
@@ -1231,6 +1232,31 @@ include("inc/scripts.php");
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
 
+    function validateEmail(input) {
+
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (input.value.match(validRegex)) {
+
+            alert("Valid email address!");
+
+            document.form1.text1.focus();
+
+            return true;
+
+        } else {
+
+            alert("Email Inválido!");
+
+            document.form1.text1.focus();
+
+            return false;
+
+        }
+
+    }
+
+
     function carregaPagina() {
         var urlx = window.document.URL.toString();
         var params = urlx.split("?");
@@ -1364,7 +1390,7 @@ include("inc/scripts.php");
         }
         if (hoje)
             //se for maior que 60 não vai acontecer nada!
-            
+
             return false;
 
     }
@@ -1430,20 +1456,20 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
-        if (!rg || rg =="__.___.___-_") {
+
+        if (!rg || rg == "__.___.___-_") {
             smartAlert("Atenção", "Informe o RG", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         // if (!email || email =="__.___.___-_") {
         //     smartAlert("Atenção", "Informe o Email corretamente", "error");
         //     $("#btnGravar").prop('disabled', false);
         //     return;
         // }
-        
-        if (!pispasep || pispasep =="__.___.___-_") {
+
+        if (!pispasep || pispasep == "__.___.___-_") {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
             return;

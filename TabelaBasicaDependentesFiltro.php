@@ -23,6 +23,9 @@ $page_title = "Filtro/Dependentes";
 $page_css[] = "your_style.css";
 include("inc/header.php");
 
+$page_nav["tabelaBasica"]["sub"]["dependentes"]["active"] = true;
+
+
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
 // $page_nav["TabelaBasica"]["sub"]["genero"]["active"] = true;
