@@ -65,7 +65,7 @@ include("inc/nav.php");
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
                                                         <div class="row">
-                                                        <section class="col col-2">
+                                                            <section class="col col-2">
                                                                 <label class="label">Descriçao</label>
                                                                 <label class="input">
                                                                     <input id="descricao" maxlength="255" name="descricao" class="required" type="text" value="">
@@ -89,7 +89,7 @@ include("inc/nav.php");
                                         </div>
                                     </div>
                                     <footer>
-                                    <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
                                             <span class="fa fa-trash"></span>
                                         </button>
                                         <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
@@ -226,13 +226,13 @@ include("inc/scripts.php");
         $("#btnVoltar").on("click", function() {
             voltar();
         });
-        
+
         $("#descricao").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
                 $("#descricao").val('');
             }
-        }) 
+        })
 
     });
 
@@ -264,7 +264,7 @@ include("inc/scripts.php");
                             $("#descricao").val(descricao);
                             $("#ativo").val(ativo);
                             $("#codigo").val(id);
-                           
+
 
 
 
@@ -301,7 +301,7 @@ include("inc/scripts.php");
 
 
     function gravar() {
-            $("#btnGravar");
+        $("#btnGravar");
         var descricao = $("#descricao").val();
         var ativo = 1;
         var codigo = 0;
@@ -316,6 +316,5 @@ include("inc/scripts.php");
             return;
         }
         gravaGenero(codigo, descricao, ativo);
-    }   
-    
+    }
 </script>

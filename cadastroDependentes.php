@@ -108,7 +108,7 @@ include("inc/nav.php");
                                             </div>
                                         </div>
                                         <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                            <span class="fa fa-floppy-o">   </span>
+                                            <span class="fa fa-floppy-o"> </span>
                                         </button>
                                         <!-- <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
                                             <span class="fa fa-file-o"></span>
@@ -231,18 +231,18 @@ include("inc/scripts.php");
         });
 
         $("#tipoDependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
-            smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
-            $("#tipoDependente").val('');
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
+                $("#tipoDependente").val('');
             }
-        }) 
+        })
 
 
         $("#cpf").on("change", function() {
             var data = $("#cpf").val();
             validarCPF();
         });
-        
+
         $("#rg").on("change", function() {
             var data = $("rg").val();
             VerificaRG();
@@ -317,9 +317,6 @@ include("inc/scripts.php");
 
     //FUNCTIONS
 
-    //================================================================================= VALIDA TELEFONE ====================================================================================================
-
-
     function carregaPagina() {
         var urlx = window.document.URL.toString();
         var params = urlx.split("?");
@@ -357,7 +354,7 @@ include("inc/scripts.php");
     }
 
     function novo() {
-        $(location).attr('href', 'TabelaBasicaFiltroDependenteListagem.php');
+        $(location).attr('href', 'cadastroDependentes.php');
     }
 
     function voltar() {
@@ -380,7 +377,7 @@ include("inc/scripts.php");
 
 
     function gravar() {
-        $("#btnGravar").attr('disabled', true);
+        $("#btnGravar")
         var tipoDependente = $("#tipoDependente").val();
         var ativo = 1;
         var codigo = 0;
