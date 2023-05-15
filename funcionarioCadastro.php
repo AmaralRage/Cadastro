@@ -1238,8 +1238,6 @@ include("inc/scripts.php");
 
         if (input.value.match(validRegex)) {
 
-            alert("Valid email address!");
-
             document.form1.text1.focus();
 
             return true;
