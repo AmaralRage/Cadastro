@@ -698,9 +698,9 @@ include("inc/scripts.php");
         });
 
         $("#btnAddEmail").on("click", function() {
-            if (validaEmail())
+          var email = $("#email").val();
             addEmail();
-            validateEmail();
+            validateEmail(email);
         });
 
         $("#btnRemoverEmail").on("click", function() {
