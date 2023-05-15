@@ -13,10 +13,13 @@ if ($funcao == 'recuperaFuncionario') {
     call_user_func($funcao);
 }
 
+
 if ($funcao == 'excluir') {
     call_user_func($funcao);
 }
-
+if ($funcao == 'generoVerificado') {
+    call_user_func($funcao);
+}
 return;
 
 
@@ -44,13 +47,13 @@ function gravar()
     return;
 }
 
-function verificaGenero()
+function generoVerificado()
 {
     ////////verifica registros que são duplicados
 
     $descricao = "'" . $_POST["descricao"] . "'";
 
-    $sql = "SELECT codigo, descricao FROM dbo.genero where descricao= $descricao ";
+    $sql = "SELECT descricao, codigo FROM dbo.genero where descricao= $descricao ";
     //achou 
     $reposit = new reposit();
     $result = $reposit->RunQuery($sql);

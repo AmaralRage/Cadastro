@@ -973,7 +973,6 @@ include("inc/scripts.php");
         fillTableDependente();
     }
 
-
     function addEmail() {
 
         var email = $("#email").val();
@@ -1235,20 +1234,6 @@ include("inc/scripts.php");
         } else
             smartAlert("Erro", "Selecione pelo menos um campo para excluir.", "error");
     }
-
-    // function validateEmail(email) {
-    //     // Expressão regular para validar o formato do e-mail
-    //     var emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-
-    //     // Verifica se o e-mail corresponde à expressão regular
-    //     return emailRegex.test(email);
-    // }
-    // var email = "test@example.com";
-    // if (validateEmail(email)) {
-    //     console.log("O e-mail é válido.");
-    // } else {
-    //     console.log("O e-mail é inválido.");
-    // }
 
     function validateEmail(email) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {

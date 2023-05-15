@@ -61,65 +61,65 @@ include("inc/nav.php");
                                             <div id="collapseCadastro" class="panel-collapse collapse in">
                                                 <div class="panel-body no-padding">
                                                     <fieldset>
-                                                    <section class="hidden" class="col col-2">
-                                                                <label class="label">&nbsp;</label>
-                                                                <label id="labelAtivo" class="checkbox ">
-                                                                    <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
-                                                                    Ativo
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-2">
-                                                                <label class="label">Gênero</label>
-                                                                <label class="input">
-                                                                    <input id="genero" maxlength="255" name="genero" class="required" type="text" value="">
-                                                                </label>
-                                                            </section>
-                                                            <label class="label " for="projeto" style="text-align: center;font-size: 23px;font-weight: bold;margin-top: 10px;">Projeto</label>
-                                                            <label class="select projetoTf">
-                                                                <select id="projeto" name="projeto" class="projetoTf" disabled style="text-align: center;" value="" onchange="projetoMudar()">
-                                                                    <option></option>
-                                                                    <?php
-                                                                    $reposit = new reposit();
-                                                                    $sql = "SELECT codigo, genero FROM dbo.funcionarios BP 
-                                                                            order by genero";
-                                                                    $result = $reposit->RunQuery($sql);
-                                                                    foreach ($result as $row) {
-                                                                        $id = $row['codigo'];
-                                                                        $genero = $row['genero'];
-                                                                        echo '<option value=' . $id . '>' . $genero . ' </option>';
-                                                                    }
-                                                                    ?>
-                                                                </select><i></i>
+                                                        <section class="hidden" class="col col-2">
+                                                            <label class="label">&nbsp;</label>
+                                                            <label id="labelAtivo" class="checkbox ">
+                                                                <input checked="checked" id="ativo" name="ativo" type="checkbox" value="true"><i></i>
+                                                                Ativo
                                                             </label>
-                                                        </div>
-                                                        <div class="row">
-                                                            <footer>
-                                                                <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                                                    <span class="fa fa-trash"></span>
-                                                                </button>
-                                                                <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
-                                                                    <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-                                                                        <span id="ui-id-2" class="ui-dialog-title">
-                                                                        </span>
-                                                                    </div>
-                                                                    <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
-                                                                        <p>CONFIRMA A EXCLUSÃO ? </p>
-                                                                    </div>
-                                                                    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                                                                        <div class="ui-dialog-buttonset">
-                                                                        </div>
-                                                                    </div>
+                                                        </section>
+                                                        <section class="col col-2">
+                                                            <label class="label">Gênero</label>
+                                                            <label class="input">
+                                                                <input id="genero" maxlength="255" name="genero" class="required" type="text" value="">
+                                                            </label>
+                                                        </section>
+                                                        <label class="label " for="projeto" style="text-align: center;font-size: 23px;font-weight: bold;margin-top: 10px;">Projeto</label>
+                                                        <label class="select projetoTf">
+                                                            <select id="projeto" name="projeto" class="projetoTf" disabled style="text-align: center;" value="" onchange="projetoMudar()">
+                                                                <option></option>
+                                                                <?php
+                                                                $reposit = new reposit();
+                                                                $sql = "SELECT codigo, genero FROM dbo.funcionarios BP 
+                                                                            order by genero";
+                                                                $result = $reposit->RunQuery($sql);
+                                                                foreach ($result as $row) {
+                                                                    $id = $row['codigo'];
+                                                                    $genero = $row['genero'];
+                                                                    echo '<option value=' . $id . '>' . $genero . ' </option>';
+                                                                }
+                                                                ?>
+                                                            </select><i></i>
+                                                        </label>
+                                                </div>
+                                                <div class="row">
+                                                    <footer>
+                                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
+                                                            <span class="fa fa-trash"></span>
+                                                        </button>
+                                                        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
+                                                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                                                <span id="ui-id-2" class="ui-dialog-title">
+                                                                </span>
+                                                            </div>
+                                                            <div id="dlgSimpleExcluir" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;">
+                                                                <p>CONFIRMA A EXCLUSÃO ? </p>
+                                                            </div>
+                                                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                                                <div class="ui-dialog-buttonset">
                                                                 </div>
-                                                                <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
-                                                                    <span class="fa fa-floppy-o"></span>
-                                                                </button>
-                                                                <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
-                                                                    <span class="fa fa-file-o"></span>
-                                                                </button>
-                                                                <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
-                                                                    <span class="fa fa-backward "></span>
-                                                                </button>
-                                                            </footer>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                                            <span class="fa fa-floppy-o"></span>
+                                                        </button>
+                                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                                            <span class="fa fa-file-o"></span>
+                                                        </button>
+                                                        <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
+                                                            <span class="fa fa-backward "></span>
+                                                        </button>
+                                                    </footer>
                                 </form>
                             </div>
                         </div>
@@ -233,19 +233,6 @@ include("inc/scripts.php");
             novo();
         });
 
-        $("#dataNascimento").on("change", function() {
-            var data = $("#dataNascimento").val();
-            validaData(data);
-        });
-
-        $("#cpf").on("change", function() {
-            var data = $("#cpf").val();
-            validarCPF();
-        });
-        $("#rg").on("change", function() {
-            var data = $("rg").val();
-            VerificaRG();
-        });
 
         $("#btnVoltar").on("click", function() {
             voltar();
@@ -319,75 +306,6 @@ include("inc/scripts.php");
 
         excluirUsuario(id);
     }
-
-    // function idade(dia, mes, ano) {
-    // return new Date().getFullYear() - ano;
-    // }
-
-    // idade(11, 12, 1980); //  33
-    // idade(15, 2, 2011);  // 2
-    // idade(5, 31, 1993);  // 20
-
-    // function getAge(dateString) {
-    //     const today = new Date();
-    //     const birthDate = new Date(dateString);
-    //     let age = today.getFullYear() - birthDate.getFullYear();
-    //     const m = today.getMonth() - birthDate.getMonth();
-
-    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    //         age--;
-    //     }
-
-    //     return age;
-    // }
-
-    //CONTINUAR A PARTIR DAQUI
-
-    // function validaData(data) {
-    //     var data = document.getElementById("dataNascimento").value; // pega o valor do input
-    //     data = data.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
-    //     var data_array = data.split("-"); // quebra a data em array
-
-    //     // para o IE onde será inserido no formato dd/MM/yyyy
-    //     if (data_array[0].length != 4) {
-    //         data = data_array[2] + "-" + data_array[1] + "-" + data_array[0];
-    //     }
-
-    //     // compara as datas e calcula a idade
-    //     var hoje = new Date();
-    //     var nasc = new Date(data);
-    //     var idade = hoje.getFullYear() - nasc.getFullYear();
-    //     var m = hoje.getMonth() - nasc.getMonth();
-    //     if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
-
-    //     if (idade <= 14) {
-    //         smartAlert("Atenção", "Informe a data correta", "error");
-    //         $("#idade").val(idade)
-    //         $("#btnGravar").prop('disabled', false);
-    //         return false;
-
-    //     }
-
-    //     if (idade >= 18 && idade <= 95) {
-    //         smartAlert("Atenção", "A Data está Correta !", "success");
-    //         $("#idade").val(idade)
-    //         $("#btnGravar").prop('disabled', false);
-    //         return;
-    //     }
-    //     if (hoje)
-    //         //se for maior que 60 não vai acontecer nada!
-    //         return false;
-
-    // }
-
-    // function validarCPF() {
-    // var id = +($("#codigo").val());
-    // var cpf = $("#cpf").val();
-
-    // validaCPF(cpf);
-    // }
-
-
 
 
     function gravar() {

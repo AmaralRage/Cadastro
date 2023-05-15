@@ -226,6 +226,11 @@ include("inc/scripts.php");
         $("#btnVoltar").on("click", function() {
             voltar();
         });
+        
+        $("#descricao").on("change", function() {
+            var descricao = $('#descricao').val()
+            verificaGenero()
+        });
 
         $("#descricao").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
@@ -298,6 +303,11 @@ include("inc/scripts.php");
         excluirGenero(id);
     }
 
+
+    function verificaGenero() {
+        var descricao = $("#descricao").val();
+        generoVerificado(descricao);
+    }
 
 
     function gravar() {
