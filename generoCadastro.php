@@ -228,7 +228,7 @@ include("inc/scripts.php");
         });
         
         $("#descricao").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
                 smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
                 $("#descricao").val('');
             }

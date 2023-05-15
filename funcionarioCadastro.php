@@ -591,21 +591,21 @@ include("inc/scripts.php");
         });
 
         $("#nome").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
                 $("#nome").val('');
             }
         })
        
         $("#cep").on("change", function() {
-            if (/[\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
             }
         })
 
         $("#dependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
                 $("#dependente").val('');
             }

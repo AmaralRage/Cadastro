@@ -231,7 +231,7 @@ include("inc/scripts.php");
         });
 
         $("#tipoDependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\\\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)){
             smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
             $("#tipoDependente").val('');
             }
