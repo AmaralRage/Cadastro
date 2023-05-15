@@ -591,7 +591,7 @@ include("inc/scripts.php");
         });
 
         $("#nome").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
                 $("#nome").val('');
             }
@@ -1252,7 +1252,7 @@ include("inc/scripts.php");
 
     function validateEmail(email) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            
+
             return (true)
         } else {
             return (false);

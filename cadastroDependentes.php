@@ -242,6 +242,7 @@ include("inc/scripts.php");
             var data = $("#cpf").val();
             validarCPF();
         });
+        
         $("#rg").on("change", function() {
             var data = $("rg").val();
             VerificaRG();
