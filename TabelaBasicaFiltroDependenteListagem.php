@@ -31,7 +31,6 @@ include "js/repositorio.php";
                     $ativoFiltro = $_POST["ativoFiltro"];
                     $where = $where . " AND dependenteAtivo =" . $ativoFiltro;
                 }
-
                 $sql = "  SELECT codigo, tipoDependente, dependenteAtivo FROM dbo.tipoDependentes";
                 $where = $where;
 
@@ -52,7 +51,7 @@ include "js/repositorio.php";
                     }
 
                     echo '<tr >';
-                    echo '<td class="text-left"><a href="TabelaBasicaDependentesFiltro.php?id=' . $id . '">' . $descricao . '</a></td>';
+                    echo '<td class="text-left"><a href="cadastroDependentes.php?id=' . $id . '">' . $descricao . '</a></td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
                     echo '</tr >';
                 }

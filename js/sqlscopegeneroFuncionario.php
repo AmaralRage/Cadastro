@@ -70,8 +70,8 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT codigo, ativo, genero
-               FROM dbo.funcionarios WHERE genero = $id";
+    $sql = " SELECT codigo, generoAtivo, descricao
+               FROM dbo.genero WHERE codigo = $id";
 
     // if ($condicaoId) {
     //     $sql = $sql . " AND codigo = " . $id . " ";
@@ -87,13 +87,14 @@ function recuperaFuncionario()
     $out = "";
     if ($row = $result[0]) {
         $id = +$row['codigoFuncionario'];
-        $ativo = +$row['ativo'];
-        $genero = (int)$row['genero'];
+        $ativo = +$row['generoAtivo'];
+        $descricao = $row['descricao'];
     }
 
     $out =   $id . "^" .
-        $genero . "^" .
-        $genero;
+        $ativo . "^" .
+        $descricao . "^" .
+        $descricao;
 
     if ($out == "") {
         echo "failed#";

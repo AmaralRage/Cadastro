@@ -260,8 +260,10 @@ include("inc/scripts.php");
                             // Atributos de vale transporte unitário que serão recuperados: 
                             var id = piece[0];
                             var ativo = piece[1];
-                            var genero = piece[2];
-                            $("#genero").val(genero);
+                            var descricao = piece[2];
+                            $("#descricao").val(descricao);
+                            $("#ativo").val(ativo);
+                            $("#codigo").val(id);
                            
 
 
