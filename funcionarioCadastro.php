@@ -698,7 +698,7 @@ include("inc/scripts.php");
         });
 
         $("#btnAddEmail").on("click", function() {
-          var email = $("#email").val();
+            var email = $("#email").val();
             addEmail();
             validateEmail(email);
         });
@@ -1232,26 +1232,18 @@ include("inc/scripts.php");
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
     }
 
-    function validateEmail(input) {
+    function validateEmail(email) {
+        // Expressão regular para validar o formato do e-mail
+        var emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
 
-        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        if (input.value.match(validRegex)) {
-
-            document.form1.text1.focus();
-
-            return true;
-
-        } else {
-
-            alert("Email Inválido!");
-
-            document.form1.text1.focus();
-
-            return false;
-
-        }
-
+        // Verifica se o e-mail corresponde à expressão regular
+        return emailRegex.test(email);
+    }
+    var email = "test@example.com";
+    if (validateEmail(email)) {
+        console.log("O e-mail é válido.");
+    } else {
+        console.log("O e-mail é inválido.");
     }
 
 
