@@ -49,22 +49,17 @@ function gravar()
 
 function generoVerificado()
 {
-    ////////verifica registros que são duplicados
-
-    $descricao = "'" . $_POST["descricao"] . "'";
-
-    $sql = "SELECT descricao, codigo FROM dbo.genero where descricao= $descricao ";
-    //achou 
+    $descricao = $_POST["descricao"];
+    $sql = "SELECT descricao, codigo FROM dbo.genero WHERE descricao='$descricao'";
     $reposit = new reposit();
     $result = $reposit->RunQuery($sql);
-
-    ////! ANTES É NEGAÇÃO
-    if (!$result) {
-        echo  "success";
-        return true;
-    } else {
-        $mensagem = "Tipo de Gênero já registrado!";
+    if ($result) {
+        $mensagem = "CPF do dependente já registrado!";
         echo "failed#" . $mensagem . ' ';
+        return;
+    } else {
+        echo  'succes#';
+        return;
     }
 }
 

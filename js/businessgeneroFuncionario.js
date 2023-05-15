@@ -37,12 +37,12 @@ function gravaGenero(codigo, descricao, ativo) {
 
 
 
-function Generoverificado(descricao) {
+function generoVerificado(descricao) {
     $.ajax({
         url: 'js/sqlscopeFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: { funcao: "VerificaGenero", descricao: descricao }, //valores enviados ao script
+        data: { funcao: "generoVerificado", descricao: descricao }, //valores enviados ao script
         beforeSend: function () {
             //função chamada antes de realizar o ajax
         },
@@ -60,8 +60,8 @@ function Generoverificado(descricao) {
                 else {
                     mensagem ="Genero já registrado.";
                     smartAlert("Atenção", mensagem, "error");
-                    document.getElementById('rg').value = "";
-                    $("#rg").focus();
+                    document.getElementById('descricao').value = "";
+                    $("#descricao").focus();
                     return;
                 }
             }
