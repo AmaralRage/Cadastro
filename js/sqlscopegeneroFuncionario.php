@@ -44,6 +44,26 @@ function gravar()
     return;
 }
 
+function verificaGenero()
+{
+    ////////verifica registros que são duplicados
+
+    $descricao = "'" . $_POST["descricao"] . "'";
+
+    $sql = "SELECT codigo, descricao FROM dbo.genero where descricao= $descricao ";
+    //achou 
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sql);
+
+    ////! ANTES É NEGAÇÃO
+    if (!$result) {
+        echo  "success";
+        return true;
+    } else {
+        $mensagem = "Tipo de Gênero já registrado!";
+        echo "failed#" . $mensagem . ' ';
+    }
+}
 
 function recuperaFuncionario()
 {

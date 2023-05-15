@@ -173,7 +173,7 @@ include("inc/scripts.php");
 
     function listarFiltro() {
         var ativo = $('#ativo').val();
-        var codigo = $('#descricao').val();
+        var codigo = $('#tipoDependente').val();
 
         $('#resultadoBusca').load('TabelaBasicaFiltroDependenteListagem.php?', {
            codigoFiltro: codigo,
