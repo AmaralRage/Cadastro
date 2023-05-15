@@ -699,8 +699,12 @@ include("inc/scripts.php");
 
         $("#btnAddEmail").on("click", function() {
             var email = $("#email").val();
-            validateEmail(email).val();
-            addEmail();
+            if (validateEmail(email) == false) {
+                smartAlert("Erro", "Email inválido", "error");
+                $("#email").val('')
+            } else {
+                addEmail();
+            }
         });
 
         $("#btnRemoverEmail").on("click", function() {
@@ -1250,9 +1254,8 @@ include("inc/scripts.php");
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
             return (true)
         } else {
-            smartAlert("Erro", "Email inválido", "error");
-            // $("#AddEmail").prop('disabled', false);
-            return;
+
+            return (false);
         }
     }
 
