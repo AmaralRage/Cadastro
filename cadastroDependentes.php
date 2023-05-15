@@ -110,9 +110,9 @@ include("inc/nav.php");
                                         <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
                                             <span class="fa fa-floppy-o">   </span>
                                         </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                        <!-- <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
                                             <span class="fa fa-file-o"></span>
-                                        </button>
+                                        </button> -->
                                         <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
                                             <span class="fa fa-backward "></span>
                                         </button>
@@ -360,7 +360,7 @@ include("inc/scripts.php");
     }
 
     function voltar() {
-        $(location).attr('href', 'cadastroDependentes.php');
+        $(location).attr('href', 'TabelaBasicaDependentesFiltro.php');
     }
 
     function excluir() {
