@@ -17,6 +17,10 @@ if ($funcao == 'excluir') {
     call_user_func($funcao);
 }
 
+if ($funcao == 'dependenteVerificado') {
+    call_user_func($funcao);
+}
+
 return;
 
 
@@ -157,7 +161,7 @@ function dependenteVerificado()
     $reposit = new reposit();
     $result = $reposit->RunQuery($sql);
     if ($result) {
-        $mensagem = "CPF do dependente já registrado!";
+        $mensagem = "Dependente já registrado!";
         echo "failed#" . $mensagem . ' ';
         return;
     } else {

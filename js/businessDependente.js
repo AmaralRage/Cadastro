@@ -1,9 +1,9 @@
-function gravaDependente(codigo, descricao, ativo) {
+function gravaDependente(codigo, tipoDependente, ativo) {
     $.ajax({
         url: 'js/sqlscopeDependente.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: { funcao: "gravar", codigo:codigo, descricao: descricao, ativo: ativo}, //valores enviados ao script
+        data: { funcao: "gravar", codigo:codigo, tipoDependente: tipoDependente, ativo: ativo}, //valores enviados ao script
         beforeSend: function () {
             //função chamada antes de realizar o ajax
         },

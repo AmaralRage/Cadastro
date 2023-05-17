@@ -232,7 +232,7 @@ include("inc/scripts.php");
 
         $("#tipoDependente").on("change", function() {
             var tipoDependente = $('#tipoDependente').val()
-            verificaGenero();
+            verificaDependente();
         });
 
         $("#tipoDependente").on("change", function() {
@@ -358,9 +358,9 @@ include("inc/scripts.php");
 
     }
     
-    function verificaGenero() {
-        var descricao = $("#descricao").val();
-        generoVerificado (descricao);
+    function verificaDependente() {
+        var descricao = $("#tipoDependente").val();
+        dependenteVerificado (tipoDependente);
     }
 
     function novo() {
