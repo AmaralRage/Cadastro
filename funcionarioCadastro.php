@@ -582,7 +582,11 @@ include("inc/scripts.php");
 
         $("#dataNascimento").on("change", function() {
             var data = $("#dataNascimento").val();
-            validaData(data);
+            if (validaData(dataNascimento) == false) {
+                $("#idade").val("");
+                $("#dataNascimento").val("");
+                validaData(data);
+            }
         });
 
         $("#primeiroEmprego").on("change", function() {
@@ -603,6 +607,13 @@ include("inc/scripts.php");
                 $("#cep").val('');
             }
         })
+       
+        // $("#telefone").on("change", function() {
+        //     if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+        //         smartAlert("Atenção", "Telefone Inválido", "error");
+        //         $("#telefone").val('');
+        //     }
+        // })
 
         $("#dependente").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
@@ -619,7 +630,6 @@ include("inc/scripts.php");
                 $("#dataNascimentoDependente").val("");
             }
         });
-
 
         $("#cpf").on("change", function() {
             // var data = $("#cpf").val();
