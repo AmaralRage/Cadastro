@@ -103,7 +103,7 @@ include("inc/nav.php");
                                                                 <label class="label">Gênero</label>
                                                                 <label class="select">
                                                                     <select id="genero" name="genero" class="required">
-                                                                        <option value="0"></option>
+                                                                        <option></option>
                                                                         <?php
                                                                         $reposit = new reposit();
                                                                         $sql = "SELECT codigo,descricao, generoAtivo
@@ -122,7 +122,7 @@ include("inc/nav.php");
                                                                 <label class="label">Estado Civil</label>
                                                                 <label class="select">
                                                                     <select id="estadoCivil" name="estadoCivil" class="required">
-                                                                        <option value="hidden"></option>
+                                                                        <option></option>
                                                                         <option value="1">Solteiro(a)</option>
                                                                         <option value="2">Casado(a)</option>
                                                                         <option value="3">Divorciado(a)</option>
@@ -147,8 +147,9 @@ include("inc/nav.php");
                                                             <section class="col col-1.5">
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
-                                                                    <select id="primeiroEmprego" name="primeiroEmpreogo" class="required">
-                                                                        <option value="0" selected>Não</option>
+                                                                    <select id="primeiroEmprego" name="primeiroEmprego" class="required">
+                                                                        <option selected></option>
+                                                                        <option value="0">Não</option>
                                                                         <option value="1">Sim</option>
                                                                     </select><i></i>
                                                                 </label>
@@ -1468,32 +1469,32 @@ include("inc/scripts.php");
             return;
         }
 
-        
+
         if (!cpf) {
             smartAlert("Atenção", "Informe o CPF", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         if (!rg || rg == "__.___.___-_") {
             smartAlert("Atenção", "Informe o RG", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         if (!genero) {
             smartAlert("Atenção", "Informe o Gênero", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
 
-        
+
         if (!estadoCivil) {
             smartAlert("Atenção", "Informe o Estado Civil", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         if (!dataNascimento) {
             smartAlert("Atenção", "Informe a Data de Nascimento", "error");
             $("#btnGravar").prop('disabled', false);
@@ -1503,7 +1504,13 @@ include("inc/scripts.php");
             $interval = $date > diff(new DateTime(date('Y-m-d')));
             $interval > format('%Y anos');
         }
-        
+
+        if (!primeiroEmprego) {
+            smartAlert("Atenção", "Informe o campo de emprego corretamente", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+
         if (!pispasep || pispasep == "__.___.___-_") {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
