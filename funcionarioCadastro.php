@@ -930,8 +930,17 @@ include("inc/scripts.php");
 
     function addDependente() {
 
-        var cpfDependente = $("#cpf").val();
+        var cpfDependente = $("#cpfDependente").val();
+        if (cpfDependente === "") {
+            smartAlert("Atenção", "Informe o CPF do Dependente !", "error");
+            $("#cpfDependente").focus();
+        }
         var dataNascimentoDependente = $("#dataNascimentoDependente").val();
+        if (dataNascimentoDependente === "") {
+            smartAlert("Atenção", "Informe a data de nascimento do Dependente !", "error");
+            $("#dataNascimentoDependente").focus();
+            return;
+        }
         var tipoDependente = $("#tipoDependente").val();
         var dependente = $("#dependente").val();
         if (dependente === "") {
