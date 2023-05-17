@@ -3,11 +3,12 @@ function gravaGenero(codigo, descricao, ativo) {
         url: 'js/sqlscopegeneroFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: { funcao: "gravar", codigo:codigo, descricao: descricao, ativo: ativo}, //valores enviados ao script
+        data: { funcao: "gravar", codigo: codigo, descricao: descricao, ativo: ativo }, //valores enviados ao script
         beforeSend: function () {
             //função chamada antes de realizar o ajax
         },
-        complete: function () {ss
+        complete: function () {
+            ss
             //função executada depois de terminar o ajax
         },
         ///////////////////////////////////////////////////
@@ -58,7 +59,7 @@ function generoVerificado(descricao) {
                     return;
                 }
                 else {
-                    mensagem ="Genero já registrado.";
+                    mensagem = "Genero já registrado.";
                     smartAlert("Atenção", mensagem, "error");
                     document.getElementById('descricao').value = "";
                     $("#descricao").focus();
@@ -81,9 +82,9 @@ function recupera(id, callback) {
         url: 'js/sqlscopegeneroFuncionario.php', //caminho do arquivo a ser executado
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: {funcao: 'recuperaFuncionario', id: id}, //valores enviados ao script      
+        data: { funcao: 'recuperaFuncionario', id: id }, //valores enviados ao script      
         success: function (data) {
-            callback(data); 
+            callback(data);
         }
     });
 }
@@ -93,11 +94,11 @@ function excluirGenero(id) {
         url: 'js/sqlscopegeneroFuncionario.php', //caminho do arquivo a ser executado
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: {funcao: 'excluir', id: id}, //valores enviados ao script     
-        success: function (data, textStatus) { 
+        data: { funcao: 'excluir', id: id }, //valores enviados ao script     
+        success: function (data, textStatus) {
             if (textStatus === 'success') {
-                smartAlert("Sucesso", "Operação realizada com sucesso!", "success"); 
-               novo();
+                smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+                novo();
             } else {
                 smartAlert("Atenção", "Operação não realizada - entre em contato com a GIR!", "error");
             }
