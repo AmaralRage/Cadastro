@@ -363,6 +363,8 @@ include("inc/nav.php");
                                                         <div id="formDependente" class="col-sm-10 required">
                                                             <input id="descricaoDependente" type="hidden" value="">
                                                             <input id="sequencialDependente" type="hidden" value="">
+                                                            <!-- <input id="" type="hidden" value="">
+                                                            <input id="" type="hidden" value=""> -->
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-3">
@@ -395,7 +397,7 @@ include("inc/nav.php");
                                                                                 foreach ($result as $row) {
                                                                                     $codigo = $row['codigo'];
                                                                                     $tipoDependente = $row['tipoDependente'];
-                                                                                    echo '<option value=' . $codigo . '>' . $tipoDependente . '</option>';
+                                                                                    echo '<option>' . $tipoDependente . '</option>';
                                                                                 }
                                                                                 ?>
                                                                             </select><i></i>
@@ -441,9 +443,6 @@ include("inc/nav.php");
                                     <!-- FOOTER ABAIXO -->
 
                                     <footer>
-                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir">
-                                            <span class="fa fa-trash"></span>
-                                        </button>
                                         <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" tabindex="-1" role="dialog" aria-describedby="dlgSimpleExcluir" aria-labelledby="ui-id-1" style="height: auto; width: 600px; top: 220px; left: 262px; display: none;">
                                             <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
                                                 <span id="ui-id-2" class="ui-dialog-title">
@@ -457,10 +456,24 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <?php
+                                        $url = explode("?", $_SERVER["REQUEST_URI"]); ////essas linhas fazem a leitura do codigo "id" na url
+                                        $codigo = explode("=", $url[1]);
+                                        $codigoBtn = (int)$codigo[1];
+                                        $esconderBtn = "none";
+                                        if ($codigoBtn != 0) {
+                                            $esconderBtn = "block";
+                                        }
+                                        ?>
+
+                                        <button type="button" id="btnExcluir" class="btn btn-danger" aria-hidden="true" title="Excluir" style="display:<?php echo $esconderBtn ?>">
+                                            <span class="fa fa-trash"></span>
+                                        </button>
                                         <button type="button" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
                                             <span class="fa fa-floppy-o"></span>
                                         </button>
-                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
+                                        <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo" style="display:<?php echo $esconderBtn ?>">
                                             <span class="fa fa-file-o"></span>
                                         </button>
                                         <button type="button" id="btnVoltar" class="btn btn-default" aria-hidden="true" title="Voltar">
@@ -607,7 +620,7 @@ include("inc/scripts.php");
                 $("#cep").val('');
             }
         })
-       
+
         // $("#telefone").on("change", function() {
         //     if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
         //         smartAlert("Atenção", "Telefone Inválido", "error");
@@ -724,7 +737,7 @@ include("inc/scripts.php");
 
     $("#btnAddDependente").on("click", function() {
         if (validaDependente())
-        addDependente();
+            addDependente();
     });
 
     $("#btnRemoverDependente").on("click", function() {
