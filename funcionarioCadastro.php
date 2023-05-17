@@ -1468,38 +1468,34 @@ include("inc/scripts.php");
             return;
         }
 
-        if (!genero) {
-            smartAlert("Atenção", "Informe seu genero", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
-
+        
         if (!cpf) {
-            smartAlert("Atenção", "Informe o cpf", "error");
+            smartAlert("Atenção", "Informe o CPF", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-
+        
         if (!rg || rg == "__.___.___-_") {
             smartAlert("Atenção", "Informe o RG", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-
-        // if (!email || email =="__.___.___-_") {
-        //     smartAlert("Atenção", "Informe o Email corretamente", "error");
-        //     $("#btnGravar").prop('disabled', false);
-        //     return;
-        // }
-
-        if (!pispasep || pispasep == "__.___.___-_") {
-            smartAlert("Atenção", "Informe o PISPA/SEP", "error");
+        
+        if (!genero) {
+            smartAlert("Atenção", "Informe o Gênero", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
 
+        
+        if (!estadoCivil) {
+            smartAlert("Atenção", "Informe o Estado Civil", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        
         if (!dataNascimento) {
-            smartAlert("Atenção", "Informe a data valida", "error");
+            smartAlert("Atenção", "Informe a Data de Nascimento", "error");
             $("#btnGravar").prop('disabled', false);
             return;
             $dataNascimento = '1988-12-20';
@@ -1507,6 +1503,13 @@ include("inc/scripts.php");
             $interval = $date > diff(new DateTime(date('Y-m-d')));
             $interval > format('%Y anos');
         }
+        
+        if (!pispasep || pispasep == "__.___.___-_") {
+            smartAlert("Atenção", "Informe o PISPA/SEP", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+
 
         gravaFuncionario(id, ativo,
             nome,

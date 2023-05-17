@@ -140,7 +140,7 @@ function excluir()
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
 
-    $result = $reposit->update('dbo.funcionarios' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
+    $result = $reposit->update('dbo.genero' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
 
     $reposit = new reposit();
 
