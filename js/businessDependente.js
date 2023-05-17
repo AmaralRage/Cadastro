@@ -38,7 +38,7 @@ function gravaDependente(codigo, tipoDependente, ativo) {
 
 function dependenteVerificado(tipoDependente) {
     $.ajax({
-        url: 'js/sqlscopeFuncionario.php',
+        url: 'js/sqlscopeDependente.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: { funcao: "dependenteVerificado", tipoDependente: tipoDependente }, //valores enviados ao script

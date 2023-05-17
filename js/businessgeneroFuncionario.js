@@ -44,12 +44,6 @@ function generoVerificado(descricao) {
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: { funcao: "generoVerificado", descricao: descricao }, //valores enviados ao script
-        beforeSend: function () {
-            //função chamada antes de realizar o ajax
-        },
-        complete: function () {
-            //função executada depois de terminar o ajax
-        },
         success: function (data, textStatus) {
             if (data.indexOf('success') < 0) {
                 var piece = data.split("#");

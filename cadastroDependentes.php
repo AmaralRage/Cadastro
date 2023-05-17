@@ -360,7 +360,7 @@ include("inc/scripts.php");
     
     function verificaDependente() {
         var descricao = $("#tipoDependente").val();
-        dependenteVerificado (tipoDependente);
+        dependenteVerificado (descricao);
     }
 
     function novo() {
