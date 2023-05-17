@@ -78,6 +78,12 @@ include("inc/nav.php");
                                                                     Ativo
                                                                 </label>
                                                             </section>
+                                                            <section class="hidden" class="col col-1">
+                                                                <label class="label">Código</label>
+                                                                <label class="input">
+                                                                    <input id="codigo" name="codigo" type="text" class="readonly" readonly>
+                                                                </label>
+                                                            </section>
                                                         </div>
                                                         <div class="row">
                                                         </div>
@@ -293,7 +299,7 @@ include("inc/scripts.php");
     }
 
     function excluir() {
-        var id = +$("#codigo").val();
+        var id = $("#codigo").val();
 
         if (id === 0) {
             smartAlert("Atenção", "Selecione um registro para excluir!", "error");
@@ -306,7 +312,7 @@ include("inc/scripts.php");
 
     function verificaGenero() {
         var descricao = $("#descricao").val();
-        generoVerificado (descricao);
+        generoVerificado(descricao);
     }
 
 

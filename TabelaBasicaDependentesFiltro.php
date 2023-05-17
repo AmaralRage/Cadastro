@@ -86,12 +86,12 @@ include("inc/nav.php");
                                                                     <option value="" selected></option>
                                                                         <?php
                                                                         $reposit = new reposit();
-                                                                        $sql = "SELECT codigo, descricao
-                                                                        FROM dbo.dependentes where dependentesAtivo = 1 ORDER BY codigo";
+                                                                        $sql = "SELECT codigo, tipoDependente
+                                                                        FROM dbo.tipoDependentes where dependenteAtivo = 1 ORDER BY codigo";
                                                                         $result = $reposit->RunQuery($sql);
                                                                         foreach ($result as $row) {
                                                                             $codigo = $row['codigo'];
-                                                                            $descricao = $row['descricao'];
+                                                                            $descricao = $row['tipoDependente'];
                                                                             echo '<option value=' . $codigo . '>' . $descricao . '</option>';
                                                                         }
                                                                         ?>

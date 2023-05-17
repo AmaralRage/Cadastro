@@ -104,7 +104,7 @@ function recuperaFuncionario()
 
     $out = "";
     if ($row = $result[0]) {
-        $id = +$row['codigoFuncionario'];
+        $id = +$row['codigo'];
         $ativo = +$row['generoAtivo'];
         $descricao = $row['descricao'];
     }
@@ -140,7 +140,7 @@ function excluir()
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
 
-    $result = $reposit->update('dbo.genero' . '|' . 'generoAtivo = 0' . '|' . 'id =' . $id);
+    $result = $reposit->update('dbo.genero' . '|' . 'generoAtivo = 0' . '|' . 'codigo =' . $id);
 
     $reposit = new reposit();
 

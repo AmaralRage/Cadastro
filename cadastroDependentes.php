@@ -372,7 +372,7 @@ include("inc/scripts.php");
     }
 
     function excluir() {
-        var id = +$("#codigo").val();
+        var id = $("#codigo").val();
 
         if (id === 0) {
             smartAlert("Atenção", "Selecione um registro para excluir!", "error");

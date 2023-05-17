@@ -74,8 +74,8 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT codigo, ativo, genero
-               FROM dbo.dependentes WHERE genero = $id";
+    $sql = " SELECT codigo, tipoDependente, dependenteAtivo
+               FROM dbo.dependentes WHERE codigo = $id";
 
     // if ($condicaoId) {
     //     $sql = $sql . " AND codigo = " . $id . " ";
@@ -90,14 +90,15 @@ function recuperaFuncionario()
 
     $out = "";
     if ($row = $result[0]) {
-        $id = +$row['codigoFuncionario'];
+        $id = +$row['codigo'];
         $ativo = +$row['ativo'];
-        $dependentes = (int)$row['dependentes'];
+        $dependente = (int)$row['dependente'];
     }
 
     $out =   $id . "^" .
-        $dependentes . "^" .
-        $dependentes;
+        $ativo . "^" .
+        $dependente . "^" .
+        $dependente;
 
     if ($out == "") {
         echo "failed#";
@@ -125,7 +126,7 @@ function excluir()
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
 
-    $result = $reposit->update('dbo.funcionarios' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
+    $result = $reposit->update('dbo.dependentes' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
 
     $reposit = new reposit();
 
