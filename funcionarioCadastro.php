@@ -723,6 +723,7 @@ include("inc/scripts.php");
     });
 
     $("#btnAddDependente").on("click", function() {
+        if (validaDependente())
         addDependente();
     });
 
@@ -929,10 +930,10 @@ include("inc/scripts.php");
 
     function addDependente() {
 
-        var dependente = $("#dependente").val();
         var cpfDependente = $("#cpf").val();
         var dataNascimentoDependente = $("#dataNascimentoDependente").val();
         var tipoDependente = $("#tipoDependente").val();
+        var dependente = $("#dependente").val();
         if (dependente === "") {
             smartAlert("Atenção", "Informe o Dependente !", "error");
             $("#dependente").focus();
@@ -981,6 +982,8 @@ include("inc/scripts.php");
         $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
 
         fillTableDependente();
+        clearFormDependente();
+
     }
 
     function addEmail() {
