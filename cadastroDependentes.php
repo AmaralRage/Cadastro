@@ -231,6 +231,11 @@ include("inc/scripts.php");
         });
 
         $("#tipoDependente").on("change", function() {
+            var tipoDependente = $('#tipoDependente').val()
+            verificaGenero();
+        });
+
+        $("#tipoDependente").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
                 $("#tipoDependente").val('');
@@ -351,6 +356,11 @@ include("inc/scripts.php");
         }
         $("#nome").focus();
 
+    }
+    
+    function verificaGenero() {
+        var descricao = $("#descricao").val();
+        generoVerificado (descricao);
     }
 
     function novo() {

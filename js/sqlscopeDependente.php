@@ -149,6 +149,24 @@ function validaUsuario($login)
     }
 }
 
+
+function dependenteVerificado()
+{
+    $tipoDependente = $_POST["tipoDependente"];
+    $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE tipoDependente='$tipoDependente'";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sql);
+    if ($result) {
+        $mensagem = "CPF do dependente já registrado!";
+        echo "failed#" . $mensagem . ' ';
+        return;
+    } else {
+        echo  'succes#';
+        return;
+    }
+}
+
+
 function recuperarDadosUsuario()
 {
 

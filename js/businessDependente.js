@@ -36,12 +36,12 @@ function gravaDependente(codigo, descricao, ativo) {
 }
 
 
-function dependenteVerificado(dependente) {
+function dependenteVerificado(tipoDependente) {
     $.ajax({
         url: 'js/sqlscopeFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: { funcao: "dependenteVerificado", dependente: dependente }, //valores enviados ao script
+        data: { funcao: "dependenteVerificado", tipoDependente: tipoDependente }, //valores enviados ao script
         beforeSend: function () {
             //função chamada antes de realizar o ajax
         },
@@ -59,8 +59,8 @@ function dependenteVerificado(dependente) {
                 else {
                     mensagem = "Dependente já registrado.";
                     smartAlert("Atenção", mensagem, "error");
-                    document.getElementById('dependente').value = "";
-                    $("#dependente").focus();
+                    document.getElementById('tipoDependente').value = "";
+                    $("#tipoDependente").focus();
                     return;
                 }
             }
