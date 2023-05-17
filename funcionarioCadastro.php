@@ -882,7 +882,7 @@ include("inc/scripts.php");
     function addTelefone() {
 
         var telefone = $("#telefone").val();
-        if (telefone === "") {
+        if (telefone === "" || telefone === "(__) _____-____") {
             smartAlert("Atenção", "Informe o Telefone !", "error");
             $("#telefone").focus();
             return;
@@ -1360,7 +1360,7 @@ include("inc/scripts.php");
     }
 
     function novo() {
-        $(location).attr('href', 'usuarioCadastro.php');
+        $(location).attr('href', 'funcionarioCadastro.php');
     }
 
     function voltar() {
