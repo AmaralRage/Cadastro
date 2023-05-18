@@ -49,7 +49,7 @@ function dependenteVerificado(tipoDependente) {
             //função executada depois de terminar o ajax
         },
         success: function (data, textStatus) {
-            if (data.indexOf('success') < 0) {
+            if (data.indexOf('success#') > -1) {
                 var piece = data.split("#");
                 var mensagem = piece[1];
                 if (piece[0] === "success") {

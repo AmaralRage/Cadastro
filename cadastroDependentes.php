@@ -113,7 +113,7 @@ include("inc/nav.php");
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submited" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
+                                        <button type="button" id="btnGravar" class="btn btn-success" aria-hidden="true" title="Gravar">
                                             <span class="fa fa-floppy-o"> </span>
                                         </button>
                                         <!-- <button type="button" id="btnNovo" class="btn btn-primary" aria-hidden="true" title="Novo">
@@ -241,12 +241,12 @@ include("inc/scripts.php");
             verificaDependente();
         });
 
-        $("#tipoDependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
-                $("#tipoDependente").val('');
-            }
-        })
+        // $("#tipoDependente").on("change", function() {
+        //     if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+        //         smartAlert("Atenção", "Gênero Inválido, apenas Letras!", "error");
+        //         $("#tipoDependente").val('');
+        //     }
+        // })
 
 
         $("#cpf").on("change", function() {
@@ -351,7 +351,9 @@ include("inc/scripts.php");
                             var id = piece[0];
                             var ativo = piece[1];
                             var tipoDependente = piece[2];
+
                             $("#tipoDependente").val(tipoDependente);
+                            $("#codigo").val(id);
 
                             return;
 

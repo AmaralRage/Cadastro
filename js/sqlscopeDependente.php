@@ -27,7 +27,7 @@ return;
 function gravar()
 {
 
-    $descricao = $_POST['descricao'];
+    $descricao = $_POST['tipoDependente'];
     $codigo = 0;
     $ativo = (int)$_POST['ativo'];
 
@@ -111,27 +111,15 @@ function recuperaDependente()
 function excluir()
 {
 
-    $reposit = new reposit();
-    $possuiPermissao = $reposit->PossuiPermissao("USUARIO_ACESSAR|USUARIO_EXCLUIR");
-
     $id = $_POST["id"];
-    // $id = $_GET["id"];
-    // $url = explode("?", $_SERVER["REQUEST_URI"]); ////essas linhas fazem a leitura do codigo "id" na url
-    // $codigo = explode("=", $url[1]);
-
-    if ((empty($_POST['id']) || (!isset($_POST['id'])) || (is_null($_POST['id'])))) {
-        $mensagem = "Selecione um usuário.";
-        echo "failed#" . $mensagem . ' ';
-        return;
-    }
-
+    
+    $reposit = new reposit();
     session_start();
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
+    
+    $result = $reposit->update('dbo.tipoDependentes' . '|' . 'dependenteAtivo = 0' . '|' . 'codigo =' . $id);
 
-    $result = $reposit->update('dbo.tipoDependentes' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
-
-    $reposit = new reposit();
 
     if ($result < 1) {
         echo ('failed#');
@@ -169,7 +157,7 @@ function dependenteVerificado()
         echo "failed#" . $mensagem . ' ';
         return;
     } else {
-        echo  'succes#';
+        echo  'success#';
         return;
     }
 }

@@ -620,6 +620,7 @@ include("inc/scripts.php");
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
             }
+            clearFormCep();
         })
 
         // $("#telefone").on("change", function() {
@@ -645,10 +646,10 @@ include("inc/scripts.php");
             }
         });
 
-        $("#cpf").on("change", function() {
-            // var data = $("#cpf").val();
-            validarCPF();
-        });
+        // $("#cpf").on("change", function() {
+        //     // var data = $("#cpf").val();
+        //     validarCPF();
+        // });
 
         $("#cpfDependente").on("change", function() {
             // var data = $("#cpfDependente").val();
@@ -666,7 +667,11 @@ include("inc/scripts.php");
 
         $("#cep").on("change", function() {
             //Nova variável "cep" somente com dígitos.
-            var cep = $("#cep").val().replace(/\D/g, '');
+            if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "CEP Inválido", "error");
+                $("#cep").val('');
+            }else{
+                var cep = $("#cep").val().replace(/\D/g, '');
             //Verifica se campo cep possui valor informado.
             if (cep != "") {
                 //Expressão regular para validar o CEP.
@@ -696,7 +701,9 @@ include("inc/scripts.php");
                 else {
                     console.log("Formato de CEP inválido.");
                 }
-            } //end if.
+            } //end if.   
+            }
+           
         });
 
         //MASKS
@@ -1154,6 +1161,15 @@ include("inc/scripts.php");
         $("#email").val('');
         $("#sequencialEmail").val('');
         $("#emailPrincipal").prop('checked', false);
+    }
+   
+    function clearFormCep() {
+        $("#logradouro").val('');
+        $("#bairro").val('');
+        $("#numero").val('');
+        $("#uf").val('');
+        $("#cidade").val('');
+        $("#complemento").val('');
     }
 
     //================================================================================== EXCLUIR =============================================================================================
