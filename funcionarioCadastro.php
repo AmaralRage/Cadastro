@@ -1527,12 +1527,57 @@ include("inc/scripts.php");
             return;
         }
 
-        if (!pispasep && primeiroEmprego == 1) {
+        if (!pispasep && primeiroEmprego == 0) {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
             return;
         }
+        
+        var umTelefonePrincipal = false;
+        for (var i = 0; i < jsonTelefoneArray.length; i++) {
+            if (jsonTelefoneArray[i].telefonePrincipal == true) {
+                umTelefonePrincipal = true;
+            }
+        }
+        if (umTelefonePrincipal != true) {
+            smartAlert("Atenção", "Adicione pelo menos um Telefone como Pincipal!", "error");
+            $("#telefone").focus();
+            return;
+        }
 
+
+        if (!cep) {
+            smartAlert("Atenção", "Informe o CEP", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        if (!logradouro) {
+            smartAlert("Atenção", "Informe o Logradouro", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        if (!bairro) {
+            smartAlert("Atenção", "Informe o Bairro", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        if (!numero) {
+            smartAlert("Atenção", "Informe o Número", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }
+        
+        if (!cpfDependente) {
+            smartAlert("Atenção", "Informe o CPF do Dependente", "error");
+            $("#btnGravar").prop('disabled', false);
+            return;
+        }{}
+        
+        // if (cpfDependente.length === 0 || !cpfDependente.trim()) {
+        //     smartAlert("Atenção", "Informe o CPF do Dependente!", "error");
+        //     $("#cpfDependente").focus();
+        //     return;
+        // }
 
         gravaFuncionario(id, ativo,
             nome,
