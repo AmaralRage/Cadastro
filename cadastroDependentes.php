@@ -357,10 +357,10 @@ include("inc/scripts.php");
         $("#nome").focus();
 
     }
-    
+
     function verificaDependente() {
         var descricao = $("#tipoDependente").val();
-        dependenteVerificado (descricao);
+        dependenteVerificado(descricao);
     }
 
     function novo() {

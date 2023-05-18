@@ -115,6 +115,9 @@ function excluir()
     $possuiPermissao = $reposit->PossuiPermissao("USUARIO_ACESSAR|USUARIO_EXCLUIR");
 
     $id = $_POST["id"];
+    // $id = $_GET["id"];
+    // $url = explode("?", $_SERVER["REQUEST_URI"]); ////essas linhas fazem a leitura do codigo "id" na url
+    // $codigo = explode("=", $url[1]);
 
     if ((empty($_POST['id']) || (!isset($_POST['id'])) || (is_null($_POST['id'])))) {
         $mensagem = "Selecione um usuário.";
@@ -126,7 +129,7 @@ function excluir()
     $usuario = $_SESSION['login'];
     $usuario = "'" . $usuario . "'";
 
-    $result = $reposit->update('dbo.dependentes' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
+    $result = $reposit->update('dbo.tipoDependentes' . '|' . 'ativo = 0' . '|' . 'id =' . $id);
 
     $reposit = new reposit();
 
