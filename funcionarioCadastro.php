@@ -670,40 +670,40 @@ include("inc/scripts.php");
             if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
-            }else{
+            } else {
                 var cep = $("#cep").val().replace(/\D/g, '');
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
 
-                //Valida o formato do CEP.
-                if (validacep.test(cep)) {
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
 
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
 
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#logradouro").val(dados.logradouro);
-                            $("#bairro").val(dados.bairro);
-                            $("#cidade").val(dados.localidade);
-                            $("#uf").val(dados.uf);
-                            $("#numero").focus();
-                        } //end if.
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            console.log("CEP não encontrado.");
-                        }
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#logradouro").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#numero").focus();
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                console.log("CEP não encontrado.");
+                            }
 
-                    });
-                } //end if.
-                else {
-                    console.log("Formato de CEP inválido.");
-                }
-            } //end if.   
+                        });
+                    } //end if.
+                    else {
+                        console.log("Formato de CEP inválido.");
+                    }
+                } //end if.   
             }
-           
+
         });
 
         //MASKS
@@ -1162,7 +1162,7 @@ include("inc/scripts.php");
         $("#sequencialEmail").val('');
         $("#emailPrincipal").prop('checked', false);
     }
-   
+
     function clearFormCep() {
         $("#logradouro").val('');
         $("#bairro").val('');
