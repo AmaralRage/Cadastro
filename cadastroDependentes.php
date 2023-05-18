@@ -344,8 +344,8 @@ include("inc/scripts.php");
                             // Atributos de vale transporte unitário que serão recuperados: 
                             var id = piece[0];
                             var ativo = piece[1];
-                            var dependente = piece[2];
-                            $("#dependente").val(dependente);
+                            var tipoDependente = piece[2];
+                            $("#tipoDependente").val(tipoDependente);
 
                             return;
 
@@ -379,7 +379,7 @@ include("inc/scripts.php");
             return;
         }
 
-        excluirUsuario(id);
+        excluirDependente(id);
     }
 
     //CONTINUAR A PARTIR DAQUI

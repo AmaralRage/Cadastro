@@ -9,7 +9,7 @@ if ($funcao == 'gravar') {
     call_user_func($funcao);
 }
 
-if ($funcao == 'recuperaFuncionario') {
+if ($funcao == 'recuperaDependente') {
     call_user_func($funcao);
 }
 
@@ -49,7 +49,7 @@ function gravar()
 }
 
 
-function recuperaFuncionario()
+function recuperaDependente()
 {
     $condicaoId = !((empty($_POST["id"])) || (!isset($_POST["id"])) || (is_null($_POST["id"])));
     $condicaoLogin = !((empty($_POST["loginPesquisa"])) || (!isset($_POST["loginPesquisa"])) || (is_null($_POST["loginPesquisa"])));
@@ -75,7 +75,7 @@ function recuperaFuncionario()
     }
 
     $sql = " SELECT codigo, tipoDependente, dependenteAtivo
-               FROM dbo.dependentes WHERE codigo = $id";
+               FROM dbo.tipoDependentes WHERE codigo = $id";
 
     // if ($condicaoId) {
     //     $sql = $sql . " AND codigo = " . $id . " ";
@@ -91,14 +91,14 @@ function recuperaFuncionario()
     $out = "";
     if ($row = $result[0]) {
         $id = +$row['codigo'];
-        $ativo = +$row['ativo'];
-        $dependente = (int)$row['dependente'];
+        $dependenteAtivo = +$row['dependenteAtivo'];
+        $tipoDependente = $row['tipoDependente'];
     }
 
     $out =   $id . "^" .
-        $ativo . "^" .
-        $dependente . "^" .
-        $dependente;
+        $dependenteAtivo . "^" .
+        $tipoDependente . "^" .
+        $tipoDependente;
 
     if ($out == "") {
         echo "failed#";
