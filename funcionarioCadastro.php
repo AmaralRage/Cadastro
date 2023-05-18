@@ -1527,7 +1527,7 @@ include("inc/scripts.php");
             return;
         }
 
-        if (!pispasep || pispasep == "__.___.___-_") {
+        if (!pispasep && primeiroEmprego == 1) {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
             return;
