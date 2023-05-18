@@ -28,12 +28,12 @@ function gravar()
 {
 
     $descricao = $_POST['tipoDependente'];
-    $codigo = 0;
+    $codigo = (int)$_POST['codigo'];
     $ativo = (int)$_POST['ativo'];
 
     $sql = "dbo.dependentes_Atualiza 
 
-    '$codigo'
+    $codigo
     ,'$descricao'
     ,'$ativo'";
 

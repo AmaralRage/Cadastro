@@ -320,7 +320,7 @@ include("inc/scripts.php");
         $("#btnGravar");
         var descricao = $("#descricao").val();
         var ativo = 1;
-        var codigo = 0;
+        var codigo = $("#codigo").val();
 
         if ($("#ativo").is(':checked')) {
             ativo = 1;

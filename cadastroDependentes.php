@@ -398,7 +398,7 @@ include("inc/scripts.php");
         $("#btnGravar")
         var tipoDependente = $("#tipoDependente").val();
         var ativo = 1;
-        var codigo = 0;
+        var codigo = $("#codigo").val();
 
         if ($("#ativo").is(':checked')) {
             ativo = 1;
