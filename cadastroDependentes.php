@@ -78,6 +78,12 @@ include("inc/nav.php");
                                                                     Ativo
                                                                 </label>
                                                             </section>
+                                                            <section class="hidden" class="col col-1">
+                                                                <label class="label">Código</label>
+                                                                <label class="input">
+                                                                    <input id="codigo" name="codigo" type="text" class="readonly" readonly>
+                                                                </label>
+                                                            </section>
                                                         </div>
                                                         <div class="row">
                                                         </div>
@@ -357,10 +363,10 @@ include("inc/scripts.php");
         $("#nome").focus();
 
     }
-
+    
     function verificaDependente() {
         var descricao = $("#tipoDependente").val();
-        dependenteVerificado(descricao);
+        dependenteVerificado (descricao);
     }
 
     function novo() {
