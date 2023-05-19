@@ -646,10 +646,10 @@ include("inc/scripts.php");
             }
         });
 
-        // $("#cpf").on("change", function() {
-        //     // var data = $("#cpf").val();
-        //     validarCPF();
-        // });
+        $("#cpf").on("change", function() {
+            var data = $("#cpf").val();
+            validarCPF();
+        });
 
         $("#cpfDependente").on("change", function() {
             // var data = $("#cpfDependente").val();
@@ -1532,7 +1532,7 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         var umTelefonePrincipal = false;
         for (var i = 0; i < jsonTelefoneArray.length; i++) {
             if (jsonTelefoneArray[i].telefonePrincipal == true) {
@@ -1542,6 +1542,18 @@ include("inc/scripts.php");
         if (umTelefonePrincipal != true) {
             smartAlert("Atenção", "Adicione pelo menos um Telefone como Pincipal!", "error");
             $("#telefone").focus();
+            return;
+        }
+        
+        var umEmailPrincipal = false;
+        for (var i = 0; i < jsonEmailArray.length; i++) {
+            if (jsonEmailArray[i].emailPrincipal == true) {
+                umEmailPrincipal = true;
+            }
+        }
+        if (umEmailPrincipal != true) {
+            smartAlert("Atenção", "Adicione pelo menos um Email como Pincipal!", "error");
+            $("#email").focus();
             return;
         }
 
@@ -1566,18 +1578,14 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         }
-        
+
         if (!cpfDependente) {
             smartAlert("Atenção", "Informe o CPF do Dependente", "error");
             $("#btnGravar").prop('disabled', false);
             return;
-        }{}
+        } {}
+
         
-        // if (cpfDependente.length === 0 || !cpfDependente.trim()) {
-        //     smartAlert("Atenção", "Informe o CPF do Dependente!", "error");
-        //     $("#cpfDependente").focus();
-        //     return;
-        // }
 
         gravaFuncionario(id, ativo,
             nome,
