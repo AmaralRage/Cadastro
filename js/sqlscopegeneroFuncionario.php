@@ -17,7 +17,7 @@ if ($funcao == 'recuperaFuncionario') {
 if ($funcao == 'excluir') {
     call_user_func($funcao);
 }
-if ($funcao == 'generoVerificado') {
+if ($funcao == 'verificaGenero') {
     call_user_func($funcao);
 }
 return;
@@ -54,7 +54,7 @@ function verificaGenero()
     $reposit = new reposit();
     $result = $reposit->RunQuery($sql);
     if ($result) {
-        $mensagem = "CPF do dependente já registrado!";
+        $mensagem = "GENERO JÁ REGISTRADO!";
         echo "failed#" . $mensagem . ' ';
         return;
     } else {

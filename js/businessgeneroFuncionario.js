@@ -40,7 +40,7 @@ function gravaGenero(codigo, descricao, ativo) {
 
 function generoVerificado(descricao) {
     $.ajax({
-        url: 'js/sqlscopeFuncionario.php',
+        url: 'js/sqlscopegeneroFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: { funcao: "verificaGenero", descricao: descricao }, //valores enviados ao script
