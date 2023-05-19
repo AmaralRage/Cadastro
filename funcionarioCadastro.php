@@ -103,7 +103,7 @@ include("inc/nav.php");
                                                                 <label class="label">Gênero</label>
                                                                 <label class="select">
                                                                     <select id="genero" name="genero" class="required">
-                                                                        <option></option>
+                                                                        <!-- <option></option> -->
                                                                         <?php
                                                                         $reposit = new reposit();
                                                                         $sql = "SELECT codigo,descricao, generoAtivo
@@ -122,7 +122,7 @@ include("inc/nav.php");
                                                                 <label class="label">Estado Civil</label>
                                                                 <label class="select">
                                                                     <select id="estadoCivil" name="estadoCivil" class="required">
-                                                                        <option></option>
+                                                                        <!-- <option></option> -->
                                                                         <option value="1">Solteiro(a)</option>
                                                                         <option value="2">Casado(a)</option>
                                                                         <option value="3">Divorciado(a)</option>
@@ -148,7 +148,7 @@ include("inc/nav.php");
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
                                                                     <select id="primeiroEmprego" name="primeiroEmprego" class="required">
-                                                                        <option selected></option>
+                                                                        <!-- <option selected></option> -->
                                                                         <option value="0">Não</option>
                                                                         <option value="1">Sim</option>
                                                                     </select><i></i>
@@ -1527,7 +1527,7 @@ include("inc/scripts.php");
             return;
         }
 
-        if (!pispasep && primeiroEmprego == 0) {
+        if (!pispasep || pispasep == "__.___.___-_" && primeiroEmprego == 0) {
             smartAlert("Atenção", "Informe o PISPA/SEP", "error");
             $("#btnGravar").prop('disabled', false);
             return;
