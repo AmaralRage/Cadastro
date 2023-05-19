@@ -312,7 +312,7 @@ include("inc/scripts.php");
 
     function verificaGenero() {
         var descricao = $("#descricao").val();
-        generoVerificado(descricao);
+        // generoVerificado(descricao);
     }
 
 

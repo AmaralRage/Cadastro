@@ -47,7 +47,7 @@ function gravar()
     return;
 }
 
-function generoVerificado()
+function verificaGenero()
 {
     $descricao = $_POST["descricao"];
     $sql = "SELECT descricao, codigo FROM dbo.genero WHERE descricao='$descricao'";
@@ -58,7 +58,7 @@ function generoVerificado()
         echo "failed#" . $mensagem . ' ';
         return;
     } else {
-        echo  'succes#';
+        echo  'success#';
         return;
     }
 }

@@ -43,9 +43,9 @@ function generoVerificado(descricao) {
         url: 'js/sqlscopeFuncionario.php',
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
-        data: { funcao: "generoVerificado", descricao: descricao }, //valores enviados ao script
+        data: { funcao: "verificaGenero", descricao: descricao }, //valores enviados ao script
         success: function (data, textStatus) {
-            if (data.indexOf('success') < 0) {
+            // if (data.indexOf('success') > -1) {
                 var piece = data.split("#");
                 var mensagem = piece[1];
                 if (piece[0] === "success") {
@@ -59,7 +59,7 @@ function generoVerificado(descricao) {
                     $("#descricao").focus();
                     return;
                 }
-            }
+            // }
             ////////////////////////////////////////
             //retorno dos dados
         },
