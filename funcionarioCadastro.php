@@ -364,26 +364,24 @@ include("inc/nav.php");
                                                         <div id="formDependente" class="col-sm-10 required">
                                                             <input id="descricaoDependente" type="hidden" value="">
                                                             <input id="sequencialDependente" type="hidden" value="">
-                                                            <!-- <input id="" type="hidden" value="">
-                                                            <input id="" type="hidden" value=""> -->
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <section class="col col-3">
                                                                         <label class="label">Nome do Dependente</label>
-                                                                        <label class="input">
+                                                                        <label class="input"><i class="icon-prepend fa fa-user"></i>
                                                                             <input id="dependente" maxlength="255" name="dependente" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
                                                                         <label class="label">CPF</label>
-                                                                        <label class="input"><i class="icon-prepend fa fa-user"></i>
+                                                                        <label class="input">
                                                                             <input id="cpfDependente" name="cpfDependente" type="text" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
                                                                         <label class="label">Data de Nascimento</label>
                                                                         <label class="input">
-                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" value="" data-mask="99/99/9999" class="datepicker" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2 col-auto">
@@ -615,20 +613,48 @@ include("inc/scripts.php");
             }
         })
 
-        $("#cep").on("change", function() {
-            if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "CEP Inválido", "error");
-                $("#cep").val('');
+        // $("#cep").on("change", function() {
+        //     if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+        //         smartAlert("Atenção", "CEP Inválido", "error");
+        //         $("#cep").val('');
+        //     }
+        //     clearFormCep();
+        // })
+
+        $("#logradouro").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Logradouro Inválido, apenas Letras!", "error");
+                $("#logradouro").val('');
             }
-            clearFormCep();
         })
 
-        // $("#telefone").on("change", function() {
-        //     if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-        //         smartAlert("Atenção", "Telefone Inválido", "error");
-        //         $("#telefone").val('');
-        //     }
-        // })
+        $("#bairro").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Bairro Inválido, apenas Letras!", "error");
+                $("#bairro").val('');
+            }
+        })
+
+        $("#numero").on("change", function() {
+            if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Número Inválido", "error");
+                $("#numero").val('');
+            }
+        })
+
+        $("#complemento").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "apenas Letras!", "error");
+                $("#complemento").val('');
+            }
+        })
+
+        $("#uf").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "uf Inválido, apenas Letras!", "error");
+                $("#uf").val('');
+            }
+        })
 
         $("#dependente").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
@@ -714,8 +740,7 @@ include("inc/scripts.php");
         $("#telefone").mask('(99) 99999-9999');
         $("#dataNascimentoDependente").mask('99/99/9999');
         $("#pispasep").mask('999.99999.99-9');
-
-        // $("#email").mask('');
+        $("#cep").mask('99999999');
 
         // JSON ABAIXO
 
