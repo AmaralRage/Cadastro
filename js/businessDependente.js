@@ -42,14 +42,8 @@ function dependenteVerificado(tipoDependente) {
         dataType: 'html', //tipo do retorno
         type: 'post', //metodo de envio
         data: { funcao: "dependenteVerificado", tipoDependente: tipoDependente }, //valores enviados ao script
-        beforeSend: function () {
-            //função chamada antes de realizar o ajax
-        },
-        complete: function () {
-            //função executada depois de terminar o ajax
-        },
         success: function (data, textStatus) {
-            if (data.indexOf('success#') > -1) {
+            // if (data.indexOf('success') > -1) {
                 var piece = data.split("#");
                 var mensagem = piece[1];
                 if (piece[0] === "success") {
@@ -63,7 +57,7 @@ function dependenteVerificado(tipoDependente) {
                     $("#tipoDependente").focus();
                     return;
                 }
-            }
+            // }
             ////////////////////////////////////////
             //retorno dos dados
         },

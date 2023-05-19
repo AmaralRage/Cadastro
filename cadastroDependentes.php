@@ -71,7 +71,7 @@ include("inc/nav.php");
                                                                     <input id="tipoDependente" maxlength="255" name="tipoDependente" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-2">
+                                                            <section class="hidden" class="col col-2">
                                                                 <label class="label">&nbsp;</label>
                                                                 <label class="checkbox ">
                                                                     <input checked="checked" id="dependenteAtivo" name="ativo" type="checkbox" value="true"><i></i>

@@ -49,7 +49,7 @@ function generoVerificado(descricao) {
                 var piece = data.split("#");
                 var mensagem = piece[1];
                 if (piece[0] === "success") {
-                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+                    // smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
                     return;
                 }
                 else {
