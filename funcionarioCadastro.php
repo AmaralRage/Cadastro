@@ -1521,16 +1521,13 @@ include("inc/scripts.php");
             $interval > format('%Y anos');
         }
 
-        if (!primeiroEmprego) {
-            smartAlert("Atenção", "Informe o campo de emprego corretamente", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
-        }
 
-        if (!pispasep || pispasep == "__.___.___-_" && primeiroEmprego == 0) {
-            smartAlert("Atenção", "Informe o PISPA/SEP", "error");
-            $("#btnGravar").prop('disabled', false);
-            return;
+        if (primeiroEmprego == 0) {
+            if (pispasep == "" || pispasep == "__.___.___-_") {
+                smartAlert("Atenção", "Informe o PIS/PASEP", "error");
+                $("#pispasep").focus();
+                return;
+            }
         }
 
         var umTelefonePrincipal = false;
@@ -1544,7 +1541,7 @@ include("inc/scripts.php");
             $("#telefone").focus();
             return;
         }
-        
+
         var umEmailPrincipal = false;
         for (var i = 0; i < jsonEmailArray.length; i++) {
             if (jsonEmailArray[i].emailPrincipal == true) {
@@ -1556,7 +1553,6 @@ include("inc/scripts.php");
             $("#email").focus();
             return;
         }
-
 
         if (!cep) {
             smartAlert("Atenção", "Informe o CEP", "error");
@@ -1585,7 +1581,7 @@ include("inc/scripts.php");
             return;
         } {}
 
-        
+
 
         gravaFuncionario(id, ativo,
             nome,
