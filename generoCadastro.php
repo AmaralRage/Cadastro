@@ -71,7 +71,7 @@ include("inc/nav.php");
                                                                     <input id="descricao" maxlength="255" name="descricao" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
-                                                            <section class="col col-2">
+                                                            <section class="hidden" class="col col-2">
                                                                 <label class="label">&nbsp;</label>
                                                                 <label class="checkbox ">
                                                                     <input checked="checked" id="generoAtivo" name="ativo" type="checkbox" value="true"><i></i>
