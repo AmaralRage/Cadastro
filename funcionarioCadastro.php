@@ -1540,7 +1540,7 @@ include("inc/scripts.php");
             }
         }
         if (umTelefonePrincipal != true) {
-            smartAlert("Atenção", "Adicione pelo menos um Telefone como Pincipal!", "error");
+            smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
             $("#telefone").focus();
             return;
         }
@@ -1552,7 +1552,7 @@ include("inc/scripts.php");
             }
         }
         if (umEmailPrincipal != true) {
-            smartAlert("Atenção", "Adicione pelo menos um Email como Pincipal!", "error");
+            smartAlert("Atenção", "Adicione pelo menos um Email como Principal!", "error");
             $("#email").focus();
             return;
         }
