@@ -371,25 +371,25 @@ include("inc/nav.php");
                                                                     <section class="col col-3">
                                                                         <label class="label">Nome do Dependente:</label>
                                                                         <label class="input">
-                                                                            <input id="dependente" maxlength="255" name="dependente" class="required" value="">
+                                                                            <input id="dependente" maxlength="255" name="dependente" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
                                                                         <label class="label">CPF:</label>
                                                                         <label class="input"><i class="icon-prepend fa fa-user"></i>
-                                                                            <input id="cpfDependente" name="cpfDependente" class="required cpf-mask" type="text" value="">
+                                                                            <input id="cpfDependente" name="cpfDependente" type="text" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
                                                                         <label class="label">Data de Nascimento:</label>
                                                                         <label class="input">
-                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" class="datepicker required" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
+                                                                            <input id="dataNascimentoDependente" name="dataNascimentoDependente" type="text" placeholder="dd/mm/aaaa" data-dateformat="dd/mm/yy" value="" data-mask="99/99/9999" data-mask-placeholder="_" style="text-align: center" autocomplete="off">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2 col-auto">
                                                                         <label class="label">Tipo de Dependente:</label>
                                                                         <label class="select">
-                                                                            <select id="tipoDependente" class="required">
+                                                                            <select id="tipoDependente">
                                                                                 <option value="hidden"></option>
                                                                                 <?php
                                                                                 $reposit = new reposit();
