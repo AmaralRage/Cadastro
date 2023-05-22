@@ -621,6 +621,7 @@ include("inc/scripts.php");
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Logradouro Inválido, apenas Letras!", "error");
                 $("#logradouro").val('');
+                $("#logradouro").focus();
             }
         })
 
@@ -628,6 +629,7 @@ include("inc/scripts.php");
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Bairro Inválido, apenas Letras!", "error");
                 $("#bairro").val('');
+                $("#bairro").focus();
             }
         })
 
@@ -635,6 +637,7 @@ include("inc/scripts.php");
             if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Número Inválido", "error");
                 $("#numero").val('');
+                $("#numero").focus();
             }
         })
 
@@ -642,6 +645,7 @@ include("inc/scripts.php");
             if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Apenas letras ou números!", "error");
                 $("#complemento").val('');
+                $("#complemento").focus();
             }
         })
 
@@ -649,6 +653,7 @@ include("inc/scripts.php");
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "uf Inválido, apenas Letras!", "error");
                 $("#uf").val('');
+                $("#uf").focus();
             }
         })
 
@@ -656,6 +661,15 @@ include("inc/scripts.php");
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
                 $("#dependente").val('');
+                $("#dependente").focus();
+            }
+        })
+        
+        $("#cidade").on("change", function() {
+            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Cidade Inválido, apenas Letras!", "error");
+                $("#cidade").val('');
+                $("#cidade").focus();
             }
         })
        
@@ -663,6 +677,7 @@ include("inc/scripts.php");
             if (/[-\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Pispasep Inválido!", "error");
                 $("#pispasep").val('');
+                $("#pispasep").focus();
             }
         })
 
@@ -681,13 +696,14 @@ include("inc/scripts.php");
         });
 
         $("#cpfDependente").on("change", function() {
-            // var data = $("#cpfDependente").val();
+            var data = $("#cpfDependente").val();
             validarCPFDependente();
         });
 
         $("#rg").on("change", function() {
             var data = $("rg").val();
             VerificaRG();
+            $("#rg").focus();
         });
 
         $("#btnVoltar").on("click", function() {
@@ -699,6 +715,7 @@ include("inc/scripts.php");
             if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
+                $("#cep").focus();
             } else {
                 var cep = $("#cep").val().replace(/\D/g, '');
                 //Verifica se campo cep possui valor informado.
@@ -722,7 +739,7 @@ include("inc/scripts.php");
                             } //end if.
                             else {
                                 //CEP pesquisado não foi encontrado.
-                                console.log("CEP não encontrado.");
+                                smartAlert("CEP não encontrado.");
                             }
 
                         });
