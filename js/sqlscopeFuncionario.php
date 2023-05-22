@@ -184,10 +184,10 @@ function grava()
     $xmlDependente,
     '$cep',
     '$logradouro',
-    '$bairro',
     '$numero',
     '$complemento',
     '$uf',
+    '$bairro',
     '$cidade',
     '$primeiroEmprego',
     '$pispasep'";
@@ -284,10 +284,10 @@ function recuperaFuncionario()
         $bairro . "^" .
         $cidade . "^" .
         $pispasep . "^" .
-        $primeiroEmprego;
-        // $xmlTelefone . "^" .
-        // $xmlEmail . "^" .
-        // $xmlDependente;
+        $primeiroEmprego . "^" .
+        $xmlTelefone . "^" .
+        $xmlEmail . "^" .
+        $xmlDependente;
         
     if ($out == "") {
         echo "failed#";
