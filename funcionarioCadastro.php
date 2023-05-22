@@ -121,7 +121,7 @@ include("inc/nav.php");
                                                             <section class="col col-2 col-auto">
                                                                 <label class="label">Estado Civil</label>
                                                                 <label class="select">
-                                                                    <select id="estadoCivil" name="estadoCivil" class="required">   
+                                                                    <select id="estadoCivil" name="estadoCivil" class="required">
                                                                         <option value="1">Solteiro(a)</option>
                                                                         <option value="2">Casado(a)</option>
                                                                         <option value="3">Divorciado(a)</option>
@@ -664,7 +664,7 @@ include("inc/scripts.php");
                 $("#dependente").focus();
             }
         })
-        
+
         $("#cidade").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Cidade Inválido, apenas Letras!", "error");
@@ -672,7 +672,7 @@ include("inc/scripts.php");
                 $("#cidade").focus();
             }
         })
-       
+
         $("#pispasep").on("change", function() {
             if (/[-\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Pispasep Inválido!", "error");
@@ -1367,43 +1367,44 @@ include("inc/scripts.php");
                             var nome = piece[2];
                             var cpf = piece[3];
                             var rg = piece[4];
-                            var dataNascimento = piece[5];
-                            var genero = piece[6];
+                            var genero = piece[5];
+                            var dataNascimento = piece[6];
                             var estadoCivil = piece[7];
-                            var primeiroEmprego = piece[8];
-                            var pispasep = piece[9];
-                            var cep = piece[10];
-                            var logradouro = piece[11];
+                            var cep = piece[8];
+                            var logradouro = piece[9];
+                            var numero = piece[10];
+                            var complemento = piece[11];
                             var uf = piece[12];
-                            var complemento = piece[13];
-                            var numero = piece[14];
-                            var bairro = piece[15];
-                            var cidade = piece[16];
+                            var bairro = piece[13];
+                            var cidade = piece[14];
+                            var pispasep = piece[15];
+                            var primeiroEmprego = piece[16];
                             var jsonTelefone = piece[17];
                             var jsonEmail = piece[18];
                             var jsonDependente = piece[19];
-                            
+
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
                             $("#nome").val(nome);
                             $("#cpf").val(cpf);
                             $("#rg").val(rg);
-                            $("#dataNascimento").val(dataNascimento);
                             $("#genero").val(genero);
+                            $("#dataNascimento").val(dataNascimento);
                             $("#estadoCivil").val(estadoCivil);
-                            $("#primeiroEmprego").val(primeiroEmprego);
-                            $("#pispasep").val(pispasep);
-                            $("#cep").val(cep);
-                            $("#logradouro").val(logradouro);
-                            $("#uf").val(uf);
-                            $("#complemento").val(complemento);
-                            $("#numero").val(numero);
-                            $("#bairro").val(bairro);
-                            $("#cidade").val(cidade);
                             $("#jsonTelefone").val(jsonTelefone);
                             $("#jsonEmail").val(jsonEmail);
-
+                            $("#jsonDependente").val(jsonDependente);
+                            $("#cep").val(cep);
+                            $("#logradouro").val(logradouro);
+                            $("#numero").val(numero);
+                            $("#complemento").val(complemento);
+                            $("#uf").val(uf);
+                            $("#bairro").val(bairro);
+                            $("#cidade").val(cidade);
+                            $("#pispasep").val(pispasep);
+                            $("#primeiroEmprego").val(primeiroEmprego);
+ 
 
                             validarDataDependente();
                             jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());

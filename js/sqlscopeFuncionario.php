@@ -273,19 +273,22 @@ function recuperaFuncionario()
         $nome . "^" .
         $cpf . "^" .
         $rg . "^" .
-        $data_nascimento . "^" .
         $genero . "^" .
+        $data_nascimento . "^" .
         $estadoCivil . "^" .
-        $primeiroEmprego . "^" .
-        $pispasep . "^" .
         $cep . "^" .
         $logradouro . "^" .
-        $uf . "^" .
-        $complemento . "^" .
         $numero . "^" .
+        $complemento . "^" .
+        $uf . "^" .
         $bairro . "^" .
-        $cidade;
-
+        $cidade . "^" .
+        $pispasep . "^" .
+        $primeiroEmprego;
+        // $xmlTelefone . "^" .
+        // $xmlEmail . "^" .
+        // $xmlDependente;
+        
     if ($out == "") {
         echo "failed#";
         return;
