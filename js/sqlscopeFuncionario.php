@@ -284,10 +284,10 @@ function recuperaFuncionario()
         $bairro . "^" .
         $cidade . "^" .
         $pispasep . "^" .
-        $primeiroEmprego . "^" .
-        $xmlTelefone . "^" .
-        $xmlEmail . "^" .
-        $xmlDependente;
+        $primeiroEmprego;
+        // $xmlTelefone . "^" .
+        // $xmlEmail . "^" .
+        // $xmlDependente;
         
     if ($out == "") {
         echo "failed#";
