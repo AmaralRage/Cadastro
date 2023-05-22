@@ -148,7 +148,6 @@ include("inc/nav.php");
                                                                 <label class="label">Primeiro Emprego</label>
                                                                 <label class="select">
                                                                     <select id="primeiroEmprego" name="primeiroEmprego" class="required">
-                                                                        <!-- <option selected></option> -->
                                                                         <option value="0">Não</option>
                                                                         <option value="1">Sim</option>
                                                                     </select><i></i>
@@ -157,7 +156,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">PIS:PASEP</label>
                                                                 <label class="input">
-                                                                    <input id="pispasep" class="required" type="text">
+                                                                    <input id="pispasep" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -388,7 +387,6 @@ include("inc/nav.php");
                                                                         <label class="label">Tipo de Dependente</label>
                                                                         <label class="select">
                                                                             <select id="tipoDependente">
-                                                                                <option value="hidden"></option>
                                                                                 <?php
                                                                                 $reposit = new reposit();
                                                                                 $sql = "SELECT tipoDependente, codigo FROM dbo.tipoDependentes WHERE dependenteAtivo = 1";
@@ -602,7 +600,6 @@ include("inc/scripts.php");
         });
 
         $("#primeiroEmprego").on("change", function() {
-
             verificaPrimeiroEmprego();
         });
 
@@ -643,8 +640,8 @@ include("inc/scripts.php");
         })
 
         $("#complemento").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "apenas Letras!", "error");
+            if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Apenas letras ou números!", "error");
                 $("#complemento").val('');
             }
         })
@@ -660,6 +657,13 @@ include("inc/scripts.php");
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
                 $("#dependente").val('');
+            }
+        })
+       
+        $("#pispasep").on("change", function() {
+            if (/[-\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Pispasep Inválido!", "error");
+                $("#pispasep").val('');
             }
         })
 

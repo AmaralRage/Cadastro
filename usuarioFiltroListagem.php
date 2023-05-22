@@ -32,6 +32,11 @@ include "js/repositorio.php";
                     $rg = $_POST["rg"];
                     $where = $where . " AND (rg = '$rg')";
                 }
+                $pispasep = "";
+                if ($_POST["pispasep"] != "") {
+                    $pispasep = $_POST["pispasep"];
+                    $where = $where . " AND (pispasep = '$pispasep')";
+                }
                 $ativo = "";
                 if ($_POST["ativo"] != "") {
                     $ativo = $_POST["ativo"];
@@ -64,7 +69,7 @@ include "js/repositorio.php";
                     $where = $where . " AND (data_Nascimento <='$dataFim')";
                 }
 
-                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, EstadoCivil, rg, genero FROM dbo.funcionarios";
+                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, estadoCivil, rg, genero FROM dbo.funcionarios";
                 $where = $where;
 
                 $sql = $sql . $where;
