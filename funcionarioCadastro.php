@@ -1407,9 +1407,9 @@ include("inc/scripts.php");
  
 
                             validarDataDependente();
-                            jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
-                            jsonEmailArray = JSON.parse($("#jsonEmail").val());
-                            jsonDependenteArray = JSON.parse($("#jsonDependente").val());
+                            // jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+                            // jsonEmailArray = JSON.parse($("#jsonEmail").val());
+                            // jsonDependenteArray = JSON.parse($("#jsonDependente").val());
                             fillTableTelefone();
                             fillTableEmail();
                             fillTableDependente();
