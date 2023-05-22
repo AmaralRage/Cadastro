@@ -230,7 +230,7 @@ function recuperaFuncionario()
     }
 
     $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
-                    cep, logradouro, bairro, numero, complemento, uf, cidade
+                    cep, logradouro, uf, complemento,  numero, bairro, cidade 
              FROM dbo.funcionarios USU WHERE codigo = $id";
 
 
@@ -250,10 +250,10 @@ function recuperaFuncionario()
         $pispasep = $row['pispasep'];
         $cep = $row['cep'];
         $logradouro = $row['logradouro'];
-        $bairro = $row['bairro'];
-        $numero = $row['numero'];
-        $complemento = $row['complemento'];
         $uf = $row['uf'];
+        $complemento = $row['complemento'];
+        $numero = $row['numero'];
+        $bairro = $row['bairro'];
         $cidade = $row['cidade'];
         $data_nascimento = $row['data_nascimento'];
         if ($data_nascimento) {
@@ -264,6 +264,8 @@ function recuperaFuncionario()
         $genero = (int)$row['genero'];
     }
 
+    // cep, logradouro, uf, complemento,  numero, bairro, cidade 
+
     //Mudar os nomes das variaveis ACIMA 
 
     $out =   $id . "^" .
@@ -272,16 +274,16 @@ function recuperaFuncionario()
         $cpf . "^" .
         $rg . "^" .
         $data_nascimento . "^" .
-        $genero . "^" . 
-        $estadoCivil . "^" . 
-        $primeiroEmprego . "^" . 
-        $pispasep . "^" . 
-        $cep . "^" . 
-        $logradouro . "^" . 
-        $bairro . "^" . 
-        $numero . "^" . 
-        $complemento . "^" . 
-        $uf . "^" . 
+        $genero . "^" .
+        $estadoCivil . "^" .
+        $primeiroEmprego . "^" .
+        $pispasep . "^" .
+        $cep . "^" .
+        $logradouro . "^" .
+        $uf . "^" .
+        $complemento . "^" .
+        $numero . "^" .
+        $bairro . "^" .
         $cidade;
 
     if ($out == "") {
