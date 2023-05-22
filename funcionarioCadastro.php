@@ -121,8 +121,7 @@ include("inc/nav.php");
                                                             <section class="col col-2 col-auto">
                                                                 <label class="label">Estado Civil</label>
                                                                 <label class="select">
-                                                                    <select id="estadoCivil" name="estadoCivil" class="required">
-                                                                        <!-- <option></option> -->
+                                                                    <select id="estadoCivil" name="estadoCivil" class="required">   
                                                                         <option value="1">Solteiro(a)</option>
                                                                         <option value="2">Casado(a)</option>
                                                                         <option value="3">Divorciado(a)</option>

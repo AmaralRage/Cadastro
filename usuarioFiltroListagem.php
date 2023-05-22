@@ -32,6 +32,16 @@ include "js/repositorio.php";
                     $rg = $_POST["rg"];
                     $where = $where . " AND (F.rg = '$rg')";
                 }
+                $estadoCivil = "";
+                if ($_POST["estadoCivil"] != "") {
+                    $estadoCivil = $_POST["estadoCivil"];
+                    $where = $where . " AND (F.estadoCivil = '$estadoCivil')";
+                }
+                $genero = "";
+                if ($_POST["genero"] != "") {
+                    $genero = $_POST["genero"];
+                    $where = $where . " AND (G.descricao = '$genero')";
+                }
                 $pispasep = "";
                 if ($_POST["pispasep"] != "") {
                     $pispasep = $_POST["pispasep"];
@@ -41,8 +51,11 @@ include "js/repositorio.php";
                 if ($_POST["ativo"] != "") {
                     $ativo = $_POST["ativo"];
                     $where = $where . " AND (F.ativo = $ativo)";
-
-                    //$where = $where . " AND ";
+                }
+                $codigo = "";
+                if ($_POST["codigo"] != "") {
+                    $codigo = $_POST["codigo"];
+                    $where = $where . " AND (F.codigo = $codigo)";
                 }
                 $nomeFiltro = "";
                 if ($_POST["nomeFiltro"] != "") {
@@ -50,26 +63,28 @@ include "js/repositorio.php";
                     $where = $where . " AND (funcionarios.[nome] like '%' + " . "replace('" . $nomeFiltro . "',' ','%') + " . "'%')";
                 }
                 $dataNascimento = "";
-                if ($_POST["dataNascimento"] != "") {
+                if ($_POST["data_Nascimento"] != "") {
                     $dataNascimento = $_POST["dataNascimento"];
                     $where = $where . " AND (USU.[dataNascimento] like '%' + " . "replace('" . $dataNascimento . "',' ','%') + " . "'%')";
                 }
 
                 $dataInicio = $_POST["dataInicio"];
-                if ($dataInicio != "") {                    
+                if ($dataInicio != "") {
                     $dataInicio = explode("/", $dataInicio);
                     $dataInicio = ($dataInicio[2] . "-" . $dataInicio[1] . "-" . $dataInicio[0]);
                     $where = $where . " AND (data_Nascimento >='$dataInicio')";
                 }
-                
+
                 $dataFim = $_POST["dataFim"];
-                if  ($dataFim != "") {
+                if ($dataFim != "") {
                     $dataFim = explode("/", $dataFim);
                     $dataFim = ($dataFim[2] . "-" . $dataFim[1] . "-" . $dataFim[0]);
                     $where = $where . " AND (data_Nascimento <='$dataFim')";
                 }
 
-                $sql = " SELECT nome, codigo, ativo, cpf, data_Nascimento, estadoCivil, rg, genero FROM dbo.funcionarios";
+                $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.rg, G.descricao as genero
+                FROM dbo.funcionarios F
+                LEFT JOIN dbo.genero G on G.codigo = F.genero ";
                 $where = $where;
 
                 $sql = $sql . $where;
@@ -79,8 +94,8 @@ include "js/repositorio.php";
                 foreach ($result as $row) {
                     $id = (int) $row['codigo'];
                     $ativo = (int) $row['ativo'];
-                    $genero = (int) $row['genero'];
-                    $EstadoCivil = (int) $row['EstadoCivil'];
+                    $genero = $row['genero'];
+                    $estadoCivil = (int) $row['estadoCivil'];
                     $nome = $row['nome'];
                     $primeiroEmprego = $row['primeiroEmprego'];
                     $pispasep = $row['pispasep'];
@@ -90,6 +105,15 @@ include "js/repositorio.php";
                         $data = explode("-", $dataNascimento[0]);
                         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
                     }
+
+                    $valor_de_retorno = match ($estadoCivil) {
+                        1 => 'Solteiro(a)',
+                        2 => 'Casado(a)',
+                        3 => 'Divorciado(a)',
+                        4 => 'Separado(a)',
+                        5 => 'Viúvo(a)',
+                    };
+                    $estadoCivil = $valor_de_retorno;
 
                     $cpf = $row['cpf'];
                     $rg = $row['rg'];
@@ -104,7 +128,7 @@ include "js/repositorio.php";
                     echo '<td class="text-left"><a href="funcionarioCadastro.php?id=' . $id . '">' . $nome . '</a></td>';
                     echo '<td class="text-left">' . $data . '</td>';
                     echo '<td class="text-left">' . $genero . '</td>';
-                    echo '<td class="text-left">' . $EstadoCivil . '</td>';
+                    echo '<td class="text-left">' . $estadoCivil . '</td>';
                     echo '<td class="text-left">' . $cpf . '</td>';
                     echo '<td class="text-left">' . $rg . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
