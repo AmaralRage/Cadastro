@@ -72,6 +72,7 @@ function grava()
     $primeiroEmprego = $_POST['primeiroEmprego'];
     $pispasep = $_POST['pispasep'];
 
+
     //=============================================================================================TELEFONE==================================================================================================
 
     $strArrayTelefone = $_POST['jsonTelefoneArray'];
@@ -228,7 +229,8 @@ function recuperaFuncionario()
         $loginPesquisa = $_POST["loginPesquisa"];
     }
 
-    $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil
+    $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
+                    cep, logradouro, bairro, numero, complemento, uf, cidade
              FROM dbo.funcionarios USU WHERE codigo = $id";
 
 
@@ -244,8 +246,15 @@ function recuperaFuncionario()
         $cpf = $row['cpf'];
         $estadoCivil = $row['estadoCivil'];
         $rg = $row['rg'];
-        // $primeiroEmprego = $row['primeiroEmprego'];
-        // $pispasep = $row['pispasep'];
+        $primeiroEmprego = $row['primeiroEmprego'];
+        $pispasep = $row['pispasep'];
+        $cep = $row['cep'];
+        $logradouro = $row['logradouro'];
+        $bairro = $row['bairro'];
+        $numero = $row['numero'];
+        $complemento = $row['complemento'];
+        $uf = $row['uf'];
+        $cidade = $row['cidade'];
         $data_nascimento = $row['data_nascimento'];
         if ($data_nascimento) {
             $data_nascimento = explode(" ", $data_nascimento);
@@ -264,7 +273,16 @@ function recuperaFuncionario()
         $rg . "^" .
         $data_nascimento . "^" .
         $genero . "^" . 
-        $estadoCivil;
+        $estadoCivil . "^" . 
+        $primeiroEmprego . "^" . 
+        $pispasep . "^" . 
+        $cep . "^" . 
+        $logradouro . "^" . 
+        $bairro . "^" . 
+        $numero . "^" . 
+        $complemento . "^" . 
+        $uf . "^" . 
+        $cidade;
 
     if ($out == "") {
         echo "failed#";

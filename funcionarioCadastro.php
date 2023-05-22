@@ -1372,6 +1372,17 @@ include("inc/scripts.php");
                             var estadoCivil = piece[7];
                             var primeiroEmprego = piece[8];
                             var pispasep = piece[9];
+                            var cep = piece[10];
+                            var logradouro = piece[11];
+                            var bairro = piece[12];
+                            var numero = piece[13];
+                            var complemento = piece[14];
+                            var uf = piece[15];
+                            var cidade = piece[16];
+                            var jsonTelefone = piece[17];
+                            var jsonEmail = piece[18];
+                            var jsonDependente = piece[19];
+                            
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
@@ -1383,10 +1394,24 @@ include("inc/scripts.php");
                             $("#estadoCivil").val(estadoCivil);
                             $("#primeiroEmprego").val(primeiroEmprego);
                             $("#pispasep").val(pispasep);
+                            $("#cep").val(cep);
+                            $("#logradouro").val(logradouro);
+                            $("#bairro").val(bairro);
+                            $("#numero").val(numero);
+                            $("#complemento").val(complemento);
+                            $("#uf").val(uf);
+                            $("#cidade").val(cidade);
+                            $("#jsonTelefone").val(jsonTelefone);
+                            $("#jsonEmail").val(jsonEmail);
 
 
                             validarDataDependente();
-
+                            jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+                            jsonEmailArray = JSON.parse($("#jsonEmail").val());
+                            jsonDependenteArray = JSON.parse($("#jsonDependente").val());
+                            fillTableTelefone();
+                            fillTableEmail();
+                            fillTableDependente();
 
                             return;
 
