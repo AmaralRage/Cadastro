@@ -115,6 +115,18 @@ include("inc/nav.php");
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
+                                                                <label class="label">Gênero</label>
+                                                                <label class="input">
+                                                                    <input id="genero" name="genero" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
+                                                                <label class="label">Primeiro Emprego</label>
+                                                                <label class="input">
+                                                                    <input id="primeiroEmprego" name="primeiroEmprego" type="text" value="">
+                                                                </label>
+                                                            </section>
+                                                            <section class="col col-2">
                                                                 <label class="label" for="ativo">Ativo</label>
                                                                 <label class="select">
                                                                     <select id="ativo" name="ativo">

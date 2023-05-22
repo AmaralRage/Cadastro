@@ -25,22 +25,22 @@ include "js/repositorio.php";
                 $cpf = "";
                 if ($_POST["cpf"] != "") {
                     $cpf = $_POST["cpf"];
-                    $where = $where . " AND (cpf = '$cpf')";
+                    $where = $where . " AND (F.cpf = '$cpf')";
                 }
                 $rg = "";
                 if ($_POST["rg"] != "") {
                     $rg = $_POST["rg"];
-                    $where = $where . " AND (rg = '$rg')";
+                    $where = $where . " AND (F.rg = '$rg')";
                 }
                 $pispasep = "";
                 if ($_POST["pispasep"] != "") {
                     $pispasep = $_POST["pispasep"];
-                    $where = $where . " AND (pispasep = '$pispasep')";
+                    $where = $where . " AND (F.pispasep = '$pispasep')";
                 }
                 $ativo = "";
                 if ($_POST["ativo"] != "") {
                     $ativo = $_POST["ativo"];
-                    $where = $where . " AND (ativo = $ativo)";
+                    $where = $where . " AND (F.ativo = $ativo)";
 
                     //$where = $where . " AND ";
                 }
@@ -82,6 +82,8 @@ include "js/repositorio.php";
                     $genero = (int) $row['genero'];
                     $EstadoCivil = (int) $row['EstadoCivil'];
                     $nome = $row['nome'];
+                    $primeiroEmprego = $row['primeiroEmprego'];
+                    $pispasep = $row['pispasep'];
                     $dataNascimento = $row['data_Nascimento'];
                     if ($dataNascimento) {
                         $dataNascimento = explode(" ", $dataNascimento);
