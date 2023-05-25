@@ -580,7 +580,11 @@ include("inc/scripts.php");
         });
 
         $("#btnGravar").on("click", function() {
-            gravar()
+            document.getElementById("btnGravar").disabled = true;
+            setTimeout(function() {
+                document.getElementById("btnGravar").disabled = false
+                gravar();
+            }, 1500)            
         });
 
         $("#btnNovo").on("click", function() {
