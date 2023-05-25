@@ -57,6 +57,7 @@ function generoVerificado(descricao) {
                     smartAlert("Atenção", mensagem, "error");
                     document.getElementById('descricao').value = "";
                     $("#descricao").focus();
+                    $("#btnGravar").prop('disabled', false);
                     return;
                 }
             // }
