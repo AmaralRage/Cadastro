@@ -609,13 +609,9 @@ include("inc/scripts.php");
             }
         })
 
-        // $("#cep").on("change", function() {
-        //     if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-        //         smartAlert("Atenção", "CEP Inválido", "error");
-        //         $("#cep").val('');
-        //     }
-        //     clearFormCep();
-        // })
+       $("#cep").on("change", function() {
+            clearFormCep();
+        })
 
         $("#logradouro").on("change", function() {
             if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
@@ -760,7 +756,7 @@ include("inc/scripts.php");
         $("#telefone").mask('(99) 99999-9999');
         $("#dataNascimentoDependente").mask('99/99/9999');
         $("#pispasep").mask('999.99999.99-9');
-        $("#cep").mask('99999999');
+        // $("#cep").mask('99999999');
 
         // JSON ABAIXO
 
@@ -1407,12 +1403,12 @@ include("inc/scripts.php");
  
 
                             validarDataDependente();
-                            // jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
-                            // jsonEmailArray = JSON.parse($("#jsonEmail").val());
-                            // jsonDependenteArray = JSON.parse($("#jsonDependente").val());
                             fillTableTelefone();
                             fillTableEmail();
                             fillTableDependente();
+                            jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+                            jsonEmailArray = JSON.parse($("#jsonEmail").val());
+                            jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
                             return;
 
