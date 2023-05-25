@@ -285,10 +285,7 @@ function recuperaFuncionario()
         $cidade . "^" .
         $pispasep . "^" .
         $primeiroEmprego;
-        // $xmlTelefone . "^" .
-        // $xmlEmail . "^" .
-        // $xmlDependente;
-        
+
     if ($out == "") {
         echo "failed#";
         return;
@@ -297,6 +294,82 @@ function recuperaFuncionario()
     echo "sucess#" . $out;
     return;
 }
+
+$sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.tipoDependente WHERE funcionarioId = $id";
+$reposit = new reposit();
+$result = $reposit->RunQuery($sqlDependente);
+
+$contador = 0;
+$arrayDependente = [];
+foreach ($result as $contador => $item) {
+    $sequencialDependente = $contador + 1;
+
+    array_push($arrayDependente, [
+        'nomeDependente' => $item['nome'],
+        'cpfDependente' => $item['cpf'],
+        'dataNascimentoDependente' => $item['dataNascimento'],
+        'tipoDependente' => $item['tipo'],
+        'sequencialDependente' => $sequencialDependente
+
+    ]);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$jsonTelefone = json_encode($arrayTelefone);
+
+$sqlTelefone = "SELECT telefone, whatsapp, principal, FROM dbo.Telefone WHERE funcionarioId = $id";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sqlTelefone);
+
+    $contador = 0;
+    $arrayTelefone = [];
+    foreach ($result as $contador => $item) {
+        $sequencialTelefone = $contador + 1;
+
+        array_push($arrayTelefone, [
+            'telefone' => $item['telefone'],
+            'whatsapp' => $item['whatsapp'],
+            'principal' => $item['principal'],
+            'sequencialTelefone' => $sequencialTelefone
+
+        ]);
+    }
+    $jsonTelefone = json_encode($arrayTelefone);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+
+    $sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.dependentesListaFuncionario WHERE funcionarioId = $id";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sqlDependente);
+
+    $contador = 0;
+    $arrayDependente = [];
+    foreach ($result as $contador => $item) {
+        $sequencialDependente = $contador + 1;
+
+        array_push($arrayDependente, [
+            'nomeDependente' => $item['nome'],
+            'cpfDependente' => $item['cpf'],
+            'dataNascimentoDependente' => $item['dataNascimento'],
+            'tipoDependente' => $item['tipo'],
+            'sequencialDependente' => $sequencialDependente
+
+        ]);
+    }
+    $jsonDependente = json_encode($arrayDependente);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if ($out == "") {
+    echo "failed#";
+    } else {
+    echo "sucess#" . $out . "#" . $jsonTelefone . "#" . $jsonEmail . "#" . $jsonDependente;
+    }
+    return;
+
+    
+
 function excluir()
 {
 
