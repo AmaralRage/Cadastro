@@ -1162,7 +1162,6 @@ include("inc/scripts.php");
 
 
             row.append($('<td class="text-left" onclick="carregaTelefone(' + jsonTelefoneArray[i].sequencialTelefone + ');">' + jsonTelefoneArray[i].telefone + '</td>'));
-            // row.append($('<td class="text-left" >' + jsonTelefoneArray[i].telefone + '</td>'));
             row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoTelefonePrincipal + '</td>'));
             row.append($('<td class="text-left" >' + jsonTelefoneArray[i].descricaoTelefoneWhatsApp + '</td>'));
 
@@ -1359,6 +1358,9 @@ include("inc/scripts.php");
                             var piece = data.split("#");
                             var mensagem = piece[0];
                             var out = piece[1];
+                            var jsonTelefone = piece[2];
+                            var jsonEmail = piece[3];
+                            var jsonDependente = piece[4];
                             piece = out.split("^");
 
                             // Atributos de vale transporte unitário que serão recuperados: 
@@ -1379,9 +1381,6 @@ include("inc/scripts.php");
                             var cidade = piece[14];
                             var pispasep = piece[15];
                             var primeiroEmprego = piece[16];
-                            var jsonTelefone = piece[17];
-                            var jsonEmail = piece[18];
-                            var jsonDependente = piece[19];
 
 
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
@@ -1392,9 +1391,6 @@ include("inc/scripts.php");
                             $("#genero").val(genero);
                             $("#dataNascimento").val(dataNascimento);
                             $("#estadoCivil").val(estadoCivil);
-                            $("#jsonTelefone").val(jsonTelefone);
-                            $("#jsonEmail").val(jsonEmail);
-                            $("#jsonDependente").val(jsonDependente);
                             $("#cep").val(cep);
                             $("#logradouro").val(logradouro);
                             $("#numero").val(numero);
@@ -1407,15 +1403,19 @@ include("inc/scripts.php");
  
 
                             validarDataDependente();
-                            fillTableTelefone();
-                            fillTableEmail();
-                            fillTableDependente();
+                            
+                            $("#jsonTelefone").val(jsonTelefone);
+                            $("#jsonEmail").val(jsonEmail);
+                            $("#jsonDependente").val(jsonDependente);
                             jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
                             jsonEmailArray = JSON.parse($("#jsonEmail").val());
                             jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
-                            return;
+                            fillTableTelefone();
+                            fillTableEmail();
+                            fillTableDependente();
 
+                            return;
                         }
                     }
                 );

@@ -13,6 +13,7 @@ include "js/repositorio.php";
                     <th class="text-left" style="min-width:35px;">CPF</th>
                     <th class="text-left" style="min-width:35px;">RG</th>
                     <th class="text-left" style="min-width:35px;">Ativo</th>
+                    <th class="text-left" style="min-width:35px;">PDF</th>
                 </tr>
             </thead>
             <tbody>
@@ -132,6 +133,7 @@ include "js/repositorio.php";
                     echo '<td class="text-left">' . $cpf . '</td>';
                     echo '<td class="text-left">' . $rg . '</td>';
                     echo '<td class="text-left">' . $descricaoAtivo . '</td>';
+                    echo '<td class="text-left"><a href="pdfIndividual.php?id=' . $id  .'" class="btnPdfIndividual btn btn-danger"><i class="fa fa-file-pdf-o"></i></button></td>';
                     echo '</tr >';
                 }
                 ?>

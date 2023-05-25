@@ -286,39 +286,30 @@ function recuperaFuncionario()
         $pispasep . "^" .
         $primeiroEmprego;
 
-    if ($out == "") {
-        echo "failed#";
-        return;
+    $sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.tipoDependente WHERE funcionarioId = $id";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sqlDependente);
+
+    $contador = 0;
+    $arrayDependente = [];
+    foreach ($result as $contador => $item) {
+        $sequencialDependente = $contador + 1;
+
+        array_push($arrayDependente, [
+            'dependente' => $item['dependente'],
+            'cpfDependente' => $item['cpf'],
+            'dataNascimentoDependente' => $item['dataNascimento'],
+            'tipoDependente' => $item['tipo'],
+            'sequencialDependente' => $sequencialDependente
+
+        ]);
     }
 
-    echo "sucess#" . $out;
-    return;
-}
+    $jsonDependente = json_encode($arrayDependente);
 
-$sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.tipoDependente WHERE funcionarioId = $id";
-$reposit = new reposit();
-$result = $reposit->RunQuery($sqlDependente);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$contador = 0;
-$arrayDependente = [];
-foreach ($result as $contador => $item) {
-    $sequencialDependente = $contador + 1;
-
-    array_push($arrayDependente, [
-        'dependente' => $item['dependente'],
-        'cpfDependente' => $item['cpf'],
-        'dataNascimentoDependente' => $item['dataNascimento'],
-        'tipoDependente' => $item['tipo'],
-        'sequencialDependente' => $sequencialDependente
-
-    ]);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-$jsonTelefone = json_encode($arrayTelefone);
-
-$sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
+    $sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
     $reposit = new reposit();
     $result = $reposit->RunQuery($sqlTelefone);
 
@@ -326,18 +317,21 @@ $sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE fun
     $arrayTelefone = [];
     foreach ($result as $contador => $item) {
         $sequencialTelefone = $contador + 1;
+        $item['principal'] == 1 ? $descricaoTelefonePrincipal = "Sim" :  $descricaoTelefonePrincipal = "Não";
+        $item['whatsapp'] == 1 ? $descricaoWhatsappPrincipal = "Sim" :  $descricaoWhatsappPrincipal = "Não";
 
         array_push($arrayTelefone, [
             'telefone' => $item['telefone'],
-            'whatsapp' => $item['whatsapp'],
-            'principal' => $item['principal'],
+            'telefoneWhatsapp' => $item['whatsapp'],
+            'telefonePrincipal' => $item['principal'],
+            'descricaoTelefonePrincipal' => $descricaoTelefonePrincipal,
+            'descricaoTelefoneWhatsApp' => $descricaoWhatsappPrincipal,
             'sequencialTelefone' => $sequencialTelefone
-
         ]);
     }
     $jsonTelefone = json_encode($arrayTelefone);
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 
     $sqlEmail = "SELECT email, emailPrincipal FROM dbo.email WHERE funcionarioId = $id";
     $reposit = new reposit();
@@ -347,26 +341,28 @@ $sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE fun
     $arrayEmail = [];
     foreach ($result as $contador => $item) {
         $sequencialEmail = $contador + 1;
+        $item['email'] == 1 ? $descricaoEmailPrincipal = "Sim" :  $descricaoEmailPrincipal = "Não";
 
         array_push($arrayEmail, [
             'email' => $item['email'],
             'emailPrincipal' => $item['email'],
+            'descricaoEmailPrincipal' => $descricaoEmailPrincipal,
             'sequencialEmail' => $sequencialEmail
 
         ]);
     }
     $jsonEmail = json_encode($arrayEmail);
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if ($out == "") {
-    echo "failed#";
+        echo "failed#";
     } else {
-    echo "sucess#" . $out . "#" . $jsonTelefone . "#" . $jsonEmail . "#" . $jsonDependente;
+        echo "sucess#" . $out . "#" . $jsonTelefone . "#" . $jsonEmail . "#" . $jsonDependente;
     }
     return;
+}
 
-    
 
 function excluir()
 {
