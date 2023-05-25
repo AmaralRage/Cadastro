@@ -305,7 +305,7 @@ foreach ($result as $contador => $item) {
     $sequencialDependente = $contador + 1;
 
     array_push($arrayDependente, [
-        'nomeDependente' => $item['nome'],
+        'dependente' => $item['dependente'],
         'cpfDependente' => $item['cpf'],
         'dataNascimentoDependente' => $item['dataNascimento'],
         'tipoDependente' => $item['tipo'],
@@ -318,7 +318,7 @@ foreach ($result as $contador => $item) {
 
 $jsonTelefone = json_encode($arrayTelefone);
 
-$sqlTelefone = "SELECT telefone, whatsapp, principal, FROM dbo.Telefone WHERE funcionarioId = $id";
+$sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
     $reposit = new reposit();
     $result = $reposit->RunQuery($sqlTelefone);
 
@@ -339,25 +339,23 @@ $sqlTelefone = "SELECT telefone, whatsapp, principal, FROM dbo.Telefone WHERE fu
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 
-    $sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.dependentesListaFuncionario WHERE funcionarioId = $id";
+    $sqlEmail = "SELECT email, emailPrincipal FROM dbo.email WHERE funcionarioId = $id";
     $reposit = new reposit();
-    $result = $reposit->RunQuery($sqlDependente);
+    $result = $reposit->RunQuery($sqlEmail);
 
     $contador = 0;
-    $arrayDependente = [];
+    $arrayEmail = [];
     foreach ($result as $contador => $item) {
-        $sequencialDependente = $contador + 1;
+        $sequencialEmail = $contador + 1;
 
-        array_push($arrayDependente, [
-            'nomeDependente' => $item['nome'],
-            'cpfDependente' => $item['cpf'],
-            'dataNascimentoDependente' => $item['dataNascimento'],
-            'tipoDependente' => $item['tipo'],
-            'sequencialDependente' => $sequencialDependente
+        array_push($arrayEmail, [
+            'email' => $item['email'],
+            'emailPrincipal' => $item['email'],
+            'sequencialEmail' => $sequencialEmail
 
         ]);
     }
-    $jsonDependente = json_encode($arrayDependente);
+    $jsonEmail = json_encode($arrayEmail);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

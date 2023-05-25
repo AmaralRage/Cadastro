@@ -1410,9 +1410,9 @@ include("inc/scripts.php");
                             fillTableTelefone();
                             fillTableEmail();
                             fillTableDependente();
-                            // jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
-                            // jsonEmailArray = JSON.parse($("#jsonEmail").val());
-                            // jsonDependenteArray = JSON.parse($("#jsonDependente").val());
+                            jsonTelefoneArray = JSON.parse($("#jsonTelefone").val());
+                            jsonEmailArray = JSON.parse($("#jsonEmail").val());
+                            jsonDependenteArray = JSON.parse($("#jsonDependente").val());
 
                             return;
 
