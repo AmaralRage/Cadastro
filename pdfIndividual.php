@@ -20,7 +20,14 @@ $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ati
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
-
+foreach ($result as $row) {
+    $nome = $row['nome'];
+    $cpf = $row['cpf'];
+    $rg =  $row['rg'];
+    $data_nascimento = $row['data_nascimento'];
+    $ativo = $row['ativo$ativo'];
+    $genero = $row['genero'];
+}
 
 require_once('fpdf/fpdf.php');
 
@@ -50,7 +57,7 @@ $pdf->SetFillColor(220, 220, 220);
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetY(10);
 $pdf->SetX(21);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Sr."), 0, 0, "L", 0);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "  $nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->SetY(20);
