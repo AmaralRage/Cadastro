@@ -12,10 +12,14 @@ require('./fpdf/mc_table.php');
 
 session_start();
 
+$codigo = $_GET['id'];
+
+$sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
+                cep, logradouro, uf, complemento,  numero, bairro, cidade 
+             FROM dbo.funcionarios USU WHERE codigo = $codigo";
+
 $reposit = new reposit();
-
-
-$codigo = $_GET['codigo'];
+$result = $reposit->RunQuery($sql);
 
 
 require_once('fpdf/fpdf.php');
@@ -49,12 +53,12 @@ $pdf->SetX(21);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Sr."), 0, 0, "L", 0);
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->SetY(56);
+$pdf->SetY(20);
 $pdf->SetX(27);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Arial', '', 12);
-$pdf->SetY(66);
+$pdf->SetY(25);
 $pdf->SetX(21);
 $pdf->MultiCell(170, 5, iconv('UTF-8', 'windows-1252', "Com a presente, levamos ao seu conhecimento que por motivos de ordem administrativa, estamos dispensando os seus serviços como funcionário desta empresa."), 0, "L");
 
@@ -66,7 +70,7 @@ $pdf->MultiCell(170, 5, iconv('UTF-8', 'windows-1252', "Solicitamos a VSa, que d
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetY(102);
 $pdf->SetX(21);
-$pdf->Cell(50, 10, iconv('UTF-8', 'windows-1252', "Atenciosamente,"), 0, 0, "", 1);
+$pdf->Cell(50, 10, iconv('UTF-8', 'windows-1252', "Atenciosamente,"), 0, 0, "", 0);
 
 $pdf->Line(21, 120, 85, 120);
 
