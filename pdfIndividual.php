@@ -14,9 +14,14 @@ session_start();
 
 $codigo = $_GET['id'];
 
-$sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
-                cep, logradouro, uf, complemento,  numero, bairro, cidade 
-             FROM dbo.funcionarios USU WHERE codigo = $codigo";
+// $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
+//                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
+//              FROM dbo.funcionarios USU WHERE codigo = $codigo";
+
+$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.estadoCivil, F.rg, G.descricao as genero
+                FROM dbo.funcionarios F
+                LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
+
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
@@ -24,9 +29,29 @@ foreach ($result as $row) {
     $nome = $row['nome'];
     $cpf = $row['cpf'];
     $rg =  $row['rg'];
-    $data_nascimento = $row['data_nascimento'];
+    $data_nascimento = $row['data_Nascimento'];
     $ativo = $row['ativo$ativo'];
     $genero = $row['genero'];
+    $estadoCivil = $row['estadoCivil'];
+    $genero = $row['genero'];
+}
+
+$valor_de_retorno = match ($estadoCivil) {
+    1 => 'Solteiro(a)',
+    2 => 'Casado(a)',
+    3 => 'Divorciado(a)',
+    4 => 'Separado(a)',
+    5 => 'Viúvo(a)',
+};
+$estadoCivil = $valor_de_retorno;
+
+$cpf = $row['cpf'];
+$rg = $row['rg'];
+$descricaoAtivo = "";
+if ($ativo == 1) {
+    $descricaoAtivo = "Sim";
+} else {
+    $descricaoAtivo = "Não";
 }
 
 require_once('fpdf/fpdf.php');
@@ -100,6 +125,28 @@ $pdf->SetX(15);
 $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3, iconv('UTF-8', 'windows-1252', "$rg"), 0, 0, "L", 0);
+
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(19);
+$pdf->SetX(85);
+$pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
+
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(29);
+$pdf->SetX(85);
+$pdf->Cell(32, 0, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(5, 1, iconv('UTF-8', 'windows-1252', "$estadoCivil"), 0, 0, "L", 0);
+
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(37);
+$pdf->SetX(85);
+$pdf->Cell(32, 0, iconv('UTF-8', 'windows-1252', "DATA / NASCIMENTO:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetX(130);
+$pdf->Cell(5, 8, iconv('UTF-8', 'windows-1252', "$data_nascimento"), 0, 0, "L", 0);
 
 
 
