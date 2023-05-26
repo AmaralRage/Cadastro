@@ -18,7 +18,7 @@ $codigo = $_GET['id'];
 //                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
 //              FROM dbo.funcionarios USU WHERE codigo = $codigo";
 
-$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.estadoCivil, F.rg, G.descricao as genero
+$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.estadoCivil, F.primeiroEmprego, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
 
@@ -33,7 +33,7 @@ foreach ($result as $row) {
     $ativo = $row['ativo$ativo'];
     $genero = $row['genero'];
     $estadoCivil = $row['estadoCivil'];
-    $genero = $row['genero'];
+    $primeiroEmprego = $row['primeiroEmprego'];
 }
 
 $valor_de_retorno = match ($estadoCivil) {
@@ -44,6 +44,12 @@ $valor_de_retorno = match ($estadoCivil) {
     5 => 'Viúvo(a)',
 };
 $estadoCivil = $valor_de_retorno;
+
+$valor_de_retorno = match ($primeiroEmprego) {
+    0 => 'Não',
+    1 => 'Sim',
+};
+$primeiroEmprego = $valor_de_retorno;
 
 $cpf = $row['cpf'];
 $rg = $row['rg'];
@@ -155,9 +161,23 @@ $pdf->SetY(37.3);
 $pdf->SetX(121);
 $pdf->Cell(5, 1, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
 
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(19.5);
+$pdf->SetX(135);
+$pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(19.4);
+$pdf->SetX(175);
+$pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$primeiroEmprego"), 0, 0, "L", 0);
 
-
-
+// $pdf->SetFont('Courier', 'B', 11);
+// $pdf->SetY(19.5);
+// $pdf->SetX(135);
+// $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
+// $pdf->SetFont('Helvetica', '', 10);
+// $pdf->SetY(19.4);
+// $pdf->SetX(175);
+// $pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
 
 
 
