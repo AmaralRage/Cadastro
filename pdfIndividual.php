@@ -53,16 +53,23 @@ $pdf->AddPage();
 
 $pdf->SetFillColor(220, 220, 220);
 
+$pdf->Line(5, 5, 205, 5);
+$pdf->Line(5, 12, 205, 12);
+$pdf->Line(5, 5, 5, 292);
+$pdf->Line(205, 5, 205, 292);
+$pdf->Line(5, 292, 205, 292);
 
-$pdf->SetFont('Arial', '', 12);
-$pdf->SetY(10);
-$pdf->SetX(21);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "  $nome"), 0, 0, "L", 0);
 
-$pdf->SetFont('Arial', 'B', 12);
+$pdf->SetFont('Arial', 'B', 13);
+$pdf->SetY(6);
+$pdf->SetX(95);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Relatorio do Funcionário"), 0, 0, "C", 0);
+$pdf->Line(12, 12, 200, 12);
+
+$pdf->SetFont('Arial', '', 10);
 $pdf->SetY(20);
-$pdf->SetX(27);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Nome"), 0, 0, "L", 0);
+$pdf->SetX(20);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetY(25);
@@ -79,7 +86,7 @@ $pdf->SetY(102);
 $pdf->SetX(21);
 $pdf->Cell(50, 10, iconv('UTF-8', 'windows-1252', "Atenciosamente,"), 0, 0, "", 0);
 
-$pdf->Line(21, 120, 85, 120);
+
 
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->SetY(121);
