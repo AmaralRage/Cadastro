@@ -18,7 +18,7 @@ $codigo = $_GET['id'];
 //                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
 //              FROM dbo.funcionarios USU WHERE codigo = $codigo";
 
-$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.estadoCivil, F.primeiroEmprego, F.rg, G.descricao as genero
+$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
 
@@ -34,6 +34,7 @@ foreach ($result as $row) {
     $genero = $row['genero'];
     $estadoCivil = $row['estadoCivil'];
     $primeiroEmprego = $row['primeiroEmprego'];
+    $pispasep = $row['pispasep'];
 }
 
 $valor_de_retorno = match ($estadoCivil) {
@@ -118,66 +119,66 @@ $pdf->Cell(3, 35, iconv('UTF-8', 'windows-1252', ""), 0, 0, "C", 0);
 
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(20);
+$pdf->SetY(30);
 $pdf->SetX(15);
 $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(28);
-$pdf->SetX(15);
+$pdf->SetY(40);
+$pdf->SetX(14.6);
 $pdf->Cell(10, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.8, iconv('UTF-8', 'windows-1252', "$cpf"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(36);
+$pdf->SetY(50);
 $pdf->SetX(15);
 $pdf->Cell(8, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$rg"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(19.5);
+$pdf->SetY(30);
 $pdf->SetX(75);
 $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
+$pdf->Cell(20, 3.5, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(29);
+$pdf->SetY(41);
 $pdf->SetX(75);
 $pdf->Cell(31, 0, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(8, 1, iconv('UTF-8', 'windows-1252', "$estadoCivil"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(37.4);
+$pdf->SetY(52);
 $pdf->SetX(75);
 $pdf->Cell(35, 0, iconv('UTF-8', 'windows-1252', "DATA DE NASCIMENTO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(37.3);
+$pdf->SetY(45);
 $pdf->SetX(121);
-$pdf->Cell(5, 1, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
+$pdf->Cell(5, 4, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(19.5);
-$pdf->SetX(135);
+$pdf->SetX(140);
 $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(19.4);
-$pdf->SetX(175);
+$pdf->SetX(180);
 $pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$primeiroEmprego"), 0, 0, "L", 0);
 
-// $pdf->SetFont('Courier', 'B', 11);
-// $pdf->SetY(19.5);
-// $pdf->SetX(135);
-// $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
-// $pdf->SetFont('Helvetica', '', 10);
-// $pdf->SetY(19.4);
-// $pdf->SetX(175);
-// $pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(27.5);
+$pdf->SetX(140);
+$pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PIS:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(27.2);
+$pdf->SetX(150);
+$pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "Nenhum"), 0, 0, "L", 0);
 
 
 
