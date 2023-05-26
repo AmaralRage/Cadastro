@@ -29,7 +29,7 @@ foreach ($result as $row) {
     $nome = $row['nome'];
     $cpf = $row['cpf'];
     $rg =  $row['rg'];
-    $data_nascimento = $row['data_Nascimento'];
+    $dataNascimento = $row['data_Nascimento'];
     $ativo = $row['ativo$ativo'];
     $genero = $row['genero'];
     $estadoCivil = $row['estadoCivil'];
@@ -52,6 +52,12 @@ if ($ativo == 1) {
     $descricaoAtivo = "Sim";
 } else {
     $descricaoAtivo = "Não";
+}
+
+if ($dataNascimento) {
+    $dataNascimento = explode(" ", $dataNascimento);
+    $data = explode("-", $dataNascimento[0]);
+    $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 }
 
 require_once('fpdf/fpdf.php');
@@ -110,43 +116,44 @@ $pdf->SetY(20);
 $pdf->SetX(15);
 $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 3, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(28);
 $pdf->SetX(15);
-$pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
+$pdf->Cell(10, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 3, iconv('UTF-8', 'windows-1252', "$cpf"), 0, 0, "L", 0);
+$pdf->Cell(20, 3.8, iconv('UTF-8', 'windows-1252', "$cpf"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(36);
 $pdf->SetX(15);
-$pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
+$pdf->Cell(8, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 3, iconv('UTF-8', 'windows-1252', "$rg"), 0, 0, "L", 0);
+$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$rg"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(19);
-$pdf->SetX(85);
-$pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
+$pdf->SetY(19.5);
+$pdf->SetX(75);
+$pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(29);
-$pdf->SetX(85);
-$pdf->Cell(32, 0, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
+$pdf->SetX(75);
+$pdf->Cell(31, 0, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(5, 1, iconv('UTF-8', 'windows-1252', "$estadoCivil"), 0, 0, "L", 0);
+$pdf->Cell(8, 1, iconv('UTF-8', 'windows-1252', "$estadoCivil"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(37);
-$pdf->SetX(85);
-$pdf->Cell(32, 0, iconv('UTF-8', 'windows-1252', "DATA / NASCIMENTO:"), 0, 0, "L", 0);
+$pdf->SetY(37.4);
+$pdf->SetX(75);
+$pdf->Cell(35, 0, iconv('UTF-8', 'windows-1252', "DATA DE NASCIMENTO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetX(130);
-$pdf->Cell(5, 8, iconv('UTF-8', 'windows-1252', "$data_nascimento"), 0, 0, "L", 0);
+$pdf->SetY(37.3);
+$pdf->SetX(121);
+$pdf->Cell(5, 1, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
 
 
 
