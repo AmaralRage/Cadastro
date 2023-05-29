@@ -14,13 +14,35 @@ session_start();
 
 $codigo = $_GET['id'];
 
-// $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, pispasep,
+// $sql = " SELECT codigo as codigoFuncionario, nome, cpf, rg, data_nascimento, ativo, genero, estadoCivil, primeiroEmprego, email,
 //                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
 //              FROM dbo.funcionarios USU WHERE codigo = $codigo";
 
 $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
+
+$sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
+$reposit = new reposit();
+$result = $reposit->RunQuery($sqlTelefone);
+
+$contador = 0;
+$arrayTelefone = [];
+foreach ($result as $contador => $item) {
+    $sequencialTelefone = $contador + 1;
+    $item['principal'] == 1 ? $descricaoTelefonePrincipal = "Sim" :  $descricaoTelefonePrincipal = "Não";
+    $item['whatsapp'] == 1 ? $descricaoWhatsappPrincipal = "Sim" :  $descricaoWhatsappPrincipal = "Não";
+
+    array_push($arrayTelefone, [
+        'telefone' => $item['telefone'],
+        'telefoneWhatsapp' => $item['whatsapp'],
+        'telefonePrincipal' => $item['principal'],
+        'descricaoTelefonePrincipal' => $descricaoTelefonePrincipal,
+        'descricaoTelefoneWhatsApp' => $descricaoWhatsappPrincipal,
+        'sequencialTelefone' => $sequencialTelefone
+    ]);
+}
+$jsonTelefone = json_encode($arrayTelefone);
 
 
 $reposit = new reposit();
@@ -35,6 +57,8 @@ foreach ($result as $row) {
     $estadoCivil = $row['estadoCivil'];
     $primeiroEmprego = $row['primeiroEmprego'];
     $pispasep = $row['pispasep'];
+    $telefone = $row['telefone'];
+    $email = $row['email'];
 }
 
 $valor_de_retorno = match ($estadoCivil) {
@@ -117,29 +141,29 @@ $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Relatorio do Funcionário"), 0
 $pdf->Cell(3, 35, iconv('UTF-8', 'windows-1252', ""), 0, 0, "C", 0);
 // $pdf->Line(19, 19, 200, 19);
 
-$pdf->SetFont($tipoDeFonte, '', $tamanhoFonte);
+$pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(16);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DO FUNCIONÁRIO"), 0, 0, "C", 0);
-$pdf->Line(10, 25, 200, 25);
+$pdf->Line(9.5, 25, 200, 25);
 
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(30);
+$pdf->SetY(32.5);
 $pdf->SetX(15);
 $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(40);
+$pdf->SetY(42.3);
 $pdf->SetX(14.6);
 $pdf->Cell(10, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.8, iconv('UTF-8', 'windows-1252', "$cpf"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(50);
+$pdf->SetY(52.5);
 $pdf->SetX(15);
 $pdf->Cell(8, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
@@ -167,7 +191,7 @@ $pdf->Cell(35, 0, iconv('UTF-8', 'windows-1252', "DATA DE NASC.:"), 0, 0, "L", 0
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(51);
 $pdf->SetX(108);
-$pdf->Cell(3, 5, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
+$pdf->Cell(3, 5.5, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
 
 // $pdf->SetFillColor(255, 0, 0);
 $pdf->SetFont('Courier', 'B', 11);
@@ -196,6 +220,36 @@ $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(37.5);
 $pdf->SetX(155);
 $pdf->Cell(10, 31.3, iconv('UTF-8', 'windows-1252', "Sim"), 0, 0, "L", 0);
+
+$pdf->Line(9.5, 62.9, 200, 62.9);
+
+$pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+$pdf->SetY(68.5);
+$pdf->SetX(95);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATO"), 0, 0, "C", 0);
+$pdf->Line(9.5, 79, 200, 79);
+
+$pdf->SetFillColor(144, 238, 144);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(90);
+$pdf->SetX(35);
+$pdf->Cell(45, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(20, 23.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
