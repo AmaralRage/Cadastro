@@ -258,38 +258,59 @@ $pdf->Line(9.5, 62.9, 200, 62.9);
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(68.5);
 $pdf->SetX(95);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATO"), 0, 0, "C", 0);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATOS"), 0, 0, "C", 0);
 $pdf->Line(9.5, 79, 200, 79);
 
 $pdf->SetFillColor(255,182,193);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(90);
-$pdf->SetX(20);
+$pdf->SetX(13);
 $pdf->Cell(35, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(98);
-$pdf->SetX(20);
+$pdf->SetX(13);
 $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
 $pdf->SetFillColor(127,255,212);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(90);
-$pdf->SetX(55);
+$pdf->SetX(48);
 $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(98);
-$pdf->SetX(55);
+$pdf->SetX(48);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
 
-$pdf->SetFillColor(240, 230, 140);
+$pdf->SetFillColor(144, 238, 144);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(90);
-$pdf->SetX(120);
-$pdf->Cell(60, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+$pdf->SetX(73);
+$pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(98);
-$pdf->SetX(120);
-$pdf->Cell(60, 6, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+$pdf->SetX(73);
+$pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
+
+$pdf->SetFillColor(255,182,193);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(90);
+$pdf->SetX(115);
+$pdf->Cell(50, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(98);
+$pdf->SetX(115);
+$pdf->Cell(50, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+
+$pdf->SetFillColor(127,255,212);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(90);
+$pdf->SetX(165);
+$pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(98);
+$pdf->SetX(165);
+$pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
+
 
 
 
