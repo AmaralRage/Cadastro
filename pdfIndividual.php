@@ -146,14 +146,14 @@ $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$rg"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(30);
+$pdf->SetY(32.5);
 $pdf->SetX(75);
 $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->Cell(20, 3.5, iconv('UTF-8', 'windows-1252', "$genero"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(41.5);
+$pdf->SetY(43.5);
 $pdf->SetX(75);
 $pdf->Cell(31, 0, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
@@ -161,40 +161,41 @@ $pdf->SetX(105.5);
 $pdf->Cell(8, 0.5, iconv('UTF-8', 'windows-1252', "$estadoCivil"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(51.5);
+$pdf->SetY(53.5);
 $pdf->SetX(75);
 $pdf->Cell(35, 0, iconv('UTF-8', 'windows-1252', "DATA DE NASC.:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(51);
 $pdf->SetX(108);
-$pdf->Cell(3, 1, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
+$pdf->Cell(3, 5, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
 
+// $pdf->SetFillColor(255, 0, 0);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(29.5);
-$pdf->SetX(140);
-$pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
+$pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y                        HABILITAR CAXA    //       //ORIENTAÇÃO    //COR
+$pdf->Cell(40, 8, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(29.4);
 $pdf->SetX(180);
-$pdf->Cell(20, 4, iconv('UTF-8', 'windows-1252', "$primeiroEmprego"), 0, 0, "L", 0);
+$pdf->Cell(20, 8.3, iconv('UTF-8', 'windows-1252', "$primeiroEmprego"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(39.5);
+$pdf->SetY(41.5);
 $pdf->SetX(140);
 $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "PIS:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(27.2);
 $pdf->SetX(150);
-$pdf->Cell(10, 27.5, iconv('UTF-8', 'windows-1252', "Nenhum"), 0, 0, "L", 0);
+$pdf->Cell(10, 32.3, iconv('UTF-8', 'windows-1252', "Nenhum"), 0, 0, "L", 0);
 
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(49.5);
+$pdf->SetY(51.5);
 $pdf->SetX(140);
 $pdf->Cell(17.5, 3, iconv('UTF-8', 'windows-1252', "ATIVO:"), 0, 0, "L", 0);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(37.5);
 $pdf->SetX(155);
-$pdf->Cell(10, 27.5, iconv('UTF-8', 'windows-1252', "Sim"), 0, 0, "L", 0);
+$pdf->Cell(10, 31.3, iconv('UTF-8', 'windows-1252', "Sim"), 0, 0, "L", 0);
 
 
 
