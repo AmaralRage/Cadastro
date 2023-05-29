@@ -67,19 +67,54 @@ if ($dataNascimento) {
 }
 
 
-$sql2 = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $codigo";
-$reposit = new reposit();
-$result = $reposit->RunQuery($sql2);
+$sql2 = "SELECT telefone, principal, whatsapp FROM dbo.telefone where funcionarioId = $codigo";
 
 $reposit = new reposit();
-$result = $reposit->RunQuery($sql);
-foreach ($result as $row) {
+$resultQueryTelefone = $reposit->RunQuery($sql2);
+
+$i = 80;
+$margem = 5;
+foreach ($resultQueryTelefone as $row) {
+
+    // ------------------ Contato Funcionario ----------------- {
     $telefone = $row['telefone'];
-    $principal = $row['principal'];
-    $whatsapp =  $row['whatsapp'];
-}
+    $telefonePrincipal = $row['principal'];
+    $telefoneWhatsapp = $row['whatsapp'];
 
+    if ($telefonePrincipal) {
+        $telefonePrincipal = 'Sim';
+    } else {
+        $telefonePrincipal = 'Não';
+    }
+
+    if ($telefoneWhatsapp) {
+        $telefoneWhatsapp = 'Sim';
+    } else {
+        $telefoneWhatsapp = 'Não';
+    }
+}
 $jsonTelefone = json_encode($arrayTelefone);
+
+$sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
+
+$reposit = new reposit();
+$resultQueryEmail = $reposit->RunQuery($sql3);
+
+$i = 80;
+$margem = 5;
+foreach ($resultQueryEmail as $row) {
+
+    // ------------------ Contato Funcionario ----------------- {
+    $email = $row['email'];
+    $emailPrincipal = $row['principal'];
+
+    if ($emailPrincipal) {
+        $emailPrincipal = 'Sim';
+    } else {
+        $emailPrincipal = 'Não';
+    }
+}
+$jsonEmail = json_encode($arrayEmail);
 
 
 require_once('fpdf/fpdf.php');
@@ -121,6 +156,12 @@ $pdf->Line(5, 12, 205, 12);
 $pdf->Line(5, 5, 5, 292);
 $pdf->Line(205, 5, 205, 292);
 $pdf->Line(5, 292, 205, 292);
+
+
+
+$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
+$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\logo.png', 10, 278, 35, 9, 'PNG');
+
 
 
 $pdf->SetFont($tipoDeFonte, $fontWeight, $tamanhoFonte);
@@ -234,11 +275,11 @@ $pdf->SetFillColor(240, 230, 140);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(90);
 $pdf->SetX(120);
-$pdf->Cell(45, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+$pdf->Cell(60, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(98);
 $pdf->SetX(120);
-$pdf->Cell(45, 8.6, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 0);
+$pdf->Cell(60, 8.6, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 0);
 
 
 
