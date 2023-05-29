@@ -67,7 +67,7 @@ if ($dataNascimento) {
 }
 
 
-$sql2 = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
+$sql2 = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $codigo";
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql2);
 
