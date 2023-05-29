@@ -22,29 +22,6 @@ $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, 
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
 
-$sqlTelefone = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
-$reposit = new reposit();
-$result = $reposit->RunQuery($sqlTelefone);
-
-$contador = 0;
-$arrayTelefone = [];
-foreach ($result as $contador => $item) {
-    $sequencialTelefone = $contador + 1;
-    $item['principal'] == 1 ? $descricaoTelefonePrincipal = "Sim" :  $descricaoTelefonePrincipal = "Não";
-    $item['whatsapp'] == 1 ? $descricaoWhatsappPrincipal = "Sim" :  $descricaoWhatsappPrincipal = "Não";
-
-    array_push($arrayTelefone, [
-        'telefone' => $item['telefone'],
-        'telefoneWhatsapp' => $item['whatsapp'],
-        'telefonePrincipal' => $item['principal'],
-        'descricaoTelefonePrincipal' => $descricaoTelefonePrincipal,
-        'descricaoTelefoneWhatsApp' => $descricaoWhatsappPrincipal,
-        'sequencialTelefone' => $sequencialTelefone
-    ]);
-}
-$jsonTelefone = json_encode($arrayTelefone);
-
-
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
 foreach ($result as $row) {
@@ -57,8 +34,6 @@ foreach ($result as $row) {
     $estadoCivil = $row['estadoCivil'];
     $primeiroEmprego = $row['primeiroEmprego'];
     $pispasep = $row['pispasep'];
-    $telefone = $row['telefone'];
-    $email = $row['email'];
 }
 
 $valor_de_retorno = match ($estadoCivil) {
@@ -90,6 +65,22 @@ if ($dataNascimento) {
     $data = explode("-", $dataNascimento[0]);
     $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 }
+
+
+$sql2 = "SELECT telefone, whatsapp, principal FROM dbo.telefone WHERE funcionarioId = $id";
+$reposit = new reposit();
+$result = $reposit->RunQuery($sql2);
+
+$reposit = new reposit();
+$result = $reposit->RunQuery($sql);
+foreach ($result as $row) {
+    $telefone = $row['telefone'];
+    $principal = $row['principal'];
+    $whatsapp =  $row['whatsapp'];
+}
+
+$jsonTelefone = json_encode($arrayTelefone);
+
 
 require_once('fpdf/fpdf.php');
 
@@ -232,12 +223,22 @@ $pdf->Line(9.5, 79, 200, 79);
 $pdf->SetFillColor(144, 238, 144);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(90);
-$pdf->SetX(35);
+$pdf->SetX(37);
 $pdf->Cell(45, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 23.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+$pdf->SetY(98);
+$pdf->SetX(37);
+$pdf->Cell(45, 8.6, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
-
+$pdf->SetFillColor(240, 230, 140);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(90);
+$pdf->SetX(120);
+$pdf->Cell(45, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(98);
+$pdf->SetX(120);
+$pdf->Cell(45, 8.6, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 0);
 
 
 

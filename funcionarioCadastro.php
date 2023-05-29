@@ -155,7 +155,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">PIS:PASEP</label>
                                                                 <label class="input">
-                                                                    <input id="pispasep" class="required" type="text" value="">
+                                                                    <input id="pispasep" disabled = "" class="readonly" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -1400,7 +1400,12 @@ include("inc/scripts.php");
                             $("#cidade").val(cidade);
                             $("#pispasep").val(pispasep);
                             $("#primeiroEmprego").val(primeiroEmprego);
- 
+                            if (pispasep) {
+                                $("#pispasep").prop("disabled", false);
+                                $("#pispasep").removeAttr("disabled");
+                                $("#pispasep").removeClass("readonly");
+                                $("#pispasep").addClass("required");
+                            } 
 
                             validarDataDependente();
                             
