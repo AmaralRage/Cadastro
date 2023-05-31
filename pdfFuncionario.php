@@ -169,7 +169,7 @@ $pdf->Line(5, 292, 205, 292);
 
 
 $pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
-$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 50, 20, 'PNG');
+$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 60, 20, 'PNG');
 
 
 $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
@@ -299,10 +299,10 @@ $pdf->Cell(3, 35, iconv('UTF-8', 'windows-1252', ""), 0, 0, "C", 0);
 // $pdf->Line(19, 19, 200, 19);
 
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-$pdf->SetY(16);
+$pdf->SetY(19);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DO FUNCIONÁRIO"), 0, 0, "C", 0);
-$pdf->Line(9.5, 25, 200, 25);
+// $pdf->Line(9.5, 25, 200, 25);
 
 
 $pdf->SetFont('Courier', 'B', 11);
@@ -378,14 +378,12 @@ $pdf->SetY(37.5);
 $pdf->SetX(155);
 $pdf->Cell(10, 31.3, iconv('UTF-8', 'windows-1252', "Sim"), 0, 0, "L", 0);
 
-$pdf->Line(9.5, 62.9, 200, 62.9);
+$pdf->Line(9.5, 64.5, 200, 64.5);
 
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-$pdf->SetY(68.5);
+$pdf->SetY(72);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATOS"), 0, 0, "C", 0);
-$pdf->Line(9.5, 79, 200, 79);
-
 
 
 ////////////////////////////////////////////////////////////////////////////// CONTATOS ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -394,121 +392,160 @@ $pdf->Line(9.5, 79, 200, 79);
 
 $pdf->SetFillColor(255, 182, 193);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(91);
+$pdf->SetY(86);
 $pdf->SetX(14);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(99);
+$pdf->SetY(94);
 $pdf->SetX(14);
 $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
 $pdf->SetFillColor(127, 255, 212);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(91);
+$pdf->SetY(86);
 $pdf->SetX(49);
 $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(99);
+$pdf->SetY(94);
 $pdf->SetX(49);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
 
 $pdf->SetFillColor(144, 238, 144);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(91);
+$pdf->SetY(86);
 $pdf->SetX(74);
 $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(99);
+$pdf->SetY(94);
 $pdf->SetX(74);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
 
 $pdf->SetFillColor(255, 182, 193);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(91);
+$pdf->SetY(86);
 $pdf->SetX(117);
 $pdf->Cell(50, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(99);
+$pdf->SetY(94);
 $pdf->SetX(117);
 $pdf->Cell(50, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
 
 $pdf->SetFillColor(127, 255, 212);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(91);
+$pdf->SetY(86);
 $pdf->SetX(167);
 $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(99);
+$pdf->SetY(94);
 $pdf->SetX(167);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
 
 $pdf->Line(9.5, 119, 200, 119);
 
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-$pdf->SetY(125.5);
+$pdf->SetY(130);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "ENDEREÇO"), 0, 0, "C", 0);
-$pdf->Line(9.5, 137, 200, 137);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(14);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(14);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(50);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "LOGRADOURO"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(50);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(86);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(86);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(122);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(122);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(158);
 $pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(158);
 $pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(147);
+$pdf->SetY(144);
 $pdf->SetX(173);
 $pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "N°"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->SetY(155);
+$pdf->SetY(152);
 $pdf->SetX(173);
 $pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
+
+// $pdf->Line(9.5, 190, 200, 190);
+
+// $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+// $pdf->SetY(180.5);
+// $pdf->SetX(95);
+// $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 0, 0, "C", 0);
+// $pdf->Line(9.5, 137, 200, 137);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
