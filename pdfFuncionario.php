@@ -512,7 +512,7 @@ $pdf->Line(9.5, 176, 200, 176);
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(185.5);
 $pdf->SetX(97);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 0, 0, "C", 0);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
 
 
 
