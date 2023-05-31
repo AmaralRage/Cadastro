@@ -18,7 +18,8 @@ $codigo = $_GET['id'];
 //                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
 //              FROM dbo.funcionarios USU WHERE codigo = $codigo";
 
-$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.rg, G.descricao as genero
+$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
+                F.uf, F.cidade, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
 
@@ -34,6 +35,13 @@ foreach ($result as $row) {
     $estadoCivil = $row['estadoCivil'];
     $primeiroEmprego = $row['primeiroEmprego'];
     $pispasep = $row['pispasep'];
+    $cep = $row['cep'];
+    $logradouro = $row['logradouro'];
+    $bairro = $row['bairro'];
+    $numero = $row['numero'];
+    $complemento = $row['complemento'];
+    $uf = $row['uf'];
+    $cidade = $row['cidade'];
 }
 
 $valor_de_retorno = match ($estadoCivil) {
@@ -317,11 +325,27 @@ $pdf->SetY(99);
 $pdf->SetX(167);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
 
-$pdf->Line(9.5, 118, 200, 118);
+$pdf->Line(9.5, 119, 200, 119);
 
+$pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+$pdf->SetY(125.5);
+$pdf->SetX(95);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "ENDEREÇO"), 0, 0, "C", 0);
+$pdf->Line(9.5, 137, 200, 137);
 
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(145.5);
+$pdf->SetX(15);
+$pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "CEP:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$cep"), 0, 0, "L", 0);
 
-
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(156.5);
+$pdf->SetX(15);
+$pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "RUA:"), 0, 0, "L", 0);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$cep"), 0, 0, "L", 0);
 
 
 
