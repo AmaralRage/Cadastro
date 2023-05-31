@@ -72,6 +72,10 @@ function grava()
     $primeiroEmprego = $_POST['primeiroEmprego'];
     $pispasep = $_POST['pispasep'];
     $nome = trim($nome);
+    $cep = trim($cep);
+    $logradouro = trim($logradouro);
+    $bairro = trim($bairro);
+    $complemento = trim($complemento);
     
 
     //=============================================================================================TELEFONE==================================================================================================

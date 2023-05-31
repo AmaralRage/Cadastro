@@ -450,16 +450,65 @@ $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "ENDEREÇO"), 0, 0, "C", 0);
 $pdf->Line(9.5, 137, 200, 137);
 
-$pdf->SetFillColor(255,182,193);
+$pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(147);
 $pdf->SetX(14);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
-
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(155);
 $pdf->SetX(14);
 $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
+
+$pdf->SetFillColor(244,164,96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(147);
+$pdf->SetX(50);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "LOGRADOURO"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(155);
+$pdf->SetX(50);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
+
+$pdf->SetFillColor(244,164,96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(147);
+$pdf->SetX(86);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(155);
+$pdf->SetX(86);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
+
+$pdf->SetFillColor(244,164,96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(147);
+$pdf->SetX(122);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(155);
+$pdf->SetX(122);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
+
+$pdf->SetFillColor(244,164,96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(147);
+$pdf->SetX(158);
+$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(155);
+$pdf->SetX(158);
+$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
+
+$pdf->SetFillColor(244,164,96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(147);
+$pdf->SetX(173);
+$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "N°"), 1, 0, "C", 1);
+$pdf->SetFont('Helvetica', '', 10);
+$pdf->SetY(155);
+$pdf->SetX(173);
+$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
 
 
