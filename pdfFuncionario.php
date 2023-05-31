@@ -491,29 +491,29 @@ $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(144);
 $pdf->SetX(158);
-$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
+$pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(152);
 $pdf->SetX(158);
-$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
+$pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
 
 $pdf->SetFillColor(244,164,96);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(144);
-$pdf->SetX(173);
-$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', "N°"), 1, 0, "C", 1);
+$pdf->SetX(175);
+$pdf->Cell(18, 8, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 1);
 $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetY(152);
-$pdf->SetX(173);
-$pdf->Cell(15, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
+$pdf->SetX(175);
+$pdf->Cell(18, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
-// $pdf->Line(9.5, 190, 200, 190);
+$pdf->Line(9.5, 176, 200, 176);
 
-// $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-// $pdf->SetY(180.5);
-// $pdf->SetX(95);
-// $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 0, 0, "C", 0);
-// $pdf->Line(9.5, 137, 200, 137);
+$pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+$pdf->SetY(185.5);
+$pdf->SetX(97);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 0, 0, "C", 0);
+
 
 
 
