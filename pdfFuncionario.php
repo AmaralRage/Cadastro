@@ -18,6 +18,160 @@ $codigo = $_GET['id'];
 //                 cep, logradouro, uf, complemento,  numero, bairro, cidade 
 //              FROM dbo.funcionarios USU WHERE codigo = $codigo";
 
+// $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
+//                 F.uf, F.cidade, F.rg, G.descricao as genero
+//                 FROM dbo.funcionarios F
+//                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
+
+// $reposit = new reposit();
+// $result = $reposit->RunQuery($sql);
+// foreach ($result as $row) {
+//     $nome = $row['nome'];
+//     $cpf = $row['cpf'];
+//     $rg =  $row['rg'];
+//     $dataNascimento = $row['data_Nascimento'];
+//     $ativo = $row['ativo$ativo'];
+//     $genero = $row['genero'];
+//     $estadoCivil = $row['estadoCivil'];
+//     $primeiroEmprego = $row['primeiroEmprego'];
+//     $pispasep = $row['pispasep'];
+//     $cep = $row['cep'];
+//     $logradouro = $row['logradouro'];
+//     $bairro = $row['bairro'];
+//     $numero = $row['numero'];
+//     $complemento = $row['complemento'];
+//     $uf = $row['uf'];
+//     $cidade = $row['cidade'];
+// }
+
+// $valor_de_retorno = match ($estadoCivil) {
+//     1 => 'Solteiro(a)',
+//     2 => 'Casado(a)',
+//     3 => 'Divorciado(a)',
+//     4 => 'Separado(a)',
+//     5 => 'Viúvo(a)',
+// };
+// $estadoCivil = $valor_de_retorno;
+
+// $valor_de_retorno = match ($primeiroEmprego) {
+//     0 => 'Não',
+//     1 => 'Sim',
+// };
+// $primeiroEmprego = $valor_de_retorno;
+
+// $cpf = $row['cpf'];
+// $rg = $row['rg'];
+// $descricaoAtivo = "";
+// if ($ativo == 1) {
+//     $descricaoAtivo = "Sim";
+// } else {
+//     $descricaoAtivo = "Não";
+// }
+
+// if ($dataNascimento) {
+//     $dataNascimento = explode(" ", $dataNascimento);
+//     $data = explode("-", $dataNascimento[0]);
+//     $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
+// }
+
+
+// $sql2 = "SELECT telefone, principal, whatsapp FROM dbo.telefone where funcionarioId = $codigo";
+
+// $reposit = new reposit();
+// $resultQueryTelefone = $reposit->RunQuery($sql2);
+
+// $i = 80;
+// $margem = 5;
+// foreach ($resultQueryTelefone as $row) {
+
+//     // ------------------ Contato Funcionario ----------------- {
+//     $telefone = $row['telefone'];
+//     $telefonePrincipal = $row['principal'];
+//     $telefoneWhatsapp = $row['whatsapp'];
+
+//     if ($telefonePrincipal) {
+//         $telefonePrincipal = 'Sim';
+//     } else {
+//         $telefonePrincipal = 'Não';
+//     }
+
+//     if ($telefoneWhatsapp) {
+//         $telefoneWhatsapp = 'Sim';
+//     } else {
+//         $telefoneWhatsapp = 'Não';
+//     }
+//     $i = $i + 5;
+
+//     $pdf->SetFont('Helvetica', '', 10);
+//     $pdf->SetY($i);
+//     $pdf->SetX(14);
+//     $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+// }
+// $jsonTelefone = json_encode($arrayTelefone);
+
+// $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
+
+// $reposit = new reposit();
+// $resultQueryEmail = $reposit->RunQuery($sql3);
+
+// $i = 80;
+// $margem = 5;
+// foreach ($resultQueryEmail as $row) {
+
+//     // ------------------ Contato Funcionario ----------------- {
+//     $email = $row['email'];
+//     $emailPrincipal = $row['principal'];
+
+//     if ($emailPrincipal) {
+//         $emailPrincipal = 'Sim';
+//     } else {
+//         $emailPrincipal = 'Não';
+//     }
+// }
+// $jsonEmail = json_encode($arrayEmail);
+
+
+require_once('fpdf/fpdf.php');
+
+class PDF extends FPDF
+{
+    function Header()
+    {
+        $this->SetXY(190, 5);
+        $this->SetFont('Arial', 'B', 8); #Seta a Fonte
+        $this->Ln(20); #Quebra de Linhas
+
+    }
+    function Footer()
+    {
+        $this->SetY(202);
+    }
+}
+$pdf = new PDF('P', 'mm', 'A4'); #Crio o PDF padrão RETRATO, Medida em Milímetro e papel A$
+$pdf->SetFillColor(238, 238, 238);
+$pdf->SetMargins(0, 0, 0); #Seta a Margin Esquerda com 20 milímetro, superrior com 20 milímetro e esquerda com 20 milímetros
+$pdf->SetDisplayMode('default', 'continuous'); #Digo que o PDF abrirá em tamanho PADRÃO e as páginas na exibição serão contínuas
+$pdf->AddPage();
+
+$tamanhoFonte = 11;
+$tamanhoFonteMenor = 8;
+$tipoDeFonte = 'Times';
+$fontWeight = 'B';
+
+$pdf->SetFillColor(220, 220, 220);
+
+$pdf->Line(5, 5, 205, 5);
+$pdf->Line(5, 12, 205, 12);
+$pdf->Line(5, 5, 5, 292);
+$pdf->Line(205, 5, 205, 292);
+$pdf->Line(5, 292, 205, 292);
+
+
+
+$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
+$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 50, 20, 'PNG');
+
+
 $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
                 F.uf, F.cidade, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
@@ -80,7 +234,7 @@ $sql2 = "SELECT telefone, principal, whatsapp FROM dbo.telefone where funcionari
 $reposit = new reposit();
 $resultQueryTelefone = $reposit->RunQuery($sql2);
 
-$i = 80;
+$i = 99;
 $margem = 5;
 foreach ($resultQueryTelefone as $row) {
 
@@ -101,6 +255,14 @@ foreach ($resultQueryTelefone as $row) {
         $telefoneWhatsapp = 'Não';
     }
 }
+//     $i = $i + 7;
+    
+//     $pdf->SetFont('Helvetica', '', 10);
+//     $pdf->SetY($i);
+//     $pdf->SetX(14);
+//     $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+// }
+
 $jsonTelefone = json_encode($arrayTelefone);
 
 $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
@@ -124,51 +286,6 @@ foreach ($resultQueryEmail as $row) {
 }
 $jsonEmail = json_encode($arrayEmail);
 
-
-require_once('fpdf/fpdf.php');
-
-class PDF extends FPDF
-{
-    function Header()
-    {
-        $this->SetXY(190, 5);
-        $this->SetFont('Arial', 'B', 8); #Seta a Fonte
-        $this->Ln(20); #Quebra de Linhas
-
-    }
-    function Footer()
-    {
-        $this->SetY(202);
-    }
-}
-$pdf = new PDF('P', 'mm', 'A4'); #Crio o PDF padrão RETRATO, Medida em Milímetro e papel A$
-$pdf->SetFillColor(238, 238, 238);
-$pdf->SetMargins(0, 0, 0); #Seta a Margin Esquerda com 20 milímetro, superrior com 20 milímetro e esquerda com 20 milímetros
-$pdf->SetDisplayMode('default', 'continuous'); #Digo que o PDF abrirá em tamanho PADRÃO e as páginas na exibição serão contínuas
-$pdf->AddPage();
-
-$tamanhoFonte = 11;
-$tamanhoFonteMenor = 8;
-$tipoDeFonte = 'Times';
-$fontWeight = 'B';
-
-$pdf = new PDF('P', 'mm', 'A4'); #Crio o PDF padrão RETRATO, Medida em Milímetro e papel A$
-$pdf->SetMargins(5, 10, 5); #Seta a Margin Esquerda com 20 milímetro, superrior com 20 milímetro e esquerda com 20 milímetros
-$pdf->SetDisplayMode('default', 'continuous'); #Digo que o PDF abrirá em tamanho PADRÃO e as páginas na exibição serão contínuas
-$pdf->AddPage();
-
-$pdf->SetFillColor(220, 220, 220);
-
-$pdf->Line(5, 5, 205, 5);
-$pdf->Line(5, 12, 205, 12);
-$pdf->Line(5, 5, 5, 292);
-$pdf->Line(205, 5, 205, 292);
-$pdf->Line(5, 292, 205, 292);
-
-
-
-$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
-$pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 50, 20, 'PNG');
 
 
 
@@ -275,7 +392,7 @@ $pdf->Line(9.5, 79, 200, 79);
 
 
 
-$pdf->SetFillColor(255,182,193);
+$pdf->SetFillColor(255, 182, 193);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(91);
 $pdf->SetX(14);
@@ -285,7 +402,7 @@ $pdf->SetY(99);
 $pdf->SetX(14);
 $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
-$pdf->SetFillColor(127,255,212);
+$pdf->SetFillColor(127, 255, 212);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(91);
 $pdf->SetX(49);
@@ -305,7 +422,7 @@ $pdf->SetY(99);
 $pdf->SetX(74);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
 
-$pdf->SetFillColor(255,182,193);
+$pdf->SetFillColor(255, 182, 193);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(91);
 $pdf->SetX(117);
@@ -315,7 +432,7 @@ $pdf->SetY(99);
 $pdf->SetX(117);
 $pdf->Cell(50, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
 
-$pdf->SetFillColor(127,255,212);
+$pdf->SetFillColor(127, 255, 212);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(91);
 $pdf->SetX(167);
@@ -333,21 +450,46 @@ $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "ENDEREÇO"), 0, 0, "C", 0);
 $pdf->Line(9.5, 137, 200, 137);
 
+$pdf->SetFillColor(255,182,193);
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(145.5);
-$pdf->SetX(15);
-$pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "CEP:"), 0, 0, "L", 0);
+$pdf->SetY(147);
+$pdf->SetX(14);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
+
 $pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$cep"), 0, 0, "L", 0);
-
-$pdf->SetFont('Courier', 'B', 11);
-$pdf->SetY(156.5);
-$pdf->SetX(15);
-$pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "RUA:"), 0, 0, "L", 0);
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$cep"), 0, 0, "L", 0);
+$pdf->SetY(155);
+$pdf->SetX(14);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
 
 
+
+// $pdf->SetFont('Courier', 'B', 11);
+// $pdf->SetY(147);
+// $pdf->SetX(15);
+// $pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "CEP:"), 0, 0, "L", 0);
+// $pdf->SetFont('Helvetica', '', 10);
+// $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$cep"), 0, 0, "L", 0);
+
+// $pdf->SetFont('Courier', 'B', 11);
+// $pdf->SetY(157);
+// $pdf->SetX(15);
+// $pdf->Cell(11, 3, iconv('UTF-8', 'windows-1252', "RUA:"), 0, 0, "L", 0);
+// $pdf->SetFont('Helvetica', '', 10);
+// $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$logradouro"), 0, 0, "L", 0);
+
+// $pdf->SetFont('Courier', 'B', 11);
+// $pdf->SetY(167);
+// $pdf->SetX(15);
+// $pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "BAIRRO:"), 0, 0, "L", 0);
+// $pdf->SetFont('Helvetica', '', 10);
+// $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$complemento"), 0, 0, "L", 0);
+
+// $pdf->SetFont('Courier', 'B', 11);
+// $pdf->SetY(147);
+// $pdf->SetX(73);
+// $pdf->Cell(17, 3.5, iconv('UTF-8', 'windows-1252', "NÚMERO:"), 0, 0, "L", 0);
+// $pdf->SetFont('Helvetica', '', 10);
+// $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$bairro"), 0, 0, "L", 0);
 
 
 

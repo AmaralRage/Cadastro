@@ -298,7 +298,7 @@ include("inc/nav.php");
                                                                 <section class="col col-2">
                                                                     <label class="label">CEP</label>
                                                                     <label class="input"><i class="icon-prepend fa fa-home fa-fw"></i>
-                                                                        <input id="cep" name="cep" type="text" class="form-control required" value="">
+                                                                        <input id="cep" name="cep" type="text" class="required" value="">
                                                                     </label>
                                                                 </section>
                                                                 <section class="col col-2">
@@ -584,7 +584,7 @@ include("inc/scripts.php");
             setTimeout(function() {
                 document.getElementById("btnGravar").disabled = false
                 gravar();
-            }, 1500)            
+            }, 600)            
         });
 
         $("#btnNovo").on("click", function() {
@@ -712,7 +712,7 @@ include("inc/scripts.php");
 
         $("#cep").on("change", function() {
             //Nova variável "cep" somente com dígitos.
-            if (/[\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[\!\#\$\&\*\\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
                 $("#cep").focus();
@@ -759,8 +759,7 @@ include("inc/scripts.php");
         $("#rg").mask('99.999.999-9');
         $("#telefone").mask('(99) 99999-9999');
         $("#dataNascimentoDependente").mask('99/99/9999');
-        $("#pispasep").mask('999.99999.99-9');
-        // $("#cep").mask('99999999');
+        $("#cep").mask('99999-999');
 
         // JSON ABAIXO
 
@@ -1400,7 +1399,8 @@ include("inc/scripts.php");
                             $("#cidade").val(cidade);
                             $("#pispasep").val(pispasep);
                             $("#primeiroEmprego").val(primeiroEmprego);
-                            if (pispasep) {
+                            if (pispasep) { 
+                                $("#pispasep").mask('999.99999.99-9');
                                 $("#pispasep").prop("disabled", false);
                                 $("#pispasep").removeAttr("disabled");
                                 $("#pispasep").removeClass("readonly");
@@ -1444,6 +1444,7 @@ include("inc/scripts.php");
             $("#pispasep").prop("disabled", true);
             $("#pispasep").val('');
         } else if (primeiroEmprego == 0) {
+            $("#pispasep").mask('999.99999.99-9');
             $("#pispasep").val('');
             $("#pispasep").prop("disabled", false);
             $("#pispasep").removeAttr("disabled");
@@ -1606,29 +1607,29 @@ include("inc/scripts.php");
             }
         }
 
-        var umTelefonePrincipal = false;
-        for (var i = 0; i < jsonTelefoneArray.length; i++) {
-            if (jsonTelefoneArray[i].telefonePrincipal == true) {
-                umTelefonePrincipal = true;
-            }
-        }
-        if (umTelefonePrincipal != true) {
-            smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
-            $("#telefone").focus();
-            return;
-        }
+        // var umTelefonePrincipal = false;
+        // for (var i = 0; i < jsonTelefoneArray.length; i++) {
+        //     if (jsonTelefoneArray[i].telefonePrincipal == true) {
+        //         umTelefonePrincipal = true;
+        //     }
+        // }
+        // if (umTelefonePrincipal != true) {
+        //     smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
+        //     $("#telefone").focus();
+        //     return;
+        // }
 
-        var umEmailPrincipal = false;
-        for (var i = 0; i < jsonEmailArray.length; i++) {
-            if (jsonEmailArray[i].emailPrincipal == true) {
-                umEmailPrincipal = true;
-            }
-        }
-        if (umEmailPrincipal != true) {
-            smartAlert("Atenção", "Adicione pelo menos um Email como Principal!", "error");
-            $("#email").focus();
-            return;
-        }
+        // var umEmailPrincipal = false;
+        // for (var i = 0; i < jsonEmailArray.length; i++) {
+        //     if (jsonEmailArray[i].emailPrincipal == true) {
+        //         umEmailPrincipal = true;
+        //     }
+        // }
+        // if (umEmailPrincipal != true) {
+        //     smartAlert("Atenção", "Adicione pelo menos um Email como Principal!", "error");
+        //     $("#email").focus();
+        //     return;
+        // }
 
         if (!cep) {
             smartAlert("Atenção", "Informe o CEP", "error");
