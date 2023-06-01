@@ -607,7 +607,7 @@ include("inc/scripts.php");
         });
 
         $("#nome").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Nome Inválido, apenas Letras!", "error");
                 $("#nome").val('');
             }
@@ -618,7 +618,7 @@ include("inc/scripts.php");
         })
 
         $("#logradouro").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Logradouro Inválido, apenas Letras!", "error");
                 $("#logradouro").val('');
                 $("#logradouro").focus();
@@ -626,7 +626,7 @@ include("inc/scripts.php");
         })
 
         $("#bairro").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Bairro Inválido, apenas Letras!", "error");
                 $("#bairro").val('');
                 $("#bairro").focus();
@@ -634,7 +634,7 @@ include("inc/scripts.php");
         })
 
         $("#numero").on("change", function() {
-            if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Número Inválido", "error");
                 $("#numero").val('');
                 $("#numero").focus();
@@ -642,7 +642,7 @@ include("inc/scripts.php");
         })
 
         $("#complemento").on("change", function() {
-            if (/[-\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Apenas letras ou números!", "error");
                 $("#complemento").val('');
                 $("#complemento").focus();
@@ -650,7 +650,7 @@ include("inc/scripts.php");
         })
 
         $("#uf").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "uf Inválido, apenas Letras!", "error");
                 $("#uf").val('');
                 $("#uf").focus();
@@ -658,7 +658,7 @@ include("inc/scripts.php");
         })
 
         $("#dependente").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Dependente Inválido, apenas Letras!", "error");
                 $("#dependente").val('');
                 $("#dependente").focus();
@@ -666,7 +666,7 @@ include("inc/scripts.php");
         })
 
         $("#cidade").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Cidade Inválido, apenas Letras!", "error");
                 $("#cidade").val('');
                 $("#cidade").focus();
@@ -674,7 +674,7 @@ include("inc/scripts.php");
         })
 
         $("#pispasep").on("change", function() {
-            if (/[-\!\#\$\&\*\-\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Pispasep Inválido!", "error");
                 $("#pispasep").val('');
                 $("#pispasep").focus();
@@ -712,7 +712,7 @@ include("inc/scripts.php");
 
         $("#cep").on("change", function() {
             //Nova variável "cep" somente com dígitos.
-            if (/[\!\#\$\&\*\\_\/\@\/""\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
                 $("#cep").focus();

@@ -482,12 +482,12 @@ foreach ($resultQueryEmail as $row) {
     $pdf->SetFillColor(255, 182, 193);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(86);
-    $pdf->SetX(117);
-    $pdf->Cell(50, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+    $pdf->SetX(112);
+    $pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(94);
-    $pdf->SetX(117);
-    $pdf->Cell(50, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+    $pdf->SetX(112);
+    $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
 
     $pdf->SetFillColor(127, 255, 212);
     $pdf->SetFont('Courier', 'B', 11);
@@ -523,8 +523,7 @@ foreach ($resultQueryDependente as $row) {
 
     $dataNascimento = explode(" ", $dataNascimento);
     $dataNascimento = explode("-", $dataNascimento[0]);
-    $data = explode("-", $dataNascimento[0]);
-    $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
+    $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
 
     $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
     $pdf->SetY(185.5);
@@ -570,7 +569,6 @@ foreach ($resultQueryDependente as $row) {
     $pdf->SetY(210);
     $pdf->SetX(140);
     $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
-
 }
 
 $jsonDependentes = json_encode($arrayDependente);
