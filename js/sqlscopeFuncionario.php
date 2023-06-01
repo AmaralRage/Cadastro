@@ -300,18 +300,19 @@ function recuperaFuncionario()
     foreach ($result as $contador => $item) {
         $sequencialDependente = $contador + 1;
 
+        $dataNascimento = explode(" ", $item['dataNascimento']);
+        $dataNascimento = explode("-", $dataNascimento[0]);
+        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
+        
         array_push($arrayDependente, [
             'dependente' => $item['dependente'],
             'cpfDependente' => $item['cpfDependente'],
-            'dataNascimentoDependente' => $item['dataNascimento'],
+            'dataNascimentoDependente' => $dataNascimento,
             'tipoDependente' => $item['tipoDependente'],
             'sequencialDependente' => $sequencialDependente 
              
         ]);
             
-        $dataNascimento = explode(" ", $dataNascimento);
-        $dataNascimento = explode("-", $dataNascimento[0]);
-        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
 
     }
 
