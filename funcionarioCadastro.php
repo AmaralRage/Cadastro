@@ -934,7 +934,7 @@ include("inc/scripts.php");
     function addTelefone() {
 
         var telefone = $("#telefone").val();
-        if (telefone === "" || telefone === "(__) _____-____") {
+        if (telefone === "" || telefone === "(__) _____-____") {  
             smartAlert("Atenção", "Informe o Telefone !", "error");
             $("#telefone").focus();
             return;
@@ -963,7 +963,6 @@ include("inc/scripts.php");
         } else {
             item["descricaoTelefonePrincipal"] = "Não"
         }
-
         if (item["telefoneWhatsApp"]) {
             item["descricaoTelefoneWhatsApp"] = "Sim"
         } else {
@@ -1621,7 +1620,7 @@ include("inc/scripts.php");
 
         var umEmailPrincipal = false;
         for (var i = 0; i < jsonEmailArray.length; i++) {
-            if (jsonEmailArray[i].emailPrincipal == true) {
+            if (jsonEmailArray[i].descricaoEmailPrincipal == 'Sim') {
                 umEmailPrincipal = true;
             }
         }
