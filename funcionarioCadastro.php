@@ -958,15 +958,15 @@ include("inc/scripts.php");
             item["sequencialTelefone"] = +item["sequencialTelefone"];
         }
 
-        if (item["telefonePrincipal"]) {
-            item["descricaoTelefonePrincipal"] = "Sim"
-        } else {
-            item["descricaoTelefonePrincipal"] = "Não"
-        }
         if (item["telefoneWhatsApp"]) {
             item["descricaoTelefoneWhatsApp"] = "Sim"
         } else {
             item["descricaoTelefoneWhatsApp"] = "Não"
+        }
+        if (item["telefonePrincipal"]) {
+            item["descricaoTelefonePrincipal"] = "Sim"
+        } else {
+            item["descricaoTelefonePrincipal"] = "Não"
         }
 
         // linha de sinalização dos if e else 
@@ -1606,17 +1606,17 @@ include("inc/scripts.php");
             }
         }
 
-        var umTelefonePrincipal = false;
-        for (var i = 0; i < jsonTelefoneArray.length; i++) {
-            if (jsonTelefoneArray[i].telefonePrincipal == true) {
-                umTelefonePrincipal = true;
-            }
-        }
-        if (umTelefonePrincipal != true) {
-            smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
-            $("#telefone").focus();
-            return;
-        }
+        // var umTelefonePrincipal = false;
+        // for (var i = 0; i < jsonTelefoneArray.length; i++) {
+        //     if (jsonTelefoneArray[i].telefonePrincipal == true) {
+        //         umTelefonePrincipal = true;
+        //     }
+        // }
+        // if (umTelefonePrincipal != true) {
+        //     smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
+        //     $("#telefone").focus();
+        //     return;
+        // }
 
         var umEmailPrincipal = false;
         for (var i = 0; i < jsonEmailArray.length; i++) {

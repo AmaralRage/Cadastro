@@ -291,7 +291,7 @@ function recuperaFuncionario()
         $pispasep . "^" .
         $primeiroEmprego;
 
-    $sqlDependente = "SELECT nome, cpf, dataNascimento, tipo FROM dbo.tipoDependente WHERE funcionarioId = $id";
+    $sqlDependente = "SELECT dependente, cpfDependente, dataNascimento, tipoDependente FROM dbo.dependentes WHERE funcionarioId = $id";
     $reposit = new reposit();
     $result = $reposit->RunQuery($sqlDependente);
 
@@ -302,12 +302,17 @@ function recuperaFuncionario()
 
         array_push($arrayDependente, [
             'dependente' => $item['dependente'],
-            'cpfDependente' => $item['cpf'],
+            'cpfDependente' => $item['cpfDependente'],
             'dataNascimentoDependente' => $item['dataNascimento'],
-            'tipoDependente' => $item['tipo'],
-            'sequencialDependente' => $sequencialDependente
-
+            'tipoDependente' => $item['tipoDependente'],
+            'sequencialDependente' => $sequencialDependente 
+             
         ]);
+            
+        $dataNascimento = explode(" ", $dataNascimento);
+        $dataNascimento = explode("-", $dataNascimento[0]);
+        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
+
     }
 
     $jsonDependente = json_encode($arrayDependente);

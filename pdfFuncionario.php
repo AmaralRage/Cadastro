@@ -107,6 +107,8 @@ $codigo = $_GET['id'];
 //     $pdf->SetX(14);
 //     $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 // }
+
+
 // $jsonTelefone = json_encode($arrayTelefone);
 
 // $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
