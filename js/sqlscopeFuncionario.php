@@ -336,7 +336,7 @@ function recuperaFuncionario()
 
         array_push($arrayTelefone, [
             'telefone' => $item['telefone'],
-            'telefoneWhatsapp' => $item['whatsapp'],
+            'telefoneWhatsApp' => $item['whatsapp'],
             'telefonePrincipal' => $item['principal'],
             'descricaoTelefonePrincipal' => $descricaoTelefonePrincipal,
             'descricaoTelefoneWhatsApp' => $descricaoWhatsappPrincipal,
