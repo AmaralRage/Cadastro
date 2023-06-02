@@ -315,7 +315,7 @@ if ($dataNascimento) {
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(27.2);
     $pdf->SetX(150);
-    $pdf->Cell(10, 32.3, iconv('UTF-8', 'windows-1252', "Nenhum"), 0, 0, "L", 0);
+    $pdf->Cell(10, 32.3, iconv('UTF-8', 'windows-1252', "$pispasep"), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(51.5);
