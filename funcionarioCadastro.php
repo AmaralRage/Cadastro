@@ -978,14 +978,17 @@ include("inc/scripts.php");
 
         if (item["telefoneWhatsApp"]) {
             item["descricaoTelefoneWhatsApp"] = "Sim"
+            item["telefoneWhatsApp"] = 1;
         } else {
             item["descricaoTelefoneWhatsApp"] = "Não"
         }
         if (item["telefonePrincipal"]) {
             item["descricaoTelefonePrincipal"] = "Sim"
+            item["telefonePrincipal"] = 1;
         } else {
             item["descricaoTelefonePrincipal"] = "Não"
         }
+        item["telefonePrincipal"] = $("#telefonePrincipal").val();
 
         // linha de sinalização dos if e else 
 
