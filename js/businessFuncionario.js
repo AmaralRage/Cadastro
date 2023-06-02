@@ -97,6 +97,26 @@ function validaCPFDependente(cpfDependente) {
     })
 }
 
+function CPFDependenteRepetido(cpfDependente) {
+    $.ajax({
+        url: 'js/sqlscopeFuncionario.php',
+        type: 'post',
+        dataType: "html",
+        data: { funcao: "cpfRepetido", cpfDependente: cpfDependente },
+
+        success: function (data, textStatus) {
+            if (data.trim() === 'succes#') {
+            } else {
+                smartAlert("Atenção", "CPF do Dependente igual do funcionário", "error");
+                document.getElementById('cpfDependente').value = "";
+                var data = $("#cpfDependente").val();
+            }
+        }, error: function (xhr, er) {
+            console.log(xhr, er);
+        }
+    })
+}
+
 function validarDataDependente() {
     var data = $("#dataNascimentoDependente").val();
     data = data.replace(/\//g, "/");

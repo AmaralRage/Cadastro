@@ -29,9 +29,9 @@ if ($funcao == 'VerificarCPF') {
 if ($funcao == 'validaCPFDependente') {
     call_user_func($funcao);
 }
-// if ($funcao == 'VerificaCPFDependente') {
-//     call_user_func($funcao);
-// }
+if ($funcao == 'VerificaCPFDependenteRepetido') {
+    call_user_func($funcao);
+}
 if ($funcao == 'VerificaRG') {
     call_user_func($funcao);
 }
@@ -506,7 +506,7 @@ function VerificarCPF()
     }
 }
 
-function validaCPFDependente()
+function validaCPFDependenteRepetido()
 {
     $cpfDependente = $_POST["cpfDependente"];
     $sql = "SELECT cpfDependente, codigo FROM dbo.dependentes WHERE cpfDependente='$cpfDependente'";

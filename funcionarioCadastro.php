@@ -90,7 +90,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">CPF</label>
                                                                 <label class="input">
-                                                                    <input id="cpf" name="senha" type="text" class="required" value="">
+                                                                    <input id="cpf" name="senha" type="text" class="required cpf" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-2">
@@ -373,7 +373,7 @@ include("inc/nav.php");
                                                                     <section class="col col-2">
                                                                         <label class="label">CPF</label>
                                                                         <label class="input">
-                                                                            <input id="cpfDependente" name="cpfDependente" type="text" value="">
+                                                                            <input id="cpfDependente" name="cpfDependente" class="cpf" type="text" value="">
                                                                         </label>
                                                                     </section>
                                                                     <section class="col col-2">
@@ -700,9 +700,12 @@ include("inc/scripts.php");
             VerificaCPF();
         });
 
-        $("#cpfDependente").on("change", function() {
-            var data = $("#cpfDependente").val();
-            validarCPFDependente();
+        $(".cpf").on("change", function() {
+            
+            if(!cpf == "" || !cpfDependente == ""){
+            verificaCPFDependente();
+            }
+        
         });
 
         $("#rg").on("change", function() {
@@ -851,18 +854,32 @@ include("inc/scripts.php");
     //================================================================================= VALIDA DEPENDENTE =============================================================================================
 
     function validaDependente() {
-        var achouDependente = false;
-        var achouDependentePrincipal = false;
-        var dependentePrincipal = '';
-
-        if ($('#dependentePrincipal').is(':checked')) {
-            dependente = true;
-        } else {
-            dependente = false;
-        }
-
+        var achouDependente = false
+        var achouDependenteCPF = false
         var sequencial = +$('#sequencialDependente').val();
+        var cpfDependente = $('#cpfDependente').val();
         var dependente = $('#dependente').val();
+
+        for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
+            if (cpfDependente == true) {
+                if ((jsonDependenteArray[i].cpfDependente == cpfDependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependenteCPF = true;
+                    break;
+                }
+            }
+            if (cpfDependente !== "") {
+                if ((jsonDependenteArray[i].cpfDependente === cpfDependente) && (jsonDependenteArray[i].sequencialDependente !== sequencial)) {
+                    achouDependenteCPF = true;
+                    break;
+                }
+            }
+        }
+        if (achouDependenteCPF === true) {
+            smartAlert("Erro", "Este CPF já está na lista.", "error");
+            clearFormDependente();
+            return false;
+   
+        }
 
         for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
             if (dependente == true) {
@@ -879,12 +896,7 @@ include("inc/scripts.php");
             }
         }
         if (achouDependente === true) {
-            smartAlert("Erro", "Este Dependente já está na lista.", "error");
-            clearFormDependente();
-            return false;
-        }
-        if (achouDependentePrincipal === true) {
-            smartAlert("Erro", "Já existe um Dependente Principal na lista.", "error");
+            smartAlert("Erro", "Este nome já está na lista.", "error");
             clearFormDependente();
             return false;
         }
@@ -1535,7 +1547,15 @@ include("inc/scripts.php");
         validaCPFDependente(cpfDependente);
     }
 
-
+    function verificaCPFDependente() {
+        var cpf = $("#cpf").val();
+        var cpfDependente = $("#cpfDependente").val();
+        
+        if(cpf == cpfDependente){
+            smartAlert("Atenção", "Os campos do CPF estão em conflito(eles precisam de amor)", "error");
+            
+        }  
+    }
     //FUNCTION GRAVAR
 
     function gravar() {
@@ -1670,6 +1690,8 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         } {}
+
+        
 
 
 
