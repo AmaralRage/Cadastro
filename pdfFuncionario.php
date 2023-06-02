@@ -450,13 +450,12 @@ $pdf->SetY(94);
 $pdf->SetX(74);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
 
-//     $i = $i + 7;
+    $i = $i + 2;
 
-//     $pdf->SetFont('Helvetica', '', 10);
-//     $pdf->SetY($i);
-//     $pdf->SetX(14);
-//     $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
-// }
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(14);
+    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
 $jsonTelefone = json_encode($arrayTelefone);
 

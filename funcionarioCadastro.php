@@ -634,7 +634,7 @@ include("inc/scripts.php");
         })
 
         $("#numero").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Número Inválido", "error");
                 $("#numero").val('');
                 $("#numero").focus();
@@ -642,8 +642,8 @@ include("inc/scripts.php");
         })
 
         $("#complemento").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "Apenas letras ou números!", "error");
+            if (/[\!\#\$\&\*\-\/§/`/´//ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+                smartAlert("Atenção", "Complemento Inválido", "Apenas letras ou números!", "error");
                 $("#complemento").val('');
                 $("#complemento").focus();
             }
@@ -674,7 +674,7 @@ include("inc/scripts.php");
         })
 
         $("#pispasep").on("change", function() {
-            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[\!\#\$\&\*\\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "Pispasep Inválido!", "error");
                 $("#pispasep").val('');
                 $("#pispasep").focus();
@@ -704,6 +704,7 @@ include("inc/scripts.php");
             
             if(!cpf == "" || !cpfDependente == ""){
             verificaCPFDependente();
+
             }
         
         });
