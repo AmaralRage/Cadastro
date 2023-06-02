@@ -1552,7 +1552,7 @@ include("inc/scripts.php");
         var cpfDependente = $("#cpfDependente").val();
         
         if(cpf == cpfDependente){
-            smartAlert("Atenção", "Os campos do CPF estão em conflito(eles precisam de amor)", "error");
+            smartAlert("Atenção", "CPF igual do funcionário)", "error");
             
         }  
     }
