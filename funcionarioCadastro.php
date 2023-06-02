@@ -1109,8 +1109,10 @@ include("inc/scripts.php");
 
         if (item["emailPrincipal"]) {
             item["descricaoEmailPrincipal"] = "Sim"
+            item["emailPrincipal"] = 1;
         } else {
             item["descricaoEmailPrincipal"] = "Não"
+            item["emailPrincipal"] = 1;
         }
 
         // linha de sinalização dos if e else 

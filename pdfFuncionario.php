@@ -364,7 +364,7 @@ if ($dataNascimento) {
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(152);
     $pdf->SetX(86);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
 
     $pdf->SetFillColor(244, 164, 96);
     $pdf->SetFont('Courier', 'B', 11);
@@ -384,7 +384,7 @@ if ($dataNascimento) {
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(152);
     $pdf->SetX(158);
-    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
+    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
 
     $pdf->SetFillColor(244, 164, 96);
     $pdf->SetFont('Courier', 'B', 11);
@@ -394,7 +394,7 @@ if ($dataNascimento) {
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(152);
     $pdf->SetX(175);
-    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($complemento)), 1, 0, "C", 0);
+    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
     $pdf->Line(9.5, 176, 200, 176);
 }
