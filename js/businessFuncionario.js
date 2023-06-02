@@ -77,23 +77,25 @@ function validaCPF(cpf) {
 }
 
 
-function validaCPFDependente(cpfDependente) {
-    $.ajax({
-        url: 'js/sqlscopeFuncionario.php',
-        type: 'post',
-        dataType: "html",
-        data: { funcao: "validaCPFDependente", cpfDependente: cpfDependente },
+// function validaCPFDependente(cpfDependente) {
+//     $.ajax({
+//         url: 'js/sqlscopeFuncionario.php',
+//         type: 'post',
+//         dataType: "html",
+//         data: { funcao: "validaCPFDependente", cpfDependente: cpfDependente },
 
-        success: function (data, textStatus) {
-            if (data.trim() === 'succes#') {
-            } else {
-                smartAlert("Atenção", "CPF Inválido", "error");
-            }
-        }, error: function (xhr, er) {
-            console.log(xhr, er);
-        }
-    })
-}
+//         success: function (data, textStatus) {
+//             if (data.trim() === 'succes#') {
+//             } else {
+//                 smartAlert("Atenção", "CPF do Dependente Inválido", "error");
+//                 document.getElementById('cpfDependente').value = "";
+//                 var data = $("#cpfDependente").val();
+//             }
+//         }, error: function (xhr, er) {
+//             console.log(xhr, er);
+//         }
+//     })
+// }
 
 function validarDataDependente() {
     var data = $("#dataNascimentoDependente").val();
@@ -129,43 +131,6 @@ function validarDataDependente() {
     //Idade superior a 50 não altera o cadastro
 
     if (hoje) return false;
-} 
-
-function cpfverificado(cpf) {
-    $.ajax({
-        url: 'js/sqlscopeCadastroFuncionario.php',
-        dataType: 'html', //tipo do retorno
-        type: 'post', //metodo de envio
-        data: { funcao: "VerificaCPF", cpf: cpf }, //valores enviados ao script
-        beforeSend: function () {
-            //função chamada antes de realizar o ajax
-        },
-        complete: function () {
-            //função executada depois de terminar o ajax
-        },
-        success: function (data, textStatus) {
-            if (data.indexOf('success') < 0) {
-                var piece = data.split("#");
-                var mensagem = piece[1];
-                if (piece[0] === "success") {
-                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
-                    return;
-                }
-                else {
-                    mensagem = "Opa! CPF já registrado.";
-                    smartAlert("Atenção", mensagem, "error");
-                    return;
-                }
-            }
-            ////////////////////////////////////////
-            //retorno dos dados
-        },
-        error: function (xhr, er) {
-            //tratamento de erro
-            console.log(xhr, er)
-        }
-    });
-    return '';
 }
 
 function RGverificado(rg) {
@@ -193,6 +158,83 @@ function RGverificado(rg) {
                     smartAlert("Atenção", mensagem, "error");
                     document.getElementById('rg').value = "";
                     $("#rg").focus();
+                    return;
+                }
+            }
+            ////////////////////////////////////////
+            //retorno dos dados
+        },
+        error: function (xhr, er) {
+            //tratamento de erro
+            console.log(xhr, er)
+        }
+    });
+    return '';
+}
+// function cpfVerificado(cpf) {
+//     $.ajax({
+//         url: 'js/sqlscopeFuncionario.php',
+//         dataType: 'html', //tipo do retorno
+//         type: 'post', //metodo de envio
+//         data: { funcao: "VerificaCPF", cpf: cpf }, //valores enviados ao script
+//         beforeSend: function () {
+//             //função chamada antes de realizar o ajax
+//         },
+//         complete: function () {
+//             //função executada depois de terminar o ajax
+//         },
+//         success: function (data, textStatus) {
+//             if (data.indexOf('success') < 0) {
+//                 var piece = data.split("#");
+//                 var mensagem = piece[1];
+//                 if (piece[0] === "success") {
+//                     smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+//                     return;
+//                 }
+//                 else {
+//                     mensagem = "CPF já registrado.";
+//                     smartAlert("Atenção", mensagem, "error");
+//                     document.getElementById('cpf').value = "";
+//                     $("#cpf").focus();
+//                     return;
+//                 }
+//             }
+//             ////////////////////////////////////////
+//             //retorno dos dados
+//         },
+//         error: function (xhr, er) {
+//             //tratamento de erro
+//             console.log(xhr, er)
+//         }
+//     });
+//     return '';
+// }
+
+function verificaCPF(cpf) {
+    $.ajax({
+        url: 'js/sqlscopeFuncionario.php',
+        dataType: 'html', //tipo do retorno
+        type: 'post', //metodo de envio
+        data: { funcao: "VerificarCPF", cpf: cpf }, //valores enviados ao script
+        beforeSend: function () {
+            //função chamada antes de realizar o ajax
+        },
+        complete: function () {
+            //função executada depois de terminar o ajax
+        },
+        success: function (data, textStatus) {
+            if (data.indexOf('success') < 0) {
+                var piece = data.split("#");
+                var mensagem = piece[1];
+                if (piece[0] === "success") {
+                    smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+                    return;
+                }
+                else {
+                    mensagem = "CPF já registrado.";
+                    smartAlert("Atenção", mensagem, "error");
+                    document.getElementById('cpf').value = "";
+                    $("#cpf").focus();
                     return;
                 }
             }

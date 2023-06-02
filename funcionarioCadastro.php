@@ -694,11 +694,16 @@ include("inc/scripts.php");
             var data = $("#cpf").val();
             validarCPF();
         });
-
-        $("#cpfDependente").on("change", function() {
-            var data = $("#cpfDependente").val();
-            validarCPFDependente();
+        
+        $("#cpf").on("change", function() {
+            var data = $("#cpf").val();
+            VerificaCPF();
         });
+
+        // $("#cpfDependente").on("change", function() {
+        //     var data = $("#cpfDependente").val();
+        //     validarCPFDependente();
+        // });
 
         $("#rg").on("change", function() {
             var data = $("rg").val();
@@ -712,7 +717,7 @@ include("inc/scripts.php");
 
         $("#cep").on("change", function() {
             //Nova variável "cep" somente com dígitos.
-            if (/[0-9\!\#\$\&\*\-\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
+            if (/[\!\#\$\&\*\\/§/`/´/°/ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
                 smartAlert("Atenção", "CEP Inválido", "error");
                 $("#cep").val('');
                 $("#cep").focus();
@@ -1429,11 +1434,19 @@ include("inc/scripts.php");
 
     }
 
+    function VerificaCPF() {
+        var cpf = $("#cpf").val();
+        verificaCPF(cpf);
+        return;
+    }
+    
     function VerificaRG() {
         var rg = $("#rg").val();
         RGverificado(rg);
         return;
     }
+
+
 
     function verificaPrimeiroEmprego() {
         let primeiroEmprego = ($("#primeiroEmprego").val())
@@ -1515,11 +1528,12 @@ include("inc/scripts.php");
         var cpf = $("#cpf").val();
         validaCPF(cpf);
     }
+    
 
-    function validarCPFDependente() {
-        var cpfDependente = $("#cpfDependente").val();
-        validaCPFDependente(cpfDependente);
-    }
+    // function validarCPFDependente() {
+    //     var cpf = $("#cpf").val();
+    //     validaCPFDependente(cpf);
+    // }
 
 
     //FUNCTION GRAVAR
