@@ -700,10 +700,10 @@ include("inc/scripts.php");
             VerificaCPF();
         });
 
-        // $("#cpfDependente").on("change", function() {
-        //     var data = $("#cpfDependente").val();
-        //     validarCPFDependente();
-        // });
+        $("#cpfDependente").on("change", function() {
+            var data = $("#cpfDependente").val();
+            validarCPFDependente();
+        });
 
         $("#rg").on("change", function() {
             var data = $("rg").val();
@@ -1530,10 +1530,10 @@ include("inc/scripts.php");
     }
     
 
-    // function validarCPFDependente() {
-    //     var cpf = $("#cpf").val();
-    //     validaCPFDependente(cpf);
-    // }
+    function validarCPFDependente() {
+        var cpfDependente = $("#cpfDependente").val();
+        validaCPFDependente(cpfDependente);
+    }
 
 
     //FUNCTION GRAVAR

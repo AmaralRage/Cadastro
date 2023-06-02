@@ -26,9 +26,9 @@ if ($funcao == 'validaCPF') {
 if ($funcao == 'VerificarCPF') {
     call_user_func($funcao);
 }
-// if ($funcao == 'validaCPFDependente') {
-//     call_user_func($funcao);
-// }
+if ($funcao == 'validaCPFDependente') {
+    call_user_func($funcao);
+}
 // if ($funcao == 'VerificaCPFDependente') {
 //     call_user_func($funcao);
 // }
@@ -506,37 +506,37 @@ function VerificarCPF()
     }
 }
 
-// function validaCPFDependente()
-// {
-//     $cpfDependente = $_POST["cpfDependente"];
-//     $sql = "SELECT cpfDependente, codigo FROM dbo.dependentes WHERE cpfDependente='$cpfDependente'";
-//     $reposit = new reposit();
-//     $result = $reposit->RunQuery($sql);
-//     if ($result) {
-//         $mensagem = "CPF do dependente já registrado!";
-//         echo "failed#" . $mensagem . ' ';
-//         return;
-//     } else {
-//         echo  'succes#';
-//         return;
-//     }
-// }
+function validaCPFDependente()
+{
+    $cpfDependente = $_POST["cpfDependente"];
+    $sql = "SELECT cpfDependente, codigo FROM dbo.dependentes WHERE cpfDependente='$cpfDependente'";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sql);
+    if ($result) {
+        $mensagem = "CPF do dependente igual do funcionário!";
+        echo "failed#" . $mensagem . ' ';
+        return;
+    } else {
+        echo  'succes#';
+        return;
+    }
+}
 
-// function VerificaCPFDependente()
-// {
-//     $cpfDependente = $_POST["cpfDependente"];
-//     $sql = "SELECT cpfDependente, codigo FROM dbo.dependentes WHERE cpfDependente='$cpfDependente'";
-//     $reposit = new reposit();
-//     $result = $reposit->RunQuery($sql);
-//     if ($result > 0) {
-//         $mensagem = "CPF do Dependente já registrado!";
-//         echo "failed#" . $mensagem . ' ';
-//         return;
-//     } else {
-//         echo  'succes#';
-//         return;
-//     }
-// }
+function VerificaCPFDependente()
+{
+    $cpfDependente = $_POST["cpfDependente"];
+    $sql = "SELECT cpfDependente, codigo FROM dbo.dependentes WHERE cpfDependente='$cpfDependente'";
+    $reposit = new reposit();
+    $result = $reposit->RunQuery($sql);
+    if ($result > 0) {
+        $mensagem = "CPF do Dependente já registrado!";
+        echo "failed#" . $mensagem . ' ';
+        return;
+    } else {
+        echo  'succes#';
+        return;
+    }
+}
 
 function VerificaRG()
 {

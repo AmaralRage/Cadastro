@@ -77,25 +77,25 @@ function validaCPF(cpf) {
 }
 
 
-// function validaCPFDependente(cpfDependente) {
-//     $.ajax({
-//         url: 'js/sqlscopeFuncionario.php',
-//         type: 'post',
-//         dataType: "html",
-//         data: { funcao: "validaCPFDependente", cpfDependente: cpfDependente },
+function validaCPFDependente(cpfDependente) {
+    $.ajax({
+        url: 'js/sqlscopeFuncionario.php',
+        type: 'post',
+        dataType: "html",
+        data: { funcao: "validaCPFDependente", cpfDependente: cpfDependente },
 
-//         success: function (data, textStatus) {
-//             if (data.trim() === 'succes#') {
-//             } else {
-//                 smartAlert("Atenção", "CPF do Dependente Inválido", "error");
-//                 document.getElementById('cpfDependente').value = "";
-//                 var data = $("#cpfDependente").val();
-//             }
-//         }, error: function (xhr, er) {
-//             console.log(xhr, er);
-//         }
-//     })
-// }
+        success: function (data, textStatus) {
+            if (data.trim() === 'succes#') {
+            } else {
+                smartAlert("Atenção", "CPF do Dependente já registrado", "error");
+                document.getElementById('cpfDependente').value = "";
+                var data = $("#cpfDependente").val();
+            }
+        }, error: function (xhr, er) {
+            console.log(xhr, er);
+        }
+    })
+}
 
 function validarDataDependente() {
     var data = $("#dataNascimentoDependente").val();
