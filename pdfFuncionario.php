@@ -242,10 +242,17 @@ $primeiroEmprego = $valor_de_retorno;
 $cpf = $row['cpf'];
 $rg = $row['rg'];
 $descricaoAtivo = "";
+
 if ($ativo == 1) {
     $descricaoAtivo = "Sim";
 } else {
     $descricaoAtivo = "Não";
+}
+
+if ($pispasep) {
+    // $pispasep = "";
+} else {
+    $pispasep = "Nenhum";
 }
 
 if ($dataNascimento) {
