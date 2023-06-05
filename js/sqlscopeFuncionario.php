@@ -356,7 +356,7 @@ function recuperaFuncionario()
     $arrayEmail = [];
     foreach ($result as $contador => $item) {
         $sequencialEmail = $contador + 1;
-        $item['email'] == 1 ? $descricaoEmailPrincipal = "Sim" :  $descricaoEmailPrincipal = "Não";
+        $item['emailPrincipal'] == 1 ? $descricaoEmailPrincipal = "Sim" :  $descricaoEmailPrincipal = "Não";
 
         array_push($arrayEmail, [
             'email' => $item['email'],
