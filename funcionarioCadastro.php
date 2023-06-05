@@ -1118,7 +1118,6 @@ include("inc/scripts.php");
             item["descricaoEmailPrincipal"] = "Não"
             item["emailPrincipal"] = 0;
         }
-        item["emailPrincipal"]
 
         // linha de sinalização dos if e else 
 
@@ -1170,7 +1169,6 @@ include("inc/scripts.php");
 
             $("#tableEmail tbody").append(row);
             row.append($('<td><label class="checkbox"><input type="checkbox" name="checkbox" value="' + jsonEmailArray[i].sequencialEmail + '"><i></i></label></td>'));
-
             row.append($('<td class="text-left" onclick="carregaEmail(' + jsonEmailArray[i].sequencialEmail + ');">' + jsonEmailArray[i].email + '</td>'));
             row.append($('<td class="text-left" >' + jsonEmailArray[i].descricaoEmailPrincipal + '</td>'));
 

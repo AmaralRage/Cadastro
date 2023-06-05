@@ -145,7 +145,8 @@ function grava()
 
         $xmlEmail->addChild('email', true) //nome da tabela
             ->add('email', $item['email'])
-            ->add('emailPrincipal', $emailPrincipal);
+            ->add('emailPrincipal', $emailPrincipal)
+            ->add('sequencialEmail', $item['sequencialEmail']);
     }
 
     $xmlEmail = $comum->formatarString($xmlEmail);
@@ -359,7 +360,7 @@ function recuperaFuncionario()
 
         array_push($arrayEmail, [
             'email' => $item['email'],
-            'emailPrincipal' => $item['email'],
+            'emailPrincipal' => $item['emailPrincipal'],
             'descricaoEmailPrincipal' => $descricaoEmailPrincipal,
             'sequencialEmail' => $sequencialEmail
 
