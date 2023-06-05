@@ -260,6 +260,13 @@ foreach ($result as $row) {
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 
+        $pdf->SetFont('Courier', 'B', 8);
+        $pdf->SetY(7.2);
+        $pdf->SetX(188);
+        $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "Pagina 1"), 0, 0, "L", 0);
+
+
+
         $pdf->SetFont('Courier', 'B', 11);
         $pdf->SetY(32.5);
         $pdf->SetX(15);
