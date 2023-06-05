@@ -1110,13 +1110,15 @@ include("inc/scripts.php");
             item["sequencialEmail"] = +item["sequencialEmail"];
         }
 
-        if (item["emailPrincipal"]) {
+        if ($('#emailPrincipal').is(':checked')) {
             item["descricaoEmailPrincipal"] = "Sim"
             item["emailPrincipal"] = 1;
+
         } else {
             item["descricaoEmailPrincipal"] = "Não"
-            item["emailPrincipal"] = 1;
+            item["emailPrincipal"] = 0;
         }
+        item["emailPrincipal"]
 
         // linha de sinalização dos if e else 
 
@@ -1150,7 +1152,7 @@ include("inc/scripts.php");
             $("#sequencialEmail").val(item.sequencialEmail);
             $("#emailPrincipal").val(item.emailPrincipal);
 
-            if (item.EmailPrincipal == 1) {
+            if (item.emailPrincipal == 1) {
                 $('#emailPrincipal').prop('checked', true);
                 item["emailPrincipal"] = true;
 
