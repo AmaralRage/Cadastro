@@ -483,7 +483,7 @@ foreach ($result as $row) {
 
         // ------------------ Contato Funcionario ----------------- {
         $email = $row['email'];
-        $emailPrincipal = $row['principal'];
+        $emailPrincipal = $row['emailPrincipal'];
 
         if ($emailPrincipal) {
             $emailPrincipal = 'Sim';
