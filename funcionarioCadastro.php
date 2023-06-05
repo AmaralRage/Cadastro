@@ -976,19 +976,22 @@ include("inc/scripts.php");
             item["sequencialTelefone"] = +item["sequencialTelefone"];
         }
 
-        if (item["telefoneWhatsApp"]) {
+        if ($('#telefoneWhatsApp').is(':checked')) {
             item["descricaoTelefoneWhatsApp"] = "Sim"
             item["telefoneWhatsApp"] = 1;
         } else {
             item["descricaoTelefoneWhatsApp"] = "Não"
+            item["telefoneWhatsApp"] = 0;
         }
-        if (item["telefonePrincipal"]) {
+        if ($('#telefonePrincipal').is(':checked')) {
             item["descricaoTelefonePrincipal"] = "Sim"
             item["telefonePrincipal"] = 1;
+
         } else {
             item["descricaoTelefonePrincipal"] = "Não"
+            item["telefonePrincipal"] = 0;
         }
-        item["telefonePrincipal"] = $("#telefonePrincipal").val();
+        item["telefonePrincipal"]
 
         // linha de sinalização dos if e else 
 
@@ -1709,10 +1712,10 @@ include("inc/scripts.php");
             dataNascimento,
             cep,
             logradouro,
-            bairro,
             numero,
             complemento,
             uf,
+            bairro,
             cidade,
             primeiroEmprego,
             pispasep,

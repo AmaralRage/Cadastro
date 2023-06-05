@@ -98,14 +98,14 @@ function grava()
     foreach ($arrayTelefone as $item) {
 
         $telefonePrincipal = $item['telefonePrincipal'];
-        if ($telefonePrincipal == 'true') {
+        if ($telefonePrincipal == '1') {
             $telefonePrincipal = '1';
         } else {
             $telefonePrincipal = '0';
         }
 
         $telefoneWhatsApp = $item['telefoneWhatsApp'];
-        if ($telefoneWhatsApp == 'true') {
+        if ($telefoneWhatsApp == '1') {
             $telefoneWhatsApp = '1';
         } else {
             $telefoneWhatsApp = '0';
@@ -137,7 +137,7 @@ function grava()
     foreach ($arrayEmail as $item) {
 
         $emailPrincipal = $item['emailPrincipal'];
-        if ($emailPrincipal == 'true') {
+        if ($emailPrincipal == '1') {
             $emailPrincipal = '1';
         } else {
             $emailPrincipal = '0';
