@@ -237,7 +237,7 @@ include("inc/scripts.php");
             setTimeout(function() {
                 document.getElementById("btnGravar").disabled = false
                 gravar();
-            }, 1500)            
+            }, 700)            
         });
 
         $("#btnNovo").on("click", function() {
