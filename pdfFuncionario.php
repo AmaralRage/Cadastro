@@ -405,8 +405,8 @@ $sql2 = "SELECT telefone, principal, whatsapp FROM dbo.telefone where funcionari
 $reposit = new reposit();
 $resultQueryTelefone = $reposit->RunQuery($sql2);
 
-$i = 99;
-$margem = 5;
+// $i = 99;
+// $margem = 5;
 foreach ($resultQueryTelefone as $row) {
 
     // ------------------ Contato Funcionario ----------------- {
@@ -457,12 +457,12 @@ $pdf->SetY(94);
 $pdf->SetX(74);
 $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
 
-    $i = $i + 2;
+    $i = $i + 4;
 
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(14);
-    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+    // $pdf->SetFont('Helvetica', '', 10);
+    // $pdf->SetY($i);
+    // $pdf->SetX(14);
+    // $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
 
 $jsonTelefone = json_encode($arrayTelefone);
 
