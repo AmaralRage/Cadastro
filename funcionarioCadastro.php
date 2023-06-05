@@ -155,7 +155,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">PIS:PASEP</label>
                                                                 <label class="input">
-                                                                    <input id="pispasep" disabled = "" class="readonly" type="text" value="">
+                                                                    <input id="pispasep" disabled="" class="readonly" type="text" value="">
                                                                 </label>
                                                             </section>
                                                         </div>
@@ -584,7 +584,7 @@ include("inc/scripts.php");
             setTimeout(function() {
                 document.getElementById("btnGravar").disabled = false
                 gravar();
-            }, 600)            
+            }, 600)
         });
 
         $("#btnNovo").on("click", function() {
@@ -613,7 +613,7 @@ include("inc/scripts.php");
             }
         })
 
-       $("#cep").on("change", function() {
+        $("#cep").on("change", function() {
             clearFormCep();
         })
 
@@ -694,19 +694,19 @@ include("inc/scripts.php");
             var data = $("#cpf").val();
             validarCPF();
         });
-        
+
         $("#cpf").on("change", function() {
             var data = $("#cpf").val();
             VerificaCPF();
         });
 
         $(".cpf").on("change", function() {
-            
-            if(!cpf == "" || !cpfDependente == ""){
-            verificaCPFDependente();
+
+            if (!cpf == "" || !cpfDependente == "") {
+                verificaCPFDependente();
 
             }
-        
+
         });
 
         $("#rg").on("change", function() {
@@ -879,7 +879,7 @@ include("inc/scripts.php");
             smartAlert("Erro", "Este CPF já está na lista.", "error");
             clearFormDependente();
             return false;
-   
+
         }
 
         for (i = jsonDependenteArray.length - 1; i >= 0; i--) {
@@ -952,7 +952,7 @@ include("inc/scripts.php");
     function addTelefone() {
 
         var telefone = $("#telefone").val();
-        if (telefone === "" || telefone === "(__) _____-____") {  
+        if (telefone === "" || telefone === "(__) _____-____") {
             smartAlert("Atenção", "Informe o Telefone !", "error");
             $("#telefone").focus();
             return;
@@ -1403,7 +1403,6 @@ include("inc/scripts.php");
                             var pispasep = piece[15];
                             var primeiroEmprego = piece[16];
 
-
                             //Associa as varíaveis recuperadas pelo javascript com seus respectivos campos html.
                             $("#codigo").val(id);
                             $("#nome").val(nome);
@@ -1419,18 +1418,18 @@ include("inc/scripts.php");
                             $("#uf").val(uf);
                             $("#bairro").val(bairro);
                             $("#cidade").val(cidade);
-                            $("#pispasep").val(pispasep);
                             $("#primeiroEmprego").val(primeiroEmprego);
-                            if (pispasep) { 
+                            $("#pispasep").val(pispasep);
+                            if (pispasep) {
                                 $("#pispasep").mask('999.99999.99-9');
                                 $("#pispasep").prop("disabled", false);
                                 $("#pispasep").removeAttr("disabled");
                                 $("#pispasep").removeClass("readonly");
                                 $("#pispasep").addClass("required");
-                            } 
+                            }
 
                             validarDataDependente();
-                            
+
                             $("#jsonTelefone").val(jsonTelefone);
                             $("#jsonEmail").val(jsonEmail);
                             $("#jsonDependente").val(jsonDependente);
@@ -1457,7 +1456,7 @@ include("inc/scripts.php");
         verificaCPF(cpf);
         return;
     }
-    
+
     function VerificaRG() {
         var rg = $("#rg").val();
         RGverificado(rg);
@@ -1546,7 +1545,7 @@ include("inc/scripts.php");
         var cpf = $("#cpf").val();
         validaCPF(cpf);
     }
-    
+
 
     function validarCPFDependente() {
         var cpfDependente = $("#cpfDependente").val();
@@ -1556,11 +1555,11 @@ include("inc/scripts.php");
     function verificaCPFDependente() {
         var cpf = $("#cpf").val();
         var cpfDependente = $("#cpfDependente").val();
-        
-        if(cpf == cpfDependente){
+
+        if (cpf == cpfDependente) {
             smartAlert("Atenção", "CPF igual do funcionário)", "error");
-            
-        }  
+
+        }
     }
     //FUNCTION GRAVAR
 
@@ -1697,7 +1696,7 @@ include("inc/scripts.php");
             return;
         } {}
 
-        
+
 
 
 

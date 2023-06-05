@@ -350,7 +350,7 @@ if ($dataNascimento) {
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(144);
     $pdf->SetX(50);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "LOGRADOURO"), 1, 0, "C", 1);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "RUA"), 1, 0, "C", 1);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetY(152);
     $pdf->SetX(50);
