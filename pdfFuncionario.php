@@ -628,7 +628,12 @@ foreach ($result as $row) {
 
 
 
-
+if ($i > 50){
+    $pdf->SetAutoPageBreak(true ,$marginTop);
+    $pdf->AddPage();
+    $y = 25;
+    $pdf->SetX(10);
+}
 
 
 
