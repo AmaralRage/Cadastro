@@ -434,8 +434,8 @@ foreach ($result as $row) {
     $pdf->SetX(74);
     $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
 
-    $i = 85;
-    $margem = 4;
+    $i = 87;
+    $margem = 5;
     foreach ($resultQueryTelefone as $row) {
 
         // ------------------ Contato Funcionario ----------------- {
@@ -482,7 +482,21 @@ foreach ($result as $row) {
     $reposit = new reposit();
     $resultQueryEmail = $reposit->RunQuery($sql3);
 
-    $i = 86;
+    
+    $pdf->SetFillColor(255, 182, 193);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(112);
+    $pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+
+    $pdf->SetFillColor(127, 255, 212);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(167);
+    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+
+
+    $i = 87;
     $margem = 5;
     foreach ($resultQueryEmail as $row) {
 
@@ -496,23 +510,15 @@ foreach ($result as $row) {
             $emailPrincipal = 'Não';
         }
 
-        $pdf->SetFillColor(255, 182, 193);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(86);
-        $pdf->SetX(112);
-        $pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+        $i = $i + 7;
+
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(94);
+        $pdf->SetY($i);
         $pdf->SetX(112);
         $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
 
-        $pdf->SetFillColor(127, 255, 212);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(86);
-        $pdf->SetX(167);
-        $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(94);
+        $pdf->SetY($i);
         $pdf->SetX(167);
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
 
