@@ -260,8 +260,8 @@ foreach ($result as $row) {
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 
-        $pdf->SetFont('Courier', 'B', 8);
-        $pdf->SetY(7.2);
+        $pdf->SetFont('Times', 'B', 9);
+        $pdf->SetY(7);
         $pdf->SetX(188);
         $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "Pagina 1"), 0, 0, "L", 0);
 
@@ -269,7 +269,7 @@ foreach ($result as $row) {
 
         $pdf->SetFont('Courier', 'B', 11);
         $pdf->SetY(32.5);
-        $pdf->SetX(15);
+        $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
         $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
@@ -315,7 +315,7 @@ foreach ($result as $row) {
         // $pdf->SetFillColor(255, 0, 0);
         $pdf->SetFont('Courier', 'B', 11);
         $pdf->SetY(29.5);
-        $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y                        HABILITAR CAXA    //       //ORIENTAÇÃO    //COR
+        $pdf->SetX(140);
         $pdf->Cell(40, 8, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->SetY(29.4);
@@ -470,10 +470,20 @@ foreach ($result as $row) {
 
     $i = $i + 4;
 
-    // $pdf->SetFont('Helvetica', '', 10);
-    // $pdf->SetY($i);
-    // $pdf->SetX(14);
-    // $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(14);
+    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+    $pdf->SetFillColor(127, 255, 212);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(49);
+    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY(94);
+    $pdf->SetX(49);
+    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
+
 
     $jsonTelefone = json_encode($arrayTelefone);
 
