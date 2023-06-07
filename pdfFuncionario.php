@@ -455,7 +455,6 @@ foreach ($result as $row) {
         $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
 
-
         $pdf->SetFont('Courier', 'B', 11);
         $pdf->SetY(32.5);
         $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
@@ -534,11 +533,48 @@ foreach ($result as $row) {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
+    
 
     $sql4 = "SELECT dependente, dataNascimento, tipoDependente, cpfDependente FROM dbo.dependentes where funcionarioId = $codigo";
 
     $reposit = new reposit();
     $resultQueryDependente = $reposit->RunQuery($sql4);
+
+
+    $i = $i + 20;
+    $pdf->Line(9.5, $i, 200, $i); //LINHA DE DEPENDENTE
+    $i = $i + 7.5;
+    $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+    $pdf->SetY($i);
+    $pdf->SetX(97);
+    $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
+
+
+    $i = $i + 15; 
+
+    $pdf->SetFillColor(102, 205, 170);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(32);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 1, 0, "C", 1);
+    
+    $pdf->SetFillColor(102, 205, 170);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(68);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CPF"), 1, 0, "C", 1);
+
+    $pdf->SetFillColor(102, 205, 170);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(104);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DATA DE NASC."), 1, 0, "C", 1);
+ 
+    $pdf->SetFillColor(102, 205, 170);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(140);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TIPO DEPENDENTE"), 1, 0, "C", 1);
 
 
 
@@ -552,54 +588,29 @@ foreach ($result as $row) {
 
         $dataNascimento = explode(" ", $dataNascimento);
         $dataNascimento = explode("-", $dataNascimento[0]);
-        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
-
-        $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-        $pdf->SetY(185.5);
-        $pdf->SetX(97);
-        $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
-
-        $pdf->SetFillColor(102, 205, 170);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(202);
-        $pdf->SetX(32);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 1, 0, "C", 1);
+        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];   
+       
+        $i = $i + 8;
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(210);
+        $pdf->SetY($i);
         $pdf->SetX(32);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($dependente)), 1, 0, "C", 0);
 
-        $pdf->SetFillColor(102, 205, 170);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(202);
-        $pdf->SetX(68);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CPF"), 1, 0, "C", 1);
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(210);
+        $pdf->SetY($i);
         $pdf->SetX(68);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cpfDependente)), 1, 0, "C", 0);
 
-        $pdf->SetFillColor(102, 205, 170);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(202);
-        $pdf->SetX(104);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DATA DE NASC."), 1, 0, "C", 1);
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(210);
+        $pdf->SetY($i);
         $pdf->SetX(104);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim("$dataNascimento")), 1, 0, "C", 0);
 
-        $pdf->SetFillColor(102, 205, 170);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(202);
-        $pdf->SetX(140);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TIPO DEPENDENTE"), 1, 0, "C", 1);
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(210);
+        $pdf->SetY($i);
         $pdf->SetX(140);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
 
-        $pdf->Line(9.5, 176, 200, 176); //LINHA DE DEPENDENTE
     }
 }
 
