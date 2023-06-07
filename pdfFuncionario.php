@@ -205,6 +205,7 @@ $pdf->SetY(86);
 $pdf->SetX(112);
 $pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
 
+
 $pdf->SetFillColor(127, 255, 212);
 $pdf->SetFont('Courier', 'B', 11);
 $pdf->SetY(86);
@@ -212,7 +213,7 @@ $pdf->SetX(167);
 $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
 
 
-$i = 87;
+$y = 87;
 $margem = 5;
 foreach ($resultQueryEmail as $row) {
 
@@ -226,21 +227,19 @@ foreach ($resultQueryEmail as $row) {
         $emailPrincipal = 'Não';
     }
 
-    $i = $i + 7;
+    $y = $y + 7;
 
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
+    $pdf->SetY($y);
     $pdf->SetX(112);
     $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
 
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
+    $pdf->SetY($y);
     $pdf->SetX(167);
     $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
 }
 //94
-
-
 
 
 $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
@@ -310,7 +309,21 @@ foreach ($resultQueryTelefone as $row) {
     $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
 }
 
-$i = $i + 17;
+
+//se o array de telefone for maior que o do email muda nada
+//else $y = $i+17
+
+
+
+$numero = count($resultQueryTelefone);
+$email = count($resultQueryEmail);
+if ($numero > $email){
+    $i = $i + 17;
+} else {
+    $i = $y + 17;
+}
+
+
 $pdf->Line(10, $i, 200, $i);
 $i = $i + 7.5;
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
