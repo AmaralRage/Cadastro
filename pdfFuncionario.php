@@ -185,7 +185,7 @@ $pdf->SetY(19);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DO FUNCIONÁRIO"), 0, 0, "C", 0);
 
-$pdf->Line(9.5, 64.5, 200, 64.5);//LINHA DE FUNCIONÁRIO
+$pdf->Line(9.5, 64.5, 200, 64.5); //LINHA DE FUNCIONÁRIO
 
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(72);
@@ -193,7 +193,126 @@ $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATOS"), 0, 0, "C", 0);
 
 
-$i = $i + 145;
+$sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
+
+$reposit = new reposit();
+$resultQueryEmail = $reposit->RunQuery($sql3);
+
+
+$pdf->SetFillColor(255, 182, 193);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(86);
+$pdf->SetX(112);
+$pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(127, 255, 212);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(86);
+$pdf->SetX(167);
+$pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+
+
+$i = 87;
+$margem = 5;
+foreach ($resultQueryEmail as $row) {
+
+    // ------------------ Contato Funcionario ----------------- {
+    $email = $row['email'];
+    $emailPrincipal = $row['emailPrincipal'];
+
+    if ($emailPrincipal) {
+        $emailPrincipal = 'Sim';
+    } else {
+        $emailPrincipal = 'Não';
+    }
+
+    $i = $i + 7;
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(112);
+    $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(167);
+    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
+}
+//94
+
+
+
+
+$sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
+LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
+
+
+$reposit = new reposit();
+$resultQueryTelefone = $reposit->RunQuery($sql2);
+
+$pdf->SetFillColor(255, 182, 193);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(86);
+$pdf->SetX(14);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
+
+
+$pdf->SetFillColor(127, 255, 212);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(86);
+$pdf->SetX(49);
+$pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+
+
+$pdf->SetFillColor(144, 238, 144);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY(86);
+$pdf->SetX(74);
+$pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
+
+$i = 87;
+$margem = 5;
+foreach ($resultQueryTelefone as $row) {
+
+    // ------------------ Contato Funcionario ----------------- {
+    $telefone = $row['telefone'];
+    $telefonePrincipal = $row['principal'];
+    $telefoneWhatsapp = $row['whatsapp'];
+
+    if ($telefonePrincipal) {
+        $telefonePrincipal = 'Sim';
+    } else {
+        $telefonePrincipal = 'Não';
+    }
+
+    if ($telefoneWhatsapp) {
+        $telefoneWhatsapp = 'Sim';
+    } else {
+        $telefoneWhatsapp = 'Não';
+    }
+
+
+    $i = $i + 7;
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(14);
+    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(49);
+    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(74);
+    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
+}
+
+$i = $i + 17;
+$pdf->Line(10, $i, 200, $i);
+$i = $i + 7.5;
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY($i);
 $pdf->SetX(95);
@@ -204,6 +323,48 @@ $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, 
                 F.uf, F.cidade, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
+
+
+
+$i = $i + 14;
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(14);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(50);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "RUA"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(86);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(122);
+$pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(158);
+$pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
+
+$pdf->SetFillColor(244, 164, 96);
+$pdf->SetFont('Courier', 'B', 11);
+$pdf->SetY($i);
+$pdf->SetX(175);
+$pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 1);
+
+
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
@@ -262,10 +423,36 @@ foreach ($result as $row) {
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 
-        $pdf->SetFont('Times', 'B', 9);
-        $pdf->SetY(7);
-        $pdf->SetX(188);
-        $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "Pagina 1"), 0, 0, "L", 0);
+        $i = $i + 8;
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(14);
+        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(50);
+        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(86);
+        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(122);
+        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(158);
+        $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(175);
+        $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
 
 
@@ -345,173 +532,7 @@ foreach ($result as $row) {
 
         ////////////////////////////////////////////////////////////////////////////// ENDEREÇO ///////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     }
-
-    
-    $i = $i + 20;
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(14);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(50);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(86);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(122);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(158);
-    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(175);
-    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
-
-
-    $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
-    LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
-
-
-    $reposit = new reposit();
-    $resultQueryTelefone = $reposit->RunQuery($sql2);
-
-    $pdf->SetFillColor(255, 182, 193);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(14);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
-
-
-    $pdf->SetFillColor(127, 255, 212);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(49);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
-
-
-    $pdf->SetFillColor(144, 238, 144);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(74);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
-
-    $i = 87;
-    $margem = 5;
-    foreach ($resultQueryTelefone as $row) {
-
-        // ------------------ Contato Funcionario ----------------- {
-        $telefone = $row['telefone'];
-        $telefonePrincipal = $row['principal'];
-        $telefoneWhatsapp = $row['whatsapp'];
-
-        if ($telefonePrincipal) {
-            $telefonePrincipal = 'Sim';
-        } else {
-            $telefonePrincipal = 'Não';
-        }
-
-        if ($telefoneWhatsapp) {
-            $telefoneWhatsapp = 'Sim';
-        } else {
-            $telefoneWhatsapp = 'Não';
-        }
-
-
-        $i = $i + 7;
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($i);
-        $pdf->SetX(14);
-        $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($i);
-        $pdf->SetX(49);
-        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($i);
-        $pdf->SetX(74);
-        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
-    }
-
-    $i = $i + 15;
-    // $pdf->Line(9.5, $i, 200, $i); //LINHA DO TELEFONE
-
-    $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
-
-    $reposit = new reposit();
-    $resultQueryEmail = $reposit->RunQuery($sql3);
-
-
-    $pdf->SetFillColor(255, 182, 193);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(112);
-    $pdf->Cell(55, 8, iconv('UTF-8', 'windows-1252', "EMAIL"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(127, 255, 212);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(167);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
-
-
-    $i = 87;
-    $margem = 5;
-    foreach ($resultQueryEmail as $row) {
-
-        // ------------------ Contato Funcionario ----------------- {
-        $email = $row['email'];
-        $emailPrincipal = $row['emailPrincipal'];
-
-        if ($emailPrincipal) {
-            $emailPrincipal = 'Sim';
-        } else {
-            $emailPrincipal = 'Não';
-        }
-
-        $i = $i + 7;
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($i);
-        $pdf->SetX(112);
-        $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($i);
-        $pdf->SetX(167);
-        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
-    }
-    //94
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     $sql4 = "SELECT dependente, dataNascimento, tipoDependente, cpfDependente FROM dbo.dependentes where funcionarioId = $codigo";
@@ -519,8 +540,8 @@ foreach ($result as $row) {
     $reposit = new reposit();
     $resultQueryDependente = $reposit->RunQuery($sql4);
 
-    
-    
+
+
     foreach ($resultQueryDependente as $row) {
 
         // ------------------ DEPENDENTE ----------------- {
@@ -580,44 +601,8 @@ foreach ($result as $row) {
 
         $pdf->Line(9.5, 176, 200, 176); //LINHA DE DEPENDENTE
     }
+}
 
-
-    $i = $i + 25;
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(14);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(50);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "RUA"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(86);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(122);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(158);
-    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
-
-    $pdf->SetFillColor(244, 164, 96);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY($i);
-    $pdf->SetX(175);
-    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 1);
 
 
 
