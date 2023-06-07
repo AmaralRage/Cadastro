@@ -185,17 +185,17 @@ $pdf->SetY(19);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DO FUNCIONÁRIO"), 0, 0, "C", 0);
 
-$pdf->Line(9.5, 64.5, 200, 64.5);
+$pdf->Line(9.5, 64.5, 200, 64.5);//LINHA DE FUNCIONÁRIO
 
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(72);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATOS"), 0, 0, "C", 0);
 
-$i = $i + 7;
 
+$i = $i + 145;
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-$pdf->SetY(130);
+$pdf->SetY($i);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "ENDEREÇO"), 0, 0, "C", 0);
 
@@ -342,69 +342,43 @@ foreach ($result as $row) {
         $pdf->SetX(155);
         $pdf->Cell(10, 31.3, iconv('UTF-8', 'windows-1252', "Sim"), 0, 0, "L", 0);
 
+
         ////////////////////////////////////////////////////////////////////////////// ENDEREÇO ///////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(14);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(14);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
-
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(50);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "RUA"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(50);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
-
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(86);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(86);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
-
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(122);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(122);
-        $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
-
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(158);
-        $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(158);
-        $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
-
-        $pdf->SetFillColor(244, 164, 96);
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(144);
-        $pdf->SetX(175);
-        $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 1);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY(152);
-        $pdf->SetX(175);
-        $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
     }
+
+    
+    $i = $i + 20;
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(14);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cep)), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(50);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($logradouro)), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(86);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($bairro)), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(122);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($cidade)), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(158);
+    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', trim($uf)), 1, 0, "C", 0);
+
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetY($i);
+    $pdf->SetX(175);
+    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
 
     $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
@@ -475,7 +449,7 @@ foreach ($result as $row) {
     }
 
     $i = $i + 15;
-    $pdf->Line(9.5, $i, 200, $i); //LINHA DO TELEFONE
+    // $pdf->Line(9.5, $i, 200, $i); //LINHA DO TELEFONE
 
     $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
 
@@ -522,14 +496,31 @@ foreach ($result as $row) {
         $pdf->SetX(167);
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
     }
+    //94
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     $sql4 = "SELECT dependente, dataNascimento, tipoDependente, cpfDependente FROM dbo.dependentes where funcionarioId = $codigo";
 
     $reposit = new reposit();
     $resultQueryDependente = $reposit->RunQuery($sql4);
 
-    $i = 80;
-    $margem = 5;
+    
+    
     foreach ($resultQueryDependente as $row) {
 
         // ------------------ DEPENDENTE ----------------- {
@@ -589,20 +580,44 @@ foreach ($result as $row) {
 
         $pdf->Line(9.5, 176, 200, 176); //LINHA DE DEPENDENTE
     }
-}
 
 
+    $i = $i + 25;
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(14);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CEP"), 1, 0, "C", 1);
 
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(50);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "RUA"), 1, 0, "C", 1);
 
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(86);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "BAIRRO"), 1, 0, "C", 1);
 
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(122);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "CIDADE"), 1, 0, "C", 1);
 
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(158);
+    $pdf->Cell(17, 8, iconv('UTF-8', 'windows-1252', "UF"), 1, 0, "C", 1);
 
-
-
-
-
-
-
+    $pdf->SetFillColor(244, 164, 96);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY($i);
+    $pdf->SetX(175);
+    $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', "NÚMERO"), 1, 0, "C", 1);
 
 
 
