@@ -403,18 +403,39 @@ foreach ($result as $row) {
         $pdf->SetX(175);
         $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
 
-        $pdf->Line(9.5, 176, 200, 176);
+
     }
 
 
     $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
-    LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo";
+    LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
+
 
     $reposit = new reposit();
     $resultQueryTelefone = $reposit->RunQuery($sql2);
 
-    $i = 97;
-    $margem = 5;
+    $pdf->SetFillColor(255, 182, 193);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(14);
+    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
+
+    
+    $pdf->SetFillColor(127, 255, 212);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(49);
+    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
+
+
+    $pdf->SetFillColor(144, 238, 144);
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(86);
+    $pdf->SetX(74);
+    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
+
+    $i = 85;
+    $margem = 4;
     foreach ($resultQueryTelefone as $row) {
 
         // ------------------ Contato Funcionario ----------------- {
@@ -433,68 +454,35 @@ foreach ($result as $row) {
         } else {
             $telefoneWhatsapp = 'Não';
         }
+
+
+        $i = $i + 7;
+        
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(14);
+        $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(49);
+        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(74);
+        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
+
+        $pdf->Line(9.5, 119, 200, 119);//LINHA DO TELEFONE
     }
-
-    $pdf->SetFillColor(255, 182, 193);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(14);
-    $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY(94);
-    $pdf->SetX(14);
-    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
-
-    $pdf->SetFillColor(127, 255, 212);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(49);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY(94);
-    $pdf->SetX(49);
-    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
-
-    $pdf->SetFillColor(144, 238, 144);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(74);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "WHATSAPP"), 1, 0, "C", 1);
-    
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY(94);
-    $pdf->SetX(74);
-    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
-
-    $i = $i + 4;
-
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY($i);
-    $pdf->SetX(14);
-    $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
-    $pdf->SetFillColor(127, 255, 212);
-    $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(86);
-    $pdf->SetX(49);
-    $pdf->Cell(25, 8, iconv('UTF-8', 'windows-1252', "PRINCIPAL"), 1, 0, "C", 1);
-    $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetY(94);
-    $pdf->SetX(49);
-    $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
-
-
-    $jsonTelefone = json_encode($arrayTelefone);
-
-
 
     $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
 
     $reposit = new reposit();
     $resultQueryEmail = $reposit->RunQuery($sql3);
 
-    $i = 80;
+    $i = 86;
     $margem = 5;
     foreach ($resultQueryEmail as $row) {
 
@@ -528,12 +516,8 @@ foreach ($result as $row) {
         $pdf->SetX(167);
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
 
-        $pdf->Line(9.5, 119, 200, 119);
+
     }
-
-    $jsonEmail = json_encode($arrayEmail);
-
-
 
     $sql4 = "SELECT dependente, dataNascimento, tipoDependente, cpfDependente FROM dbo.dependentes where funcionarioId = $codigo";
 
@@ -598,9 +582,10 @@ foreach ($result as $row) {
         $pdf->SetY(210);
         $pdf->SetX(140);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
+
+        $pdf->Line(9.5, 176, 200, 176);//LINHA DE DEPENDENTE
     }
 }
-$jsonDependentes = json_encode($arrayDependente);
 
 
 
@@ -617,35 +602,6 @@ $jsonDependentes = json_encode($arrayDependente);
 
 
 
-
-
-
-
-
-
-// $pdf->MultiCell(170, 5, iconv('UTF-8', 'windows-1252', "Com a presente, levamos ao seu conhecimento que por motivos de ordem administrativa, estamos dispensando os seus serviços como funcionário desta empresa."), 0, "L");
-
-$pdf->SetFont('Arial', '', 12);
-$pdf->SetY(82);
-$pdf->SetX(21);
-// $pdf->MultiCell(170, 5, iconv('UTF-8', 'windows-1252', "Solicitamos a VSa, que dê seu ciente através de assinatura nas 02 (duas) vias deste aviso e que nos entregue a CTPS para que sejam feitas as devidas anotações."), 0, "J");
-
-$pdf->SetFont('Arial', '', 12);
-$pdf->SetY(102);
-$pdf->SetX(21);
-// $pdf->Cell(50, 10, iconv('UTF-8', 'windows-1252', "Atenciosamente,"), 0, 0, "", 0);
-
-
-
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->SetY(121);
-$pdf->SetX(20);
-// $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "NTL Nova Tecnologia "), 0, 0, "c", 0);
-
-$pdf->SetFont('Arial', '', 12);
-$pdf->SetY(145);
-$pdf->SetX(21);
-// $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "Opção de cumprimento de aviso prévio:"), 0, 0, "L", 0);
 
 
 
