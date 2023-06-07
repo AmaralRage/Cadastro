@@ -192,6 +192,8 @@ $pdf->SetY(72);
 $pdf->SetX(95);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "CONTATOS"), 0, 0, "C", 0);
 
+$i = $i + 7;
+
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(130);
 $pdf->SetX(95);
@@ -402,8 +404,6 @@ foreach ($result as $row) {
         $pdf->SetY(152);
         $pdf->SetX(175);
         $pdf->Cell(17.5, 8, iconv('UTF-8', 'windows-1252', trim($numero)), 1, 0, "C", 0);
-
-
     }
 
 
@@ -420,7 +420,7 @@ foreach ($result as $row) {
     $pdf->SetX(14);
     $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "TELEFONE"), 1, 0, "C", 1);
 
-    
+
     $pdf->SetFillColor(127, 255, 212);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(86);
@@ -457,7 +457,6 @@ foreach ($result as $row) {
 
 
         $i = $i + 7;
-        
 
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->SetY($i);
@@ -473,16 +472,17 @@ foreach ($result as $row) {
         $pdf->SetY($i);
         $pdf->SetX(74);
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
-
-        $pdf->Line(9.5, 119, 200, 119);//LINHA DO TELEFONE
     }
+
+    $i = $i + 15;
+    $pdf->Line(9.5, $i, 200, $i); //LINHA DO TELEFONE
 
     $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
 
     $reposit = new reposit();
     $resultQueryEmail = $reposit->RunQuery($sql3);
 
-    
+
     $pdf->SetFillColor(255, 182, 193);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(86);
@@ -521,8 +521,6 @@ foreach ($result as $row) {
         $pdf->SetY($i);
         $pdf->SetX(167);
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
-
-
     }
 
     $sql4 = "SELECT dependente, dataNascimento, tipoDependente, cpfDependente FROM dbo.dependentes where funcionarioId = $codigo";
@@ -589,7 +587,7 @@ foreach ($result as $row) {
         $pdf->SetX(140);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
 
-        $pdf->Line(9.5, 176, 200, 176);//LINHA DE DEPENDENTE
+        $pdf->Line(9.5, 176, 200, 176); //LINHA DE DEPENDENTE
     }
 }
 
