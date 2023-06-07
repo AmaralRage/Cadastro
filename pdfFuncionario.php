@@ -317,7 +317,7 @@ foreach ($resultQueryTelefone as $row) {
 
 $numero = count($resultQueryTelefone);
 $email = count($resultQueryEmail);
-if ($numero > $email){
+if ($numero > $email) {
     $i = $i + 17;
 } else {
     $i = $y + 17;
@@ -562,14 +562,14 @@ foreach ($result as $row) {
     $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
 
 
-    $i = $i + 15; 
+    $i = $i + 15;
 
     $pdf->SetFillColor(102, 205, 170);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY($i);
     $pdf->SetX(32);
     $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DEPENDENTE"), 1, 0, "C", 1);
-    
+
     $pdf->SetFillColor(102, 205, 170);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY($i);
@@ -581,7 +581,7 @@ foreach ($result as $row) {
     $pdf->SetY($i);
     $pdf->SetX(104);
     $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', "DATA DE NASC."), 1, 0, "C", 1);
- 
+
     $pdf->SetFillColor(102, 205, 170);
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY($i);
@@ -600,8 +600,8 @@ foreach ($result as $row) {
 
         $dataNascimento = explode(" ", $dataNascimento);
         $dataNascimento = explode("-", $dataNascimento[0]);
-        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];   
-       
+        $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
+
         $i = $i + 8;
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->SetY($i);
@@ -622,14 +622,11 @@ foreach ($result as $row) {
         $pdf->SetY($i);
         $pdf->SetX(140);
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
-
     }
 }
 
-
-
-if ($i > 50){
-    $pdf->SetAutoPageBreak(true ,$marginTop);
+if ($i > 20) {
+    $pdf->SetAutoPageBreak(true, $marginTop);
     $pdf->AddPage();
     $y = 25;
     $pdf->SetX(10);
