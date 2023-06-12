@@ -552,17 +552,41 @@ foreach ($result as $row) {
     $reposit = new reposit();
     $resultQueryDependente = $reposit->RunQuery($sql4);
 
-
-    $i = $i + 20;
-    $pdf->Line(9.5, $i, 200, $i); //LINHA DE DEPENDENTE
-    $i = $i + 7.5;
-    $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
-    $pdf->SetY($i);
-    $pdf->SetX(97);
-    $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
-
-
     $i = $i + 15;
+
+    if ($i > 220) {
+        $pdf->AddPage();
+        $i = 25;
+        $pdf->SetX(10);
+
+        
+        $i = $i + 10;
+        $pdf->Line(9.5, $i, 200, $i); //LINHA DE DEPENDENTE
+        $i = $i + 15.5;
+        $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+        $pdf->SetY($i - 35);
+        $pdf->SetX(95);
+        $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);
+        $pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
+        $pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 60, 20, 'PNG');
+             
+        //linhas das bordas
+        
+        $pdf->Line(5, 5, 205, 5);
+        $pdf->Line(5, 5, 5, 292);
+        $pdf->Line(205, 5, 205, 292);
+        $pdf->Line(5, 292, 205, 292);
+
+    } else {
+        
+        $i = $i + 17;
+        $pdf->Line(9.5, $i, 200, $i); //LINHA DE DEPENDENTE
+        $i = $i + 20.5;
+        $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
+        $pdf->SetY($i - 12);
+        $pdf->SetX(97);
+        $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "DEPENDENTES"), 0, 0, "C", 0);   
+    }
 
     $pdf->SetFillColor(102, 205, 170);
     $pdf->SetFont('Courier', 'B', 11);
@@ -603,6 +627,7 @@ foreach ($result as $row) {
         $dataNascimento = $dataNascimento[2] . "/" . $dataNascimento[1] . "/" . $dataNascimento[0];
 
         $i = $i + 8;
+
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->SetY($i);
         $pdf->SetX(32);
@@ -624,14 +649,6 @@ foreach ($result as $row) {
         $pdf->Cell(36, 8, iconv('UTF-8', 'windows-1252', trim($tipoDependente)), 1, 0, "C", 0);
     }
 }
-
-if ($i > 20) {
-    $pdf->SetAutoPageBreak(true, $marginTop);
-    $pdf->AddPage();
-    $y = 25;
-    $pdf->SetX(10);
-}
-
 
 
 
