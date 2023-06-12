@@ -68,6 +68,9 @@ $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DOS FUNCIONÁRIO
 
 
 
+
+
+
 $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
                 F.uf, F.cidade, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
@@ -131,13 +134,13 @@ foreach ($result as $row) {
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 
-        
         $pdf->SetFont('Courier', 'B', 11);
         $pdf->SetY(32.5);
         $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
         $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+
 
 
 
