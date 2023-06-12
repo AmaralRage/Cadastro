@@ -68,13 +68,10 @@ $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DOS FUNCIONÁRIO
 
 
 
-
-
-
 $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
                 F.uf, F.cidade, F.rg, G.descricao as genero
                 FROM dbo.funcionarios F
-                LEFT JOIN dbo.genero G on G.codigo = F.genero WHERE F.codigo = $codigo";
+                LEFT JOIN dbo.genero G on G.codigo = F.genero";
 
 
 $reposit = new reposit();
@@ -133,138 +130,103 @@ foreach ($result as $row) {
         $dataNascimento = explode(" ", $dataNascimento);
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
+    }
 
-        $pdf->SetFont('Courier', 'B', 11);
-        $pdf->SetY(32.5);
-        $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-        $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
-
-
-
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(32.5);
+    $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
 
 
-        $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
+
+    $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
         LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
 
-        $i = 87;
-        $margem = 5;
-        foreach ($resultQueryTelefone as $row) {
+    $reposit = new reposit();
+    $resultQueryTelefone = $reposit->RunQuery($sql2);
 
-            // ------------------ Contato Funcionario ----------------- {
-            $telefone = $row['telefone'];
-            $telefonePrincipal = $row['principal'];
-            $telefoneWhatsapp = $row['whatsapp'];
+    $i = 87;
+    $margem = 5;
+    foreach ($resultQueryTelefone as $row) {
 
-            if ($telefonePrincipal) {
-                $telefonePrincipal = 'Sim';
-            } else {
-                $telefonePrincipal = 'Não';
-            }
+        // ------------------ Contato Funcionario ----------------- {
+        $telefone = $row['telefone'];
+        $telefonePrincipal = $row['principal'];
+        $telefoneWhatsapp = $row['whatsapp'];
 
-            if ($telefoneWhatsapp) {
-                $telefoneWhatsapp = 'Sim';
-            } else {
-                $telefoneWhatsapp = 'Não';
-            }
-
-
-            $i = $i + 7;
-
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->SetY($i);
-            $pdf->SetX(14);
-            $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
-
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->SetY($i);
-            $pdf->SetX(49);
-            $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
-
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->SetY($i);
-            $pdf->SetX(74);
-            $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
+        if ($telefonePrincipal) {
+            $telefonePrincipal = 'Sim';
+        } else {
+            $telefonePrincipal = 'Não';
         }
 
-        $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
-
-        $reposit = new reposit();
-        $resultQueryEmail = $reposit->RunQuery($sql3);
-
-
-        $y = 87;
-        $margem = 5;
-        foreach ($resultQueryEmail as $row) {
-
-            // ------------------ Contato Funcionario ----------------- {
-            $email = $row['email'];
-            $emailPrincipal = $row['emailPrincipal'];
-
-            if ($emailPrincipal) {
-                $emailPrincipal = 'Sim';
-            } else {
-                $emailPrincipal = 'Não';
-            }
-
-            $y = $y + 7;
-
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->SetY($y);
-            $pdf->SetX(112);
-            $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
-
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->SetY($y);
-            $pdf->SetX(167);
-            $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        if ($telefoneWhatsapp) {
+            $telefoneWhatsapp = 'Sim';
+        } else {
+            $telefoneWhatsapp = 'Não';
         }
+
+
+        $i = $i + 7;
+
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(14);
+        $pdf->Cell(35, 7, iconv('UTF-8', 'windows-1252', $telefone), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(49);
+        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefonePrincipal), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($i);
+        $pdf->SetX(74);
+        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
+    }
+
+    $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
+
+    $reposit = new reposit();
+    $resultQueryEmail = $reposit->RunQuery($sql3);
+
+
+    $y = 87;
+    $margem = 5;
+    foreach ($resultQueryEmail as $row) {
+
+        // ------------------ Contato Funcionario ----------------- {
+        $email = $row['email'];
+        $emailPrincipal = $row['emailPrincipal'];
+
+        if ($emailPrincipal) {
+            $emailPrincipal = 'Sim';
+        } else {
+            $emailPrincipal = 'Não';
+        }
+
+        $y = $y + 7;
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($y);
+        $pdf->SetX(112);
+        $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetY($y);
+        $pdf->SetX(167);
+        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
