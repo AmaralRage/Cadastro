@@ -643,7 +643,7 @@ include("inc/scripts.php");
 
         $("#complemento").on("change", function() {
             if (/[\!\#\$\&\*\-\/§/`/´//ª/º/\_\/\@\/""\/''\^\~\+\?\.\;\,\:\]\[\(\)]/g.test(this.value)) {
-                smartAlert("Atenção", "Complemento Inválido", "Apenas letras ou números!", "error");
+                smartAlert("Atenção", "Complemento Inválido, apenas letras ou números!", "error");
                 $("#complemento").val('');
                 $("#complemento").focus();
             }
