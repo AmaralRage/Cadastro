@@ -1271,7 +1271,7 @@ include("inc/scripts.php");
                     jsonDependenteArray.splice(i, 1);
                 }
             }
-            $("#jsonDependentes").val(JSON.stringify(jsonDependenteArray));
+            $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
             fillTableDependente();
         } else
             smartAlert("Erro", "Selecione pelo menos um Projeto para excluir.", "error");
