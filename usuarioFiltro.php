@@ -146,6 +146,9 @@ include("inc/nav.php");
                                                     <button id="btnNovo" type="button" class="btn btn-primary pull-left" title="Novo">
                                                         <span class="fa fa-file"></span>
                                                     </button>
+                                                    <button id="btnPDF" type="button" class="btn btn-danger pull-left" title="PDF">
+                                                        <span class="fa fa-file-pdf-o"></span>
+                                                    </button>
                                             </footer>
                                         </div>
                                     </div>
@@ -205,6 +208,9 @@ include("inc/scripts.php");
         $('#btnNovo').on("click", function() {
             novo();
         });
+            $('#btnPDF').on("click", function() {
+            PDF();
+        });
         $("#cpf").mask('999.999.999-99');
         $("#rg").mask('99.999.999-9');
     });
@@ -231,5 +237,9 @@ include("inc/scripts.php");
 
     function novo() {
         $(location).attr('href', 'funcionarioCadastro.php');
+    }
+    
+    function PDF() {
+        $(location).attr('href', 'RelatoriosFuncionario.php');
     }
 </script>
