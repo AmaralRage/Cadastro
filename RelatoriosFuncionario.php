@@ -131,6 +131,14 @@ foreach ($result as $row) {
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
 
+        
+        $pdf->SetFont('Courier', 'B', 11);
+        $pdf->SetY(32.5);
+        $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+        $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+
 
 
 
@@ -211,12 +219,6 @@ foreach ($result as $row) {
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            $pdf->SetFont('Courier', 'B', 11);
-            $pdf->SetY(32.5);
-            $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-            $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
-            $pdf->SetFont('Helvetica', '', 10);
-            $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
         }
     }
 }
