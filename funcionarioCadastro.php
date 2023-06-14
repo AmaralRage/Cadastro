@@ -1019,74 +1019,78 @@ include("inc/scripts.php");
     function addDependente() {
 
         var cpfDependente = $("#cpfDependente").val();
-        if (cpfDependente === "") {
-            smartAlert("Atenção", "Informe o CPF do Dependente !", "error");
-            $("#cpfDependente").focus();
-        }
-        var dataNascimentoDependente = $("#dataNascimentoDependente").val();
-        if (dataNascimentoDependente === "") {
-            smartAlert("Atenção", "Informe a data de nascimento do Dependente !", "error");
-            $("#dataNascimentoDependente").focus();
-            return;
-        }
-        var tipoDependente = $("#tipoDependente").val();
-        var dependente = $("#dependente").val();
-        if (dependente === "") {
-            smartAlert("Atenção", "Informe o Dependente !", "error");
-            $("#dependente").focus();
-            return;
-        }
+        if (trim(dependente) != "") {
 
-        var item = $("#formDependente").toObject({
-            mode: 'combine',
-            skipEmpty: false
-        });
 
-        item["sequencialDependente"] = $("#sequencialDependente").val();
+            if (cpfDependente === "") {
+                smartAlert("Atenção", "Informe o CPF do Dependente !", "error");
+                $("#cpfDependente").focus();
+            }
+            var dataNascimentoDependente = $("#dataNascimentoDependente").val();
+            if (dataNascimentoDependente === "") {
+                smartAlert("Atenção", "Informe a data de nascimento do Dependente !", "error");
+                $("#dataNascimentoDependente").focus();
+                return;
+            }
+            var tipoDependente = $("#tipoDependente").val();
+            var dependente = $("#dependente").val();
+            if (dependente === "") {
+                smartAlert("Atenção", "Informe o Dependente !", "error");
+                $("#dependente").focus();
+                return;
+            }
 
-        if (item["sequencialDependente"] === '') {
-            if (jsonDependenteArray.length === 0) {
-                item["sequencialDependente"] = 1;
+            var item = $("#formDependente").toObject({
+                mode: 'combine',
+                skipEmpty: false
+            });
+
+            item["sequencialDependente"] = $("#sequencialDependente").val();
+
+            if (item["sequencialDependente"] === '') {
+                if (jsonDependenteArray.length === 0) {
+                    item["sequencialDependente"] = 1;
+                } else {
+                    item["sequencialDependente"] = Math.max.apply(Math, jsonDependenteArray.map(function(o) {
+                        return o.sequencialDependente;
+                    })) + 1;
+                }
             } else {
-                item["sequencialDependente"] = Math.max.apply(Math, jsonDependenteArray.map(function(o) {
-                    return o.sequencialDependente;
-                })) + 1;
+                item["sequencialDependente"] = +item["sequencialDependente"];
             }
-        } else {
-            item["sequencialDependente"] = +item["sequencialDependente"];
+
+            // linha de sinalização dos if e else 
+
+            item["dependente"] = $('#dependente').val()
+            item["cpfDependente"] = $('#cpfDependente').val()
+            item["dataNascimentoDependente"] = $('#dataNascimentoDependente').val()
+            item["tipoDependente"] = $('#tipoDependente').val()
+
+            var index = -1;
+            $.each(jsonDependenteArray, function(i, obj) {
+                if (+$('#sequencialDependente').val() === obj.sequencialDependente) {
+                    index = i;
+                    return false;
+                }
+            });
+
+            if (index >= 0)
+                jsonDependenteArray.splice(index, 1, item);
+            else
+                jsonDependenteArray.push(item);
+
+            $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
+
+            fillTableDependente();
+            clearFormDependente();
         }
-
-        // linha de sinalização dos if e else 
-
-        item["dependente"] = $('#dependente').val()
-        item["cpfDependente"] = $('#cpfDependente').val()
-        item["dataNascimentoDependente"] = $('#dataNascimentoDependente').val()
-        item["tipoDependente"] = $('#tipoDependente').val()
-
-        var index = -1;
-        $.each(jsonDependenteArray, function(i, obj) {
-            if (+$('#sequencialDependente').val() === obj.sequencialDependente) {
-                index = i;
-                return false;
-            }
-        });
-
-        if (index >= 0)
-            jsonDependenteArray.splice(index, 1, item);
-        else
-            jsonDependenteArray.push(item);
-
-        $("#jsonDependente").val(JSON.stringify(jsonDependenteArray));
-
-        fillTableDependente();
-        clearFormDependente();
 
     }
 
     function addEmail() {
 
         var email = $("#email").val();
-        if (email === "" || email == "") {
+        if (email === "" || email == " ") {
             smartAlert("Atenção", "Informe o Email !", "error");
             $("#email").focus();
             return;
@@ -1137,7 +1141,7 @@ include("inc/scripts.php");
         $("#jsonEmail").val(JSON.stringify(jsonEmailArray));
 
         fillTableEmail();
-        clearFormEmail();
+        clearFormEmail()
     }
 
     function carregaEmail(sequencialEmail) {
@@ -1354,7 +1358,7 @@ include("inc/scripts.php");
     }
 
     function validateEmail(email) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        if (/^\w+([\. -]?\w+)*@\w+([\. -]?\w+)*(\.\w{2,3})+$/.test(email)) {
 
             return (true)
         } else {
