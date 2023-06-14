@@ -67,7 +67,7 @@ $pdf->Cell(3, 35, iconv('UTF-8', 'windows-1252', ""), 0, 0, "C", 0);
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(19);
 $pdf->SetX(95);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "RELATÓRIO DOS FUNCIONÁRIOS"), 0, 0, "C", 0);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES"), 0, 0, "C", 0);
 
 
 
@@ -135,11 +135,26 @@ foreach ($result as $row) {
     } else {
         $pispasep = "Nenhum";
     }
+    
+    if ($contador) {
+        // $pispasep = "";
+    } else {
+        $contador = "Nenhum";
+    }
 
     if ($dataNascimento) {
         $dataNascimento = explode(" ", $dataNascimento);
         $data = explode("-", $dataNascimento[0]);
         $data = ($data[2] . "/" . $data[1] . "/" . $data[0]);
+    }
+
+    $sql2 = "SELECT codigo FROM dbo.dependentes where funcionario = $codigo";
+    $reposit = new reposit();
+    $resultQuery = $reposit->RunQuery($sql2);
+    $contador = 0;
+
+    foreach ($resultQuery as $row) {
+        $contador = $contador + 1;
     }
 
     $pdf->SetFont('Courier', 'B', 11);
@@ -232,7 +247,7 @@ foreach ($result as $row) {
     $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
     $pdf->Cell(22, 3, iconv('UTF-8', 'windows-1252', "DEPENDENTES:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $dependente), 0, 0, "L", 0);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $contador), 0, 0, "L", 0);
 
     // $reposit = new reposit();
     // $resultQueryTelefone = $reposit->RunQuery($sql2);
