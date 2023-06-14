@@ -50,6 +50,9 @@ $pdf->Line(205, 5, 205, 292);
 $pdf->Line(5, 292, 205, 292);
 
 
+$pdf->Line(10, 85.1, 200, 85.1);
+
+
 
 $pdf->Image('C:\inetpub\wwwroot\Cadastro\img\ntlLogoMarcaDagua.png', 36.5, 80, 135, 145, 'PNG');
 $pdf->Image('C:\inetpub\wwwroot\Cadastro\img\MarcaNTL.png', 12, 265, 60, 20, 'PNG');
@@ -185,16 +188,16 @@ foreach ($result as $row) {
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(51.5);
     $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(12, 3, iconv('UTF-8', 'windows-1252', "CEP:"), 0, 0, "L", 0);
+    $pdf->Cell(42, 3, iconv('UTF-8', 'windows-1252', "PRIMEIRO EMPREGO:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cep), 0, 0, "L", 0);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $primeiroEmprego), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(61.5);
     $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(18, 3, iconv('UTF-8', 'windows-1252', "BAIRRO:"), 0, 0, "L", 0);
+    $pdf->Cell(20, 3, iconv('UTF-8', 'windows-1252', "PISPASEP:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $bairro), 0, 0, "L", 0);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $pispasep), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(72);
@@ -203,6 +206,33 @@ foreach ($result as $row) {
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $email), 0, 0, "L", 0);
 
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(42);
+    $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(27, 3, iconv('UTF-8', 'windows-1252', "DATA NASC.:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $data), 0, 0, "L", 0);
+
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(52);
+    $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(19, 3, iconv('UTF-8', 'windows-1252', "CIDADE:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cidade), 0, 0, "L", 0);
+
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(62);
+    $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(22, 3, iconv('UTF-8', 'windows-1252', "ENDEREÇO:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $logradouro), 0, 0, "L", 0);
+
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(72);
+    $pdf->SetX(140); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(22, 3, iconv('UTF-8', 'windows-1252', "DEPENDENTES:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $dependente), 0, 0, "L", 0);
 
     // $reposit = new reposit();
     // $resultQueryTelefone = $reposit->RunQuery($sql2);
