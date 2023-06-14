@@ -783,7 +783,7 @@ include("inc/scripts.php");
 
         $("#btnAddEmail").on("click", function() {
             var email = $("#email").val();
-            if (validateEmail(email) == false) {
+            if (validaEmail(email) == false) {
                 smartAlert("Erro", "Email inválido", "error");
                 $("#email").val('')
             } else {
@@ -935,7 +935,7 @@ include("inc/scripts.php");
             }
         }
         if (achouEmail === true) {
-            smartAlert("Erro", "Este número já está na lista.", "error");
+            smartAlert("Erro", "Este email já está na lista.", "error");
             clearFormEmail();
             return false;
         }
@@ -1086,7 +1086,7 @@ include("inc/scripts.php");
     function addEmail() {
 
         var email = $("#email").val();
-        if (email === "") {
+        if (email === "" || email == "") {
             smartAlert("Atenção", "Informe o Email !", "error");
             $("#email").focus();
             return;
@@ -1658,6 +1658,8 @@ include("inc/scripts.php");
         //     return;
         // }
 
+
+
         var umEmailPrincipal = false;
         for (var i = 0; i < jsonEmailArray.length; i++) {
             if (jsonEmailArray[i].descricaoEmailPrincipal == 'Sim') {
@@ -1666,6 +1668,12 @@ include("inc/scripts.php");
         }
         if (umEmailPrincipal != true) {
             smartAlert("Atenção", "Adicione pelo menos um Email como Principal!", "error");
+            $("#email").focus();
+            return;
+        }
+
+        if (email.length === 0 || !email.trim()) {
+            smartAlert("Atenção", "Informe o email!", "error");
             $("#email").focus();
             return;
         }
