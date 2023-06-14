@@ -528,6 +528,8 @@ include("inc/scripts.php");
 <!-- Form to json -->
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/form2js.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/jquery.toObject.js"></script>
+<!-- Script Mask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 
 <script language="JavaScript" type="text/javascript">
@@ -909,7 +911,7 @@ include("inc/scripts.php");
     function validaEmail() {
         var achouEmail = false;
         var achouEmailPrincipal = false;
-        var emailPrincipal = '';
+        var emailPrincipal = ' ';
 
         if ($('#emailPrincipal').is(':checked')) {
             emailPrincipal = true;

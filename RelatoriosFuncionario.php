@@ -73,6 +73,14 @@ $sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, 
                 FROM dbo.funcionarios F
                 LEFT JOIN dbo.genero G on G.codigo = F.genero";
 
+// $sql = "SELECT DISTINCT F.codigo AS codigoFuncionario, F.nome, F.ativo, F.cpf, F.dataNascimento, F.rg, F.estadoCivil, F.cep, F.logradouro, F.numero, F.complemento, F.UF, F.bairro, F.cidade, F.primeiroEmprego, F.pispasep, GF.descricao, TF.Telefone, EF.email
+// FROM dbo.funcionarios F
+//             LEFT JOIN dbo.genero GF ON GF.codigo = F.genero
+//             LEFT JOIN dbo.telefone TF ON TF.funcionario = F.codigo
+//             LEFT JOIN dbo.email EF ON EF.funcionario = F.codigo
+//             WHERE TF.principal = 1 AND EF.principal = 1";
+
+
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
@@ -138,6 +146,13 @@ foreach ($result as $row) {
     $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "NOME:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
+    
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(43.5);
+    $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cpf), 0, 0, "L", 0);
 
 
 
