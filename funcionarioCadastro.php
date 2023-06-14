@@ -615,6 +615,12 @@ include("inc/scripts.php");
             }
         })
 
+        $("#email").on("change", function() {
+            {
+                validateEmail()
+            }
+        })
+
         $("#cep").on("change", function() {
             clearFormCep();
         })
@@ -1092,7 +1098,13 @@ include("inc/scripts.php");
     function addEmail() {
 
         var email = $("#email").val();
-        if (email === "" || email == " ") {
+        if (email === "") {
+            smartAlert("Atenção", "Informe o Email !", "error");
+            $("#email").focus();
+            return;
+        }
+
+        if (email === "") {
             smartAlert("Atenção", "Informe o Email !", "error");
             $("#email").focus();
             return;
@@ -1359,12 +1371,12 @@ include("inc/scripts.php");
             smartAlert("Erro", "Selecione pelo menos um campo para excluir.", "error");
     }
 
-    function validateEmail(email) {
+    function validateEmail(jsonEmail) {
         if (/^\w+([\. -]?\w+)*@\w+([\. -]?\w+)*(\.\w{2,3})+$/.test(email)) {
-
             return (true)
         } else {
             return (false);
+            clearFormEmail()
         }
     }
 
@@ -1607,6 +1619,12 @@ include("inc/scripts.php");
             return;
         }
 
+        if (email == "[]") {
+            smartAlert("Atenção", "Informe o email!", "error");
+            $("#email").focus();
+            return;
+        }
+
 
         if (!cpf) {
             smartAlert("Atenção", "Informe o CPF", "error");
@@ -1678,11 +1696,6 @@ include("inc/scripts.php");
             return;
         }
 
-        if (email.length === 0 || !email.trim()) {
-            smartAlert("Atenção", "Informe o email!", "error");
-            $("#email").focus();
-            return;
-        }
 
         if (!cep) {
             smartAlert("Atenção", "Informe o CEP", "error");
