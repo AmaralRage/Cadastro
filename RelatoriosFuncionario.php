@@ -64,23 +64,19 @@ $pdf->Cell(3, 35, iconv('UTF-8', 'windows-1252', ""), 0, 0, "C", 0);
 $pdf->SetFont($tipoDeFonte, 'B', $tamanhoFonte);
 $pdf->SetY(19);
 $pdf->SetX(95);
-$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "INFORMAÇÕES DOS FUNCIONÁRIOS"), 0, 0, "C", 0);
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', "RELATÓRIO DOS FUNCIONÁRIOS"), 0, 0, "C", 0);
 
 
 
-$sql = " SELECT F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento,F.pispasep, F.estadoCivil, F.pispasep, F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
-                F.uf, F.cidade, F.rg, G.descricao as genero
+$sql = " SELECT DISTINCT F.codigo AS dbo.funcionarios, F.nome, F.codigo, F.ativo, F.cpf, F.data_Nascimento, F.pispasep, F.estadoCivil, F.pispasep,
+                F.primeiroEmprego, F.cep, F.logradouro, F.bairro, F.numero, F.complemento,
+                F.uf, F.cidade, F.rg, TF.telefone, TF.email, G.descricao as genero
                 FROM dbo.funcionarios F
-                LEFT JOIN dbo.genero G on G.codigo = F.genero";
-
-// $sql = "SELECT DISTINCT F.codigo AS codigoFuncionario, F.nome, F.ativo, F.cpf, F.dataNascimento, F.rg, F.estadoCivil, F.cep, F.logradouro, F.numero, F.complemento, F.UF, F.bairro, F.cidade, F.primeiroEmprego, F.pispasep, GF.descricao, TF.Telefone, EF.email
-// FROM dbo.funcionarios F
-//             LEFT JOIN dbo.genero GF ON GF.codigo = F.genero
-//             LEFT JOIN dbo.telefone TF ON TF.funcionario = F.codigo
-//             LEFT JOIN dbo.email EF ON EF.funcionario = F.codigo
-//             WHERE TF.principal = 1 AND EF.principal = 1";
-
-
+                LEFT JOIN dbo.genero G on G.codigo = F.genero
+                LEFT JOIN dbo.telefone TF ON TF.funcionarios = F.codigo
+                LEFT JOIN dbo.email EF ON EF.funcionarios = F.codigo
+                WHERE TF.principal = 1 AND EF.principal = 1";
+                 
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
@@ -148,16 +144,46 @@ foreach ($result as $row) {
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', "$nome"), 0, 0, "L", 0);
     
     $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(43.5);
+    $pdf->SetY(42);
     $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(13, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
+    $pdf->Cell(10, 3, iconv('UTF-8', 'windows-1252', "CPF:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cpf), 0, 0, "L", 0);
+    $pdf->Cell(11, 3.6, iconv('UTF-8', 'windows-1252', $cpf), 0, 0, "L", 0);
+    
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(51.5);
+    $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(10, 3, iconv('UTF-8', 'windows-1252', "RG:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(16, 3.6, iconv('UTF-8', 'windows-1252', $rg), 0, 0, "L", 0);
+    
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(62);
+    $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $genero), 0, 0, "L", 0);
+
+        
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(72);
+    $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "TELEFONE:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $telefone), 0, 0, "L", 0);
+
+    $pdf->SetFont('Courier', 'B', 11);
+    $pdf->SetY(42);
+    $pdf->SetX(59); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(32, 3, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $estadoCivil), 0, 0, "L", 0);
+    
 
 
 
-    $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
-        LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
+    // $sql2 = "SELECT  TF.telefone, TF.principal, TF.whatsapp FROM dbo.funcionarios C
+    //     LEFT JOIN dbo.telefone TF on TF.funcionarioId = C.codigo where C.codigo = $codigo";
 
     $reposit = new reposit();
     $resultQueryTelefone = $reposit->RunQuery($sql2);
@@ -203,7 +229,7 @@ foreach ($result as $row) {
         $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $telefoneWhatsapp), 1, 0, "C", 0);
     }
 
-    $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
+    // $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
 
     $reposit = new reposit();
     $resultQueryEmail = $reposit->RunQuery($sql3);

@@ -529,7 +529,7 @@ include("inc/scripts.php");
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/form2js.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/form-to-json/jquery.toObject.js"></script>
 <!-- Script Mask -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script> -->
 
 
 <script language="JavaScript" type="text/javascript">
@@ -1652,17 +1652,17 @@ include("inc/scripts.php");
             }
         }
 
-        // var umTelefonePrincipal = false;
-        // for (var i = 0; i < jsonTelefoneArray.length; i++) {
-        //     if (jsonTelefoneArray[i].telefonePrincipal == true) {
-        //         umTelefonePrincipal = true;
-        //     }
-        // }
-        // if (umTelefonePrincipal != true) {
-        //     smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
-        //     $("#telefone").focus();
-        //     return;
-        // }
+        var umTelefonePrincipal = false;
+        for (var i = 0; i < jsonTelefoneArray.length; i++) {
+            if (jsonTelefoneArray[i].telefonePrincipal == true) {
+                umTelefonePrincipal = true;
+            }
+        }
+        if (umTelefonePrincipal != true) {
+            smartAlert("Atenção", "Adicione pelo menos um Telefone como Principal!", "error");
+            $("#telefone").focus();
+            return;
+        }
 
 
 
