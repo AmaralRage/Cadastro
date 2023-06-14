@@ -80,6 +80,8 @@ $sql = "SELECT DISTINCT F.codigo AS funcionario, F.nome, F.codigo, F.ativo, F.cp
 
 $reposit = new reposit();
 $result = $reposit->RunQuery($sql);
+$resultQueryTelefone = $reposit->RunQuery($sql);
+$resultQueryEmail = $reposit->RunQuery($sql);
 foreach ($result as $row) {
     $nome = $row['nome'];
     $cpf = $row['cpf'];
@@ -97,7 +99,8 @@ foreach ($result as $row) {
     $complemento = $row['complemento'];
     $uf = $row['uf'];
     $cidade = $row['cidade'];
-
+    $telefone = $row['telefone'];
+    $email = $row['email'];
 
     $valor_de_retorno = match ($estadoCivil) {
         1 => 'Solteiro(a)',
@@ -168,37 +171,37 @@ foreach ($result as $row) {
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(72);
     $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "TELEFONE:"), 0, 0, "L", 0);
+    $pdf->Cell(22, 3, iconv('UTF-8', 'windows-1252', "TELEFONE:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $telefone), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(42);
-    $pdf->SetX(59); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
     $pdf->Cell(32, 3, iconv('UTF-8', 'windows-1252', "ESTADO CIVIL:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $estadoCivil), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(51.5);
-    $pdf->SetX(59); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
     $pdf->Cell(12, 3, iconv('UTF-8', 'windows-1252', "CEP:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cep), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(61.5);
-    $pdf->SetX(59); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(19, 3, iconv('UTF-8', 'windows-1252', "BAIRRO:"), 0, 0, "L", 0);
+    $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(18, 3, iconv('UTF-8', 'windows-1252', "BAIRRO:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $bairro), 0, 0, "L", 0);
 
     $pdf->SetFont('Courier', 'B', 11);
-    $pdf->SetY(61.5);
-    $pdf->SetX(59); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
-    $pdf->Cell(19, 3, iconv('UTF-8', 'windows-1252', "CIDADE:"), 0, 0, "L", 0);
+    $pdf->SetY(72);
+    $pdf->SetX(70); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
+    $pdf->Cell(16, 3, iconv('UTF-8', 'windows-1252', "EMAIL:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $cidade), 0, 0, "L", 0);
+    $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $email), 0, 0, "L", 0);
 
 
     // $reposit = new reposit();
@@ -248,41 +251,41 @@ foreach ($result as $row) {
     // $sql3 = "SELECT email, emailPrincipal FROM dbo.email where funcionarioId = $codigo";
 
     // $reposit = new reposit();
-    // $resultQueryEmail = $reposit->RunQuery($sql3);
-
-
-    $y = 87;
-    $margem = 5;
-    foreach ($resultQueryEmail as $row) {
-
-        // ------------------ Contato Funcionario ----------------- {
-        $email = $row['email'];
-        $emailPrincipal = $row['emailPrincipal'];
-
-        if ($emailPrincipal) {
-            $emailPrincipal = 'Sim';
-        } else {
-            $emailPrincipal = 'Não';
-        }
-
-        $y = $y + 7;
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($y);
-        $pdf->SetX(112);
-        $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
-
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->SetY($y);
-        $pdf->SetX(167);
-        $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
+    // $y = 87;
+    // $margem = 5;
+    // foreach ($resultQueryEmail as $row) {
 
-    }
+    //     // ------------------ Contato Funcionario ----------------- {
+    //     $email = $row['email'];
+    //     $emailPrincipal = $row['emailPrincipal'];
+
+    //     if ($emailPrincipal) {
+    //         $emailPrincipal = 'Sim';
+    //     } else {
+    //         $emailPrincipal = 'Não';
+    //     }
+
+    //     $y = $y + 7;
+
+    //     $pdf->SetFont('Helvetica', '', 10);
+    //     $pdf->SetY($y);
+    //     $pdf->SetX(112);
+    //     $pdf->Cell(55, 7, iconv('UTF-8', 'windows-1252', $email), 1, 0, "C", 0);
+
+    //     $pdf->SetFont('Helvetica', '', 10);
+    //     $pdf->SetY($y);
+    //     $pdf->SetX(167);
+    //     $pdf->Cell(25, 7, iconv('UTF-8', 'windows-1252', $emailPrincipal), 1, 0, "C", 0);
+
+    //     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    // }
 }
 
 
