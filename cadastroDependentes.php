@@ -68,7 +68,7 @@ include("inc/nav.php");
                                                             <section class="col col-2">
                                                                 <label class="label">Descrição de Dependente</label>
                                                                 <label class="input">
-                                                                    <input id="tipoDependente" maxlength="255" name="tipoDependente" class="required" type="text" value="">
+                                                                    <input id="tipoDependente" maxlength="100" name="tipoDependente" class="required" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="hidden" class="col col-2">
