@@ -140,7 +140,7 @@ include("inc/nav.php");
                                                             <section class="col col-1">
                                                                 <label class="label">Idade</label>
                                                                 <label class="input">
-                                                                    <input id="idade" maxlength="255" class="readonly" readonly name="idade" type="text" value="">
+                                                                    <input id="idade" maxlength="100" class="readonly" readonly name="idade" type="text" value="">
                                                                 </label>
                                                             </section>
                                                             <section class="col col-1.5">
