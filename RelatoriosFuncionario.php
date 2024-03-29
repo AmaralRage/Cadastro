@@ -162,8 +162,7 @@ foreach ($result as $row) {
     }
 
     $i = $i + 15;
-
-
+    
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(32.5);
     $pdf->SetX(15); // TAMANHO EM X, TAMANHO EM Y    HABILITAR CAXA //// ORIENTAÇÃO // COR
@@ -191,7 +190,6 @@ foreach ($result as $row) {
     $pdf->Cell(17, 3, iconv('UTF-8', 'windows-1252', "GÊNERO:"), 0, 0, "L", 0);
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->Cell(20, 3.6, iconv('UTF-8', 'windows-1252', $genero), 0, 0, "L", 0);
-
 
     $pdf->SetFont('Courier', 'B', 11);
     $pdf->SetY(72);
