@@ -1644,7 +1644,6 @@ include("inc/scripts.php");
             return;
         }
 
-
         if (!estadoCivil) {
             smartAlert("Atenção", "Informe o Estado Civil", "error");
             $("#btnGravar").prop('disabled', false);
@@ -1681,9 +1680,7 @@ include("inc/scripts.php");
             $("#telefone").focus();
             return;
         }
-
-
-
+      
         var umEmailPrincipal = false;
         for (var i = 0; i < jsonEmailArray.length; i++) {
             if (jsonEmailArray[i].descricaoEmailPrincipal == 'Sim') {
@@ -1695,7 +1692,6 @@ include("inc/scripts.php");
             $("#email").focus();
             return;
         }
-
 
         if (!cep) {
             smartAlert("Atenção", "Informe o CEP", "error");
@@ -1723,10 +1719,6 @@ include("inc/scripts.php");
             $("#btnGravar").prop('disabled', false);
             return;
         } {}
-
-
-
-
 
         gravaFuncionario(id, ativo,
             nome,
