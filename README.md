@@ -1,0 +1,2 @@
+## Treinamento
+#### No ano passado, realizei um treinamento prático para criar uma tela de cadastro usando HTML, CSS e PHP. Os participantes aprenderam a estruturar a página com HTML, estilizar com CSS e processar dados com PHP. O treinamento cobriu a criação de formulários, técnicas de estilização para melhorar a aparência e a usabilidade, e o uso de PHP para validar e armazenar dados em um banco de dados. Ao final, os participantes desenvolveram uma aplicação funcional, ideal para iniciantes que buscavam conhecimentos práticos em desenvolvimento web.
